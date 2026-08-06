@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "title": "Repository Runtime Laboratory Data Link",
+  "message": "This panel and its cards were populated from a repository-hosted JSON file.",
+  "updated": "2026-08-06T00:00:00Z",
+  "cards": [
+    {"id":"aurora","label":"Aurora Gradient","group":"visual","score":94,"description":"Gradients, shadows, filters, transforms, and animated pseudo-elements."},
+    {"id":"orbit","label":"Observer Orbit","group":"browser","score":88,"description":"Intersection, mutation, resize, media, visibility, online, and history signals."},
+    {"id":"lifecycle","label":"Lifecycle Reactor","group":"runtime","score":97,"description":"Duplicate guards, timer tracking, observer cleanup, unmounting, and clean remounting."},
+    {"id":"fallback","label":"Fallback Beacon","group":"failure","score":91,"description":"Contained missing-resource, timeout, and exception tests with readable recovery states."},
+    {"id":"mobile","label":"Pocket Laboratory","group":"visual","score":86,"description":"Responsive cards, contained marquees, scalable canvas, and phone-safe controls."},
+    {"id":"access","label":"Keyboard Constellation","group":"accessibility","score":96,"description":"Focus visibility, labeled controls, dialog focus management, live regions, and reduced motion."}
+  ]
+}

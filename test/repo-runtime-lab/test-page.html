@@ -1,0 +1,219 @@
+<div class="hrv-lab" data-theme="aurora" data-phase="mounting">
+  <a class="hrv-skip" href="#hrv-lab-main">Skip laboratory controls</a>
+
+  <div class="hrv-floating-status" role="status" aria-live="polite">
+    <span class="hrv-pulse-dot" aria-hidden="true"></span>
+    <span data-live-phase>Runtime mounting</span>
+  </div>
+
+  <header class="hrv-hero" aria-labelledby="hrv-lab-title">
+    <div class="hrv-hero__eyebrow">Hughes Room Views • External Runtime Proof</div>
+    <h1 id="hrv-lab-title">Repository Runtime Laboratory</h1>
+    <p class="hrv-hero__lede">This entire interface, including its structure, styling, behavior, state, animations, diagnostics, and test data, is controlled by repository-hosted assets.</p>
+    <div class="hrv-build-strip" role="group" aria-label="Build information">
+      <span class="hrv-badge hrv-badge--bright">Build <strong data-build-id>loading</strong></span>
+      <span class="hrv-badge">Deployed <strong data-build-time>loading</strong></span>
+      <span class="hrv-badge">Phase <strong data-phase-label>mounting</strong></span>
+    </div>
+  </header>
+
+  <section class="hrv-announcement" aria-label="Animated announcement">
+    <span class="hrv-announcement__icon" aria-hidden="true">⚗️</span>
+    <div>
+      <strong data-dynamic-banner>External HTML is entering the Edublogs DOM.</strong>
+      <span>Motion is calm, pausable, and reduced-motion aware.</span>
+    </div>
+  </section>
+
+  <div class="hrv-notice" data-dismissible-notice role="status">
+    <span>🧭 The old JSON connection proof is preserved. This is a separate, larger capability experiment.</span>
+    <button type="button" class="hrv-icon-button" data-action="dismiss-notice" aria-label="Dismiss repository test notice">×</button>
+  </div>
+
+  <section class="hrv-marquee-suite" aria-labelledby="marquee-title">
+    <div class="hrv-section-heading">
+      <div><span class="hrv-kicker">Motion systems</span><h2 id="marquee-title">Marquee Flight Deck</h2></div>
+      <span class="hrv-label">CSS + JavaScript</span>
+    </div>
+
+    <div class="hrv-marquee" data-marquee="left" aria-label="CSS marquee moving left and pausing on hover">
+      <div class="hrv-marquee__track"><span>EXTERNAL CSS</span><span>REPOSITORY HTML</span><span>JAVASCRIPT EVENTS</span><span>RESPONSIVE GRID</span><span>ACCESSIBLE MOTION</span><span>EXTERNAL CSS</span><span>REPOSITORY HTML</span><span>JAVASCRIPT EVENTS</span><span>RESPONSIVE GRID</span><span>ACCESSIBLE MOTION</span></div>
+    </div>
+    <div class="hrv-marquee hrv-marquee--reverse" data-marquee="right" aria-label="CSS marquee moving right and pausing on hover">
+      <div class="hrv-marquee__track"><span>CANVAS</span><span>SVG</span><span>OBSERVERS</span><span>STORAGE</span><span>LIFECYCLE CLEANUP</span><span>CANVAS</span><span>SVG</span><span>OBSERVERS</span><span>STORAGE</span><span>LIFECYCLE CLEANUP</span></div>
+    </div>
+    <div class="hrv-js-marquee" aria-label="JavaScript-controlled marquee">
+      <div class="hrv-js-marquee__viewport"><div class="hrv-js-marquee__runner" data-js-marquee-runner>JavaScript marquee • start • stop • accelerate • reverse • </div></div>
+      <div class="hrv-control-row" role="group" aria-label="JavaScript marquee controls">
+        <button type="button" data-action="marquee-start">Start</button>
+        <button type="button" data-action="marquee-stop">Stop</button>
+        <button type="button" data-action="marquee-speed">Speed up</button>
+        <button type="button" data-action="marquee-reverse">Reverse</button>
+      </div>
+    </div>
+  </section>
+
+  <main id="hrv-lab-main">
+    <section class="hrv-control-console hrv-panel" aria-labelledby="control-title">
+      <div class="hrv-section-heading">
+        <div><span class="hrv-kicker">Master controls</span><h2 id="control-title">Runtime Command Console</h2></div>
+        <span class="hrv-label">Keyboard friendly</span>
+      </div>
+      <div class="hrv-control-grid">
+        <button type="button" data-action="theme-toggle">Toggle theme</button>
+        <button type="button" data-action="pause-all">Pause animations</button>
+        <button type="button" data-action="reduced-motion">Reduced-motion mode</button>
+        <button type="button" data-action="shuffle-cards">Shuffle cards</button>
+        <button type="button" data-action="burst-particles">Launch sparkles</button>
+        <button type="button" data-action="toggle-demo">Show / hide demo</button>
+        <button type="button" data-action="duplicate-mount">Attempt duplicate mount</button>
+        <button type="button" data-action="reset-runtime">Reset laboratory</button>
+      </div>
+      <p class="hrv-live-message" role="status" aria-live="polite" data-live-message>Controls are ready.</p>
+    </section>
+
+    <section class="hrv-grid hrv-grid--two">
+      <article class="hrv-panel hrv-capability-card" data-observe-card>
+        <span class="hrv-kicker">CSS laboratory</span>
+        <h2>Visual Capability Reactor</h2>
+        <p>Custom properties, gradients, shadows, rounded panels, Grid, Flexbox, pseudo-elements, hover and focus states, transitions, transforms, filters, backdrop blur, keyframes, and container queries are all active here.</p>
+        <div class="hrv-orbit-demo" aria-hidden="true"><span></span><i></i><b></b></div>
+        <ul class="hrv-chip-list" aria-label="Visible CSS capabilities">
+          <li>Variables</li><li>Grid</li><li>Flex</li><li>Sticky</li><li>Pseudo</li><li>Filter</li><li>Container query</li>
+        </ul>
+      </article>
+
+      <article class="hrv-panel hrv-capability-card" data-observe-card>
+        <span class="hrv-kicker">Repository resources</span>
+        <h2>Asset Loading Bay</h2>
+        <div class="hrv-asset-grid">
+          <figure><img data-test-image alt="Repository-hosted Hughes Room Views test image" loading="lazy"><figcaption>Repository image</figcaption></figure>
+          <figure><img data-test-svg alt="Aurora orbital diagram loaded from a repository SVG" loading="lazy"><figcaption>Repository SVG</figcaption></figure>
+        </div>
+        <p data-resource-summary>Resource tests are preparing.</p>
+      </article>
+    </section>
+
+    <section class="hrv-panel" aria-labelledby="status-title">
+      <div class="hrv-section-heading hrv-section-heading--sticky">
+        <div><span class="hrv-kicker">Persistent results</span><h2 id="status-title">Capability Status Panel</h2></div>
+        <span class="hrv-label" data-pass-summary>0 tests complete</span>
+      </div>
+      <div class="hrv-status-grid" data-status-grid aria-live="polite"></div>
+    </section>
+
+    <section class="hrv-panel" aria-labelledby="interaction-title">
+      <div class="hrv-section-heading">
+        <div><span class="hrv-kicker">DOM + events</span><h2 id="interaction-title">Interaction Observatory</h2></div>
+        <span class="hrv-label">Delegated events</span>
+      </div>
+
+      <div class="hrv-tabs" data-tabs>
+        <div class="hrv-tab-list" role="tablist" aria-label="Repository laboratory demonstrations">
+          <button type="button" role="tab" id="tab-controls" aria-controls="panel-controls" aria-selected="true" tabindex="0">Controls</button>
+          <button type="button" role="tab" id="tab-data" aria-controls="panel-data" aria-selected="false" tabindex="-1">JSON Cards</button>
+          <button type="button" role="tab" id="tab-animation" aria-controls="panel-animation" aria-selected="false" tabindex="-1">Animation</button>
+          <button type="button" role="tab" id="tab-api" aria-controls="panel-api" aria-selected="false" tabindex="-1">Browser APIs</button>
+        </div>
+
+        <div role="tabpanel" id="panel-controls" aria-labelledby="tab-controls" tabindex="0">
+          <div class="hrv-grid hrv-grid--three">
+            <article class="hrv-mini-card"><h3>Text + style mutation</h3><p data-mutable-text>The reactor is violet.</p><button type="button" data-action="mutate-text">Mutate text and class</button></article>
+            <article class="hrv-mini-card"><h3>DOM operations</h3><div data-dynamic-zone class="hrv-dynamic-zone">No generated elements yet.</div><div class="hrv-control-row"><button type="button" data-action="append-node">Append</button><button type="button" data-action="replace-node">Replace</button><button type="button" data-action="remove-node">Remove</button></div></article>
+            <article class="hrv-mini-card"><h3>Dialog</h3><p>Native dialog where supported, with focus return and Escape closing.</p><button type="button" data-action="open-modal">Open modal</button></article>
+          </div>
+          <details class="hrv-disclosure"><summary>Native details and summary control</summary><p>This disclosure is repository-generated structural HTML and remains usable without additional JavaScript.</p></details>
+          <div class="hrv-accordion" data-accordion>
+            <button type="button" aria-expanded="false" aria-controls="accordion-panel">JavaScript accordion: reveal event delegation evidence</button>
+            <div id="accordion-panel" hidden><p>The root listener handled this button without assigning a separate listener to every control.</p></div>
+          </div>
+        </div>
+
+        <div role="tabpanel" id="panel-data" aria-labelledby="tab-data" tabindex="0" hidden>
+          <div class="hrv-toolbar">
+            <label>Filter cards <select data-card-filter><option value="all">All groups</option><option value="visual">Visual</option><option value="browser">Browser</option><option value="runtime">Runtime</option><option value="failure">Failure</option><option value="accessibility">Accessibility</option></select></label>
+            <button type="button" data-action="sort-cards">Sort by score</button>
+          </div>
+          <div class="hrv-data-cards" data-data-cards></div>
+        </div>
+
+        <div role="tabpanel" id="panel-animation" aria-labelledby="tab-animation" tabindex="0" hidden>
+          <div class="hrv-grid hrv-grid--two">
+            <article class="hrv-mini-card"><h3>Canvas flight</h3><canvas data-canvas width="640" height="260" aria-label="Animated canvas with drifting laboratory particles"></canvas></article>
+            <article class="hrv-mini-card"><h3>Animated SVG</h3><svg class="hrv-animated-svg" viewBox="0 0 300 200" role="img" aria-labelledby="svg-title svg-desc"><title id="svg-title">Animated repository runtime atom</title><desc id="svg-desc">Three calm orbital paths circle a glowing center.</desc><circle class="core" cx="150" cy="100" r="22"/><ellipse class="ring ring-a" cx="150" cy="100" rx="112" ry="38"/><ellipse class="ring ring-b" cx="150" cy="100" rx="112" ry="38" transform="rotate(60 150 100)"/><ellipse class="ring ring-c" cx="150" cy="100" rx="112" ry="38" transform="rotate(120 150 100)"/></svg></article>
+          </div>
+          <div class="hrv-progress-wrap"><label for="hrv-progress">JavaScript progress reactor</label><progress id="hrv-progress" data-progress max="100" value="0">0%</progress><output data-progress-output>0%</output></div>
+          <div class="hrv-counter-row"><div><strong data-counter="128">0</strong><span>DOM pulses</span></div><div><strong data-counter="42">0</strong><span>event signals</span></div><div><strong data-counter="7">0</strong><span>resource channels</span></div></div>
+          <div class="hrv-particle-field" data-particle-field aria-hidden="true"></div>
+        </div>
+
+        <div role="tabpanel" id="panel-api" aria-labelledby="tab-api" tabindex="0" hidden>
+          <div class="hrv-api-grid" data-api-grid></div>
+          <div class="hrv-history-controls"><button type="button" data-action="push-history">Push test history state</button><span data-history-state>No laboratory history state pushed.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hrv-grid hrv-grid--two">
+      <article class="hrv-panel" aria-labelledby="form-title">
+        <span class="hrv-kicker">Form + validation</span>
+        <h2 id="form-title">Signal Composer</h2>
+        <form data-test-form novalidate>
+          <label for="signal-name">Signal name</label>
+          <input id="signal-name" name="signalName" required minlength="3" autocomplete="off" aria-describedby="signal-name-error">
+          <p id="signal-name-error" class="hrv-field-error" data-name-error></p>
+          <label for="signal-message">Message</label>
+          <textarea id="signal-message" name="signalMessage" maxlength="140" required aria-describedby="signal-counter signal-message-error"></textarea>
+          <div class="hrv-field-meta"><span id="signal-counter" data-char-counter>0 / 140</span><span id="signal-message-error" class="hrv-field-error" data-message-error></span></div>
+          <button type="submit">Validate and transmit</button>
+        </form>
+        <p data-form-result role="status" aria-live="polite"></p>
+      </article>
+
+      <article class="hrv-panel" aria-labelledby="failure-title">
+        <span class="hrv-kicker">Contained failure tests</span>
+        <h2 id="failure-title">Fault Injection Chamber</h2>
+        <p>Each button creates a deliberate, isolated failure. The rest of the laboratory must remain operational.</p>
+        <div class="hrv-control-grid">
+          <button type="button" data-action="missing-json">Missing JSON</button>
+          <button type="button" data-action="missing-image">Missing image</button>
+          <button type="button" data-action="missing-script">Missing script</button>
+          <button type="button" data-action="simulate-timeout">Simulated timeout</button>
+          <button type="button" data-action="simulate-error">Controlled exception</button>
+          <button type="button" data-action="disable-animation">Disable animation</button>
+        </div>
+        <div class="hrv-failure-log" data-failure-log role="status" aria-live="polite">No controlled failures triggered yet.</div>
+      </article>
+    </section>
+
+    <section class="hrv-panel" aria-labelledby="table-title">
+      <div class="hrv-section-heading"><div><span class="hrv-kicker">Structural HTML</span><h2 id="table-title">Repository Resource Matrix</h2></div><span class="hrv-label">Table + links + badges</span></div>
+      <div class="hrv-table-wrap"><table><caption>External laboratory resources and their ownership</caption><thead><tr><th scope="col">Resource</th><th scope="col">Owner</th><th scope="col">Purpose</th><th scope="col">State</th></tr></thead><tbody><tr><th scope="row">bootstrap.js</th><td>Repository</td><td>Minimal Edublogs bridge</td><td><span class="hrv-badge hrv-badge--pass">Loaded</span></td></tr><tr><th scope="row">test-page.html</th><td>Repository</td><td>Complete page structure</td><td><span class="hrv-badge" data-table-html-state>Testing</span></td></tr><tr><th scope="row">test-page.css</th><td>Repository</td><td>Scoped presentation and motion</td><td><span class="hrv-badge" data-table-css-state>Testing</span></td></tr><tr><th scope="row">test-data.json</th><td>Repository</td><td>Dynamic card data</td><td><span class="hrv-badge" data-table-json-state>Testing</span></td></tr></tbody></table></div>
+      <p><a data-repository-link target="_blank" rel="noopener noreferrer">Open the dedicated repository source</a></p>
+    </section>
+
+    <section class="hrv-panel hrv-diagnostics" aria-labelledby="diagnostics-title">
+      <div class="hrv-section-heading hrv-section-heading--sticky"><div><span class="hrv-kicker">Visible telemetry</span><h2 id="diagnostics-title">Diagnostics Console</h2></div><button type="button" data-action="copy-diagnostics">Copy diagnostics</button></div>
+      <dl class="hrv-diagnostics-grid" data-diagnostics-grid></dl>
+      <pre data-console-preview aria-label="Latest repository runtime log messages"></pre>
+    </section>
+
+    <section class="hrv-panel hrv-lifecycle" aria-labelledby="lifecycle-title">
+      <span class="hrv-kicker">Runtime ownership</span>
+      <h2 id="lifecycle-title">Lifecycle Airlock</h2>
+      <p>Unmounting must stop timers, cancel animation frames, disconnect observers, remove runtime listeners, and leave a readable fallback. Remounting must rebuild exactly one clean instance.</p>
+      <div class="hrv-control-row"><button type="button" class="hrv-danger" data-action="unmount-runtime">Unmount runtime</button><button type="button" data-action="remount-runtime">Remount runtime</button></div>
+      <p data-lifecycle-message role="status" aria-live="polite">One runtime instance is active.</p>
+    </section>
+  </main>
+
+  <dialog class="hrv-dialog" data-dialog aria-labelledby="dialog-title">
+    <form method="dialog">
+      <button class="hrv-dialog__close" value="cancel" aria-label="Close repository test dialog">×</button>
+      <span class="hrv-kicker">Modal test</span>
+      <h2 id="dialog-title">External JavaScript opened this dialog</h2>
+      <p>Focus moved into the dialog, Escape closes it, and focus returns to the launching control.</p>
+      <button value="default">Close dialog</button>
+    </form>
+  </dialog>
+</div>
