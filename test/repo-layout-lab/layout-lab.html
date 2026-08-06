@@ -1,0 +1,146 @@
+<div class="hrv-layout-shell" data-theme="light" data-density="comfortable">
+  <a class="hrv-skip-link" href="#hrv-layout-main">Skip to test controls</a>
+
+  <header class="hrv-layout-hero">
+    <div class="hrv-hero-copy">
+      <p class="hrv-eyebrow">Hughes Room Views · Foundation Test 02</p>
+      <h1>Layout, Readability &amp; Resilience Laboratory</h1>
+      <p class="hrv-hero-lede">Measure the Edublogs theme boundary, compare three width strategies, verify readable inner columns, and observe graceful failure behavior without altering production pages.</p>
+      <div class="hrv-build-line">
+        <span>Build <strong data-build-label>2026.08.05.2</strong></span>
+        <span data-runtime-status>Runtime starting…</span>
+      </div>
+    </div>
+    <div class="hrv-orbit-stage" aria-label="Decorative animated orbit demonstrating a wide visual canvas">
+      <div class="hrv-orbit hrv-orbit-a"><i></i></div>
+      <div class="hrv-orbit hrv-orbit-b"><i></i></div>
+      <div class="hrv-core">HRV</div>
+    </div>
+  </header>
+
+  <main id="hrv-layout-main">
+    <section class="hrv-panel hrv-controls-panel" aria-labelledby="layout-controls-title">
+      <div class="hrv-section-heading">
+        <div>
+          <p class="hrv-kicker">Live controls</p>
+          <h2 id="layout-controls-title">Choose a page-width strategy</h2>
+        </div>
+        <div class="hrv-status-pill" data-overall-status>Measuring…</div>
+      </div>
+
+      <div class="hrv-mode-grid" role="group" aria-label="Layout width mode">
+        <button type="button" class="hrv-mode-card is-selected" data-layout-mode="native" aria-pressed="true">
+          <strong>Native container</strong>
+          <span>Remain completely inside the Edublogs content column.</span>
+        </button>
+        <button type="button" class="hrv-mode-card" data-layout-mode="safe" aria-pressed="false">
+          <strong>Safe wide</strong>
+          <span>Center a wider canvas with protected viewport gutters.</span>
+        </button>
+        <button type="button" class="hrv-mode-card" data-layout-mode="full" aria-pressed="false">
+          <strong>Viewport breakout</strong>
+          <span>Attempt a true full-bleed section and detect clipping.</span>
+        </button>
+      </div>
+
+      <div class="hrv-control-row">
+        <label class="hrv-control-field">
+          <span>Reading column width <output data-reading-output>720 px</output></span>
+          <input type="range" min="560" max="900" step="20" value="720" data-reading-width>
+        </label>
+        <div class="hrv-button-group" aria-label="Visual preferences">
+          <button type="button" data-theme-toggle>Use dark mode</button>
+          <button type="button" data-contrast-toggle>High contrast</button>
+          <button type="button" data-density-toggle>Compact spacing</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="hrv-metric-grid" aria-label="Current layout measurements">
+      <article><span>Viewport</span><strong data-metric="viewport">—</strong></article>
+      <article><span>Native root width</span><strong data-metric="nativeWidth">—</strong></article>
+      <article><span>Current root width</span><strong data-metric="currentWidth">—</strong></article>
+      <article><span>Width gained</span><strong data-metric="gain">—</strong></article>
+      <article><span>Horizontal overflow</span><strong data-metric="overflow">—</strong></article>
+      <article><span>Clipping ancestor</span><strong data-metric="clipper">—</strong></article>
+    </section>
+
+    <section class="hrv-wide-scene" aria-labelledby="wide-scene-title">
+      <div class="hrv-wide-ribbons" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="hrv-readable-column">
+        <p class="hrv-kicker">Wide visuals, readable words</p>
+        <h2 id="wide-scene-title">The page can stretch without stretching the reader</h2>
+        <p>This section deliberately gives the animation a broad canvas while keeping the text inside a controlled reading measure. A successful foundation should let visual experiences breathe without turning classroom instructions into mile-long lines.</p>
+      </div>
+    </section>
+
+    <section class="hrv-panel" aria-labelledby="readability-title">
+      <div class="hrv-readable-column">
+        <p class="hrv-kicker">Readability specimen</p>
+        <h2 id="readability-title">Comfortable contrast should be the default, not an optional rescue mission</h2>
+        <p>Real Hughes Room Views pages should use calm surfaces, strong text contrast, generous line height, and clear hierarchy. Dark panels can still create theatrical moments, but long explanations should not disappear into low-opacity midnight fog.</p>
+        <p>Resize the browser, switch layout modes, and change the reading width. This paragraph should remain easy to scan on desktop, tablet, and phone.</p>
+      </div>
+      <div class="hrv-card-grid">
+        <article><span class="hrv-card-icon">✦</span><h3>Visual canvas</h3><p>Animation and artwork may use the wider shell.</p></article>
+        <article><span class="hrv-card-icon">Aa</span><h3>Reading column</h3><p>Instructions stay within a comfortable measure.</p></article>
+        <article><span class="hrv-card-icon">↕</span><h3>Vertical rhythm</h3><p>Longer pages are welcome when the flow is intentional.</p></article>
+      </div>
+    </section>
+
+    <section class="hrv-panel" aria-labelledby="ancestor-title">
+      <div class="hrv-section-heading">
+        <div>
+          <p class="hrv-kicker">Theme boundary inspector</p>
+          <h2 id="ancestor-title">Every ancestor between the runtime and the viewport</h2>
+        </div>
+        <button type="button" data-refresh-measurements>Measure again</button>
+      </div>
+      <div class="hrv-table-wrap" tabindex="0" aria-label="Scrollable ancestor measurement table">
+        <table>
+          <thead><tr><th>Element</th><th>Rendered</th><th>Max width</th><th>Padding L/R</th><th>Margin L/R</th><th>Overflow X</th><th>Position</th></tr></thead>
+          <tbody data-ancestor-rows><tr><td colspan="7">Collecting measurements…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="hrv-panel" aria-labelledby="resilience-title">
+      <div class="hrv-section-heading">
+        <div>
+          <p class="hrv-kicker">Resilience rehearsal</p>
+          <h2 id="resilience-title">Test failure without sacrificing the page</h2>
+        </div>
+        <div class="hrv-health-badge" data-health-badge>Health pending</div>
+      </div>
+      <p class="hrv-readable-copy">These tests distinguish a runtime that fails gracefully from one that leaves a blank hole. The cold-start test uses a URL parameter and intentionally requests a missing external runtime; the static message lives in Edublogs and therefore remains even when repository code cannot start.</p>
+      <div class="hrv-resilience-grid">
+        <button type="button" data-health-check><strong>Check health endpoint</strong><span>Fetch the build marker suitable for external monitoring.</span></button>
+        <button type="button" data-data-failure><strong>Simulate data outage</strong><span>Request a missing JSON file while keeping the runtime alive.</span></button>
+        <button type="button" data-copy-cold-url><strong>Copy cold-start failure URL</strong><span>Open separately to verify the Edublogs-hosted fallback.</span></button>
+        <button type="button" data-show-static-fallback><strong>Preview static fallback</strong><span>Temporarily show exactly what visitors would see.</span></button>
+      </div>
+      <div class="hrv-test-result" role="status" aria-live="polite" data-resilience-result>No resilience test has run yet.</div>
+    </section>
+
+    <section class="hrv-panel hrv-report-panel" aria-labelledby="report-title">
+      <div class="hrv-section-heading">
+        <div>
+          <p class="hrv-kicker">Copy-ready evidence</p>
+          <h2 id="report-title">Current layout report</h2>
+        </div>
+        <div class="hrv-button-group">
+          <button type="button" data-copy-report>Copy report</button>
+          <button type="button" data-download-report>Download JSON</button>
+        </div>
+      </div>
+      <pre data-report-output>Generating report…</pre>
+    </section>
+  </main>
+
+  <footer class="hrv-layout-footer">
+    <strong>Known-good runtime laboratory remains untouched at build 2026.08.05.1.</strong>
+    <span>This separate test only evaluates width, readability, and graceful degradation.</span>
+  </footer>
+
+  <div class="hrv-toast" role="status" aria-live="polite" data-toast hidden></div>
+</div>
