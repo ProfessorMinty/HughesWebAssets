@@ -67,7 +67,11 @@ def main():
 
     copy(ROOT/'packages/runtime-bootstrap/src/index.js',DIST/'runtime-bootstrap.js')
     copy(ROOT/'apps/black-hole-museum/src/index.js',DIST/'black-hole-museum.js')
-    copy(ROOT/'apps/black-hole-museum/src/page.css',DIST/'black-hole-museum.css')
+    (DIST/'black-hole-museum.css').write_text(
+        (ROOT/'apps/black-hole-museum/src/page.css').read_text(encoding='utf-8').rstrip() + '\n\n' +
+        (ROOT/'apps/black-hole-museum/src/viewport-breakout.css').read_text(encoding='utf-8').lstrip(),
+        encoding='utf-8'
+    )
 
     # Admit real optimized derivatives only after acquisition marks the asset complete.
     # In an offline evidence build, copy only that asset's honest stub. In a deployment-ready
