@@ -9,6 +9,8 @@ BASE = (SRC / 'page.css').read_text(encoding='utf-8')
 VIEWPORT = (SRC / 'viewport-breakout.css').read_text(encoding='utf-8')
 MAXIMUM = (SRC / 'maximum-shelf.css').read_text(encoding='utf-8')
 ENHANCEMENTS = (SRC / 'maximum-shelf-enhancements.css').read_text(encoding='utf-8')
+FINISHING = (SRC / 'maximum-shelf-finishing.css').read_text(encoding='utf-8')
+WIDE = (SRC / 'maximum-shelf-wide-performance.css').read_text(encoding='utf-8')
 RUNTIME = (SRC / 'maximum-shelf-runtime.js').read_text(encoding='utf-8')
 AMADEUS = (SRC / 'theme-amadeus.css').read_text(encoding='utf-8')
 
@@ -60,6 +62,45 @@ require('@media (prefers-reduced-motion:reduce)' in ENHANCEMENTS,
 require('@media (forced-colors:active)' in ENHANCEMENTS,
         'decorative maximum-shelf layers withdraw in forced-colors mode')
 
+# Live-page performance contract: current chamber + one ahead only.
+require("const RUNTIME_WINDOW = 'current-plus-one-ahead'" in RUNTIME,
+        'runtime declares the current-plus-one-ahead scroll budget')
+require('installRuntimeWindow' in RUNTIME and "'is-runtime-dormant'" in RUNTIME,
+        'runtime assigns live, next, and dormant chamber states')
+require("video.preload = 'none'" in RUNTIME and 'video.pause()' in RUNTIME,
+        'dormant chamber videos are paused and not preloaded')
+require('simplifyControls' in RUNTIME,
+        'maximum-shelf runtime removes redundant laboratory controls')
+require('fixRotundaControls' in RUNTIME,
+        'rotunda comparison controls are normalized for the maximum-shelf edition')
+
+# Desktop is a horizontal museum canvas. Only mobile is allowed to collapse to the receipt-printer layout.
+normalized_wide = WIDE.replace(' ', '')
+require('--bhm-wide:none' in normalized_wide,
+        'wide presentation removes the old centered museum-width ceiling')
+require('width:100%!important' in normalized_wide and 'max-width:none!important' in normalized_wide,
+        'desktop presentation explicitly consumes the available viewport')
+require('grid-template-columns:minmax(25rem,.52fr)minmax(34rem,1.05fr)minmax(25rem,.72fr)!important' in normalized_wide,
+        'evidence gallery uses a three-lane desktop exhibit')
+require('grid-template-columns:minmax(25rem,.48fr)minmax(32rem,1.05fr)minmax(27rem,.8fr)!important' in normalized_wide,
+        'Earth telescope gallery uses story, globe, and map lanes side by side')
+require('grid-template-columns:repeat(4,minmax(0,1fr))' in normalized_wide,
+        'wide laboratory and credits can use multi-bay artifact walls')
+require('@media(max-width:767px)' in normalized_wide,
+        'wide layer retains a dedicated mobile collapse')
+require('grid-template-columns:1fr' in normalized_wide,
+        'mobile layout explicitly returns multi-column artifacts to a single column')
+require('content-visibility:auto' in normalized_wide,
+        'dormant chambers use browser content-visibility to reduce scroll work')
+require('backdrop-filter:none!important' in normalized_wide,
+        'performance pass removes expensive blur from high-frequency museum surfaces')
+require('word-break:normal!important' in normalized_wide and 'hyphens:none!important' in normalized_wide,
+        'exhibit headings cannot be broken into janky mid-word wraps')
+
+# Finishing layer remains a small fallback layer, not another design system.
+require('.bhm-max-corridor-frame:nth-child(4)' in FINISHING,
+        'cross-browser threshold-depth fallback remains present')
+
 # Compatibility adapter is allowed to touch the theme only behind the route-ready gate.
 amadeus_without_comments = re.sub(r'/\*.*?\*/', '', AMADEUS, flags=re.S)
 for raw_selector in re.findall(r'([^{}]+)\{', amadeus_without_comments):
@@ -78,17 +119,23 @@ require('.entry-footer' in AMADEUS,
         'adapter prevents native entry footer chrome from interrupting the museum exit')
 require('.page .hentry' in AMADEUS and 'padding:0!important' in AMADEUS.replace(' ', ''),
         'adapter neutralizes confirmed Amadeus page-card padding')
+require('.site-content > .container' in AMADEUS and 'max-width:none!important' in AMADEUS.replace(' ', ''),
+        'adapter removes the Amadeus centered container as a layout authority')
+require('.content-area' in AMADEUS and 'float:none!important' in AMADEUS.replace(' ', ''),
+        'adapter neutralizes the theme content-area width and float')
 
-# Build order is part of the contract: base, breakout, experience, environment, theme adapter.
+# Build order is part of the contract: base, breakout, experience, environment, finishing, wide/performance, theme adapter.
 order = [
-    "page.css",
-    "viewport-breakout.css",
-    "maximum-shelf.css",
-    "maximum-shelf-enhancements.css",
-    "theme-amadeus.css",
+    'page.css',
+    'viewport-breakout.css',
+    'maximum-shelf.css',
+    'maximum-shelf-enhancements.css',
+    'maximum-shelf-finishing.css',
+    'maximum-shelf-wide-performance.css',
+    'theme-amadeus.css',
 ]
 positions = [BUILD.find(name) for name in order]
-require(all(pos >= 0 for pos in positions), 'all five style modules are included by the build')
+require(all(pos >= 0 for pos in positions), 'all seven style modules are included by the build')
 require(positions == sorted(positions), 'style modules are composed in the required cascade order')
 require("maximum-shelf-runtime.js',DIST/'black-hole-museum.js" in BUILD,
         'build publishes the maximum-shelf runtime entry point')
