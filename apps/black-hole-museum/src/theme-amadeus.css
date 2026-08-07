@@ -12,24 +12,44 @@ html.hrv-route-black-hole-lab-ready body {
 }
 
 /* Remove only the native page-title wrapper on the successfully enhanced lab route.
+   Amadeus content-page.php renders page titles inside header.entry-header.
    The Hughes Room Views site header/navigation remain native and untouched. */
 html.hrv-route-black-hole-lab-ready .entry-header,
 html.hrv-route-black-hole-lab-ready .page-header {
   display:none !important;
 }
 
-/* Prevent Amadeus content typography and spacing from repainting the application island. */
-html.hrv-route-black-hole-lab-ready .entry-content,
-html.hrv-route-black-hole-lab-ready .site-content,
-html.hrv-route-black-hole-lab-ready .content-area,
-html.hrv-route-black-hole-lab-ready .site-main,
+/* Confirmed Amadeus defaults add 60px above .site-content, 45px around .page .hentry,
+   and a white bordered article card. The enhanced laboratory owns that space. */
+html.hrv-route-black-hole-lab-ready .site-content {
+  margin-top:0 !important;
+  margin-bottom:0 !important;
+}
+
+html.hrv-route-black-hole-lab-ready .page .hentry,
 html.hrv-route-black-hole-lab-ready article.page,
 html.hrv-route-black-hole-lab-ready article.hentry {
+  padding:0 !important;
+  margin-bottom:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+
+/* Prevent Amadeus content typography and spacing from repainting the application island. */
+html.hrv-route-black-hole-lab-ready .entry-content,
+html.hrv-route-black-hole-lab-ready .content-area,
+html.hrv-route-black-hole-lab-ready .site-main {
+  margin-top:0 !important;
   margin-bottom:0 !important;
 }
 
 html.hrv-route-black-hole-lab-ready .entry-content {
-  padding-bottom:0 !important;
+  padding:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  border:0 !important;
 }
 
 html.hrv-route-black-hole-lab-ready .entry-content > #hrv-black-hole-museum-root {
@@ -51,16 +71,6 @@ html.hrv-route-black-hole-lab-ready #hrv-black-hole-museum-root .bhm-museum h1,
 html.hrv-route-black-hole-lab-ready #hrv-black-hole-museum-root .bhm-museum h2,
 html.hrv-route-black-hole-lab-ready #hrv-black-hole-museum-root .bhm-museum h3 {
   text-transform:none;
-}
-
-/* Some Amadeus builds add white content backgrounds to the article itself. Remove
-   them only after enhancement so the fallback retains ordinary native styling. */
-html.hrv-route-black-hole-lab-ready article.page,
-html.hrv-route-black-hole-lab-ready article.hentry,
-html.hrv-route-black-hole-lab-ready .entry-content {
-  background:transparent !important;
-  box-shadow:none !important;
-  border:0 !important;
 }
 
 /* The repository page owns the visual exit. Keep theme metadata/footer chrome from
