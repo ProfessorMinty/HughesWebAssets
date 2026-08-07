@@ -1,0 +1,88 @@
+/*
+ * Black Hole Museum · Structured Exhibit Preflight
+ *
+ * The .10 structural system is intentionally layered over preserved .9 CSS.
+ * This module clears legacy named-grid placement that would otherwise survive
+ * the cascade after the plaque DOM is recomposed, and raises the remaining
+ * instrument-label text that still inherited early prototype rem sizes.
+ */
+
+/*
+ * Stations 03, 05, and 06 used named grid areas in .9. The scene compositor
+ * removes the old plaque cells, so those named areas must not remain active.
+ */
+#hrv-black-hole-museum-root .bhm-evidence-layout,
+#hrv-black-hole-museum-root .bhm-network-layout,
+#hrv-black-hole-museum-root .bhm-reconstruction-layout {
+  grid-template-areas:none !important;
+  grid-template-rows:auto !important;
+}
+
+#hrv-black-hole-museum-root .bhm-evidence-network,
+#hrv-black-hole-museum-root .bhm-evidence-layout > .bhm-media-card,
+#hrv-black-hole-museum-root .bhm-earth-stage,
+#hrv-black-hole-museum-root .bhm-network-layout > .bhm-media-card,
+#hrv-black-hole-museum-root .bhm-reconstruction-viewer,
+#hrv-black-hole-museum-root .bhm-reconstruction-layout > .bhm-media-card {
+  grid-area:auto !important;
+}
+
+/*
+ * .9 also explicitly pinned the laboratory media cards to rows and columns.
+ * Clear that placement before applying the .10 editorial spread, otherwise
+ * the first reference can drop below the support cards and the fourth card can
+ * overlap the two-row hero reference.
+ */
+#hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card {
+  grid-column:auto !important;
+  grid-row:auto !important;
+}
+
+#hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(1) {
+  grid-column:span 7 !important;
+  grid-row:span 2 !important;
+}
+
+#hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(2),
+#hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(3) {
+  grid-column:span 5 !important;
+  grid-row:auto !important;
+}
+
+#hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(4) {
+  grid-column:1 / -1 !important;
+  grid-row:auto !important;
+}
+
+/* The room headers are large; instrument labels must not fall back to prototype microtype. */
+#hrv-black-hole-museum-root .bhm-scene-title-group .bhm-station-number {
+  width:3rem;
+  font-size:.9rem !important;
+}
+
+#hrv-black-hole-museum-root .bhm-scene-title-group .bhm-kicker {
+  font-size:.88rem !important;
+  line-height:1.35;
+}
+
+#hrv-black-hole-museum-root .bhm-evidence-center {
+  font-size:.9rem !important;
+  font-weight:800;
+}
+
+#hrv-black-hole-museum-root .bhm-clue-text {
+  font-size:.96rem !important;
+  line-height:1.45;
+}
+
+#hrv-black-hole-museum-root .bhm-site {
+  font-size:.82rem !important;
+  font-weight:850;
+}
+
+@media (max-width:767px) {
+  #hrv-black-hole-museum-root .bhm-site {
+    font-size:.76rem !important;
+    font-weight:850;
+  }
+}
