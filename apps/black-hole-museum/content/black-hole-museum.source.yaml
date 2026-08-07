@@ -1,0 +1,218 @@
+schemaVersion: '1.0'
+contentVersion: 2026.08.06.1
+page:
+  id: black-hole-museum
+  routeId: repository-page-lab-black-holes
+  title: 'Black Holes: The Invisible Made Visible'
+  eyebrow: Hughes Room Views Repository Laboratory
+  summary: An unpublished maximum-shelf museum prototype showing how scientists detect and image black holes.
+  prototypeWarning: SIMULATED CLASSROOM RECAP · DUMMY CONTENT FOR UNPUBLISHED PROTOTYPE TESTING
+  supportingLine: We cannot see a black hole itself. We can watch the universe react to it.
+  closingLine: The invisible became visible because people kept watching, measuring, sharing, and wondering.
+recap:
+- This week we learned that a black hole is a place where gravity becomes so strong that, past a boundary called the event horizon, even light cannot escape.
+- We learned that scientists cannot see the black hole itself. They look for clues in moving stars, bent light, and hot matter around it.
+- We also learned that a black hole is not a giant space vacuum that pulls in everything nearby. Far away, its gravity acts like the gravity of another object with the same mass.
+- Now we can step inside a museum of the clues scientists used to make the invisible visible.
+stations:
+- id: classroom-threshold
+  number: '01'
+  type: threshold
+  title: The Classroom Threshold
+  kicker: Familiarity becomes discovery
+  classification: Creative interpretation
+  child: We learn about black holes by watching the universe around them.
+  deeper: A black hole itself does not emit or reflect light. Scientists study its effects on stars, matter, light, spacetime, and radio observations.
+  media: []
+  interaction:
+    kind: threshold
+    label: Enter the Black Hole Gallery
+- id: invisible-sky-atrium
+  number: '02'
+  type: lensing
+  title: How do you find something that cannot be seen?
+  kicker: The Invisible Sky Atrium
+  classification: Proposed creative effect · Simplified gravitational-lensing demonstration
+  child: Invisible things can still leave visible clues.
+  deeper: Gravity can bend the path taken by light. A massive invisible object may reveal itself through displaced and stretched images of background stars.
+  media: []
+  interaction:
+    kind: lensing
+    states:
+    - Quiet sky
+    - Bent light
+    - Show paths
+- id: gravity-leaves-clues
+  number: '03'
+  type: evidence
+  title: Gravity Leaves Clues
+  kicker: Several kinds of evidence point toward the same hidden object
+  classification: Verified facts, diagrams, and scientific visualization
+  child: Science can build a strong answer from several kinds of clues.
+  deeper: Astronomers study stars orbiting unseen mass, hot gas outside the event horizon, bent background light, gravitational waves, and horizon-scale radio observations.
+  clues:
+  - id: racing-stars
+    title: Racing stars
+    text: Stars can race around an apparently empty but extremely massive point.
+    symbol: ✦
+  - id: glowing-matter
+    title: Glowing matter
+    text: Gas and dust outside the event horizon can heat up and emit radiation.
+    symbol: ◒
+  - id: bent-light
+    title: Bent light
+    text: Strong gravity changes the paths taken by light.
+    symbol: ⌁
+  - id: gravitational-waves
+    title: Gravitational waves
+    text: Merging black holes can produce measurable ripples in spacetime.
+    symbol: ≈
+  media:
+  - nasa-labeled-accretion
+  interaction:
+    kind: evidence-network
+    label: Reveal all clues
+- id: star-orbit-theater
+  number: '04'
+  type: orbit
+  title: The Orbit Draws Itself
+  kicker: Real observations reveal an invisible center
+  classification: Real observational time-lapse with explanatory diagram overlay
+  child: Scientists measured stars moving around something enormous hiding in the dark.
+  deeper: The ESO/MPE time-lapse compresses nearly twenty years of observations into about twenty seconds. The added orbit line is a diagram, not part of the original observation.
+  media:
+  - eso-star-orbits
+  interaction:
+    kind: orbit-tracer
+    label: Trace the featured star
+- id: earth-sized-telescope
+  number: '05'
+  type: network
+  title: Earth Becomes One Telescope
+  kicker: Human cooperation becomes an instrument
+  classification: Explanatory geographic diagram and simplified creative effect
+  child: Telescopes across Earth worked together as one enormous instrument.
+  deeper: The Event Horizon Telescope combines precisely synchronized radio measurements from widely separated observatories. No single telescope made the historic image alone.
+  media:
+  - eht-observatory-map
+  interaction:
+    kind: observatory-network
+    label: Show the complete network
+- id: reconstruction-corridor
+  number: '06'
+  type: reconstruction
+  title: Data Becomes an Image
+  kicker: Measurements, possible reconstructions, published average
+  classification: Observation-derived reconstruction diagram with proposed transition
+  child: Scientists used computers to turn carefully combined radio measurements into an image.
+  deeper: Several reconstructions can fit the telescope data. The published Sagittarius A* image is an average assembled from thousands of compatible reconstructions. Orange is a presentation choice for radio data.
+  media:
+  - sgr-a-reconstruction
+  interaction:
+    kind: reconstruction
+    states:
+    - Measurements
+    - Possible reconstructions
+    - Published average
+- id: twin-ring-rotunda
+  number: '07'
+  type: rotunda
+  title: The Twin-Ring Rotunda
+  kicker: Two historic observations
+  classification: Reconstructed observations made from real radio telescope measurements
+  child: These images reveal bright material and a dark shadow around something that cannot itself be seen.
+  deeper: M87* was the first horizon-scale black-hole image released by the Event Horizon Telescope. Sagittarius A* is the supermassive black hole at the center of the Milky Way. The dark center is the black-hole shadow, not a photographed surface.
+  media:
+  - m87-observation
+  - sgr-a-observation
+  - m87-sgr-scale
+  interaction:
+    kind: comparison
+    states:
+    - View separately
+    - Compare
+    - Galaxy context
+    - Relative scale
+- id: warped-light-laboratory
+  number: 08
+  type: laboratory
+  title: The Warped Light Laboratory
+  kicker: A calculated model explains the impossible-looking view
+  classification: CALCULATED SCIENTIFIC VISUALIZATION · Not a photograph or telescope observation
+  child: Gravity bends light so strongly that we can see parts of the disk in places that seem impossible.
+  deeper: Light from the far side and underside of an accretion disk can appear above and below the black hole. The approaching side can appear brighter. The glowing matter remains outside the event horizon.
+  media:
+  - nasa-labeled-accretion
+  - nasa-optics
+  - nasa-edge-on
+  - nasa-rotating
+  interaction:
+    kind: viewing-angle
+    presets:
+    - Above
+    - Slanted
+    - Edge-on
+- id: shadow-myth-gallery
+  number: 09
+  type: anatomy
+  title: The Shadow and Myth Gallery
+  kicker: Replace movie imagery with a cleaner scientific model
+  classification: Explanatory diagram and myth-correction interactions
+  child: The shadow, event horizon, and glowing surroundings are related, but they are not the same thing.
+  deeper: The event horizon is a boundary, not a solid surface. The apparent shadow is larger than the event horizon. Not every black hole has a bright disk, and black holes do not automatically pull in everything nearby.
+  layers:
+  - id: horizon
+    title: Event horizon
+    text: A boundary beyond which light and information cannot return to an outside observer.
+  - id: photon-region
+    title: Photon region
+    text: A region where some light can orbit the black hole before escaping or being captured.
+  - id: shadow
+    title: Apparent shadow
+    text: A dark apparent region created by light capture and gravitational lensing.
+  - id: emission
+    title: Bright emission
+    text: Radiation from hot matter outside the event horizon.
+  myths:
+  - claim: The orange ring is the black hole.
+    knowledge: The visible emission comes from matter outside the event horizon. The black hole itself remains unseen.
+  - claim: A black hole pulls in everything around it.
+    knowledge: At a distance, its gravity behaves like the gravity of another object with the same mass.
+  - claim: Every black hole has a glowing disk.
+    knowledge: A bright disk requires nearby matter. An isolated black hole may be extremely dark.
+  - claim: Black holes are proven portals.
+    knowledge: No evidence currently establishes that black holes are wormholes or doorways to other universes.
+  media:
+  - nasa-optics
+  interaction:
+    kind: anatomy-layers
+- id: edge-of-the-known
+  number: '10'
+  type: boundary
+  title: The Edge of the Known
+  kicker: Science becomes stronger when it states its limits
+  classification: Verified facts, open questions, real observation, real photograph, and proposed transition
+  child: We can measure the surroundings. We can calculate the boundary. We cannot receive a message from beyond it.
+  deeper: The physical nature of the deepest interior is not observationally established. Questions remain about the first supermassive black holes, powerful jets, intermediate-mass black holes, primordial black holes, and the relationship between gravity and quantum physics.
+  known:
+  - Orbits
+  - Emission
+  - Lensing
+  - Gravitational waves
+  - Black-hole shadows
+  - Accretion disks
+  - Mergers
+  - Models of the event horizon
+  unknown:
+  - How the first supermassive black holes grew so quickly
+  - How jets are generated and shaped
+  - How common intermediate-mass black holes are
+  - Whether primordial black holes exist
+  - How gravity and quantum physics fit together
+  - What the deepest interior is physically like
+  media:
+  - m87-galaxy
+  - alma-antennas
+  interaction:
+    kind: boundary
+creditsIntro: Scientific media are classified and credited at the exhibit where they appear. The ledger below records the approved acquisition sources and rights notes.

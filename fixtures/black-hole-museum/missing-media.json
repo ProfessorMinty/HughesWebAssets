@@ -1,0 +1,221 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-08-07T01:11:33Z",
+  "retrievalStatus": "blocked-in-current-environment",
+  "retrievalNote": "The implementation environment could not access external network resources. Run scripts/acquire_black_hole_assets.py in a network-enabled environment before deployment.",
+  "assets": [
+    {
+      "id": "m87-observation",
+      "title": "First image of M87*",
+      "classification": "Observation reconstructed from real radio telescope measurements",
+      "credit": "EHT Collaboration",
+      "license": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/images/eso1907a/",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso1907a.jpg",
+      "filename": "m87-observation.jpg",
+      "kind": "image",
+      "stations": [
+        "twin-ring-rotunda"
+      ],
+      "alt": "The Event Horizon Telescope image of M87 star, showing a bright orange ring surrounding a dark central shadow.",
+      "caption": "M87* at 1.3 millimeters. Orange is a display choice applied to radio data.",
+      "stub": true,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-observation.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-observation.svg"
+    },
+    {
+      "id": "sgr-a-observation",
+      "title": "First image of Sagittarius A*",
+      "classification": "Observation reconstructed from real radio telescope measurements and presented as an averaged image",
+      "credit": "EHT Collaboration",
+      "license": "CC BY 4.0",
+      "sourcePage": "https://eventhorizontelescope.org/blog/astronomers-reveal-first-image-black-hole-heart-our-galaxy",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso2208-eht-mwa.jpg",
+      "filename": "sgr-a-observation.jpg",
+      "kind": "image",
+      "stations": [
+        "twin-ring-rotunda"
+      ],
+      "alt": "The Event Horizon Telescope image of Sagittarius A star, showing a bright orange ring surrounding a dark central shadow.",
+      "caption": "Sagittarius A* is an average assembled from many reconstructions compatible with the 2017 observations.",
+      "stub": true,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-observation.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-observation.svg"
+    },
+    {
+      "id": "sgr-a-reconstruction",
+      "title": "Sagittarius A* reconstruction comparison",
+      "classification": "Observation-derived reconstruction diagram",
+      "credit": "EHT Collaboration",
+      "license": "CC BY 4.0",
+      "sourcePage": "https://eventhorizontelescope.org/blog/astronomers-reveal-first-image-black-hole-heart-our-galaxy",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso2208-eht-mwb.jpg",
+      "filename": "sgr-a-reconstruction.jpg",
+      "kind": "image",
+      "stations": [
+        "reconstruction-corridor"
+      ],
+      "alt": "A comparison of Sagittarius A star reconstruction groups and the published average.",
+      "caption": "Representative reconstruction groups shown beside the published average.",
+      "stub": true,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-reconstruction.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-reconstruction.svg"
+    },
+    {
+      "id": "m87-sgr-scale",
+      "title": "M87* and Sagittarius A* scale comparison",
+      "classification": "Observation-based comparison graphic",
+      "credit": "EHT Collaboration",
+      "license": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/images/eso2208-eht-mwe/",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso2208-eht-mwe.jpg",
+      "filename": "m87-sgr-scale.jpg",
+      "kind": "image",
+      "stations": [
+        "twin-ring-rotunda"
+      ],
+      "alt": "A comparison graphic showing the physical scales associated with M87 star and Sagittarius A star.",
+      "caption": "A common-scale comparison supplied by the EHT Collaboration.",
+      "stub": true,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-sgr-scale.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-sgr-scale.svg"
+    },
+    {
+      "id": "m87-galaxy",
+      "title": "Messier 87 galaxy",
+      "classification": "Real optical observation",
+      "credit": "ESO",
+      "license": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/images/eso1907b/",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso1907b.jpg",
+      "filename": "m87-galaxy.jpg",
+      "kind": "image",
+      "stations": [
+        "edge-of-the-known"
+      ],
+      "alt": "An optical observation of the giant elliptical galaxy Messier 87.",
+      "caption": "Messier 87 observed with FORS2 on ESO’s Very Large Telescope.",
+      "stub": true,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-galaxy.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-galaxy.svg"
+    },
+    {
+      "id": "alma-antennas",
+      "title": "ALMA antennas at Chajnantor",
+      "classification": "Real photograph",
+      "credit": "ESO/C. Malin",
+      "license": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/images/malin-dsc0027/",
+      "downloadUrl": "https://cdn.eso.org/images/large/malin-dsc0027.jpg",
+      "filename": "alma-antennas.jpg",
+      "kind": "image",
+      "stations": [
+        "edge-of-the-known"
+      ],
+      "alt": "ALMA radio telescope dishes beneath the night sky at Chajnantor.",
+      "caption": "Human observers and instruments beneath the night sky.",
+      "stub": true,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/alma-antennas.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/alma-antennas.svg"
+    },
+    {
+      "id": "eht-observatory-map",
+      "title": "Event Horizon Telescope observatory map",
+      "classification": "Explanatory geographic diagram",
+      "credit": "ESO/M. Kornmesser",
+      "license": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/images/eso2208-eht-mwi/",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso2208-eht-mwi.jpg",
+      "filename": "eht-observatory-map.jpg",
+      "kind": "image",
+      "stations": [
+        "earth-sized-telescope"
+      ],
+      "alt": "A world map identifying observatories in the Event Horizon Telescope network.",
+      "caption": "Observatories participating in the EHT network and later additions.",
+      "stub": true,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eht-observatory-map.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eht-observatory-map.svg"
+    },
+    {
+      "id": "eso-star-orbits",
+      "title": "Stars orbiting the Milky Way’s central black hole",
+      "classification": "Real observational time-lapse",
+      "credit": "ESO/MPE",
+      "license": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/videos/eso1825e/",
+      "downloadUrl": "https://cdn.eso.org/videos/hd_1080p25_screen/eso1825e.mp4",
+      "filename": "eso-star-orbits.mp4",
+      "kind": "video",
+      "stations": [
+        "star-orbit-theater"
+      ],
+      "alt": "A time-lapse of stars moving around the center of the Milky Way.",
+      "caption": "Nearly twenty years of observations compressed into about twenty seconds.",
+      "transcript": "Stars move rapidly around an apparently empty central point. A diagram overlay may trace one selected orbit.",
+      "stub": true,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eso-star-orbits.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eso-star-orbits.svg"
+    },
+    {
+      "id": "nasa-labeled-accretion",
+      "title": "Labeled accretion-disk visualization",
+      "classification": "Scientific visualization with explanatory labels",
+      "credit": "NASA’s Goddard Space Flight Center/Jeremy Schnittman",
+      "license": "NASA media usage guidelines; asset-level third-party notice must be checked",
+      "sourcePage": "https://svs.gsfc.nasa.gov/13326",
+      "downloadUrl": "https://svs.gsfc.nasa.gov/vis/a010000/a013300/a013326/BH_labeled.jpg",
+      "filename": "nasa-labeled-accretion.jpg",
+      "kind": "image",
+      "stations": [
+        "gravity-leaves-clues",
+        "warped-light-laboratory"
+      ],
+      "alt": "A labeled scientific visualization showing a black-hole shadow, photon ring, and lensed images of an accretion disk.",
+      "caption": "A calculated visualization identifying the visible surroundings of a black hole.",
+      "stub": true,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-labeled-accretion.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-labeled-accretion.svg"
+    },
+    {
+      "id": "nasa-optics",
+      "title": "Black-hole optics diagram",
+      "classification": "Scientific explanatory diagram",
+      "credit": "NASA’s Goddard Space Flight Center/Jeremy Schnittman",
+      "license": "NASA media usage guidelines; asset-level third-party notice must be checked",
+      "sourcePage": "https://svs.gsfc.nasa.gov/13326",
+      "downloadUrl": "https://svs.gsfc.nasa.gov/vis/a010000/a013300/a013326/BH_optics_explained.jpg",
+      "filename": "nasa-optics.jpg",
+      "kind": "image",
+      "stations": [
+        "warped-light-laboratory",
+        "shadow-myth-gallery"
+      ],
+      "alt": "A diagram showing direct and bent light paths from an accretion disk around a black hole.",
+      "caption": "Light from different parts of the disk reaches the observer along curved paths.",
+      "stub": true,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-optics.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-optics.svg"
+    },
+    {
+      "id": "nasa-edge-on",
+      "title": "Edge-on accretion-disk animation",
+      "classification": "Scientific visualization calculated from physical models",
+      "credit": "NASA’s Goddard Space Flight Center/Jeremy Schnittman",
+      "license": "NASA media usage guidelines; asset-level third-party notice must be checked",
+      "sourcePage": "https://svs.gsfc.nasa.gov/13326",
+      "downloadUrl": "https://svs.gsfc.nasa.gov/vis/a010000/a013300/a013326/BH_AccretionDisk_Sim_Stationary_WebSize.webm",
+      "filename": "nasa-edge-on.webm",
+      "kind": "video",
+      "stations": [
+        "warped-light-laboratory"
+      ],
+      "alt": "A calculated edge-on visualization of an accretion disk warped by black-hole gravity.",
+      "caption": "Calculated visualization, not telescope footage.",
+      "transcript": "The far side and underside of the disk appear above and below the black hole because gravity bends their light.",
+      "stub": true,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-edge-on.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-edge-on.svg"
+    }
+  ]
+}

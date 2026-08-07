@@ -1,0 +1,5 @@
+{
+  "fixture": "slow",
+  "delayMs": 15000,
+  "expected": "bootstrap timeout preserves native fallback"
+}

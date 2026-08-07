@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\broke\Documents\HughesWebAssets\scripts\test_black_hole_browser.py", line 11, in <module>
+    content=json.loads((DIST/'content/black-hole-museum.json').read_text())
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\broke\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\broke\AppData\Local\Programs\Python\Python313\Lib\pathlib\_abc.py", line 633, in read_text
+    return f.read()
+           ~~~~~~^^
+  File "C:\Users\broke\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x81 in position 3892: character maps to <undefined>

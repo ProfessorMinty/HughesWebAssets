@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "defaultProfile",
+    "profiles",
+    "publicControls",
+    "labControls",
+    "optionalDiscoveries",
+    "reducedMotionEdition",
+    "reducedDataEdition"
+  ]
+}

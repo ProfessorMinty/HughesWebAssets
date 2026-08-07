@@ -1,0 +1,18 @@
+{
+  "recordedAt": "2026-08-06T21:00:00-04:00",
+  "github": {
+    "repository": "ProfessorMinty/HughesWebAssets",
+    "requestedBranch": "feature/arctic-black-hole-museum",
+    "operation": "create branch and Git data objects",
+    "result": "blocked",
+    "httpStatus": 403,
+    "message": "Resource not accessible by integration",
+    "effect": "No repository branch, commit, immutable tag, or pushed release could be created."
+  },
+  "assetAcquisition": {
+    "operation": "download approved NASA, ESO, and EHT media",
+    "result": "blocked",
+    "message": "The execution environment could not resolve external hosts and direct downloads failed.",
+    "effect": "The evidence build contains honest local stubs and deploymentReady is false."
+  }
+}

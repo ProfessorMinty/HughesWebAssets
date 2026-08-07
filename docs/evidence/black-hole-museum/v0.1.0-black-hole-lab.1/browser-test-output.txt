@@ -1,0 +1,17 @@
+[PASS] desktop ten stations 10
+[PASS] desktop no horizontal overflow 1440 / 1440
+[PASS] desktop interactive controls 90
+[PASS] tablet ten stations 10
+[PASS] tablet no horizontal overflow 820 / 820
+[PASS] tablet interactive controls 90
+[PASS] phone-320 ten stations 10
+[PASS] phone-320 no horizontal overflow 320 / 320
+[PASS] phone-320 interactive controls 90
+[PASS] reduced-motion ten stations 10
+[PASS] reduced-motion no horizontal overflow 1280 / 1280
+[PASS] reduced-motion interactive controls 90
+[PASS] reduced-motion still museum mode still
+[PASS] 200 percent zoom no horizontal overflow 1280 / 1280
+[PASS] 200 percent zoom controls remain present 4
+[PASS] keyboard first focusable exists A
+[PASS] keyboard activates lensing state true

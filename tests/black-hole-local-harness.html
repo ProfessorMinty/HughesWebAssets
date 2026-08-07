@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Black Hole Museum Local Evidence Harness</title>
+<link rel="stylesheet" href="../dist/v0.1.0-black-hole-lab.1/black-hole-museum.css">
+<style>html,body{margin:0;background:#02030a}</style>
+</head>
+<body>
+<section id="hrv-black-hole-museum-root"
+ class="hrv-native-fallback"
+ data-hrv-page="repository-page-lab-black-holes"
+ data-hrv-page-system="black-hole-museum"
+ data-hrv-release-channel="black-hole-lab"
+ data-hrv-schema="1.0"
+ aria-labelledby="hrv-black-hole-title">
+ <h1 id="hrv-black-hole-title">Local fallback</h1>
+ <div data-hrv-fallback>Fallback remains readable.</div>
+</section>
+<script type="module">
+const base='../dist/v0.1.0-black-hole-lab.1/';
+const [release,content,assets,experience,module]=await Promise.all([
+ fetch(base+'release.json').then(r=>r.json()),
+ fetch(base+'content/black-hole-museum.json').then(r=>r.json()),
+ fetch(base+'content/black-hole-assets.json').then(r=>r.json()),
+ fetch(base+'content/black-hole-experience.json').then(r=>r.json()),
+ import(base+'black-hole-museum.js')
+]);
+await module.mountBlackHoleMuseum({mount:document.getElementById('hrv-black-hole-museum-root'),release,content,assets,experience});
+document.documentElement.classList.add('hrv-route-black-hole-lab-ready');
+document.documentElement.dataset.harnessReady='true';
+</script>
+</body></html>

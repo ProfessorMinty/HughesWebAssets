@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "retrievalStatus",
+    "assets"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "retrievalStatus": {
+      "type": "string"
+    },
+    "retrievalNote": {
+      "type": "string"
+    },
+    "assets": {
+      "type": "array",
+      "minItems": 12,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "classification",
+          "credit",
+          "license",
+          "sourcePage",
+          "downloadUrl",
+          "filename",
+          "kind",
+          "stations",
+          "alt",
+          "caption"
+        ]
+      }
+    }
+  }
+}

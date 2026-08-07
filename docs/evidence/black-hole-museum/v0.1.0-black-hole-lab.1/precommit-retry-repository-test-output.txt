@@ -1,0 +1,35 @@
+[PASS] ten exhibit stations generated
+[PASS] station ids are unique
+[PASS] route is exact and hostname-neutral
+[PASS] mount id matches approved contract
+[PASS] release contains no mutable @main reference
+[PASS] release contains no mutable latest reference
+[PASS] release URLs use the immutable semantic ref
+[PASS] handoff contains the exact mount root
+[PASS] handoff contains readable fallback and noscript state
+[PASS] handoff visibly labels dummy recap
+[PASS] handoff loads minimal bootstrap and exact release
+[PASS] handoff has no TODO or URL placeholder
+[PASS] CSS begins under the unique mount root
+[PASS] only route-ready compatibility class touches html
+[PASS] Still Museum reduced-motion rules exist
+[PASS] phone responsive rules exist
+[PASS] visible keyboard focus styles exist
+[PASS] renderer commits a detached fragment in one controlled operation
+[PASS] station-level failure isolation exists
+[PASS] bootstrap singleton guard exists
+[PASS] bootstrap exact route gate exists
+[PASS] bootstrap refuses to enhance an empty shell
+[PASS] all twelve approved core media records are present
+[PASS] every media record has credit, classification, and source
+[PASS] every media record has alt text and caption
+[PASS] JavaScript syntax valid: runtime-bootstrap.js
+[PASS] JavaScript syntax valid: black-hole-museum.js
+[PASS] release is deployment-ready after authoritative assets were acquired and validated
+[PASS] runtime asset ledger reports complete authoritative acquisition
+[PASS] runtime asset ledger contains no offline acquisition stubs
+[PASS] every runtime media URL uses the immutable release ref
+[PASS] valid content fixture passes schema
+[PASS] malformed content fixture is rejected
+[PASS] unsupported schema fixture is rejected
+Repository checks passed: 34; failed: 0.

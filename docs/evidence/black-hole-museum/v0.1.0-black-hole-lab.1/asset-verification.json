@@ -1,0 +1,1725 @@
+{
+  "total": 12,
+  "complete": 12,
+  "failed": 0,
+  "errors": [],
+  "assets": [
+    {
+      "id": "m87-observation",
+      "classification": "Observation reconstructed from real radio telescope measurements",
+      "credit": "EHT Collaboration",
+      "rightsNote": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/images/eso1907a/",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso1907a.jpg",
+      "kind": "image",
+      "checks": [
+        {
+          "name": "approved source host",
+          "passed": true,
+          "detail": "https://www.eso.org/public/images/eso1907a/"
+        },
+        {
+          "name": "approved acquisition host",
+          "passed": true,
+          "detail": "https://cdn.eso.org/images/large/eso1907a.jpg"
+        },
+        {
+          "name": "classification present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "credit present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "rights note present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "acquisition complete",
+          "passed": true,
+          "detail": "complete"
+        },
+        {
+          "name": "master exists",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\source\\m87-observation.jpg"
+        },
+        {
+          "name": "master checksum matches ledger",
+          "passed": true,
+          "detail": "dec83728157a12b10d97a2122798868917a3baba021f3579edd467ce700a7a64"
+        },
+        {
+          "name": "image dimensions valid",
+          "passed": true,
+          "detail": "7416x4320"
+        },
+        {
+          "name": "image file decodes",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "derivatives recorded",
+          "passed": true,
+          "detail": "8"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-observation-480.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-observation-480.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-observation-480.webp",
+          "passed": true,
+          "detail": "35f2f2b5614f54f0110028c42dffbed3a020f0a1f480861ab3e3d4ec85d4a3ee"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-observation-480.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-observation-480.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-observation-480.avif",
+          "passed": true,
+          "detail": "aba48209ca33d442f4ebe0ce385426f7c693d1c6411d480acf6eccdb7fce0e61"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-observation-768.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-observation-768.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-observation-768.webp",
+          "passed": true,
+          "detail": "e6a78f0c9af9108dd088e6dc7a943d79f3d9506e97ce4c84fc483058b8c8ea9e"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-observation-768.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-observation-768.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-observation-768.avif",
+          "passed": true,
+          "detail": "afd04dc65c2f4da89a8fe0efa6254c81660562ffbf5b178d7f2a6262f179edc9"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-observation-1280.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-observation-1280.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-observation-1280.webp",
+          "passed": true,
+          "detail": "ce0aabc60a03e5341407cee1222aeae4cde3d76d8894a8d137551de18a61a793"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-observation-1280.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-observation-1280.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-observation-1280.avif",
+          "passed": true,
+          "detail": "389eaff7c1e7d49160ffec9585d7b176e73ea7415b6903e775595b0d7d7619d5"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-observation-1920.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-observation-1920.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-observation-1920.webp",
+          "passed": true,
+          "detail": "606b0b95f25c65e7edd13fb09892e36f23e0daf8e164096ee325e04c8396d6f3"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-observation-1920.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-observation-1920.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-observation-1920.avif",
+          "passed": true,
+          "detail": "b871f8a1a2140546c1ebe9f3f0b93e3c3d0027d9df8b1ce45b4afb22861ddd8c"
+        },
+        {
+          "name": "responsive WebP derivative exists",
+          "passed": true,
+          "detail": "['avif', 'webp']"
+        },
+        {
+          "name": "responsive widths generated",
+          "passed": true,
+          "detail": "[480, 768, 1280, 1920]"
+        }
+      ]
+    },
+    {
+      "id": "sgr-a-observation",
+      "classification": "Observation reconstructed from real radio telescope measurements and presented as an averaged image",
+      "credit": "EHT Collaboration",
+      "rightsNote": "CC BY 4.0",
+      "sourcePage": "https://eventhorizontelescope.org/blog/astronomers-reveal-first-image-black-hole-heart-our-galaxy",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso2208-eht-mwa.jpg",
+      "kind": "image",
+      "checks": [
+        {
+          "name": "approved source host",
+          "passed": true,
+          "detail": "https://eventhorizontelescope.org/blog/astronomers-reveal-first-image-black-hole-heart-our-galaxy"
+        },
+        {
+          "name": "approved acquisition host",
+          "passed": true,
+          "detail": "https://cdn.eso.org/images/large/eso2208-eht-mwa.jpg"
+        },
+        {
+          "name": "classification present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "credit present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "rights note present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "acquisition complete",
+          "passed": true,
+          "detail": "complete"
+        },
+        {
+          "name": "master exists",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\source\\sgr-a-observation.jpg"
+        },
+        {
+          "name": "master checksum matches ledger",
+          "passed": true,
+          "detail": "372c24c62809ee4455648fc520296d649c5d11751650cce146fb5013a261fd1c"
+        },
+        {
+          "name": "image dimensions valid",
+          "passed": true,
+          "detail": "4076x4076"
+        },
+        {
+          "name": "image file decodes",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "derivatives recorded",
+          "passed": true,
+          "detail": "8"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/sgr-a-observation-480.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\sgr-a-observation-480.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/sgr-a-observation-480.webp",
+          "passed": true,
+          "detail": "b056785af80c00a34e35d11705d3d2d875a5f2af6b27bb77e7a4e945cb247432"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/sgr-a-observation-480.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\sgr-a-observation-480.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/sgr-a-observation-480.avif",
+          "passed": true,
+          "detail": "5a9b6320adf8166fae08c33e24cd297a6b9ece8f1fc392e47f5be82e48a7bbca"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/sgr-a-observation-768.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\sgr-a-observation-768.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/sgr-a-observation-768.webp",
+          "passed": true,
+          "detail": "0c3eec07bbc792e8b1c047f744d5df30aa4e9b0b0294fa3ff443c52a1f18d178"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/sgr-a-observation-768.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\sgr-a-observation-768.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/sgr-a-observation-768.avif",
+          "passed": true,
+          "detail": "41cbc3e0811e891be6b1662d0219ec4220d341403664cbf8321368970e986bc6"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/sgr-a-observation-1280.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\sgr-a-observation-1280.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/sgr-a-observation-1280.webp",
+          "passed": true,
+          "detail": "a9b8a78cd940207273a95c55525ad2fae3cca0eedc2f8fba178351c8855f8173"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/sgr-a-observation-1280.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\sgr-a-observation-1280.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/sgr-a-observation-1280.avif",
+          "passed": true,
+          "detail": "60e92d6218c77e395f871c356106f4d4872c26a159130d966f6e9e81fd6e86eb"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/sgr-a-observation-1920.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\sgr-a-observation-1920.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/sgr-a-observation-1920.webp",
+          "passed": true,
+          "detail": "55519f801b61ad45e11acce94f69f74a11601e7ab09c35116406902f3b6dd264"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/sgr-a-observation-1920.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\sgr-a-observation-1920.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/sgr-a-observation-1920.avif",
+          "passed": true,
+          "detail": "4c0cc2a92e8b980bedd32b4feeeb22a3dec06e75a6f652fb9ff6d442c5291bd3"
+        },
+        {
+          "name": "responsive WebP derivative exists",
+          "passed": true,
+          "detail": "['avif', 'webp']"
+        },
+        {
+          "name": "responsive widths generated",
+          "passed": true,
+          "detail": "[480, 768, 1280, 1920]"
+        }
+      ]
+    },
+    {
+      "id": "sgr-a-reconstruction",
+      "classification": "Observation-derived reconstruction diagram",
+      "credit": "EHT Collaboration",
+      "rightsNote": "CC BY 4.0",
+      "sourcePage": "https://eventhorizontelescope.org/blog/astronomers-reveal-first-image-black-hole-heart-our-galaxy",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso2208-eht-mwb.jpg",
+      "kind": "image",
+      "checks": [
+        {
+          "name": "approved source host",
+          "passed": true,
+          "detail": "https://eventhorizontelescope.org/blog/astronomers-reveal-first-image-black-hole-heart-our-galaxy"
+        },
+        {
+          "name": "approved acquisition host",
+          "passed": true,
+          "detail": "https://cdn.eso.org/images/large/eso2208-eht-mwb.jpg"
+        },
+        {
+          "name": "classification present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "credit present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "rights note present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "acquisition complete",
+          "passed": true,
+          "detail": "complete"
+        },
+        {
+          "name": "master exists",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\source\\sgr-a-reconstruction.jpg"
+        },
+        {
+          "name": "master checksum matches ledger",
+          "passed": true,
+          "detail": "3ae0d83b5797d240339d808d47486b9d087e1b9327a12f163d27b9b878e606c0"
+        },
+        {
+          "name": "image dimensions valid",
+          "passed": true,
+          "detail": "4096x5116"
+        },
+        {
+          "name": "image file decodes",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "derivatives recorded",
+          "passed": true,
+          "detail": "8"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/sgr-a-reconstruction-480.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\sgr-a-reconstruction-480.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/sgr-a-reconstruction-480.webp",
+          "passed": true,
+          "detail": "95da85e0babd734cd3bc0d7a106d4d4f81706bc3cd198ddc0330006decf9ec9e"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/sgr-a-reconstruction-480.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\sgr-a-reconstruction-480.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/sgr-a-reconstruction-480.avif",
+          "passed": true,
+          "detail": "10adb4cfad7009e9088baf79f3fe3feb6b96ca842260db34e829dc4a6973b1b2"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/sgr-a-reconstruction-768.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\sgr-a-reconstruction-768.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/sgr-a-reconstruction-768.webp",
+          "passed": true,
+          "detail": "7952dc19330678fef672e84d11335e6f43f1b950bd5dcf31b2f9ce1a6a5cf5e2"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/sgr-a-reconstruction-768.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\sgr-a-reconstruction-768.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/sgr-a-reconstruction-768.avif",
+          "passed": true,
+          "detail": "768c8f6ca30fb6d503ab6d8ec8be7730df69ee5c41f0a3a1054d98033d079565"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/sgr-a-reconstruction-1280.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\sgr-a-reconstruction-1280.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/sgr-a-reconstruction-1280.webp",
+          "passed": true,
+          "detail": "c58d9a2e0e172850eb5d7d967f211bd4f17fad60aee9f613c56a204cf3fe5458"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/sgr-a-reconstruction-1280.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\sgr-a-reconstruction-1280.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/sgr-a-reconstruction-1280.avif",
+          "passed": true,
+          "detail": "f0ec6bda9e9514f77631e0b35f80118ed2310bae4189b4c643813174ae236d1a"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/sgr-a-reconstruction-1920.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\sgr-a-reconstruction-1920.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/sgr-a-reconstruction-1920.webp",
+          "passed": true,
+          "detail": "3c6f6306547e7470891e7160a47e760373d426d54e8e14f8b95c637b55825b21"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/sgr-a-reconstruction-1920.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\sgr-a-reconstruction-1920.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/sgr-a-reconstruction-1920.avif",
+          "passed": true,
+          "detail": "1ab826f7df47ead22b1cb58fe76161a7334cd8206e8519c4d6ca7ecd0768c6f6"
+        },
+        {
+          "name": "responsive WebP derivative exists",
+          "passed": true,
+          "detail": "['avif', 'webp']"
+        },
+        {
+          "name": "responsive widths generated",
+          "passed": true,
+          "detail": "[480, 768, 1280, 1920]"
+        }
+      ]
+    },
+    {
+      "id": "m87-sgr-scale",
+      "classification": "Observation-based comparison graphic",
+      "credit": "EHT Collaboration",
+      "rightsNote": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/images/eso2208-eht-mwe/",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso2208-eht-mwe.jpg",
+      "kind": "image",
+      "checks": [
+        {
+          "name": "approved source host",
+          "passed": true,
+          "detail": "https://www.eso.org/public/images/eso2208-eht-mwe/"
+        },
+        {
+          "name": "approved acquisition host",
+          "passed": true,
+          "detail": "https://cdn.eso.org/images/large/eso2208-eht-mwe.jpg"
+        },
+        {
+          "name": "classification present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "credit present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "rights note present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "acquisition complete",
+          "passed": true,
+          "detail": "complete"
+        },
+        {
+          "name": "master exists",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\source\\m87-sgr-scale.jpg"
+        },
+        {
+          "name": "master checksum matches ledger",
+          "passed": true,
+          "detail": "ad105fe1b53d54c5edef83b44027d1b56d3e83576c3ab9f5fe8ac6c009f98b51"
+        },
+        {
+          "name": "image dimensions valid",
+          "passed": true,
+          "detail": "3701x2163"
+        },
+        {
+          "name": "image file decodes",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "derivatives recorded",
+          "passed": true,
+          "detail": "8"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-sgr-scale-480.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-sgr-scale-480.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-sgr-scale-480.webp",
+          "passed": true,
+          "detail": "fbffa267c8e1d52da727467f0ee77695b80465acc95edec404afe9b57f79c687"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-sgr-scale-480.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-sgr-scale-480.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-sgr-scale-480.avif",
+          "passed": true,
+          "detail": "c7df33eb0dda9257e952b621605f61b58517546c3a8a3e3eb5287c2e23260497"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-sgr-scale-768.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-sgr-scale-768.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-sgr-scale-768.webp",
+          "passed": true,
+          "detail": "a82f0e549e728ef93bdc39f6ed649eb909ad3e9c0d1ffb99d3c8e10de458386b"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-sgr-scale-768.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-sgr-scale-768.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-sgr-scale-768.avif",
+          "passed": true,
+          "detail": "244a80bc8209641bdc671a9f6dfc2c182baf0c530a588bfa8a5dc4fd2162d19d"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-sgr-scale-1280.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-sgr-scale-1280.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-sgr-scale-1280.webp",
+          "passed": true,
+          "detail": "2b45ae370ab402d02291c2aa5b076ae6a79b1dd3dca7f2dee64b85a163b19984"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-sgr-scale-1280.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-sgr-scale-1280.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-sgr-scale-1280.avif",
+          "passed": true,
+          "detail": "de926d09fee2f2a753c314c3e90461358f1693db9c456b8be02e89d645d4a7a6"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-sgr-scale-1920.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-sgr-scale-1920.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-sgr-scale-1920.webp",
+          "passed": true,
+          "detail": "b952796e05aebaae0fa26da89307fd1bc7fefcf29a6d08b2a6fdc0dfae980773"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-sgr-scale-1920.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-sgr-scale-1920.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-sgr-scale-1920.avif",
+          "passed": true,
+          "detail": "83ba795a49e4df0af81b553ccd7d8c3941e395c0cb3568fb85abc2c65feb957a"
+        },
+        {
+          "name": "responsive WebP derivative exists",
+          "passed": true,
+          "detail": "['avif', 'webp']"
+        },
+        {
+          "name": "responsive widths generated",
+          "passed": true,
+          "detail": "[480, 768, 1280, 1920]"
+        }
+      ]
+    },
+    {
+      "id": "m87-galaxy",
+      "classification": "Real optical observation",
+      "credit": "ESO",
+      "rightsNote": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/images/eso1907b/",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso1907b.jpg",
+      "kind": "image",
+      "checks": [
+        {
+          "name": "approved source host",
+          "passed": true,
+          "detail": "https://www.eso.org/public/images/eso1907b/"
+        },
+        {
+          "name": "approved acquisition host",
+          "passed": true,
+          "detail": "https://cdn.eso.org/images/large/eso1907b.jpg"
+        },
+        {
+          "name": "classification present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "credit present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "rights note present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "acquisition complete",
+          "passed": true,
+          "detail": "complete"
+        },
+        {
+          "name": "master exists",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\source\\m87-galaxy.jpg"
+        },
+        {
+          "name": "master checksum matches ledger",
+          "passed": true,
+          "detail": "65efeac4931f83fd13a8233d2140fd4f234652535963b36e07619a5ef21070c1"
+        },
+        {
+          "name": "image dimensions valid",
+          "passed": true,
+          "detail": "1646x1666"
+        },
+        {
+          "name": "image file decodes",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "derivatives recorded",
+          "passed": true,
+          "detail": "6"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-galaxy-480.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-galaxy-480.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-galaxy-480.webp",
+          "passed": true,
+          "detail": "3ecc37619ef55cec7cfa97597299d042fb1fcc9d171c24941d23c998d369aea0"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-galaxy-480.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-galaxy-480.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-galaxy-480.avif",
+          "passed": true,
+          "detail": "fd3bb86ec0988635b36afe0414b4c72b158099d01201bbebb6c7674f8b4d78a5"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-galaxy-768.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-galaxy-768.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-galaxy-768.webp",
+          "passed": true,
+          "detail": "e062cfd36195927ba35e45717a7a86b5b2d91b449653f9d8b15c5a6123e2a74d"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-galaxy-768.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-galaxy-768.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-galaxy-768.avif",
+          "passed": true,
+          "detail": "8da4b4ee92cd3ac6ed0e46deeccfac91653b4a33183f85502ddf100699b2b077"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-galaxy-1280.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-galaxy-1280.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-galaxy-1280.webp",
+          "passed": true,
+          "detail": "37d6ce914bd36fb94bbe993b7e9e0ebdb776945881901e0e9a9d8b2cba75914c"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/m87-galaxy-1280.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\m87-galaxy-1280.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/m87-galaxy-1280.avif",
+          "passed": true,
+          "detail": "613c6ce44e609e8e76b5f5180cc3bcb5a491ed86473f486f3eea86a93b9b9e40"
+        },
+        {
+          "name": "responsive WebP derivative exists",
+          "passed": true,
+          "detail": "['avif', 'webp']"
+        },
+        {
+          "name": "responsive widths generated",
+          "passed": true,
+          "detail": "[480, 768, 1280]"
+        }
+      ]
+    },
+    {
+      "id": "alma-antennas",
+      "classification": "Real photograph",
+      "credit": "ESO/C. Malin",
+      "rightsNote": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/images/malin-dsc0027/",
+      "downloadUrl": "https://cdn.eso.org/images/large/malin-dsc0027.jpg",
+      "kind": "image",
+      "checks": [
+        {
+          "name": "approved source host",
+          "passed": true,
+          "detail": "https://www.eso.org/public/images/malin-dsc0027/"
+        },
+        {
+          "name": "approved acquisition host",
+          "passed": true,
+          "detail": "https://cdn.eso.org/images/large/malin-dsc0027.jpg"
+        },
+        {
+          "name": "classification present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "credit present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "rights note present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "acquisition complete",
+          "passed": true,
+          "detail": "complete"
+        },
+        {
+          "name": "master exists",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\source\\alma-antennas.jpg"
+        },
+        {
+          "name": "master checksum matches ledger",
+          "passed": true,
+          "detail": "4cf4338bff764a96435e52c37cb925a61d37c02d2a420bc4fa48a7b164fbfe0f"
+        },
+        {
+          "name": "image dimensions valid",
+          "passed": true,
+          "detail": "4928x3264"
+        },
+        {
+          "name": "image file decodes",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "derivatives recorded",
+          "passed": true,
+          "detail": "8"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/alma-antennas-480.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\alma-antennas-480.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/alma-antennas-480.webp",
+          "passed": true,
+          "detail": "f19503d5117063bd7af4f528b8699085bb06351e8656004e6da6277ffb658377"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/alma-antennas-480.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\alma-antennas-480.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/alma-antennas-480.avif",
+          "passed": true,
+          "detail": "bd21e9ad2d69c0613df7c891b265244e6edb7aaf3e2f94f9e57807a459d10762"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/alma-antennas-768.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\alma-antennas-768.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/alma-antennas-768.webp",
+          "passed": true,
+          "detail": "afc32d8fc6ccae99bf54329eb7a68b2526f2b6b68c44fb0379dc56cbdadef79c"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/alma-antennas-768.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\alma-antennas-768.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/alma-antennas-768.avif",
+          "passed": true,
+          "detail": "38e0cfa4551aeea76deb4cba52fe9ee1c36580308a641265f0911b4483663099"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/alma-antennas-1280.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\alma-antennas-1280.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/alma-antennas-1280.webp",
+          "passed": true,
+          "detail": "499aa055d1a92b95b7bedd5b1009a3a16bf1ec3c3938d1a48bfb9b046a8c65f8"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/alma-antennas-1280.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\alma-antennas-1280.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/alma-antennas-1280.avif",
+          "passed": true,
+          "detail": "1d199ae3d5d6e0c46c3ec85a966364a091c48a388006dd0a3b061eba9b829b57"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/alma-antennas-1920.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\alma-antennas-1920.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/alma-antennas-1920.webp",
+          "passed": true,
+          "detail": "3369f31c26f1f417a3a0d1686e7111187e4862db3e7d7cbd70beba9f2fd8f5fa"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/alma-antennas-1920.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\alma-antennas-1920.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/alma-antennas-1920.avif",
+          "passed": true,
+          "detail": "1f020f2eea146f3ae15088839ef9f9aaad3d3d2e0a7d26f6a1cb9070424eb282"
+        },
+        {
+          "name": "responsive WebP derivative exists",
+          "passed": true,
+          "detail": "['avif', 'webp']"
+        },
+        {
+          "name": "responsive widths generated",
+          "passed": true,
+          "detail": "[480, 768, 1280, 1920]"
+        }
+      ]
+    },
+    {
+      "id": "eht-observatory-map",
+      "classification": "Explanatory geographic diagram",
+      "credit": "ESO/M. Kornmesser",
+      "rightsNote": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/images/eso2208-eht-mwi/",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso2208-eht-mwi.jpg",
+      "kind": "image",
+      "checks": [
+        {
+          "name": "approved source host",
+          "passed": true,
+          "detail": "https://www.eso.org/public/images/eso2208-eht-mwi/"
+        },
+        {
+          "name": "approved acquisition host",
+          "passed": true,
+          "detail": "https://cdn.eso.org/images/large/eso2208-eht-mwi.jpg"
+        },
+        {
+          "name": "classification present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "credit present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "rights note present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "acquisition complete",
+          "passed": true,
+          "detail": "complete"
+        },
+        {
+          "name": "master exists",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\source\\eht-observatory-map.jpg"
+        },
+        {
+          "name": "master checksum matches ledger",
+          "passed": true,
+          "detail": "f31489f7ed3395478eda2908370b9a9d8fec40ef672a829d075b8150b1f724b9"
+        },
+        {
+          "name": "image dimensions valid",
+          "passed": true,
+          "detail": "5760x3240"
+        },
+        {
+          "name": "image file decodes",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "derivatives recorded",
+          "passed": true,
+          "detail": "8"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/eht-observatory-map-480.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\eht-observatory-map-480.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/eht-observatory-map-480.webp",
+          "passed": true,
+          "detail": "a3cf3f9f4cfdbbb7ad0ebf1b8b518092f5aaa43c08b061f8f1e9cfa707837a35"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/eht-observatory-map-480.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\eht-observatory-map-480.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/eht-observatory-map-480.avif",
+          "passed": true,
+          "detail": "fdece702cee2ad28f2a14836c18fb1a8d20ac262238f3e945feb82985e90124f"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/eht-observatory-map-768.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\eht-observatory-map-768.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/eht-observatory-map-768.webp",
+          "passed": true,
+          "detail": "2dc5c5ca82c9bdfb09afa392cef181bf50c015cbd3fca4263f6bb8ff27ab1a62"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/eht-observatory-map-768.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\eht-observatory-map-768.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/eht-observatory-map-768.avif",
+          "passed": true,
+          "detail": "d00aa0d62c14d5de9d75b3f39b237e75d0cc3d37afe74f5117b5bdad9a34b2b4"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/eht-observatory-map-1280.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\eht-observatory-map-1280.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/eht-observatory-map-1280.webp",
+          "passed": true,
+          "detail": "174e09b74ff251fa75e9c59170783dc99ad8031e48c804acbf6049bc9a3ad151"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/eht-observatory-map-1280.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\eht-observatory-map-1280.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/eht-observatory-map-1280.avif",
+          "passed": true,
+          "detail": "bc4eaada72fb740dfbb67857ae4ebd1d5faccbfe263ca6d9b47ca04bbafd2554"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/eht-observatory-map-1920.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\eht-observatory-map-1920.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/eht-observatory-map-1920.webp",
+          "passed": true,
+          "detail": "62e73542988c721c2d1889d513ba4b5932a277b738fbd18a36a01790aa416b0d"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/eht-observatory-map-1920.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\eht-observatory-map-1920.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/eht-observatory-map-1920.avif",
+          "passed": true,
+          "detail": "59aa2334a581a9a50824bb701ad1e616e7178104a80d90a9131d0443b62bfc9f"
+        },
+        {
+          "name": "responsive WebP derivative exists",
+          "passed": true,
+          "detail": "['avif', 'webp']"
+        },
+        {
+          "name": "responsive widths generated",
+          "passed": true,
+          "detail": "[480, 768, 1280, 1920]"
+        }
+      ]
+    },
+    {
+      "id": "eso-star-orbits",
+      "classification": "Real observational time-lapse",
+      "credit": "ESO/MPE",
+      "rightsNote": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/videos/eso1825e/",
+      "downloadUrl": "https://cdn.eso.org/videos/hd_1080p25_screen/eso1825e.mp4",
+      "kind": "video",
+      "checks": [
+        {
+          "name": "approved source host",
+          "passed": true,
+          "detail": "https://www.eso.org/public/videos/eso1825e/"
+        },
+        {
+          "name": "approved acquisition host",
+          "passed": true,
+          "detail": "https://cdn.eso.org/videos/hd_1080p25_screen/eso1825e.mp4"
+        },
+        {
+          "name": "classification present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "credit present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "rights note present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "acquisition complete",
+          "passed": true,
+          "detail": "complete"
+        },
+        {
+          "name": "master exists",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\source\\eso-star-orbits.mp4"
+        },
+        {
+          "name": "master checksum matches ledger",
+          "passed": true,
+          "detail": "0c628c0111445c12362dfbd6b69b186ef8dbdb91ab463d9a1716b1befe733f98"
+        },
+        {
+          "name": "video dimensions valid",
+          "passed": true,
+          "detail": "1920x1080"
+        },
+        {
+          "name": "video duration valid",
+          "passed": true,
+          "detail": "20.053333"
+        },
+        {
+          "name": "derivatives recorded",
+          "passed": true,
+          "detail": "3"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/eso-star-orbits-poster.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\eso-star-orbits-poster.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/eso-star-orbits-poster.webp",
+          "passed": true,
+          "detail": "b7f599ca77fdc1ab15021f7f19802ef9321b1fcb31829c278f05db51c3e1cf1e"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/eso-star-orbits-1280.mp4",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\eso-star-orbits-1280.mp4"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/eso-star-orbits-1280.mp4",
+          "passed": true,
+          "detail": "7bae1f3edb421ba80929a25607063a1a429c7d1c4202a69c7e0c173c53f0f640"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/eso-star-orbits-1280.webm",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\eso-star-orbits-1280.webm"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/eso-star-orbits-1280.webm",
+          "passed": true,
+          "detail": "f504057ce4d9f3fe224974bca0ba1b8a97cd3f267658b1a9ef58fe90e5a233a5"
+        },
+        {
+          "name": "MP4 derivative exists",
+          "passed": true,
+          "detail": "['mp4', 'webm', 'webp']"
+        },
+        {
+          "name": "WebM derivative exists",
+          "passed": true,
+          "detail": "['mp4', 'webm', 'webp']"
+        },
+        {
+          "name": "poster derivative exists",
+          "passed": true,
+          "detail": "['mp4', 'webm', 'webp']"
+        }
+      ]
+    },
+    {
+      "id": "nasa-labeled-accretion",
+      "classification": "Scientific visualization with explanatory labels",
+      "credit": "NASA’s Goddard Space Flight Center/Jeremy Schnittman",
+      "rightsNote": "NASA media usage guidelines; asset-level third-party notice must be checked",
+      "sourcePage": "https://svs.gsfc.nasa.gov/13326",
+      "downloadUrl": "https://svs.gsfc.nasa.gov/vis/a010000/a013300/a013326/BH_labeled.jpg",
+      "kind": "image",
+      "checks": [
+        {
+          "name": "approved source host",
+          "passed": true,
+          "detail": "https://svs.gsfc.nasa.gov/13326"
+        },
+        {
+          "name": "approved acquisition host",
+          "passed": true,
+          "detail": "https://svs.gsfc.nasa.gov/vis/a010000/a013300/a013326/BH_labeled.jpg"
+        },
+        {
+          "name": "classification present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "credit present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "rights note present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "acquisition complete",
+          "passed": true,
+          "detail": "complete"
+        },
+        {
+          "name": "master exists",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\source\\nasa-labeled-accretion.jpg"
+        },
+        {
+          "name": "master checksum matches ledger",
+          "passed": true,
+          "detail": "32398afde61bc02ff28d61e4185b3e87aac761fd84336b6992de7e379ea04922"
+        },
+        {
+          "name": "image dimensions valid",
+          "passed": true,
+          "detail": "3851x2166"
+        },
+        {
+          "name": "image file decodes",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "derivatives recorded",
+          "passed": true,
+          "detail": "8"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-labeled-accretion-480.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-labeled-accretion-480.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-labeled-accretion-480.webp",
+          "passed": true,
+          "detail": "283405186f64a8ec67b53e03405d7b456b0ca993429cdf1745df1197f36d0ff3"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-labeled-accretion-480.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-labeled-accretion-480.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-labeled-accretion-480.avif",
+          "passed": true,
+          "detail": "dda7a2e9b9549d53420ab53b40b9cb1c344f19fa3e51ef2ff768d6598f06c979"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-labeled-accretion-768.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-labeled-accretion-768.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-labeled-accretion-768.webp",
+          "passed": true,
+          "detail": "bd25f5062bd121e0bb36c99a0adeda1591cfa0ee602574884bf9775ab9d2127d"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-labeled-accretion-768.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-labeled-accretion-768.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-labeled-accretion-768.avif",
+          "passed": true,
+          "detail": "cbc6fba1a8eb9c5c1a96c7cb6d85b993a9f5cbc834064de3261f0cf0fadf5757"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-labeled-accretion-1280.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-labeled-accretion-1280.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-labeled-accretion-1280.webp",
+          "passed": true,
+          "detail": "1ca1b9f6276a8c7e26cada37657d91078e1035c81549c7988e262fca681ff13d"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-labeled-accretion-1280.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-labeled-accretion-1280.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-labeled-accretion-1280.avif",
+          "passed": true,
+          "detail": "41ee9c498439073aa2eeb33b2b6fbf6306061ff14a4ee502b0cefe6d3cd2afcb"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-labeled-accretion-1920.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-labeled-accretion-1920.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-labeled-accretion-1920.webp",
+          "passed": true,
+          "detail": "b93f9ac0a5bdede692df8d8e4702466ac6ec80cc0422f6741b005cb7340877ee"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-labeled-accretion-1920.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-labeled-accretion-1920.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-labeled-accretion-1920.avif",
+          "passed": true,
+          "detail": "d73269cdc53695f2ec5931193380a7c441ca988ab923361e31c98840032a7475"
+        },
+        {
+          "name": "responsive WebP derivative exists",
+          "passed": true,
+          "detail": "['avif', 'webp']"
+        },
+        {
+          "name": "responsive widths generated",
+          "passed": true,
+          "detail": "[480, 768, 1280, 1920]"
+        }
+      ]
+    },
+    {
+      "id": "nasa-optics",
+      "classification": "Scientific explanatory diagram",
+      "credit": "NASA’s Goddard Space Flight Center/Jeremy Schnittman",
+      "rightsNote": "NASA media usage guidelines; asset-level third-party notice must be checked",
+      "sourcePage": "https://svs.gsfc.nasa.gov/13326",
+      "downloadUrl": "https://svs.gsfc.nasa.gov/vis/a010000/a013300/a013326/BH_optics_explained.jpg",
+      "kind": "image",
+      "checks": [
+        {
+          "name": "approved source host",
+          "passed": true,
+          "detail": "https://svs.gsfc.nasa.gov/13326"
+        },
+        {
+          "name": "approved acquisition host",
+          "passed": true,
+          "detail": "https://svs.gsfc.nasa.gov/vis/a010000/a013300/a013326/BH_optics_explained.jpg"
+        },
+        {
+          "name": "classification present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "credit present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "rights note present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "acquisition complete",
+          "passed": true,
+          "detail": "complete"
+        },
+        {
+          "name": "master exists",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\source\\nasa-optics.jpg"
+        },
+        {
+          "name": "master checksum matches ledger",
+          "passed": true,
+          "detail": "03829e31de63eb5b42cb5df1548a75290121b624b2445d0cd714c03ebfe1cd09"
+        },
+        {
+          "name": "image dimensions valid",
+          "passed": true,
+          "detail": "1920x1305"
+        },
+        {
+          "name": "image file decodes",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "derivatives recorded",
+          "passed": true,
+          "detail": "8"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-optics-480.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-optics-480.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-optics-480.webp",
+          "passed": true,
+          "detail": "e0a2c7d57940f22b8aa9187cef0c738a0cadcea84f7f85b7821f104927690a81"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-optics-480.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-optics-480.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-optics-480.avif",
+          "passed": true,
+          "detail": "7c0b80cfc1c2aa6ac8d3730c914a1fd9f79dbbe913041219304a333614a77d7e"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-optics-768.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-optics-768.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-optics-768.webp",
+          "passed": true,
+          "detail": "81351f621e96711b4808a4f34cb6b8aa469f7d33572b07e4c637e4cf7e534c56"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-optics-768.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-optics-768.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-optics-768.avif",
+          "passed": true,
+          "detail": "89ab7cc108cee79d705d39f225b90419f2b95caa8e12ba2b122f9fc0648bc519"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-optics-1280.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-optics-1280.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-optics-1280.webp",
+          "passed": true,
+          "detail": "7e2adf86151f54ac3a67b7386f101dd84b3c2753c327c745bb1faf60f8ffcbb3"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-optics-1280.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-optics-1280.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-optics-1280.avif",
+          "passed": true,
+          "detail": "704f353a0172d4b8b22c75769ae4a72bdbd7f15284cc434c52d4872614e20a1e"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-optics-1920.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-optics-1920.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-optics-1920.webp",
+          "passed": true,
+          "detail": "64daf0542a1a81e2108ec94d1aa423c7014121d965abc27cc05d0c8daf1c9003"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-optics-1920.avif",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-optics-1920.avif"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-optics-1920.avif",
+          "passed": true,
+          "detail": "91825138f09a938161c40a638575efd7864614301b96b22258e4344bd36786f8"
+        },
+        {
+          "name": "responsive WebP derivative exists",
+          "passed": true,
+          "detail": "['avif', 'webp']"
+        },
+        {
+          "name": "responsive widths generated",
+          "passed": true,
+          "detail": "[480, 768, 1280, 1920]"
+        }
+      ]
+    },
+    {
+      "id": "nasa-edge-on",
+      "classification": "Scientific visualization calculated from physical models",
+      "credit": "NASA’s Goddard Space Flight Center/Jeremy Schnittman",
+      "rightsNote": "NASA media usage guidelines; asset-level third-party notice must be checked",
+      "sourcePage": "https://svs.gsfc.nasa.gov/13326",
+      "downloadUrl": "https://svs.gsfc.nasa.gov/vis/a010000/a013300/a013326/BH_AccretionDisk_Sim_Stationary_WebSize.webm",
+      "kind": "video",
+      "checks": [
+        {
+          "name": "approved source host",
+          "passed": true,
+          "detail": "https://svs.gsfc.nasa.gov/13326"
+        },
+        {
+          "name": "approved acquisition host",
+          "passed": true,
+          "detail": "https://svs.gsfc.nasa.gov/vis/a010000/a013300/a013326/BH_AccretionDisk_Sim_Stationary_WebSize.webm"
+        },
+        {
+          "name": "classification present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "credit present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "rights note present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "acquisition complete",
+          "passed": true,
+          "detail": "complete"
+        },
+        {
+          "name": "master exists",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\source\\nasa-edge-on.webm"
+        },
+        {
+          "name": "master checksum matches ledger",
+          "passed": true,
+          "detail": "219c2f696b7935b1176e10fa0a98b14178ccf08cea414fe3d3b347d21c90c195"
+        },
+        {
+          "name": "video dimensions valid",
+          "passed": true,
+          "detail": "1040x600"
+        },
+        {
+          "name": "video duration valid",
+          "passed": true,
+          "detail": "5.533"
+        },
+        {
+          "name": "derivatives recorded",
+          "passed": true,
+          "detail": "3"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-edge-on-poster.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-edge-on-poster.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-edge-on-poster.webp",
+          "passed": true,
+          "detail": "e6f80127b7d2de0f57c6497901aa7954e51abecb8af8cce7ef7609073c83f788"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-edge-on-1280.mp4",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-edge-on-1280.mp4"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-edge-on-1280.mp4",
+          "passed": true,
+          "detail": "2cfec2eb0205d0c675c166681f75edcbf20b5d6d54c9320c4852e7f92a75a758"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-edge-on-1280.webm",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-edge-on-1280.webm"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-edge-on-1280.webm",
+          "passed": true,
+          "detail": "fb6075333c48698f5976f398428e68da91caf30db1a12def9e547824b3062684"
+        },
+        {
+          "name": "MP4 derivative exists",
+          "passed": true,
+          "detail": "['mp4', 'webm', 'webp']"
+        },
+        {
+          "name": "WebM derivative exists",
+          "passed": true,
+          "detail": "['mp4', 'webm', 'webp']"
+        },
+        {
+          "name": "poster derivative exists",
+          "passed": true,
+          "detail": "['mp4', 'webm', 'webp']"
+        }
+      ]
+    },
+    {
+      "id": "nasa-rotating",
+      "classification": "Scientific visualization calculated from physical models",
+      "credit": "NASA’s Goddard Space Flight Center/Jeremy Schnittman",
+      "rightsNote": "NASA media usage guidelines; asset-level third-party notice must be checked",
+      "sourcePage": "https://svs.gsfc.nasa.gov/13326",
+      "downloadUrl": "https://svs.gsfc.nasa.gov/vis/a010000/a013300/a013326/BH_AccretionDisk_Sim_360_Continuous_1080.webm",
+      "kind": "video",
+      "checks": [
+        {
+          "name": "approved source host",
+          "passed": true,
+          "detail": "https://svs.gsfc.nasa.gov/13326"
+        },
+        {
+          "name": "approved acquisition host",
+          "passed": true,
+          "detail": "https://svs.gsfc.nasa.gov/vis/a010000/a013300/a013326/BH_AccretionDisk_Sim_360_Continuous_1080.webm"
+        },
+        {
+          "name": "classification present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "credit present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "rights note present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "name": "acquisition complete",
+          "passed": true,
+          "detail": "complete"
+        },
+        {
+          "name": "master exists",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\source\\nasa-rotating.webm"
+        },
+        {
+          "name": "master checksum matches ledger",
+          "passed": true,
+          "detail": "c1d96ac8b5968cd60325571103d01410e965d9a2594a285d44e27513334a159d"
+        },
+        {
+          "name": "video dimensions valid",
+          "passed": true,
+          "detail": "3840x3840"
+        },
+        {
+          "name": "video duration valid",
+          "passed": true,
+          "detail": "11.997"
+        },
+        {
+          "name": "derivatives recorded",
+          "passed": true,
+          "detail": "3"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-rotating-poster.webp",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-rotating-poster.webp"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-rotating-poster.webp",
+          "passed": true,
+          "detail": "a49c627428564984a34d24357973346046415596f574e538cfe238532603bce2"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-rotating-1280.mp4",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-rotating-1280.mp4"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-rotating-1280.mp4",
+          "passed": true,
+          "detail": "7cf5cd0bb8d73079971683a5b27e8bca4609cd8b03462eb27b094196d3eb342c"
+        },
+        {
+          "name": "derivative exists: apps/black-hole-museum/assets/derived/nasa-rotating-1280.webm",
+          "passed": true,
+          "detail": "C:\\Users\\broke\\Documents\\HughesWebAssets\\apps\\black-hole-museum\\assets\\derived\\nasa-rotating-1280.webm"
+        },
+        {
+          "name": "derivative checksum: apps/black-hole-museum/assets/derived/nasa-rotating-1280.webm",
+          "passed": true,
+          "detail": "fd0c0c85c65c7a55c116b5461faf28f6f1dd147a6442c9ab20566096a7fce340"
+        },
+        {
+          "name": "MP4 derivative exists",
+          "passed": true,
+          "detail": "['mp4', 'webm', 'webp']"
+        },
+        {
+          "name": "WebM derivative exists",
+          "passed": true,
+          "detail": "['mp4', 'webm', 'webp']"
+        },
+        {
+          "name": "poster derivative exists",
+          "passed": true,
+          "detail": "['mp4', 'webm', 'webp']"
+        }
+      ]
+    }
+  ]
+}

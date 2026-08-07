@@ -1,0 +1,1009 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-08-07T03:01:00Z",
+  "retrievalStatus": "complete",
+  "retrievalNote": "Acquired and validated during deployment against the approved authoritative asset ledger: source host, classification, credit, rights note, file type, dimensions or duration, and recorded checksums verified.",
+  "assets": [
+    {
+      "id": "m87-observation",
+      "title": "First image of M87*",
+      "classification": "Observation reconstructed from real radio telescope measurements",
+      "credit": "EHT Collaboration",
+      "license": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/images/eso1907a/",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso1907a.jpg",
+      "filename": "m87-observation.jpg",
+      "kind": "image",
+      "stations": [
+        "twin-ring-rotunda"
+      ],
+      "alt": "The Event Horizon Telescope image of M87 star, showing a bright orange ring surrounding a dark central shadow.",
+      "caption": "M87* at 1.3 millimeters. Orange is a display choice applied to radio data.",
+      "masterPath": "apps/black-hole-museum/assets/source/m87-observation.jpg",
+      "masterSha256": "dec83728157a12b10d97a2122798868917a3baba021f3579edd467ce700a7a64",
+      "masterBytes": 8043007,
+      "derivatives": [
+        {
+          "width": 480,
+          "height": 280,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/m87-observation-480.webp",
+          "sha256": "35f2f2b5614f54f0110028c42dffbed3a020f0a1f480861ab3e3d4ec85d4a3ee",
+          "bytes": 1758,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-observation-480.webp"
+        },
+        {
+          "width": 480,
+          "height": 280,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/m87-observation-480.avif",
+          "sha256": "aba48209ca33d442f4ebe0ce385426f7c693d1c6411d480acf6eccdb7fce0e61",
+          "bytes": 4406,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-observation-480.avif"
+        },
+        {
+          "width": 768,
+          "height": 447,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/m87-observation-768.webp",
+          "sha256": "e6a78f0c9af9108dd088e6dc7a943d79f3d9506e97ce4c84fc483058b8c8ea9e",
+          "bytes": 3332,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-observation-768.webp"
+        },
+        {
+          "width": 768,
+          "height": 447,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/m87-observation-768.avif",
+          "sha256": "afd04dc65c2f4da89a8fe0efa6254c81660562ffbf5b178d7f2a6262f179edc9",
+          "bytes": 5115,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-observation-768.avif"
+        },
+        {
+          "width": 1280,
+          "height": 746,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/m87-observation-1280.webp",
+          "sha256": "ce0aabc60a03e5341407cee1222aeae4cde3d76d8894a8d137551de18a61a793",
+          "bytes": 6660,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-observation-1280.webp"
+        },
+        {
+          "width": 1280,
+          "height": 746,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/m87-observation-1280.avif",
+          "sha256": "389eaff7c1e7d49160ffec9585d7b176e73ea7415b6903e775595b0d7d7619d5",
+          "bytes": 6946,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-observation-1280.avif"
+        },
+        {
+          "width": 1920,
+          "height": 1118,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/m87-observation-1920.webp",
+          "sha256": "606b0b95f25c65e7edd13fb09892e36f23e0daf8e164096ee325e04c8396d6f3",
+          "bytes": 11944,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-observation-1920.webp"
+        },
+        {
+          "width": 1920,
+          "height": 1118,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/m87-observation-1920.avif",
+          "sha256": "b871f8a1a2140546c1ebe9f3f0b93e3c3d0027d9df8b1ce45b4afb22861ddd8c",
+          "bytes": 9155,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-observation-1920.avif"
+        }
+      ],
+      "acquisitionStatus": "complete",
+      "stub": false,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-observation.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-observation-1280.webp"
+    },
+    {
+      "id": "sgr-a-observation",
+      "title": "First image of Sagittarius A*",
+      "classification": "Observation reconstructed from real radio telescope measurements and presented as an averaged image",
+      "credit": "EHT Collaboration",
+      "license": "CC BY 4.0",
+      "sourcePage": "https://eventhorizontelescope.org/blog/astronomers-reveal-first-image-black-hole-heart-our-galaxy",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso2208-eht-mwa.jpg",
+      "filename": "sgr-a-observation.jpg",
+      "kind": "image",
+      "stations": [
+        "twin-ring-rotunda"
+      ],
+      "alt": "The Event Horizon Telescope image of Sagittarius A star, showing a bright orange ring surrounding a dark central shadow.",
+      "caption": "Sagittarius A* is an average assembled from many reconstructions compatible with the 2017 observations.",
+      "masterPath": "apps/black-hole-museum/assets/source/sgr-a-observation.jpg",
+      "masterSha256": "372c24c62809ee4455648fc520296d649c5d11751650cce146fb5013a261fd1c",
+      "masterBytes": 571188,
+      "derivatives": [
+        {
+          "width": 480,
+          "height": 480,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/sgr-a-observation-480.webp",
+          "sha256": "b056785af80c00a34e35d11705d3d2d875a5f2af6b27bb77e7a4e945cb247432",
+          "bytes": 5090,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-observation-480.webp"
+        },
+        {
+          "width": 480,
+          "height": 480,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/sgr-a-observation-480.avif",
+          "sha256": "5a9b6320adf8166fae08c33e24cd297a6b9ece8f1fc392e47f5be82e48a7bbca",
+          "bytes": 5962,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-observation-480.avif"
+        },
+        {
+          "width": 768,
+          "height": 768,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/sgr-a-observation-768.webp",
+          "sha256": "0c3eec07bbc792e8b1c047f744d5df30aa4e9b0b0294fa3ff443c52a1f18d178",
+          "bytes": 9222,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-observation-768.webp"
+        },
+        {
+          "width": 768,
+          "height": 768,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/sgr-a-observation-768.avif",
+          "sha256": "41cbc3e0811e891be6b1662d0219ec4220d341403664cbf8321368970e986bc6",
+          "bytes": 8043,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-observation-768.avif"
+        },
+        {
+          "width": 1280,
+          "height": 1280,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/sgr-a-observation-1280.webp",
+          "sha256": "a9b8a78cd940207273a95c55525ad2fae3cca0eedc2f8fba178351c8855f8173",
+          "bytes": 18414,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-observation-1280.webp"
+        },
+        {
+          "width": 1280,
+          "height": 1280,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/sgr-a-observation-1280.avif",
+          "sha256": "60e92d6218c77e395f871c356106f4d4872c26a159130d966f6e9e81fd6e86eb",
+          "bytes": 13026,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-observation-1280.avif"
+        },
+        {
+          "width": 1920,
+          "height": 1920,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/sgr-a-observation-1920.webp",
+          "sha256": "55519f801b61ad45e11acce94f69f74a11601e7ab09c35116406902f3b6dd264",
+          "bytes": 32838,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-observation-1920.webp"
+        },
+        {
+          "width": 1920,
+          "height": 1920,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/sgr-a-observation-1920.avif",
+          "sha256": "4c0cc2a92e8b980bedd32b4feeeb22a3dec06e75a6f652fb9ff6d442c5291bd3",
+          "bytes": 21911,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-observation-1920.avif"
+        }
+      ],
+      "acquisitionStatus": "complete",
+      "stub": false,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-observation.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-observation-1280.webp"
+    },
+    {
+      "id": "sgr-a-reconstruction",
+      "title": "Sagittarius A* reconstruction comparison",
+      "classification": "Observation-derived reconstruction diagram",
+      "credit": "EHT Collaboration",
+      "license": "CC BY 4.0",
+      "sourcePage": "https://eventhorizontelescope.org/blog/astronomers-reveal-first-image-black-hole-heart-our-galaxy",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso2208-eht-mwb.jpg",
+      "filename": "sgr-a-reconstruction.jpg",
+      "kind": "image",
+      "stations": [
+        "reconstruction-corridor"
+      ],
+      "alt": "A comparison of Sagittarius A star reconstruction groups and the published average.",
+      "caption": "Representative reconstruction groups shown beside the published average.",
+      "masterPath": "apps/black-hole-museum/assets/source/sgr-a-reconstruction.jpg",
+      "masterSha256": "3ae0d83b5797d240339d808d47486b9d087e1b9327a12f163d27b9b878e606c0",
+      "masterBytes": 959065,
+      "derivatives": [
+        {
+          "width": 480,
+          "height": 600,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/sgr-a-reconstruction-480.webp",
+          "sha256": "95da85e0babd734cd3bc0d7a106d4d4f81706bc3cd198ddc0330006decf9ec9e",
+          "bytes": 10358,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-reconstruction-480.webp"
+        },
+        {
+          "width": 480,
+          "height": 600,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/sgr-a-reconstruction-480.avif",
+          "sha256": "10adb4cfad7009e9088baf79f3fe3feb6b96ca842260db34e829dc4a6973b1b2",
+          "bytes": 9630,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-reconstruction-480.avif"
+        },
+        {
+          "width": 768,
+          "height": 959,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/sgr-a-reconstruction-768.webp",
+          "sha256": "7952dc19330678fef672e84d11335e6f43f1b950bd5dcf31b2f9ce1a6a5cf5e2",
+          "bytes": 17682,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-reconstruction-768.webp"
+        },
+        {
+          "width": 768,
+          "height": 959,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/sgr-a-reconstruction-768.avif",
+          "sha256": "768c8f6ca30fb6d503ab6d8ec8be7730df69ee5c41f0a3a1054d98033d079565",
+          "bytes": 13519,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-reconstruction-768.avif"
+        },
+        {
+          "width": 1280,
+          "height": 1599,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/sgr-a-reconstruction-1280.webp",
+          "sha256": "c58d9a2e0e172850eb5d7d967f211bd4f17fad60aee9f613c56a204cf3fe5458",
+          "bytes": 33188,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-reconstruction-1280.webp"
+        },
+        {
+          "width": 1280,
+          "height": 1599,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/sgr-a-reconstruction-1280.avif",
+          "sha256": "f0ec6bda9e9514f77631e0b35f80118ed2310bae4189b4c643813174ae236d1a",
+          "bytes": 23057,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-reconstruction-1280.avif"
+        },
+        {
+          "width": 1920,
+          "height": 2398,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/sgr-a-reconstruction-1920.webp",
+          "sha256": "3c6f6306547e7470891e7160a47e760373d426d54e8e14f8b95c637b55825b21",
+          "bytes": 55464,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-reconstruction-1920.webp"
+        },
+        {
+          "width": 1920,
+          "height": 2398,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/sgr-a-reconstruction-1920.avif",
+          "sha256": "1ab826f7df47ead22b1cb58fe76161a7334cd8206e8519c4d6ca7ecd0768c6f6",
+          "bytes": 36197,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-reconstruction-1920.avif"
+        }
+      ],
+      "acquisitionStatus": "complete",
+      "stub": false,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-reconstruction.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/sgr-a-reconstruction-1280.webp"
+    },
+    {
+      "id": "m87-sgr-scale",
+      "title": "M87* and Sagittarius A* scale comparison",
+      "classification": "Observation-based comparison graphic",
+      "credit": "EHT Collaboration",
+      "license": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/images/eso2208-eht-mwe/",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso2208-eht-mwe.jpg",
+      "filename": "m87-sgr-scale.jpg",
+      "kind": "image",
+      "stations": [
+        "twin-ring-rotunda"
+      ],
+      "alt": "A comparison graphic showing the physical scales associated with M87 star and Sagittarius A star.",
+      "caption": "A common-scale comparison supplied by the EHT Collaboration.",
+      "masterPath": "apps/black-hole-museum/assets/source/m87-sgr-scale.jpg",
+      "masterSha256": "ad105fe1b53d54c5edef83b44027d1b56d3e83576c3ab9f5fe8ac6c009f98b51",
+      "masterBytes": 824040,
+      "derivatives": [
+        {
+          "width": 480,
+          "height": 281,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/m87-sgr-scale-480.webp",
+          "sha256": "fbffa267c8e1d52da727467f0ee77695b80465acc95edec404afe9b57f79c687",
+          "bytes": 9240,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-sgr-scale-480.webp"
+        },
+        {
+          "width": 480,
+          "height": 281,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/m87-sgr-scale-480.avif",
+          "sha256": "c7df33eb0dda9257e952b621605f61b58517546c3a8a3e3eb5287c2e23260497",
+          "bytes": 9406,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-sgr-scale-480.avif"
+        },
+        {
+          "width": 768,
+          "height": 449,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/m87-sgr-scale-768.webp",
+          "sha256": "a82f0e549e728ef93bdc39f6ed649eb909ad3e9c0d1ffb99d3c8e10de458386b",
+          "bytes": 16458,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-sgr-scale-768.webp"
+        },
+        {
+          "width": 768,
+          "height": 449,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/m87-sgr-scale-768.avif",
+          "sha256": "244a80bc8209641bdc671a9f6dfc2c182baf0c530a588bfa8a5dc4fd2162d19d",
+          "bytes": 14349,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-sgr-scale-768.avif"
+        },
+        {
+          "width": 1280,
+          "height": 748,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/m87-sgr-scale-1280.webp",
+          "sha256": "2b45ae370ab402d02291c2aa5b076ae6a79b1dd3dca7f2dee64b85a163b19984",
+          "bytes": 31618,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-sgr-scale-1280.webp"
+        },
+        {
+          "width": 1280,
+          "height": 748,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/m87-sgr-scale-1280.avif",
+          "sha256": "de926d09fee2f2a753c314c3e90461358f1693db9c456b8be02e89d645d4a7a6",
+          "bytes": 24510,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-sgr-scale-1280.avif"
+        },
+        {
+          "width": 1920,
+          "height": 1122,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/m87-sgr-scale-1920.webp",
+          "sha256": "b952796e05aebaae0fa26da89307fd1bc7fefcf29a6d08b2a6fdc0dfae980773",
+          "bytes": 55460,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-sgr-scale-1920.webp"
+        },
+        {
+          "width": 1920,
+          "height": 1122,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/m87-sgr-scale-1920.avif",
+          "sha256": "83ba795a49e4df0af81b553ccd7d8c3941e395c0cb3568fb85abc2c65feb957a",
+          "bytes": 38353,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-sgr-scale-1920.avif"
+        }
+      ],
+      "acquisitionStatus": "complete",
+      "stub": false,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-sgr-scale.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-sgr-scale-1280.webp"
+    },
+    {
+      "id": "m87-galaxy",
+      "title": "Messier 87 galaxy",
+      "classification": "Real optical observation",
+      "credit": "ESO",
+      "license": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/images/eso1907b/",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso1907b.jpg",
+      "filename": "m87-galaxy.jpg",
+      "kind": "image",
+      "stations": [
+        "edge-of-the-known"
+      ],
+      "alt": "An optical observation of the giant elliptical galaxy Messier 87.",
+      "caption": "Messier 87 observed with FORS2 on ESO’s Very Large Telescope.",
+      "masterPath": "apps/black-hole-museum/assets/source/m87-galaxy.jpg",
+      "masterSha256": "65efeac4931f83fd13a8233d2140fd4f234652535963b36e07619a5ef21070c1",
+      "masterBytes": 541160,
+      "derivatives": [
+        {
+          "width": 480,
+          "height": 486,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/m87-galaxy-480.webp",
+          "sha256": "3ecc37619ef55cec7cfa97597299d042fb1fcc9d171c24941d23c998d369aea0",
+          "bytes": 10476,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-galaxy-480.webp"
+        },
+        {
+          "width": 480,
+          "height": 486,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/m87-galaxy-480.avif",
+          "sha256": "fd3bb86ec0988635b36afe0414b4c72b158099d01201bbebb6c7674f8b4d78a5",
+          "bytes": 13537,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-galaxy-480.avif"
+        },
+        {
+          "width": 768,
+          "height": 777,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/m87-galaxy-768.webp",
+          "sha256": "e062cfd36195927ba35e45717a7a86b5b2d91b449653f9d8b15c5a6123e2a74d",
+          "bytes": 21748,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-galaxy-768.webp"
+        },
+        {
+          "width": 768,
+          "height": 777,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/m87-galaxy-768.avif",
+          "sha256": "8da4b4ee92cd3ac6ed0e46deeccfac91653b4a33183f85502ddf100699b2b077",
+          "bytes": 26775,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-galaxy-768.avif"
+        },
+        {
+          "width": 1280,
+          "height": 1296,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/m87-galaxy-1280.webp",
+          "sha256": "37d6ce914bd36fb94bbe993b7e9e0ebdb776945881901e0e9a9d8b2cba75914c",
+          "bytes": 80722,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-galaxy-1280.webp"
+        },
+        {
+          "width": 1280,
+          "height": 1296,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/m87-galaxy-1280.avif",
+          "sha256": "613c6ce44e609e8e76b5f5180cc3bcb5a491ed86473f486f3eea86a93b9b9e40",
+          "bytes": 76799,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-galaxy-1280.avif"
+        }
+      ],
+      "acquisitionStatus": "complete",
+      "stub": false,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-galaxy.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/m87-galaxy-1280.webp"
+    },
+    {
+      "id": "alma-antennas",
+      "title": "ALMA antennas at Chajnantor",
+      "classification": "Real photograph",
+      "credit": "ESO/C. Malin",
+      "license": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/images/malin-dsc0027/",
+      "downloadUrl": "https://cdn.eso.org/images/large/malin-dsc0027.jpg",
+      "filename": "alma-antennas.jpg",
+      "kind": "image",
+      "stations": [
+        "edge-of-the-known"
+      ],
+      "alt": "ALMA radio telescope dishes beneath the night sky at Chajnantor.",
+      "caption": "Human observers and instruments beneath the night sky.",
+      "masterPath": "apps/black-hole-museum/assets/source/alma-antennas.jpg",
+      "masterSha256": "4cf4338bff764a96435e52c37cb925a61d37c02d2a420bc4fa48a7b164fbfe0f",
+      "masterBytes": 4881446,
+      "derivatives": [
+        {
+          "width": 480,
+          "height": 318,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/alma-antennas-480.webp",
+          "sha256": "f19503d5117063bd7af4f528b8699085bb06351e8656004e6da6277ffb658377",
+          "bytes": 20538,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/alma-antennas-480.webp"
+        },
+        {
+          "width": 480,
+          "height": 318,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/alma-antennas-480.avif",
+          "sha256": "bd21e9ad2d69c0613df7c891b265244e6edb7aaf3e2f94f9e57807a459d10762",
+          "bytes": 19126,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/alma-antennas-480.avif"
+        },
+        {
+          "width": 768,
+          "height": 509,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/alma-antennas-768.webp",
+          "sha256": "afc32d8fc6ccae99bf54329eb7a68b2526f2b6b68c44fb0379dc56cbdadef79c",
+          "bytes": 49494,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/alma-antennas-768.webp"
+        },
+        {
+          "width": 768,
+          "height": 509,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/alma-antennas-768.avif",
+          "sha256": "38e0cfa4551aeea76deb4cba52fe9ee1c36580308a641265f0911b4483663099",
+          "bytes": 42590,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/alma-antennas-768.avif"
+        },
+        {
+          "width": 1280,
+          "height": 848,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/alma-antennas-1280.webp",
+          "sha256": "499aa055d1a92b95b7bedd5b1009a3a16bf1ec3c3938d1a48bfb9b046a8c65f8",
+          "bytes": 128108,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/alma-antennas-1280.webp"
+        },
+        {
+          "width": 1280,
+          "height": 848,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/alma-antennas-1280.avif",
+          "sha256": "1d199ae3d5d6e0c46c3ec85a966364a091c48a388006dd0a3b061eba9b829b57",
+          "bytes": 106943,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/alma-antennas-1280.avif"
+        },
+        {
+          "width": 1920,
+          "height": 1272,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/alma-antennas-1920.webp",
+          "sha256": "3369f31c26f1f417a3a0d1686e7111187e4862db3e7d7cbd70beba9f2fd8f5fa",
+          "bytes": 329420,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/alma-antennas-1920.webp"
+        },
+        {
+          "width": 1920,
+          "height": 1272,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/alma-antennas-1920.avif",
+          "sha256": "1f020f2eea146f3ae15088839ef9f9aaad3d3d2e0a7d26f6a1cb9070424eb282",
+          "bytes": 239656,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/alma-antennas-1920.avif"
+        }
+      ],
+      "acquisitionStatus": "complete",
+      "stub": false,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/alma-antennas.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/alma-antennas-1280.webp"
+    },
+    {
+      "id": "eht-observatory-map",
+      "title": "Event Horizon Telescope observatory map",
+      "classification": "Explanatory geographic diagram",
+      "credit": "ESO/M. Kornmesser",
+      "license": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/images/eso2208-eht-mwi/",
+      "downloadUrl": "https://cdn.eso.org/images/large/eso2208-eht-mwi.jpg",
+      "filename": "eht-observatory-map.jpg",
+      "kind": "image",
+      "stations": [
+        "earth-sized-telescope"
+      ],
+      "alt": "A world map identifying observatories in the Event Horizon Telescope network.",
+      "caption": "Observatories participating in the EHT network and later additions.",
+      "masterPath": "apps/black-hole-museum/assets/source/eht-observatory-map.jpg",
+      "masterSha256": "f31489f7ed3395478eda2908370b9a9d8fec40ef672a829d075b8150b1f724b9",
+      "masterBytes": 2418576,
+      "derivatives": [
+        {
+          "width": 480,
+          "height": 270,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/eht-observatory-map-480.webp",
+          "sha256": "a3cf3f9f4cfdbbb7ad0ebf1b8b518092f5aaa43c08b061f8f1e9cfa707837a35",
+          "bytes": 8190,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eht-observatory-map-480.webp"
+        },
+        {
+          "width": 480,
+          "height": 270,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/eht-observatory-map-480.avif",
+          "sha256": "fdece702cee2ad28f2a14836c18fb1a8d20ac262238f3e945feb82985e90124f",
+          "bytes": 9990,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eht-observatory-map-480.avif"
+        },
+        {
+          "width": 768,
+          "height": 432,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/eht-observatory-map-768.webp",
+          "sha256": "2dc5c5ca82c9bdfb09afa392cef181bf50c015cbd3fca4263f6bb8ff27ab1a62",
+          "bytes": 18430,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eht-observatory-map-768.webp"
+        },
+        {
+          "width": 768,
+          "height": 432,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/eht-observatory-map-768.avif",
+          "sha256": "d00aa0d62c14d5de9d75b3f39b237e75d0cc3d37afe74f5117b5bdad9a34b2b4",
+          "bytes": 18021,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eht-observatory-map-768.avif"
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/eht-observatory-map-1280.webp",
+          "sha256": "174e09b74ff251fa75e9c59170783dc99ad8031e48c804acbf6049bc9a3ad151",
+          "bytes": 46194,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eht-observatory-map-1280.webp"
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/eht-observatory-map-1280.avif",
+          "sha256": "bc4eaada72fb740dfbb67857ae4ebd1d5faccbfe263ca6d9b47ca04bbafd2554",
+          "bytes": 38619,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eht-observatory-map-1280.avif"
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/eht-observatory-map-1920.webp",
+          "sha256": "62e73542988c721c2d1889d513ba4b5932a277b738fbd18a36a01790aa416b0d",
+          "bytes": 98992,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eht-observatory-map-1920.webp"
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/eht-observatory-map-1920.avif",
+          "sha256": "59aa2334a581a9a50824bb701ad1e616e7178104a80d90a9131d0443b62bfc9f",
+          "bytes": 75878,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eht-observatory-map-1920.avif"
+        }
+      ],
+      "acquisitionStatus": "complete",
+      "stub": false,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eht-observatory-map.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eht-observatory-map-1280.webp"
+    },
+    {
+      "id": "eso-star-orbits",
+      "title": "Stars orbiting the Milky Way’s central black hole",
+      "classification": "Real observational time-lapse",
+      "credit": "ESO/MPE",
+      "license": "CC BY 4.0",
+      "sourcePage": "https://www.eso.org/public/videos/eso1825e/",
+      "downloadUrl": "https://cdn.eso.org/videos/hd_1080p25_screen/eso1825e.mp4",
+      "filename": "eso-star-orbits.mp4",
+      "kind": "video",
+      "stations": [
+        "star-orbit-theater"
+      ],
+      "alt": "A time-lapse of stars moving around the center of the Milky Way.",
+      "caption": "Nearly twenty years of observations compressed into about twenty seconds.",
+      "transcript": "Stars move rapidly around an apparently empty central point. A diagram overlay may trace one selected orbit.",
+      "masterPath": "apps/black-hole-museum/assets/source/eso-star-orbits.mp4",
+      "masterSha256": "0c628c0111445c12362dfbd6b69b186ef8dbdb91ab463d9a1716b1befe733f98",
+      "masterBytes": 40091570,
+      "derivatives": [
+        {
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/eso-star-orbits-poster.webp",
+          "sha256": "b7f599ca77fdc1ab15021f7f19802ef9321b1fcb31829c278f05db51c3e1cf1e",
+          "bytes": 6982,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eso-star-orbits-poster.webp"
+        },
+        {
+          "format": "mp4",
+          "path": "apps/black-hole-museum/assets/derived/eso-star-orbits-1280.mp4",
+          "sha256": "7bae1f3edb421ba80929a25607063a1a429c7d1c4202a69c7e0c173c53f0f640",
+          "bytes": 807346,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eso-star-orbits-1280.mp4"
+        },
+        {
+          "format": "webm",
+          "path": "apps/black-hole-museum/assets/derived/eso-star-orbits-1280.webm",
+          "sha256": "f504057ce4d9f3fe224974bca0ba1b8a97cd3f267658b1a9ef58fe90e5a233a5",
+          "bytes": 672262,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eso-star-orbits-1280.webm"
+        }
+      ],
+      "acquisitionStatus": "complete",
+      "stub": false,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eso-star-orbits.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eso-star-orbits-1280.webm",
+      "posterUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/eso-star-orbits-poster.webp"
+    },
+    {
+      "id": "nasa-labeled-accretion",
+      "title": "Labeled accretion-disk visualization",
+      "classification": "Scientific visualization with explanatory labels",
+      "credit": "NASA’s Goddard Space Flight Center/Jeremy Schnittman",
+      "license": "NASA media usage guidelines; asset-level third-party notice must be checked",
+      "sourcePage": "https://svs.gsfc.nasa.gov/13326",
+      "downloadUrl": "https://svs.gsfc.nasa.gov/vis/a010000/a013300/a013326/BH_labeled.jpg",
+      "filename": "nasa-labeled-accretion.jpg",
+      "kind": "image",
+      "stations": [
+        "gravity-leaves-clues",
+        "warped-light-laboratory"
+      ],
+      "alt": "A labeled scientific visualization showing a black-hole shadow, photon ring, and lensed images of an accretion disk.",
+      "caption": "A calculated visualization identifying the visible surroundings of a black hole.",
+      "masterPath": "apps/black-hole-museum/assets/source/nasa-labeled-accretion.jpg",
+      "masterSha256": "32398afde61bc02ff28d61e4185b3e87aac761fd84336b6992de7e379ea04922",
+      "masterBytes": 2460886,
+      "derivatives": [
+        {
+          "width": 480,
+          "height": 270,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/nasa-labeled-accretion-480.webp",
+          "sha256": "283405186f64a8ec67b53e03405d7b456b0ca993429cdf1745df1197f36d0ff3",
+          "bytes": 13508,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-labeled-accretion-480.webp"
+        },
+        {
+          "width": 480,
+          "height": 270,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/nasa-labeled-accretion-480.avif",
+          "sha256": "dda7a2e9b9549d53420ab53b40b9cb1c344f19fa3e51ef2ff768d6598f06c979",
+          "bytes": 8576,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-labeled-accretion-480.avif"
+        },
+        {
+          "width": 768,
+          "height": 432,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/nasa-labeled-accretion-768.webp",
+          "sha256": "bd25f5062bd121e0bb36c99a0adeda1591cfa0ee602574884bf9775ab9d2127d",
+          "bytes": 29944,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-labeled-accretion-768.webp"
+        },
+        {
+          "width": 768,
+          "height": 432,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/nasa-labeled-accretion-768.avif",
+          "sha256": "cbc6fba1a8eb9c5c1a96c7cb6d85b993a9f5cbc834064de3261f0cf0fadf5757",
+          "bytes": 18347,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-labeled-accretion-768.avif"
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/nasa-labeled-accretion-1280.webp",
+          "sha256": "1ca1b9f6276a8c7e26cada37657d91078e1035c81549c7988e262fca681ff13d",
+          "bytes": 67856,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-labeled-accretion-1280.webp"
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/nasa-labeled-accretion-1280.avif",
+          "sha256": "41ee9c498439073aa2eeb33b2b6fbf6306061ff14a4ee502b0cefe6d3cd2afcb",
+          "bytes": 40941,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-labeled-accretion-1280.avif"
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/nasa-labeled-accretion-1920.webp",
+          "sha256": "b93f9ac0a5bdede692df8d8e4702466ac6ec80cc0422f6741b005cb7340877ee",
+          "bytes": 119436,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-labeled-accretion-1920.webp"
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/nasa-labeled-accretion-1920.avif",
+          "sha256": "d73269cdc53695f2ec5931193380a7c441ca988ab923361e31c98840032a7475",
+          "bytes": 71362,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-labeled-accretion-1920.avif"
+        }
+      ],
+      "acquisitionStatus": "complete",
+      "stub": false,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-labeled-accretion.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-labeled-accretion-1280.webp"
+    },
+    {
+      "id": "nasa-optics",
+      "title": "Black-hole optics diagram",
+      "classification": "Scientific explanatory diagram",
+      "credit": "NASA’s Goddard Space Flight Center/Jeremy Schnittman",
+      "license": "NASA media usage guidelines; asset-level third-party notice must be checked",
+      "sourcePage": "https://svs.gsfc.nasa.gov/13326",
+      "downloadUrl": "https://svs.gsfc.nasa.gov/vis/a010000/a013300/a013326/BH_optics_explained.jpg",
+      "filename": "nasa-optics.jpg",
+      "kind": "image",
+      "stations": [
+        "warped-light-laboratory",
+        "shadow-myth-gallery"
+      ],
+      "alt": "A diagram showing direct and bent light paths from an accretion disk around a black hole.",
+      "caption": "Light from different parts of the disk reaches the observer along curved paths.",
+      "masterPath": "apps/black-hole-museum/assets/source/nasa-optics.jpg",
+      "masterSha256": "03829e31de63eb5b42cb5df1548a75290121b624b2445d0cd714c03ebfe1cd09",
+      "masterBytes": 1427396,
+      "derivatives": [
+        {
+          "width": 480,
+          "height": 326,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/nasa-optics-480.webp",
+          "sha256": "e0a2c7d57940f22b8aa9187cef0c738a0cadcea84f7f85b7821f104927690a81",
+          "bytes": 22542,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-optics-480.webp"
+        },
+        {
+          "width": 480,
+          "height": 326,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/nasa-optics-480.avif",
+          "sha256": "7c0b80cfc1c2aa6ac8d3730c914a1fd9f79dbbe913041219304a333614a77d7e",
+          "bytes": 14839,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-optics-480.avif"
+        },
+        {
+          "width": 768,
+          "height": 522,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/nasa-optics-768.webp",
+          "sha256": "81351f621e96711b4808a4f34cb6b8aa469f7d33572b07e4c637e4cf7e534c56",
+          "bytes": 47728,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-optics-768.webp"
+        },
+        {
+          "width": 768,
+          "height": 522,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/nasa-optics-768.avif",
+          "sha256": "89ab7cc108cee79d705d39f225b90419f2b95caa8e12ba2b122f9fc0648bc519",
+          "bytes": 29261,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-optics-768.avif"
+        },
+        {
+          "width": 1280,
+          "height": 870,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/nasa-optics-1280.webp",
+          "sha256": "7e2adf86151f54ac3a67b7386f101dd84b3c2753c327c745bb1faf60f8ffcbb3",
+          "bytes": 98410,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-optics-1280.webp"
+        },
+        {
+          "width": 1280,
+          "height": 870,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/nasa-optics-1280.avif",
+          "sha256": "704f353a0172d4b8b22c75769ae4a72bdbd7f15284cc434c52d4872614e20a1e",
+          "bytes": 56990,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-optics-1280.avif"
+        },
+        {
+          "width": 1920,
+          "height": 1305,
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/nasa-optics-1920.webp",
+          "sha256": "64daf0542a1a81e2108ec94d1aa423c7014121d965abc27cc05d0c8daf1c9003",
+          "bytes": 174728,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-optics-1920.webp"
+        },
+        {
+          "width": 1920,
+          "height": 1305,
+          "format": "avif",
+          "path": "apps/black-hole-museum/assets/derived/nasa-optics-1920.avif",
+          "sha256": "91825138f09a938161c40a638575efd7864614301b96b22258e4344bd36786f8",
+          "bytes": 100142,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-optics-1920.avif"
+        }
+      ],
+      "acquisitionStatus": "complete",
+      "stub": false,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-optics.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-optics-1280.webp"
+    },
+    {
+      "id": "nasa-edge-on",
+      "title": "Edge-on accretion-disk animation",
+      "classification": "Scientific visualization calculated from physical models",
+      "credit": "NASA’s Goddard Space Flight Center/Jeremy Schnittman",
+      "license": "NASA media usage guidelines; asset-level third-party notice must be checked",
+      "sourcePage": "https://svs.gsfc.nasa.gov/13326",
+      "downloadUrl": "https://svs.gsfc.nasa.gov/vis/a010000/a013300/a013326/BH_AccretionDisk_Sim_Stationary_WebSize.webm",
+      "filename": "nasa-edge-on.webm",
+      "kind": "video",
+      "stations": [
+        "warped-light-laboratory"
+      ],
+      "alt": "A calculated edge-on visualization of an accretion disk warped by black-hole gravity.",
+      "caption": "Calculated visualization, not telescope footage.",
+      "transcript": "The far side and underside of the disk appear above and below the black hole because gravity bends their light.",
+      "masterPath": "apps/black-hole-museum/assets/source/nasa-edge-on.webm",
+      "masterSha256": "219c2f696b7935b1176e10fa0a98b14178ccf08cea414fe3d3b347d21c90c195",
+      "masterBytes": 659294,
+      "derivatives": [
+        {
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/nasa-edge-on-poster.webp",
+          "sha256": "e6f80127b7d2de0f57c6497901aa7954e51abecb8af8cce7ef7609073c83f788",
+          "bytes": 23218,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-edge-on-poster.webp"
+        },
+        {
+          "format": "mp4",
+          "path": "apps/black-hole-museum/assets/derived/nasa-edge-on-1280.mp4",
+          "sha256": "2cfec2eb0205d0c675c166681f75edcbf20b5d6d54c9320c4852e7f92a75a758",
+          "bytes": 708426,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-edge-on-1280.mp4"
+        },
+        {
+          "format": "webm",
+          "path": "apps/black-hole-museum/assets/derived/nasa-edge-on-1280.webm",
+          "sha256": "fb6075333c48698f5976f398428e68da91caf30db1a12def9e547824b3062684",
+          "bytes": 935789,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-edge-on-1280.webm"
+        }
+      ],
+      "acquisitionStatus": "complete",
+      "stub": false,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-edge-on.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-edge-on-1280.webm",
+      "posterUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-edge-on-poster.webp"
+    },
+    {
+      "id": "nasa-rotating",
+      "title": "Rotating accretion-disk visualization",
+      "classification": "Scientific visualization calculated from physical models",
+      "credit": "NASA’s Goddard Space Flight Center/Jeremy Schnittman",
+      "license": "NASA media usage guidelines; asset-level third-party notice must be checked",
+      "sourcePage": "https://svs.gsfc.nasa.gov/13326",
+      "downloadUrl": "https://svs.gsfc.nasa.gov/vis/a010000/a013300/a013326/BH_AccretionDisk_Sim_360_Continuous_1080.webm",
+      "filename": "nasa-rotating.webm",
+      "kind": "video",
+      "stations": [
+        "warped-light-laboratory"
+      ],
+      "alt": "A calculated visualization showing how an accretion disk’s apparent shape changes with viewing angle.",
+      "caption": "Calculated viewing-angle visualization, not a photograph.",
+      "transcript": "The viewpoint changes around the modeled black hole, revealing changing lensed images of the disk.",
+      "masterPath": "apps/black-hole-museum/assets/source/nasa-rotating.webm",
+      "masterSha256": "c1d96ac8b5968cd60325571103d01410e965d9a2594a285d44e27513334a159d",
+      "masterBytes": 5379424,
+      "derivatives": [
+        {
+          "format": "webp",
+          "path": "apps/black-hole-museum/assets/derived/nasa-rotating-poster.webp",
+          "sha256": "a49c627428564984a34d24357973346046415596f574e538cfe238532603bce2",
+          "bytes": 18164,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-rotating-poster.webp"
+        },
+        {
+          "format": "mp4",
+          "path": "apps/black-hole-museum/assets/derived/nasa-rotating-1280.mp4",
+          "sha256": "7cf5cd0bb8d73079971683a5b27e8bca4609cd8b03462eb27b094196d3eb342c",
+          "bytes": 2521030,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-rotating-1280.mp4"
+        },
+        {
+          "format": "webm",
+          "path": "apps/black-hole-museum/assets/derived/nasa-rotating-1280.webm",
+          "sha256": "fd0c0c85c65c7a55c116b5461faf28f6f1dd147a6442c9ab20566096a7fce340",
+          "bytes": 2432507,
+          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-rotating-1280.webm"
+        }
+      ],
+      "acquisitionStatus": "complete",
+      "stub": false,
+      "stubUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-rotating.svg",
+      "localUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-rotating-1280.webm",
+      "posterUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.1/dist/v0.1.0-black-hole-lab.1/assets/nasa-rotating-poster.webp"
+    }
+  ]
+}

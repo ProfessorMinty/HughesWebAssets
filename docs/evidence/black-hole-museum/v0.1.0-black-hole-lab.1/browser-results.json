@@ -1,0 +1,102 @@
+[
+  {
+    "test": "desktop ten stations",
+    "passed": true,
+    "detail": "10"
+  },
+  {
+    "test": "desktop no horizontal overflow",
+    "passed": true,
+    "detail": "1440 / 1440"
+  },
+  {
+    "test": "desktop interactive controls",
+    "passed": true,
+    "detail": "90"
+  },
+  {
+    "test": "tablet ten stations",
+    "passed": true,
+    "detail": "10"
+  },
+  {
+    "test": "tablet no horizontal overflow",
+    "passed": true,
+    "detail": "820 / 820"
+  },
+  {
+    "test": "tablet interactive controls",
+    "passed": true,
+    "detail": "90"
+  },
+  {
+    "test": "phone-320 ten stations",
+    "passed": true,
+    "detail": "10"
+  },
+  {
+    "test": "phone-320 no horizontal overflow",
+    "passed": true,
+    "detail": "320 / 320"
+  },
+  {
+    "test": "phone-320 interactive controls",
+    "passed": true,
+    "detail": "90"
+  },
+  {
+    "test": "reduced-motion ten stations",
+    "passed": true,
+    "detail": "10"
+  },
+  {
+    "test": "reduced-motion no horizontal overflow",
+    "passed": true,
+    "detail": "1280 / 1280"
+  },
+  {
+    "test": "reduced-motion interactive controls",
+    "passed": true,
+    "detail": "90"
+  },
+  {
+    "test": "reduced-motion still museum mode",
+    "passed": true,
+    "detail": "still"
+  },
+  {
+    "test": "200 percent zoom no horizontal overflow",
+    "passed": true,
+    "detail": "1280 / 1280"
+  },
+  {
+    "test": "200 percent zoom controls remain present",
+    "passed": true,
+    "detail": "4"
+  },
+  {
+    "test": "keyboard first focusable exists",
+    "passed": true,
+    "detail": "A"
+  },
+  {
+    "test": "focused control has visible outline",
+    "passed": true,
+    "detail": "solid"
+  },
+  {
+    "test": "keyboard activates lensing state",
+    "passed": true,
+    "detail": "true"
+  },
+  {
+    "test": "reduced-data essential-content mode",
+    "passed": true,
+    "detail": "essential"
+  },
+  {
+    "test": "native fallback is readable before enhancement",
+    "passed": true,
+    "detail": "True"
+  }
+]
