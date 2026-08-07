@@ -12,9 +12,9 @@
 - Route id: `repository-page-lab-black-holes`
 - Page system: `black-hole-museum`
 - Mount id: `hrv-black-hole-museum-root`
-- Current delivery release: `0.1.0-black-hole-lab.6`
-- Current release manifest ref: `ff5c8c4433c9241d7a853c2b6bfdf68773b34b86`
-- Current presentation source ref: `0b50187fe1a3aa6f0d63018d332150abc0d43bb9`
+- Current delivery release: `0.1.0-black-hole-lab.7`
+- Current release manifest ref: `1d5c39e413952a840b6f94af9f00060e3291face`
+- Current presentation source ref: `d548ca221ccf5d740897a4177e173ff40a464e54`
 - Preserved viewport-correction release: `0.1.0-black-hole-lab.3`
 - Preserved lean base release: `v0.1.0-black-hole-lab.2`
 - Preserved source-bearing historical release: `v0.1.0-black-hole-lab.1`
@@ -33,66 +33,46 @@ The full repository page uses the root-level breakout proven by `test/repo-layou
 
 The mount root `#hrv-black-hole-museum-root.bhm-mounted` owns the `100vw`, `left:50%`, and negative half-viewport margins. The rendered `.bhm-museum` fills that root with `width:100%` and `margin:0`.
 
-Do not move viewport breakout responsibility onto `.bhm-museum`. A dedicated regression test, `scripts/test_black_hole_viewport_contract.py`, validates the effective CSS cascade. The build appends `apps/black-hole-museum/src/viewport-breakout.css` after the base page stylesheet so the proven contract is authoritative.
-
-Release `0.1.0-black-hole-lab.3` remains preserved as the isolated viewport correction and stable presentation rollback target.
+Do not move viewport breakout responsibility onto `.bhm-museum`. `scripts/test_black_hole_viewport_contract.py` guards this contract. Release `.3` remains preserved as the isolated viewport correction and stable presentation rollback target.
 
 ## Maximum-shelf presentation contract
 
-The unpublished black-hole laboratory is the ceiling test, not the balanced production default. The presentation layer therefore follows the Revised Arctic Preferred Maximum-Shelf Experience Blueprint literally: one continuous full-width environmental canvas, ten visually distinct chambers, large scientific artifacts, capped reading widths, strong exhibit lighting, quiet recovery spaces, layered depth, and several signature moments instead of one decorative centerpiece.
+This unpublished laboratory is the creative ceiling test, not the balanced production default. It follows the Revised Arctic Preferred Maximum-Shelf Experience Blueprint as one continuous full-width environmental canvas with ten visually distinct chambers, large scientific artifacts, capped reading widths, strong exhibit lighting, quiet recovery spaces, layered depth, and several signature moments.
 
-The source presentation is intentionally split into independent modules:
+Presentation source remains modular:
 
-1. `apps/black-hole-museum/src/page.css` — verified base renderer styling and interaction states.
-2. `apps/black-hole-museum/src/viewport-breakout.css` — the proven Edublogs full-viewport mount contract.
-3. `apps/black-hole-museum/src/maximum-shelf.css` — subject-driven museum atmosphere, scale, chamber identity, artifact staging, responsive pocket-museum behavior, and Still Museum equivalents.
-4. `apps/black-hole-museum/src/maximum-shelf-enhancements.css` — continuous lightfield, gallery transitions, chamber-scale identity, threshold architecture, lensing reticle, EHT network illumination, rotunda artifact bays, and scroll-journey cues.
-5. `apps/black-hole-museum/src/theme-amadeus.css` — confirmed route-scoped theme compatibility only.
+1. `page.css` — verified base renderer styling and interaction states.
+2. `viewport-breakout.css` — proven Edublogs full-viewport mount contract.
+3. `maximum-shelf.css` — museum scale, chamber identity, artifact staging, responsive pocket-museum behavior, and Still Museum equivalents.
+4. `maximum-shelf-enhancements.css` — continuous lightfield, gallery transitions, threshold architecture, lensing reticle, EHT network illumination, artifact bays, and scroll-journey cues.
+5. `maximum-shelf-finishing.css` — small cross-browser spatial fallbacks used by the live-theme finishing pass.
+6. `theme-amadeus.css` — confirmed route-scoped theme compatibility only.
 
-The build composes them in that exact order. The presentation and compatibility layers must not be folded into the historical laboratories or turned into site-wide CSS.
+The durable build composes the base, breakout, maximum-shelf, environmental, and theme modules. The `.7` lean delivery additionally imports the finishing module from the same exact presentation source commit.
 
 ## Maximum-shelf runtime contract
 
-`apps/black-hole-museum/src/maximum-shelf-runtime.js` is a decorator around the already-verified immutable `.2` renderer. It calls the verified renderer first and adds environmental elements only after the scientific museum has mounted successfully.
+`maximum-shelf-runtime.js` decorates the already-verified immutable `.2` renderer. It calls the verified renderer first and only then adds environmental elements.
 
-The decorator adds:
+The decorator adds continuous lightfield layers, receding threshold architecture, large decorative chamber identities, transitions between the ten exhibit chambers, a lensing reticle, EHT Earth-network illumination, Twin-Ring Rotunda artifact-bay framing, a museum-journey progress rail, active-chamber atmosphere state, and a presentation version field in diagnostics.
 
-- continuous environmental lightfield layers;
-- receding threshold architecture;
-- large decorative chamber numbers and names;
-- transition markers between the ten exhibit chambers;
-- a decorative lensing reticle;
-- a synchronized visual network overlay for the EHT Earth exhibit;
-- monumental artifact-bay framing in the Twin-Ring Rotunda;
-- a museum-journey progress rail;
-- active-chamber atmosphere state;
-- a presentation version field in repository diagnostics.
+Decorative nodes are `aria-hidden`. Motion obeys the museum pause state and `prefers-reduced-motion`. Forced-colors mode removes decorative spatial layers. Cleanup chains into the existing `mount.__bhmDestroy` lifecycle.
 
-Decorative nodes are `aria-hidden`. Motion obeys the museum pause state and `prefers-reduced-motion`. Forced-colors mode removes decorative spatial layers. The decorator chains its cleanup work into the existing `mount.__bhmDestroy` lifecycle.
+Release `.7` reuses the verified `.2` bootstrap, scientific renderer, content, experience manifest, and media. Its delivery entry point and stylesheet are pinned to delivery commit `65d02609abcfde749d81e3108901cc4cf3a7556a`, with presentation modules sourced from exact feature commit `d548ca221ccf5d740897a4177e173ff40a464e54`. The release manifest is pinned at `1d5c39e413952a840b6f94af9f00060e3291face`.
 
-Release `0.1.0-black-hole-lab.6` reuses the already-verified `.2` bootstrap, scientific renderer, content, experience manifest, and media. Its tiny delivery entry point exports the maximum-shelf runtime pinned to source commit `0b50187fe1a3aa6f0d63018d332150abc0d43bb9`. Its stylesheet imports the immutable `.2` base plus all presentation modules from that same exact source commit. The release manifest is pinned at `ff5c8c4433c9241d7a853c2b6bfdf68773b34b86`.
-
-Releases `.4` and `.5` were internal presentation candidates created during the live compatibility/design pass and were superseded before final handoff. They are not the current channel release.
+Releases `.4`, `.5`, and `.6` were internal presentation candidates during the live design and compatibility pass. They were superseded before final handoff.
 
 ## Theme compatibility contract
 
 The runtime laboratory proved that repository headings must explicitly own their color and typography rather than inheriting theme paint. The layout laboratory established that theme exceptions must be measured and route-scoped.
 
-`theme-amadeus.css` therefore activates only behind `html.hrv-route-black-hole-lab-ready`, which the bootstrap adds after a successful museum mount. Before enhancement succeeds, Edublogs fallback remains conventionally styled.
+`theme-amadeus.css` activates only behind `html.hrv-route-black-hole-lab-ready`, which the bootstrap adds after a successful museum mount. Before enhancement succeeds, Edublogs fallback remains conventionally styled.
 
-The Amadeus page template and stylesheet confirm the relevant native wrappers and spacing: page titles render inside `header.entry-header`; `.site-content` adds top spacing; `.page .hentry` adds article padding; and `.hentry` supplies the white card background, border, radius, and bottom margin.
+The observed Amadeus structure and source confirm the relevant native wrappers and defaults: the page title is in `header.entry-header`; `.site-content` adds top spacing; `.page .hentry` adds article padding; `.hentry` supplies the white card background/border/radius/bottom margin; and `.site-footer` is white.
 
-On the enhanced laboratory route the adapter may:
+On the enhanced laboratory route the adapter may suppress the native page-title wrapper, zero confirmed page/article spacing, remove the native white article card and entry-footer chrome, reinforce repository text color ownership, and tint the still-functional native site footer into the museum exit. It does not hide or replace the Hughes Room Views site header/navigation and does not apply to any other route.
 
-- suppress the native WordPress entry/page title wrapper so the white `Black Holes and Stuff` strip does not interrupt the installation;
-- zero the confirmed `.site-content` and page-entry spacing;
-- remove the native article white card, border, radius, and padding;
-- remove native entry-content spacing and entry-footer chrome that visually split the museum;
-- reinforce repository heading and body color inheritance inside the mount.
-
-It does not replace or hide the Hughes Room Views site header/navigation. It does not apply to any other route.
-
-`scripts/test_black_hole_presentation_contract.py` rejects an unscoped compatibility selector and checks the viewport, presentation, environmental runtime, responsive, reduced-motion, cleanup, and build-composition contracts.
+`scripts/test_black_hole_presentation_contract.py` checks the viewport, presentation, environmental runtime, responsive, reduced-motion, cleanup, theme-scope, and build-composition contracts.
 
 ## Scope
 
