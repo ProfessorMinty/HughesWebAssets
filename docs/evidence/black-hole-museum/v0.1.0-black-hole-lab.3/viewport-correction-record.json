@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0",
+  "release": "0.1.0-black-hole-lab.3",
+  "purpose": "Correct the Black Hole Museum viewport breakout by carrying forward the root-level strategy proven in test/repo-layout-lab.",
+  "rootCause": "The initial museum stylesheet moved viewport breakout responsibility from the Edublogs mount root to the rendered .bhm-museum child. That diverged from the previously validated layout laboratory and remained constrained by the theme ancestry.",
+  "knownGoodAuthority": {
+    "path": "test/repo-layout-lab/layout-lab.css",
+    "contract": "The mount root owns width:100vw, left:50%, margin-left:-50vw, margin-right:-50vw, and transform:none."
+  },
+  "sourceCorrection": {
+    "viewportContractFile": "apps/black-hole-museum/src/viewport-breakout.css",
+    "buildScript": "scripts/build_black_hole.py",
+    "regressionTest": "scripts/test_black_hole_viewport_contract.py",
+    "sourceCommitAfterTestUpdate": "e4ddd691720f4eaf28bea0329f8735a068cf0891"
+  },
+  "delivery": {
+    "branch": "release/black-hole-museum-v0.1.0-black-hole-lab.3",
+    "previousImmutableRelease": "v0.1.0-black-hole-lab.2",
+    "styleCommit": "d6c0e703f1ed140490cf7028c19510721ccdc6e4",
+    "manifestCommit": "762566482a6d1202c09082b137c03f66f88b7204",
+    "stylePath": "dist/v0.1.0-black-hole-lab.3/black-hole-museum.css",
+    "manifestPath": "dist/v0.1.0-black-hole-lab.3/release.json",
+    "styleSha256": "d47960af9a4323e78d8250fec4d84a73d769a24fe66887a17799ae3f0c5504d8",
+    "strategy": "Commit-pinned patch stylesheet imports the already-verified immutable .2 stylesheet and then applies the proven root-level breakout contract. Existing .2 JavaScript, content, experience data, and media remain unchanged."
+  },
+  "handoff": {
+    "path": "docs/deployment/black-hole-museum-edublogs-block.html",
+    "releaseManifest": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@762566482a6d1202c09082b137c03f66f88b7204/dist/v0.1.0-black-hole-lab.3/release.json"
+  },
+  "preservation": {
+    "v0.1.0-black-hole-lab.1": "unchanged",
+    "v0.1.0-black-hole-lab.2": "unchanged",
+    "historicalLayoutLab": "unchanged",
+    "mainBranch": "unchanged"
+  }
+}
