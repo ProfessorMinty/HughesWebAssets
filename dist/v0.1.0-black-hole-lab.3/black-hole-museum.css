@@ -1,0 +1,23 @@
+@import url("https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.2/dist/v0.1.0-black-hole-lab.2/black-hole-museum.css");
+
+/*
+ * v0.1.0-black-hole-lab.3 viewport correction
+ *
+ * Carry forward the known-good repo-layout-lab contract:
+ * the Edublogs mount root owns the viewport breakout; the museum fills it.
+ */
+#hrv-black-hole-museum-root.bhm-mounted{
+  width:100vw;
+  max-width:none!important;
+  position:relative;
+  left:50%;
+  margin-left:-50vw;
+  margin-right:-50vw;
+  transform:none;
+}
+
+#hrv-black-hole-museum-root .bhm-museum{
+  width:100%;
+  max-width:none;
+  margin:0;
+}
