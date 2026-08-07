@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "1.0",
+  "release": "0.1.0-black-hole-lab.8",
+  "purpose": "Live Edublogs wide-canvas, readability, interaction-cleanup, scroll-performance, and simulated YouTube Media Center pass",
+  "presentationSourceCommit": "fc977a7f2d212513a50c9bd798a7e62c0afe6983",
+  "deliveryAssetCommit": "12c36263bfeae6a6c252b5271435ae0d6c822f38",
+  "releaseManifestCommit": "8bc03e77770a00da3cdc2b0508c9be8db889ffa2",
+  "channelUpdateCommit": "40d6bd8446a4d766f8c7d9c2d1e7ada00761c031",
+  "handoffUpdateCommit": "6c07852dd1e969f304b717d8105c0c1a81286f58",
+  "verifiedFoundation": "v0.1.0-black-hole-lab.2",
+  "previousVisualCheckpoint": "0.1.0-black-hole-lab.7",
+  "stableViewportRollback": "0.1.0-black-hole-lab.3",
+  "liveReviewSource": "User-supplied 2026-08-07 Edublogs screen recording",
+  "observedProblems": [
+    "Desktop typography and controls were too small for normal viewing distance",
+    "Several sections left large areas of the full-width viewport unused",
+    "Amadeus inherited word wrapping split ordinary exhibit words mid-word",
+    "Multiple sections behaved like a centered article rather than a horizontal museum floor plan",
+    "Scroll presentation was visibly laggy during the five-minute live walkthrough",
+    "Some laboratory controls were redundant or visually ambiguous"
+  ],
+  "desktopLayoutContract": {
+    "outerCanvas": "full viewport",
+    "preferredComposition": "two- and three-lane horizontal exhibit layouts when content supports them",
+    "singleColumn": "mobile-only default",
+    "textRule": "readability caps are local to prose components and never become outer museum width caps"
+  },
+  "performanceContract": {
+    "window": "current-plus-one-ahead",
+    "dormantChambers": [
+      "pause CSS animations",
+      "content-visibility:auto",
+      "pause native video",
+      "native video preload=none",
+      "remove expensive backdrop blur from high-frequency surfaces"
+    ],
+    "nextChamber": "native video metadata may preload",
+    "currentChamber": "full interactive presentation budget"
+  },
+  "interactionCleanup": [
+    "Remove redundant Maximum-Shelf profile/essential-mode controls from the public dock",
+    "Default Twin-Ring Rotunda to side-by-side comparison and remove redundant separate-view button",
+    "Strengthen visible lensing-path and orbit-trace states"
+  ],
+  "simulatedMediaCenter": {
+    "placement": "between Station 09 and Station 10",
+    "approvalState": "SIMULATED MEDIA SELECTION; not a record of Ms. Hughes approval",
+    "autoplay": false,
+    "controls": "standard YouTube player controls",
+    "privacyMode": "youtube-nocookie.com",
+    "loading": "iframe players are created only when the center enters a one-viewport IntersectionObserver buffer and removed when it leaves",
+    "desktopLayout": "two videos side by side",
+    "mobileLayout": "single column",
+    "videos": [
+      {
+        "title": "Black Holes 101",
+        "publisher": "National Geographic",
+        "youtubeId": "kOEDG3j1bjs",
+        "sourceUrl": "https://www.youtube.com/watch?v=kOEDG3j1bjs"
+      },
+      {
+        "title": "Black Holes: Crash Course Astronomy #33",
+        "publisher": "CrashCourse",
+        "youtubeId": "qZWPBKULkdQ",
+        "sourceUrl": "https://www.youtube.com/watch?v=qZWPBKULkdQ"
+      }
+    ]
+  },
+  "tests": {
+    "viewportContract": "scripts/test_black_hole_viewport_contract.py",
+    "presentationContract": "scripts/test_black_hole_presentation_contract.py",
+    "remoteWorkflow": ".github/workflows/black-hole-presentation-ci.yml",
+    "workflowCommit": "b112aea0ff5bf35edc3af585bc5f5ed7e67da4f7",
+    "executionNote": "The connected GitHub surface did not expose a completed Actions run during assembly. Do not represent CI as passed until a run is observed. Live Edublogs visual/performance smoke testing remains required."
+  },
+  "delivery": {
+    "manifestUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@8bc03e77770a00da3cdc2b0508c9be8db889ffa2/dist/v0.1.0-black-hole-lab.8/release.json",
+    "styleUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@12c36263bfeae6a6c252b5271435ae0d6c822f38/dist/v0.1.0-black-hole-lab.8/black-hole-museum.css",
+    "scriptUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@12c36263bfeae6a6c252b5271435ae0d6c822f38/dist/v0.1.0-black-hole-lab.8/black-hole-museum.js"
+  }
+}
