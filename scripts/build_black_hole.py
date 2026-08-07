@@ -79,6 +79,7 @@ def main():
         ROOT/'apps/black-hole-museum/src/maximum-shelf-wide-performance.css',
         ROOT/'apps/black-hole-museum/src/maximum-shelf-media-center.css',
         ROOT/'apps/black-hole-museum/src/maximum-shelf-structure.css',
+        ROOT/'apps/black-hole-museum/src/maximum-shelf-structure-preflight.css',
         ROOT/'apps/black-hole-museum/src/theme-amadeus.css',
     ]
     (DIST/'black-hole-museum.css').write_text(
