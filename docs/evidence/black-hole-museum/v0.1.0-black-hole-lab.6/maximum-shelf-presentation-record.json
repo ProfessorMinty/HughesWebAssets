@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "1.0",
+  "recordType": "maximum-shelf-presentation-release",
+  "route": "/repository-page-lab/",
+  "pageSystem": "black-hole-museum",
+  "release": "0.1.0-black-hole-lab.6",
+  "releaseBranch": "release/black-hole-museum-v0.1.0-black-hole-lab.6",
+  "releaseManifestCommit": "ff5c8c4433c9241d7a853c2b6bfdf68773b34b86",
+  "deliveryPackageCommit": "06883c9c98b29623bfeeabf787031a051f43f790",
+  "presentationSourceCommit": "0b50187fe1a3aa6f0d63018d332150abc0d43bb9",
+  "verifiedFoundation": {
+    "release": "v0.1.0-black-hole-lab.2",
+    "role": "bootstrap, scientific renderer, content, experience manifest, and twelve scientific media assets"
+  },
+  "rollback": {
+    "release": "0.1.0-black-hole-lab.3",
+    "reason": "preserved isolated viewport correction without the maximum-shelf presentation pass"
+  },
+  "historicalLaboratoryEvidence": [
+    {
+      "path": "test/repo-layout-lab/",
+      "commit": "94559b9ac4b8db60ea21e9b31cd9f98ba8c9b147",
+      "carriedForward": [
+        "mount-root viewport breakout",
+        "ancestor clipping and horizontal-overflow measurement principle",
+        "route-scoped theme compatibility principle",
+        "responsive and reduced-motion verification expectations"
+      ]
+    },
+    {
+      "path": "test/repo-runtime-lab/",
+      "commit": "94559b9ac4b8db60ea21e9b31cd9f98ba8c9b147",
+      "carriedForward": [
+        "explicit repository heading color ownership",
+        "runtime lifecycle and duplicate-safety expectations",
+        "diagnostics and failure resilience",
+        "phone and reduced-motion behavior"
+      ]
+    }
+  ],
+  "liveRouteObservationBeforeRelease": {
+    "date": "2026-08-07",
+    "source": "user-supplied screen recording of the published laboratory route",
+    "globalLegacyCssReportedRemoved": true,
+    "observedProblems": [
+      "museum headings were repainted dark by the Amadeus theme",
+      "scientific content occupied too little of the available viewport",
+      "chambers lacked distinct spatial and lighting identities",
+      "scientific media read as ordinary cards instead of major artifacts",
+      "native Amadeus page-title and white article chrome interrupted the installation",
+      "controls and wayfinding were underscaled",
+      "museum exit returned abruptly to theme chrome"
+    ]
+  },
+  "presentationModules": [
+    "apps/black-hole-museum/src/viewport-breakout.css",
+    "apps/black-hole-museum/src/maximum-shelf.css",
+    "apps/black-hole-museum/src/maximum-shelf-enhancements.css",
+    "apps/black-hole-museum/src/theme-amadeus.css",
+    "apps/black-hole-museum/src/maximum-shelf-runtime.js"
+  ],
+  "maximumShelfEnhancements": [
+    "full-scale museum prologue",
+    "ten differentiated gallery chambers",
+    "large scientific artifact staging",
+    "continuous environmental lightfield",
+    "receding classroom-threshold architecture",
+    "chamber identity and inter-gallery transitions",
+    "lensing instrumentation overlay",
+    "EHT Earth network illumination",
+    "Twin-Ring Rotunda artifact bays",
+    "journey progress rail",
+    "route-scoped Amadeus neutralization",
+    "vertical pocket-museum rules",
+    "Still Museum and forced-colors equivalents"
+  ],
+  "accessibilityContracts": {
+    "decorativeRuntimeNodesAriaHidden": true,
+    "motionPauseSupported": true,
+    "prefersReducedMotionSupported": true,
+    "forcedColorsDecorationsWithdraw": true,
+    "readingWidthsRemainCapped": true,
+    "nativeFallbackPreservedUntilSuccessfulMount": true
+  },
+  "deliveryHashes": {
+    "black-hole-museum.js": "37d5a73f93ff42508da2487c3ac5501c1e9e95856a8fbd3057c384cee2cfe596",
+    "black-hole-museum.css": "99da80df7ebcf7ae8e60f68f35ff853f64a9fd770e38a17475faedb5fe7399c0"
+  },
+  "repositoryReadbackVerified": true,
+  "cdnHttpVerified": false,
+  "cdnVerificationNote": "GitHub source, delivery files, release manifest, hashes, and immutable references were read back directly. An independent jsDelivr HTTP fetch was not available from the current tool environment, so CDN success is intentionally not claimed before the live Edublogs smoke test.",
+  "finalExternalAction": "Replace the Custom HTML block on /repository-page-lab/ with the current repository handoff and perform a signed-out live smoke test."
+}
