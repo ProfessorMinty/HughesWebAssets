@@ -1,16 +1,17 @@
 # Implementation status
 
-The unpublished Arctic Preferred Black Hole Museum repository page system is deployed to GitHub and has a verified scientific-media foundation.
+The unpublished Arctic Preferred Black Hole Museum repository page system is deployed to GitHub with a verified scientific/media foundation and an actively iterated presentation layer.
 
 ## Current state
 
 - Route: `/repository-page-lab/`
 - Page system: `black-hole-museum`
 - Feature branch: `feature/arctic-black-hole-museum`
-- Current presentation release: `0.1.0-black-hole-lab.8`
-- Current release manifest commit: `8bc03e77770a00da3cdc2b0508c9be8db889ffa2`
-- Presentation source commit: `fc977a7f2d212513a50c9bd798a7e62c0afe6983`
-- Previous visual checkpoint: `0.1.0-black-hole-lab.7`
+- Current presentation release: `0.1.0-black-hole-lab.10`
+- Current release manifest commit: `c3d34cbdbd9c0988f6f0856eafc9b3126aed29ae`
+- Delivery asset commit: `774351e0c61e7f43e0afe669da6f344e8eaaf4da`
+- Structured source commit: `66206a48d28c3e12194b50c6178d472627c085ac`
+- Immediate visual rollback: `0.1.0-black-hole-lab.9`
 - Stable viewport rollback: `0.1.0-black-hole-lab.3`
 - Verified lean science/media foundation: `v0.1.0-black-hole-lab.2`
 - Preserved source-bearing release: `v0.1.0-black-hole-lab.1`
@@ -19,19 +20,23 @@ The `.2` foundation contains the approved scientific content, twelve acquired me
 
 The `.3` release corrected the Edublogs viewport breakout using the exact mount-root method proven by `test/repo-layout-lab/`.
 
-The `.7` release established the Maximum-Shelf museum atmosphere and route-scoped Amadeus compatibility.
+`.7` established the Maximum-Shelf atmosphere and route-scoped Amadeus compatibility. `.8` added the wide viewport, larger type, current-plus-one performance budget, control cleanup, and simulated lazy YouTube Media Center. `.9` attempted a stronger hierarchy through CSS alone.
 
-The `.8` release is the wide-canvas, readability, interaction-cleanup, and performance pass based on live Edublogs video review. It preserves the verified `.2` science/interaction engine while changing the presentation rules in four important ways:
+Live `.9` screenshots showed that the remaining problem was structural rather than stylistic: station titles and explanations still behaved like small side plaques attached to oversized artifacts. Full width was available, but there was no consistent exhibit anatomy.
 
-1. Desktop and normal tablet layouts use the horizontal viewport as a museum floor plan. Story plaques, interactive exhibits, maps, observations, and artifact cards are intentionally placed beside one another in two- and three-lane compositions. Single-column presentation is the mobile edition, not the desktop default.
-2. Typography is larger and ordinary exhibit words are protected from Amadeus-style mid-word wrapping. The route adapter also removes the native centered `.container`, fixed `.content-area` width, float, page card padding, and other article constraints after successful enhancement.
-3. Scroll work is budgeted to the current chamber plus one chamber ahead. Distant chambers pause animation, use `content-visibility`, and stop/prevent preload of native video. Expensive blur/mix-blend effects were reduced on high-frequency surfaces.
-4. A simulated YouTube Media Center appears between Station 09 and Station 10. It contains National Geographic `Black Holes 101` and Crash Course Astronomy `Black Holes #33`, uses privacy-enhanced YouTube embeds, never autoplays, keeps standard player controls, and only creates the iframe players when the Media Center approaches the viewport. Leaving the buffered region removes the iframes, stopping playback and releasing their overhead. The Media Center is explicitly labeled as a simulated selection and does not claim Ms. Hughes approval.
+Release `.10` changes that architecture. The verified renderer and Maximum-Shelf runtime still mount first, preserving the existing science content, interactions, videos, performance budgeting, and Media Center behavior. A new structural compositor then moves those existing DOM nodes into explicit scene roles without recreating their event handlers:
 
-The Maximum-Shelf runtime also removes redundant laboratory controls, defaults the Twin-Ring Rotunda to the useful side-by-side comparison state, and reinforces previously weak visual interaction states such as lensing paths and orbit tracing.
+1. Every station receives a full-width scene entrance/header with station identity, exhibit-scale title, classification, one-sentence takeaway, deeper-reading disclosure, and station-level actions.
+2. The exhibit body is separated from that entrance and receives station-specific composition rather than one repeated plaque-plus-widget pattern.
+3. Stations 04, 06, and 09 deliberately reverse title/summary rhythm on desktop.
+4. Desktop reading text now targets roughly 20–23px, captions and controls are enlarged, and station titles operate at exhibit scale.
+5. The Sky Atrium becomes one dominant full-width interaction; evidence/network/reconstruction/anatomy rooms use clear primary/supporting relationships; the Warped Light Laboratory becomes a hero model plus editorial media spread; the Media Center title moves above the players; the final known/unknown room retains intentional conceptual symmetry.
+6. Tablet remains horizontally composed. The intentional single-column edition begins only at phone width.
 
-A dedicated presentation regression workflow now exists at `.github/workflows/black-hole-presentation-ci.yml`. The repository connector did not expose a completed Actions run during this pass, so the `.8` source and delivery were read back and contract-tested by repository assertions, while the live Edublogs page remains the final browser/performance smoke test.
+The page still does not use a centered desktop content box. Historical Hughes Room Views pages were inspected for composition discipline, but their old Edublogs container constraints are explicitly not treated as a modern capability ceiling.
 
-The current Edublogs handoff is `docs/deployment/black-hole-museum-edublogs-block.html`. It points to the immutable `.8` release manifest.
+The durable build now publishes `maximum-shelf-composed-runtime.js` and includes `maximum-shelf-structure.css` before the route-scoped Amadeus adapter. `.github/workflows/black-hole-presentation-ci.yml` also syntax-checks the three runtime modules with Node before running the viewport and presentation contracts.
 
-No production classroom data is connected. The visible simulated-classroom and simulated-media warnings remain required on this laboratory route.
+The current Edublogs handoff is `docs/deployment/black-hole-museum-edublogs-block.html`. It points to the immutable `.10` release manifest.
+
+A live Edublogs visual/browser pass is still required before `.10` can be considered visually verified. No production classroom data is connected. The visible simulated-classroom and simulated-media warnings remain required on this laboratory route.
