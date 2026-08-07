@@ -1,0 +1,414 @@
+/*
+ * Black Hole Museum · Wide-canvas + performance pass
+ *
+ * Live test-page feedback established two non-negotiables:
+ * 1. the full-width route is a viewport canvas, not a centered article;
+ * 2. only the current chamber and one chamber ahead should stay warm during scroll.
+ *
+ * Reading widths remain local to text-bearing plaques and captions. The outer
+ * museum layouts deliberately use the available viewport.
+ */
+
+#hrv-black-hole-museum-root {
+  --bhm-gutter:clamp(1.25rem,2.6vw,4rem);
+  --bhm-reading:52rem;
+  --bhm-plaque:34rem;
+  --bhm-wide:none;
+  font-size:clamp(18px,0.32vw + 15px,22px);
+}
+
+/* Amadeus inherits word-wrap:break-word from body. That is useful for blog posts,
+   but disastrous for exhibit headings. Never split ordinary museum words. */
+#hrv-black-hole-museum-root .bhm-museum :where(h1,h2,h3,h4,h5,h6,button,summary) {
+  overflow-wrap:normal !important;
+  word-wrap:normal !important;
+  word-break:normal !important;
+  hyphens:none !important;
+}
+
+#hrv-black-hole-museum-root .bhm-museum :where(p,li,figcaption,dd,dt) {
+  overflow-wrap:break-word;
+  word-break:normal;
+}
+
+/* The viewport is the canvas. Local text components own readability limits. */
+#hrv-black-hole-museum-root .bhm-main,
+#hrv-black-hole-museum-root .bhm-chamber,
+#hrv-black-hole-museum-root .bhm-stage-grid,
+#hrv-black-hole-museum-root .bhm-theater-layout,
+#hrv-black-hole-museum-root .bhm-network-layout,
+#hrv-black-hole-museum-root .bhm-reconstruction-layout,
+#hrv-black-hole-museum-root .bhm-lab-layout,
+#hrv-black-hole-museum-root .bhm-anatomy-layout,
+#hrv-black-hole-museum-root .bhm-evidence-layout {
+  max-width:none !important;
+}
+
+#hrv-black-hole-museum-root .bhm-stage-grid,
+#hrv-black-hole-museum-root .bhm-theater-layout,
+#hrv-black-hole-museum-root .bhm-network-layout,
+#hrv-black-hole-museum-root .bhm-reconstruction-layout,
+#hrv-black-hole-museum-root .bhm-lab-layout,
+#hrv-black-hole-museum-root .bhm-anatomy-layout,
+#hrv-black-hole-museum-root .bhm-evidence-layout {
+  width:100% !important;
+  margin-inline:0 !important;
+  gap:clamp(2rem,3vw,4.5rem) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-chamber {
+  padding-inline:var(--bhm-gutter) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-plaque {
+  width:100% !important;
+  max-width:none;
+  padding:clamp(1.55rem,2vw,2.5rem);
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+#hrv-black-hole-museum-root .bhm-plaque h2 {
+  font-size:clamp(2.4rem,3.25vw,4.4rem);
+  line-height:.95;
+  letter-spacing:-.045em;
+  text-wrap:balance;
+}
+
+#hrv-black-hole-museum-root .bhm-kicker {
+  font-size:clamp(.78rem,.68vw,.92rem);
+}
+
+#hrv-black-hole-museum-root .bhm-evidence-badge {
+  font-size:.84rem;
+  line-height:1.35;
+}
+
+#hrv-black-hole-museum-root .bhm-child-line {
+  font-size:clamp(1.12rem,1.15vw,1.35rem);
+}
+
+#hrv-black-hole-museum-root .bhm-look-deeper {
+  font-size:.98rem;
+}
+
+#hrv-black-hole-museum-root :where(button,select) {
+  font-size:clamp(.88rem,.55vw,1rem);
+}
+
+#hrv-black-hole-museum-root .bhm-primary {
+  min-height:50px;
+  padding:.72rem 1.08rem;
+}
+
+#hrv-black-hole-museum-root .bhm-media-card figcaption {
+  font-size:.9rem;
+  line-height:1.5;
+}
+
+/* Global controls are deliberately small in number, not small in legibility. */
+#hrv-black-hole-museum-root .bhm-control-dock {
+  width:min(calc(100% - 2rem),70rem);
+  padding:.8rem;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+#hrv-black-hole-museum-root .bhm-control-dock :where(button,select) {
+  min-height:48px;
+  font-size:.9rem;
+}
+
+#hrv-black-hole-museum-root .bhm-wayfinding {
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+#hrv-black-hole-museum-root .bhm-wayfinding a {
+  width:2.65rem;
+  min-height:2.65rem;
+  font-size:.82rem;
+}
+
+/* 02 · Atrium. A readable plaque plus a dominant sky, not a skinny sidebar. */
+#hrv-black-hole-museum-root .bhm-lensing .bhm-stage-grid {
+  grid-template-columns:minmax(28rem,.62fr) minmax(0,1.55fr) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-lensing-stage {
+  min-height:clamp(40rem,58vw,64rem);
+}
+
+#hrv-black-hole-museum-root .bhm-lensing-stage.show-paths .bhm-lensing-paths {
+  opacity:1 !important;
+  filter:drop-shadow(0 0 10px rgba(117,242,255,.55));
+}
+
+#hrv-black-hole-museum-root .bhm-lensing-stage.show-paths .bhm-lensing-paths path {
+  stroke:#9ff7ff !important;
+  stroke-width:4 !important;
+}
+
+/* 03 · Use all three lanes on wide displays: story, evidence network, real diagram. */
+#hrv-black-hole-museum-root .bhm-evidence-layout {
+  grid-template-columns:minmax(25rem,.52fr) minmax(34rem,1.05fr) minmax(25rem,.72fr) !important;
+  align-items:center;
+}
+
+#hrv-black-hole-museum-root .bhm-evidence-layout > .bhm-media-card {
+  grid-column:auto !important;
+  width:100% !important;
+  margin:0 !important;
+}
+
+#hrv-black-hole-museum-root .bhm-evidence-network {
+  min-height:clamp(38rem,42vw,52rem);
+}
+
+/* 04 · The real observation is the theater. */
+#hrv-black-hole-museum-root .bhm-theater-layout {
+  grid-template-columns:minmax(27rem,.55fr) minmax(0,1.7fr) !important;
+  align-items:center;
+}
+
+#hrv-black-hole-museum-root .bhm-orbit-stage {
+  filter:none !important;
+}
+
+#hrv-black-hole-museum-root .bhm-orbit-stage.is-traced .bhm-orbit-overlay {
+  opacity:1 !important;
+}
+
+#hrv-black-hole-museum-root .bhm-orbit-stage.is-traced .bhm-orbit-overlay ellipse {
+  stroke-width:7 !important;
+  filter:drop-shadow(0 0 8px rgba(117,242,255,.65));
+}
+
+/* 05 · Story + globe + authoritative map share one wide exhibit row. */
+#hrv-black-hole-museum-root .bhm-network-layout {
+  grid-template-columns:minmax(25rem,.48fr) minmax(32rem,1.05fr) minmax(27rem,.8fr) !important;
+  align-items:center;
+}
+
+#hrv-black-hole-museum-root .bhm-network-layout > .bhm-media-card {
+  grid-column:auto !important;
+  width:100% !important;
+  margin:0 !important;
+}
+
+#hrv-black-hole-museum-root .bhm-earth-stage {
+  min-height:clamp(38rem,42vw,52rem);
+}
+
+#hrv-black-hole-museum-root .bhm-earth {
+  width:min(100%,48rem);
+}
+
+/* 06 · Story + reconstruction instrument + observation all at once. */
+#hrv-black-hole-museum-root .bhm-reconstruction-layout {
+  grid-template-columns:minmax(25rem,.48fr) minmax(34rem,1fr) minmax(27rem,.82fr) !important;
+  align-items:center;
+}
+
+#hrv-black-hole-museum-root .bhm-reconstruction-layout > .bhm-media-card {
+  grid-column:auto !important;
+  width:100% !important;
+  margin:0 !important;
+}
+
+#hrv-black-hole-museum-root .bhm-reconstruction-visual {
+  min-height:clamp(34rem,40vw,48rem);
+}
+
+/* 07 · Monumental pair. The rotunda is allowed to breathe across the viewport. */
+#hrv-black-hole-museum-root .bhm-rotunda > .bhm-plaque {
+  width:min(100%,62rem) !important;
+  max-width:62rem;
+}
+
+#hrv-black-hole-museum-root .bhm-rotunda-stage {
+  width:100% !important;
+  max-width:none !important;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(2rem,4vw,6rem);
+}
+
+/* 08 · Large working instrument plus a true four-bay media wall on big screens. */
+#hrv-black-hole-museum-root .bhm-lab-layout {
+  grid-template-columns:minmax(27rem,.52fr) minmax(0,1.65fr) !important;
+  align-items:start;
+}
+
+#hrv-black-hole-museum-root .bhm-accretion-visual {
+  min-height:clamp(40rem,48vw,56rem);
+}
+
+#hrv-black-hole-museum-root .bhm-lab-media {
+  width:100% !important;
+  max-width:none !important;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(1rem,1.6vw,1.8rem);
+}
+
+/* 09 · Three real columns, with readable controls and myth cards. */
+#hrv-black-hole-museum-root .bhm-anatomy-layout {
+  grid-template-columns:minmax(25rem,.55fr) minmax(31rem,1fr) minmax(27rem,.82fr) !important;
+  align-items:start;
+}
+
+#hrv-black-hole-museum-root .bhm-anatomy-controls button {
+  min-height:48px;
+  font-size:.92rem;
+}
+
+#hrv-black-hole-museum-root .bhm-myth {
+  font-size:.96rem;
+}
+
+/* 10 and credits: use the viewport for artifact pullback, keep prose locally capped. */
+#hrv-black-hole-museum-root .bhm-boundary > .bhm-plaque {
+  width:min(100%,62rem) !important;
+  max-width:62rem;
+}
+
+#hrv-black-hole-museum-root .bhm-boundary-stage,
+#hrv-black-hole-museum-root .bhm-pullback,
+#hrv-black-hole-museum-root .bhm-credits {
+  width:100% !important;
+  max-width:none !important;
+}
+
+#hrv-black-hole-museum-root .bhm-pullback {
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+
+#hrv-black-hole-museum-root .bhm-credit-list {
+  grid-template-columns:repeat(4,minmax(0,1fr));
+}
+
+/* Paint/compositing budget.
+   The video showed scroll hitching; these are the highest-cost decorative effects. */
+#hrv-black-hole-museum-root .bhm-museum::before {
+  position:absolute !important;
+  transform:none !important;
+  mix-blend-mode:normal !important;
+}
+
+#hrv-black-hole-museum-root .bhm-max-lightfield {
+  position:absolute !important;
+  inset:0 0 auto !important;
+  height:100svh;
+  mix-blend-mode:normal !important;
+  filter:none !important;
+  opacity:.4;
+}
+
+#hrv-black-hole-museum-root .bhm-max-lightfield-orbit-b,
+#hrv-black-hole-museum-root .bhm-max-lightfield-orbit-c {
+  display:none;
+}
+
+#hrv-black-hole-museum-root .bhm-max-lightfield-orbit-a {
+  animation-duration:72s;
+  opacity:.55;
+}
+
+#hrv-black-hole-museum-root .bhm-media-card,
+#hrv-black-hole-museum-root .bhm-myth,
+#hrv-black-hole-museum-root .bhm-credit-item {
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+/* Current + one-ahead runtime window.
+   Distant chambers keep their semantic DOM but stop consuming animation/paint budget. */
+#hrv-black-hole-museum-root .bhm-chamber.is-runtime-dormant {
+  content-visibility:auto;
+  contain-intrinsic-size:auto 1050px;
+}
+
+#hrv-black-hole-museum-root .bhm-chamber:not(.is-runtime-live) *,
+#hrv-black-hole-museum-root .bhm-chamber:not(.is-runtime-live) *::before,
+#hrv-black-hole-museum-root .bhm-chamber:not(.is-runtime-live) *::after {
+  animation-play-state:paused !important;
+}
+
+#hrv-black-hole-museum-root .bhm-chamber.is-runtime-dormant .bhm-plaque,
+#hrv-black-hole-museum-root .bhm-chamber.is-runtime-dormant .bhm-media-card,
+#hrv-black-hole-museum-root .bhm-chamber.is-runtime-dormant .bhm-myth {
+  filter:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+#hrv-black-hole-museum-root .bhm-chamber.is-runtime-dormant :where(.bhm-max-lensing-reticle,.bhm-max-earth-network) {
+  visibility:hidden;
+}
+
+/* Medium desktop: still wide, but avoid cramming three major artifacts into 1300px. */
+@media (max-width:1500px) and (min-width:1181px) {
+  #hrv-black-hole-museum-root .bhm-evidence-layout,
+  #hrv-black-hole-museum-root .bhm-network-layout,
+  #hrv-black-hole-museum-root .bhm-reconstruction-layout {
+    grid-template-columns:minmax(25rem,.62fr) minmax(0,1.38fr) !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-evidence-layout > .bhm-media-card,
+  #hrv-black-hole-museum-root .bhm-network-layout > .bhm-media-card,
+  #hrv-black-hole-museum-root .bhm-reconstruction-layout > .bhm-media-card {
+    grid-column:1/-1 !important;
+    width:min(100%,74rem) !important;
+    margin-inline:auto !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-lab-media {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width:1180px) {
+  #hrv-black-hole-museum-root {
+    font-size:18px;
+  }
+
+  #hrv-black-hole-museum-root .bhm-plaque {
+    width:min(100%,52rem) !important;
+    max-width:52rem;
+    margin-inline:auto;
+  }
+
+  #hrv-black-hole-museum-root .bhm-lab-media {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width:767px) {
+  #hrv-black-hole-museum-root {
+    font-size:17px;
+  }
+
+  #hrv-black-hole-museum-root .bhm-plaque {
+    width:100% !important;
+    max-width:none;
+  }
+
+  #hrv-black-hole-museum-root .bhm-plaque h2 {
+    font-size:clamp(2.15rem,10.5vw,3.35rem);
+  }
+
+  #hrv-black-hole-museum-root .bhm-lab-media,
+  #hrv-black-hole-museum-root .bhm-pullback,
+  #hrv-black-hole-museum-root .bhm-credit-list {
+    grid-template-columns:1fr;
+  }
+
+  #hrv-black-hole-museum-root .bhm-chamber.is-runtime-dormant {
+    contain-intrinsic-size:auto 850px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  #hrv-black-hole-museum-root .bhm-max-lightfield-orbit-a {
+    animation:none !important;
+  }
+}
