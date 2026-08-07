@@ -2,7 +2,7 @@
   "schemaVersion": "1.0",
   "release": "0.1.0-black-hole-lab.1",
   "immutableRef": "v0.1.0-black-hole-lab.1",
-  "commit": "94559b9ac4b8db60ea21e9b31cd9f98ba8c9b147",
+  "commit": "b9de2de72e3a08a501630939fd4475a3dbd4bb56",
   "builtAt": "2026-08-07T03:01:00Z",
   "minimumBootstrapVersion": "0.1.0",
   "deploymentReady": true,
