@@ -67,9 +67,15 @@ def main():
 
     copy(ROOT/'packages/runtime-bootstrap/src/index.js',DIST/'runtime-bootstrap.js')
     copy(ROOT/'apps/black-hole-museum/src/index.js',DIST/'black-hole-museum.js')
+
+    style_sources=[
+        ROOT/'apps/black-hole-museum/src/page.css',
+        ROOT/'apps/black-hole-museum/src/viewport-breakout.css',
+        ROOT/'apps/black-hole-museum/src/maximum-shelf.css',
+        ROOT/'apps/black-hole-museum/src/theme-amadeus.css',
+    ]
     (DIST/'black-hole-museum.css').write_text(
-        (ROOT/'apps/black-hole-museum/src/page.css').read_text(encoding='utf-8').rstrip() + '\n\n' +
-        (ROOT/'apps/black-hole-museum/src/viewport-breakout.css').read_text(encoding='utf-8').lstrip(),
+        '\n\n'.join(path.read_text(encoding='utf-8').strip() for path in style_sources) + '\n',
         encoding='utf-8'
     )
 
