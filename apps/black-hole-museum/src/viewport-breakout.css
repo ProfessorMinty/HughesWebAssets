@@ -1,0 +1,22 @@
+/*
+ * Black Hole Museum viewport breakout contract.
+ *
+ * This deliberately carries forward the known-good implementation proven by
+ * test/repo-layout-lab. The mount root owns the viewport breakout. The rendered
+ * museum is only responsible for filling that already-broken-out root.
+ */
+#hrv-black-hole-museum-root.bhm-mounted{
+  width:100vw;
+  max-width:none!important;
+  position:relative;
+  left:50%;
+  margin-left:-50vw;
+  margin-right:-50vw;
+  transform:none;
+}
+
+#hrv-black-hole-museum-root .bhm-museum{
+  width:100%;
+  max-width:none;
+  margin:0;
+}
