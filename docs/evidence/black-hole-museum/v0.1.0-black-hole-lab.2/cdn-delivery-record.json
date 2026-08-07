@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-08-07T04:52:01.3983733Z",
+  "purpose": "Lean jsDelivr delivery release after the source-bearing v0.1.0-black-hole-lab.1 tag exceeded practical GitHub CDN package constraints.",
+  "sourceRelease": "v0.1.0-black-hole-lab.1",
+  "deliveryRelease": "v0.1.0-black-hole-lab.2",
+  "sourceCommit": "b9de2de72e3a08a501630939fd4475a3dbd4bb56",
+  "deliveryBranch": "release/black-hole-museum-v0.1.0-black-hole-lab.2",
+  "payloadBytes": 11219304,
+  "payloadMB": 10.7,
+  "largestFile": "nasa-rotating-1280.mp4",
+  "largestFileBytes": 2521030,
+  "historicalReleasePreserved": true,
+  "oldTagMoved": false
+}
