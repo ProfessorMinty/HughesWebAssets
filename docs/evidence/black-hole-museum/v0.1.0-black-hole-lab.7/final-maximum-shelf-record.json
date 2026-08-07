@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0",
+  "recordType": "final-maximum-shelf-presentation-release",
+  "route": "/repository-page-lab/",
+  "pageSystem": "black-hole-museum",
+  "release": "0.1.0-black-hole-lab.7",
+  "releaseBranch": "release/black-hole-museum-v0.1.0-black-hole-lab.7",
+  "releaseManifestCommit": "1d5c39e413952a840b6f94af9f00060e3291face",
+  "deliveryPackageCommit": "65d02609abcfde749d81e3108901cc4cf3a7556a",
+  "presentationSourceCommit": "d548ca221ccf5d740897a4177e173ff40a464e54",
+  "verifiedFoundationRelease": "v0.1.0-black-hole-lab.2",
+  "stableRollbackRelease": "0.1.0-black-hole-lab.3",
+  "supersededInternalCandidates": [
+    "0.1.0-black-hole-lab.4",
+    "0.1.0-black-hole-lab.5",
+    "0.1.0-black-hole-lab.6"
+  ],
+  "historicalEvidenceUsed": [
+    {
+      "path": "test/repo-layout-lab/",
+      "commit": "94559b9ac4b8db60ea21e9b31cd9f98ba8c9b147",
+      "contracts": [
+        "root-level 100vw breakout",
+        "ancestor clipping and overflow measurement",
+        "route-scoped theme compatibility",
+        "phone and reduced-motion verification"
+      ]
+    },
+    {
+      "path": "test/repo-runtime-lab/",
+      "commit": "94559b9ac4b8db60ea21e9b31cd9f98ba8c9b147",
+      "contracts": [
+        "explicit repository heading color ownership",
+        "fallback-first runtime lifecycle",
+        "diagnostics and cleanup",
+        "responsive and reduced-motion states"
+      ]
+    }
+  ],
+  "liveObservationInput": {
+    "source": "user-supplied 78.9 second screen recording of the live test route and Edublogs Customizer",
+    "legacyGlobalCssShownRemoved": true,
+    "observedDefectsAddressed": [
+      "dark theme-repainted headings",
+      "white native page-title strip",
+      "white Amadeus page-card padding and background",
+      "underscaled museum content",
+      "weak station-to-station identity",
+      "ordinary card treatment of scientific artifacts",
+      "underscaled controls and navigation",
+      "abrupt return to native white theme chrome"
+    ]
+  },
+  "presentationSource": [
+    "apps/black-hole-museum/src/maximum-shelf.css",
+    "apps/black-hole-museum/src/maximum-shelf-enhancements.css",
+    "apps/black-hole-museum/src/maximum-shelf-finishing.css",
+    "apps/black-hole-museum/src/maximum-shelf-runtime.js",
+    "apps/black-hole-museum/src/theme-amadeus.css",
+    "apps/black-hole-museum/src/viewport-breakout.css"
+  ],
+  "experienceAdditions": [
+    "full-scale museum prologue",
+    "ten differentiated gallery chambers",
+    "monumental scientific-media staging",
+    "continuous environmental lightfield",
+    "receding classroom-threshold architecture",
+    "inter-gallery transition markers",
+    "large decorative chamber identity",
+    "lensing reticle",
+    "EHT Earth-network illumination",
+    "Twin-Ring Rotunda artifact-bay framing",
+    "museum journey progress rail",
+    "active-chamber ambient state",
+    "dark native footer continuation",
+    "vertical pocket-museum response",
+    "Still Museum and forced-colors equivalents"
+  ],
+  "accessibility": {
+    "decorativeRuntimeNodesAriaHidden": true,
+    "nativeFallbackPreserved": true,
+    "pauseMotionSupported": true,
+    "prefersReducedMotionSupported": true,
+    "forcedColorsDecorationsWithdraw": true,
+    "readingWidthsCapped": true
+  },
+  "deliveryHashes": {
+    "black-hole-museum.js": "4ac54026e8d5ca5e27221b6535f9a7835abd3424568e8d42229a3985ae44bc84",
+    "black-hole-museum.css": "021835e98a914f6f27957bb451f6dc80e0f5e2a585892b6a23d49987b592ee5d"
+  },
+  "repositoryReadbackVerified": true,
+  "cdnHttpVerified": false,
+  "cdnVerificationNote": "The exact GitHub source, delivery wrapper files, immutable refs, and declared SHA-256 values were read back. The current environment could not perform an independent jsDelivr HTTP fetch, so CDN success is intentionally deferred to the live Edublogs smoke test.",
+  "nextAction": "Replace the existing Custom HTML block on /repository-page-lab/ with the current handoff block and inspect the live signed-out route on desktop and phone."
+}
