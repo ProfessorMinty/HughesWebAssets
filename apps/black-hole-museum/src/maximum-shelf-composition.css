@@ -1,0 +1,453 @@
+/*
+ * Black Hole Museum · Curated composition and hierarchy pass
+ *
+ * Full width is a canvas, not an instruction to inflate every object equally.
+ * Desktop scenes deliberately rank information:
+ *   primary = one dominant scientific artifact or interaction;
+ *   secondary = one supporting observation/reference;
+ *   tertiary = interpretation and controls.
+ * Mobile remains the intentional single-column reading edition.
+ */
+
+#hrv-black-hole-museum-root {
+  --bhm-scene-gap:clamp(1.5rem,2.5vw,3.5rem);
+  --bhm-rail:clamp(19rem,23vw,29rem);
+  --bhm-rail-wide:clamp(22rem,27vw,34rem);
+}
+
+/* Shared hierarchy: plaques explain the exhibit, they are not the exhibit. */
+#hrv-black-hole-museum-root .bhm-chamber > :is(.bhm-plaque,.bhm-stage-grid,.bhm-theater-layout,.bhm-network-layout,.bhm-reconstruction-layout,.bhm-lab-layout,.bhm-anatomy-layout,.bhm-evidence-layout) {
+  position:relative;
+}
+
+#hrv-black-hole-museum-root .bhm-chamber .bhm-plaque {
+  align-self:start;
+  border-color:rgba(148,226,255,.16);
+  background:linear-gradient(145deg,rgba(10,25,43,.82),rgba(3,9,19,.88));
+  box-shadow:0 18px 48px rgba(0,0,0,.24),inset 3px 0 rgba(117,242,255,.16);
+}
+
+#hrv-black-hole-museum-root .bhm-chamber .bhm-plaque::before {
+  right:62%;
+  opacity:.55;
+}
+
+#hrv-black-hole-museum-root .bhm-chamber .bhm-plaque h2 {
+  font-size:clamp(2.15rem,2.65vw,3.65rem);
+  line-height:.98;
+}
+
+#hrv-black-hole-museum-root .bhm-chamber .bhm-child-line {
+  max-width:34ch;
+}
+
+/* Primary artifacts get stronger staging than secondary media cards. */
+#hrv-black-hole-museum-root :where(.bhm-lensing-stage,.bhm-evidence-network,.bhm-orbit-stage,.bhm-earth-stage,.bhm-reconstruction-viewer,.bhm-accretion-stage,.bhm-anatomy-viewer) {
+  z-index:4;
+}
+
+#hrv-black-hole-museum-root :where(.bhm-lensing-stage,.bhm-evidence-network,.bhm-orbit-stage,.bhm-earth-stage,.bhm-reconstruction-viewer,.bhm-accretion-stage,.bhm-anatomy-viewer)::before {
+  pointer-events:none;
+}
+
+#hrv-black-hole-museum-root .bhm-chamber > :where(.bhm-media-card),
+#hrv-black-hole-museum-root .bhm-evidence-layout > .bhm-media-card,
+#hrv-black-hole-museum-root .bhm-network-layout > .bhm-media-card,
+#hrv-black-hole-museum-root .bhm-reconstruction-layout > .bhm-media-card {
+  box-shadow:0 16px 45px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.04);
+}
+
+/* 01 · Threshold stays ceremonial and centered. */
+#hrv-black-hole-museum-root .bhm-threshold .bhm-plaque {
+  width:min(100%,46rem) !important;
+  max-width:46rem;
+  align-self:center;
+  box-shadow:0 30px 90px rgba(0,0,0,.46),0 0 70px rgba(239,213,166,.045);
+}
+
+/* 02 · One question, one sky. Text is a side label, sky owns the scene. */
+#hrv-black-hole-museum-root .bhm-lensing .bhm-stage-grid {
+  grid-template-columns:var(--bhm-rail) minmax(0,1fr) !important;
+  gap:var(--bhm-scene-gap) !important;
+  align-items:center;
+}
+
+#hrv-black-hole-museum-root .bhm-lensing .bhm-plaque {
+  justify-self:start;
+}
+
+#hrv-black-hole-museum-root .bhm-lensing-stage {
+  min-height:clamp(42rem,60vw,66rem);
+}
+
+/* 03 · Evidence network is the hero. Story and real reference stack as one left rail. */
+#hrv-black-hole-museum-root .bhm-evidence-layout {
+  display:grid !important;
+  grid-template-columns:var(--bhm-rail-wide) minmax(0,1fr) !important;
+  grid-template-rows:auto 1fr;
+  grid-template-areas:
+    "story hero"
+    "reference hero";
+  gap:var(--bhm-scene-gap) !important;
+  align-items:start;
+}
+
+#hrv-black-hole-museum-root .bhm-evidence-layout > .bhm-plaque {
+  grid-area:story;
+}
+
+#hrv-black-hole-museum-root .bhm-evidence-network {
+  grid-area:hero;
+  align-self:stretch;
+  min-height:clamp(46rem,58vw,68rem);
+  border-color:rgba(117,242,255,.13);
+  box-shadow:inset 0 0 110px rgba(65,157,190,.045),0 28px 80px rgba(0,0,0,.25);
+}
+
+#hrv-black-hole-museum-root .bhm-evidence-layout > .bhm-media-card {
+  grid-area:reference;
+  align-self:end;
+  opacity:.9;
+}
+
+#hrv-black-hole-museum-root .bhm-evidence-layout > .bhm-media-card .bhm-media-frame {
+  aspect-ratio:16/10;
+}
+
+/* 04 · The observation is the theater. Keep the explanatory plaque clearly subordinate. */
+#hrv-black-hole-museum-root .bhm-theater-layout {
+  grid-template-columns:var(--bhm-rail) minmax(0,1fr) !important;
+  gap:var(--bhm-scene-gap) !important;
+  align-items:center;
+}
+
+#hrv-black-hole-museum-root .bhm-orbit-stage {
+  min-width:0;
+}
+
+#hrv-black-hole-museum-root .bhm-orbit-stage .bhm-media-card {
+  box-shadow:0 32px 95px rgba(0,0,0,.46),0 0 60px rgba(117,242,255,.07);
+}
+
+/* 05 · Earth is the hero. Story and authoritative map form a compact left rail. */
+#hrv-black-hole-museum-root .bhm-network-layout {
+  display:grid !important;
+  grid-template-columns:var(--bhm-rail-wide) minmax(0,1fr) !important;
+  grid-template-rows:auto 1fr;
+  grid-template-areas:
+    "story globe"
+    "reference globe";
+  gap:var(--bhm-scene-gap) !important;
+  align-items:start;
+}
+
+#hrv-black-hole-museum-root .bhm-network-layout > .bhm-plaque {
+  grid-area:story;
+}
+
+#hrv-black-hole-museum-root .bhm-earth-stage {
+  grid-area:globe;
+  min-height:clamp(46rem,57vw,66rem);
+  align-self:stretch;
+}
+
+#hrv-black-hole-museum-root .bhm-earth {
+  width:min(76%,50rem);
+}
+
+#hrv-black-hole-museum-root .bhm-network-layout > .bhm-media-card {
+  grid-area:reference;
+  align-self:end;
+  opacity:.9;
+}
+
+/* 06 · Alternate the rhythm. Instrument dominates LEFT, explanation/reference stack RIGHT. */
+#hrv-black-hole-museum-root .bhm-reconstruction-layout {
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) var(--bhm-rail-wide) !important;
+  grid-template-rows:auto 1fr;
+  grid-template-areas:
+    "hero story"
+    "hero reference";
+  gap:var(--bhm-scene-gap) !important;
+  align-items:start;
+}
+
+#hrv-black-hole-museum-root .bhm-reconstruction-viewer {
+  grid-area:hero;
+  align-self:stretch;
+}
+
+#hrv-black-hole-museum-root .bhm-reconstruction-visual {
+  min-height:clamp(44rem,55vw,64rem);
+}
+
+#hrv-black-hole-museum-root .bhm-reconstruction-layout > .bhm-plaque {
+  grid-area:story;
+}
+
+#hrv-black-hole-museum-root .bhm-reconstruction-layout > .bhm-media-card {
+  grid-area:reference;
+  align-self:end;
+  opacity:.92;
+}
+
+/* 07 · Rotunda is a deliberate symmetric pause. Pair is primary, plaque is preface. */
+#hrv-black-hole-museum-root .bhm-rotunda > .bhm-plaque {
+  width:min(100%,54rem) !important;
+  max-width:54rem;
+  margin-bottom:clamp(3rem,5vw,5rem);
+}
+
+#hrv-black-hole-museum-root .bhm-rotunda-stage {
+  gap:clamp(2.5rem,4.5vw,6.5rem);
+}
+
+#hrv-black-hole-museum-root .bhm-rotunda-stage .bhm-media-card {
+  box-shadow:0 38px 115px rgba(0,0,0,.5),0 0 70px rgba(255,126,32,.09);
+}
+
+/* 08 · One hero visualization, three supporting references. No equal-weight card wall. */
+#hrv-black-hole-museum-root .bhm-lab-layout {
+  grid-template-columns:var(--bhm-rail) minmax(0,1fr) !important;
+  gap:var(--bhm-scene-gap) !important;
+  align-items:start;
+}
+
+#hrv-black-hole-museum-root .bhm-accretion-stage {
+  min-height:clamp(46rem,57vw,66rem);
+}
+
+#hrv-black-hole-museum-root .bhm-lab-media {
+  display:grid !important;
+  grid-template-columns:minmax(0,1.5fr) minmax(15rem,.72fr) minmax(15rem,.72fr) !important;
+  grid-template-rows:auto auto;
+  gap:clamp(1rem,1.4vw,1.6rem) !important;
+  align-items:stretch;
+}
+
+#hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(1) {
+  grid-column:1;
+  grid-row:1 / span 2;
+}
+
+#hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(2) {
+  grid-column:2;
+  grid-row:1;
+}
+
+#hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(3) {
+  grid-column:3;
+  grid-row:1;
+}
+
+#hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(4) {
+  grid-column:2 / 4;
+  grid-row:2;
+}
+
+#hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(n+2) {
+  opacity:.9;
+}
+
+#hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(1) .bhm-media-frame {
+  min-height:100%;
+}
+
+/* 09 · Diagram is primary. Interpretation and myths become side rails. */
+#hrv-black-hole-museum-root .bhm-anatomy-layout {
+  grid-template-columns:minmax(20rem,.48fr) minmax(34rem,1.35fr) minmax(22rem,.58fr) !important;
+  gap:var(--bhm-scene-gap) !important;
+  align-items:start;
+}
+
+#hrv-black-hole-museum-root .bhm-anatomy-viewer {
+  box-shadow:0 28px 80px rgba(0,0,0,.34),0 0 55px rgba(117,242,255,.05);
+}
+
+#hrv-black-hole-museum-root .bhm-myth-wall {
+  align-self:start;
+}
+
+#hrv-black-hole-museum-root .bhm-myth {
+  box-shadow:none;
+  background:rgba(7,20,35,.78);
+}
+
+/* Media Center: videos are the attraction; intro is signage, not a third equal card. */
+#hrv-black-hole-museum-root .bhm-media-center-inner {
+  grid-template-columns:var(--bhm-rail) minmax(0,1fr) !important;
+  gap:var(--bhm-scene-gap) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-media-center-intro {
+  box-shadow:0 16px 48px rgba(0,0,0,.25),inset 3px 0 rgba(117,242,255,.18);
+  background:linear-gradient(145deg,rgba(10,27,46,.84),rgba(3,10,21,.9));
+}
+
+#hrv-black-hole-museum-root .bhm-media-center-grid {
+  gap:clamp(1.4rem,2vw,2.4rem);
+}
+
+#hrv-black-hole-museum-root .bhm-youtube-card {
+  box-shadow:0 30px 95px rgba(0,0,0,.42);
+}
+
+/* 10 · Symmetry is intentional here: known versus unknown is the conceptual hierarchy. */
+#hrv-black-hole-museum-root .bhm-boundary > .bhm-plaque {
+  width:min(100%,52rem) !important;
+  max-width:52rem;
+}
+
+#hrv-black-hole-museum-root .bhm-known-unknown {
+  width:min(100%,84rem);
+  margin-inline:auto;
+  gap:clamp(1.5rem,3vw,4rem);
+}
+
+#hrv-black-hole-museum-root .bhm-known,
+#hrv-black-hole-museum-root .bhm-unknown {
+  padding:clamp(1.4rem,2vw,2.2rem);
+}
+
+/* Credits are a quiet ledger, not another maximum-volume gallery. */
+#hrv-black-hole-museum-root .bhm-credits {
+  padding-top:clamp(4rem,7vh,6rem);
+  padding-bottom:clamp(4rem,7vh,6rem);
+}
+
+#hrv-black-hole-museum-root .bhm-credits h2 {
+  font-size:clamp(2rem,3vw,3.3rem);
+}
+
+#hrv-black-hole-museum-root .bhm-credit-list {
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:.7rem !important;
+}
+
+#hrv-black-hole-museum-root .bhm-credit-item {
+  padding:1rem !important;
+  border-color:rgba(155,224,255,.1);
+  background:rgba(7,19,33,.46);
+  box-shadow:none !important;
+  font-size:.78rem;
+  line-height:1.4;
+}
+
+#hrv-black-hole-museum-root .bhm-credit-item h3 {
+  font-size:.95rem;
+  line-height:1.2;
+}
+
+/* Ghost station identity should orient, never compete. */
+#hrv-black-hole-museum-root .bhm-max-chamber-identity {
+  opacity:calc(.09 * var(--ambient-strength,1));
+}
+
+#hrv-black-hole-museum-root .bhm-max-chamber-number {
+  font-size:clamp(4rem,8vw,8rem);
+}
+
+/* Medium desktop keeps hierarchy but simplifies nested rails before tablet. */
+@media (max-width:1500px) and (min-width:1181px) {
+  #hrv-black-hole-museum-root {
+    --bhm-rail:clamp(20rem,28vw,25rem);
+    --bhm-rail-wide:clamp(21rem,30vw,27rem);
+  }
+
+  #hrv-black-hole-museum-root .bhm-evidence-network,
+  #hrv-black-hole-museum-root .bhm-earth-stage,
+  #hrv-black-hole-museum-root .bhm-reconstruction-visual {
+    min-height:clamp(38rem,52vw,54rem);
+  }
+
+  #hrv-black-hole-museum-root .bhm-lab-media {
+    grid-template-columns:minmax(0,1.3fr) minmax(15rem,.7fr) !important;
+    grid-template-rows:auto auto auto;
+  }
+
+  #hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(1) {
+    grid-column:1;
+    grid-row:1 / span 3;
+  }
+
+  #hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(2),
+  #hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(3),
+  #hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(4) {
+    grid-column:2;
+    grid-row:auto;
+  }
+}
+
+/* Tablet keeps deliberate pairings, then mobile becomes the single-column edition. */
+@media (max-width:1180px) {
+  #hrv-black-hole-museum-root .bhm-evidence-layout,
+  #hrv-black-hole-museum-root .bhm-network-layout,
+  #hrv-black-hole-museum-root .bhm-reconstruction-layout,
+  #hrv-black-hole-museum-root .bhm-anatomy-layout,
+  #hrv-black-hole-museum-root .bhm-media-center-inner {
+    grid-template-columns:1fr 1.35fr !important;
+    grid-template-rows:auto auto;
+    grid-template-areas:none;
+  }
+
+  #hrv-black-hole-museum-root .bhm-evidence-layout > *,
+  #hrv-black-hole-museum-root .bhm-network-layout > *,
+  #hrv-black-hole-museum-root .bhm-reconstruction-layout > * {
+    grid-area:auto !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-lab-media {
+    grid-template-columns:1fr 1fr !important;
+    grid-template-rows:auto !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card {
+    grid-column:auto !important;
+    grid-row:auto !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-credit-list {
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+}
+
+@media (max-width:767px) {
+  #hrv-black-hole-museum-root .bhm-lensing .bhm-stage-grid,
+  #hrv-black-hole-museum-root .bhm-evidence-layout,
+  #hrv-black-hole-museum-root .bhm-theater-layout,
+  #hrv-black-hole-museum-root .bhm-network-layout,
+  #hrv-black-hole-museum-root .bhm-reconstruction-layout,
+  #hrv-black-hole-museum-root .bhm-lab-layout,
+  #hrv-black-hole-museum-root .bhm-anatomy-layout,
+  #hrv-black-hole-museum-root .bhm-media-center-inner {
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    grid-template-rows:auto !important;
+    grid-template-areas:none !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-evidence-layout > *,
+  #hrv-black-hole-museum-root .bhm-network-layout > *,
+  #hrv-black-hole-museum-root .bhm-reconstruction-layout > * {
+    grid-area:auto !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-earth {
+    width:min(100%,27rem);
+  }
+
+  #hrv-black-hole-museum-root .bhm-lab-media,
+  #hrv-black-hole-museum-root .bhm-credit-list {
+    grid-template-columns:1fr !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card {
+    grid-column:auto !important;
+    grid-row:auto !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-chamber .bhm-plaque h2 {
+    font-size:clamp(2.1rem,10vw,3.3rem);
+  }
+}
