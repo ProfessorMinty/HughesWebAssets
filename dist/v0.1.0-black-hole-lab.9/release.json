@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0",
+  "release": "0.1.0-black-hole-lab.9",
+  "immutableRef": "f22ef69209837dccd757fe5ab2b8194c7b2cab34",
+  "commit": "01145c418147ef006d40f6e8b6bfe94fa3a624d5",
+  "builtAt": "2026-08-07T08:34:00Z",
+  "minimumBootstrapVersion": "0.1.0",
+  "deploymentReady": true,
+  "pageSystems": {
+    "black-hole-museum": {
+      "script": {
+        "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@12c36263bfeae6a6c252b5271435ae0d6c822f38/dist/v0.1.0-black-hole-lab.8/black-hole-museum.js",
+        "type": "module",
+        "sha256": "8b2a6eaf497594f47fa75374d8a7ff6ac434c28e8e5862e41c5303c31e0e797c"
+      },
+      "style": {
+        "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@f22ef69209837dccd757fe5ab2b8194c7b2cab34/dist/v0.1.0-black-hole-lab.9/black-hole-museum.css",
+        "sha256": "5e7855f7f041a9880e39f61b8875f10b54f710bd6cde7139dcdf8470da2e8360"
+      },
+      "content": {
+        "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.2/dist/v0.1.0-black-hole-lab.2/content/black-hole-museum.json",
+        "schemaVersion": "1.0",
+        "sha256": "ebe7087404c825ce925fd647c58b38a1db8b853578c710bdb70e59942f53c21c"
+      },
+      "assets": {
+        "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.2/dist/v0.1.0-black-hole-lab.2/content/black-hole-assets.json",
+        "schemaVersion": "1.0",
+        "sha256": "1ee1ce7d29c7c72ed7b47e5f70b66ca7f148973b7a16240980fbba37493862a9"
+      },
+      "experience": {
+        "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.2/dist/v0.1.0-black-hole-lab.2/content/black-hole-experience.json",
+        "schemaVersion": "1.0",
+        "sha256": "1e2385c14e36eeeeb40b53955eb5af7964d76c78b100779081165dcbbe90683d"
+      }
+    }
+  },
+  "bootstrap": {
+    "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.2/dist/v0.1.0-black-hole-lab.2/runtime-bootstrap.js",
+    "sha256": "b6c189fdcb10606672e17c06a89223efa2810554f59c2c4745c3b0108321b910"
+  },
+  "rollbackRelease": "0.1.0-black-hole-lab.8"
+}
