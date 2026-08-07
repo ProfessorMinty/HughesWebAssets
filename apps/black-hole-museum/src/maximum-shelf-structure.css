@@ -1,0 +1,720 @@
+/*
+ * Black Hole Museum · Structured Exhibit System
+ *
+ * The viewport remains the canvas. Structure comes from scene anatomy, not a
+ * centered page container. Every station has an entrance/header, a dominant
+ * exhibit, supporting evidence, and locally bounded reading text.
+ */
+
+#hrv-black-hole-museum-root {
+  --bhm-scene-pad:clamp(1.5rem,3.2vw,4.75rem);
+  --bhm-scene-space:clamp(3rem,6vw,7rem);
+  --bhm-copy:64ch;
+  --bhm-support:42ch;
+  font-size:clamp(20px,.28vw + 15px,23px) !important;
+}
+
+/* The page is a sequence of rooms, not a grid of vertically centered widgets. */
+#hrv-black-hole-museum-root .bhm-chamber {
+  display:block !important;
+  width:100% !important;
+  min-height:auto !important;
+  padding:clamp(5rem,8vw,9rem) var(--bhm-scene-pad) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-scene-header {
+  position:relative;
+  z-index:8;
+  width:100%;
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(24rem,.65fr);
+  grid-template-areas:
+    "title summary"
+    "title actions";
+  gap:clamp(1.2rem,2vw,2rem) clamp(2.5rem,5vw,7rem);
+  align-items:end;
+  margin:0 0 clamp(3rem,5vw,6rem);
+  padding:0 0 clamp(1.8rem,3vw,3rem);
+  border-bottom:1px solid rgba(151,226,255,.16);
+}
+
+#hrv-black-hole-museum-root .bhm-scene-header::after {
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-1px;
+  width:min(32vw,30rem);
+  height:2px;
+  background:linear-gradient(90deg,var(--bhm-cyan),rgba(114,237,244,0));
+  box-shadow:0 0 18px rgba(114,237,244,.28);
+}
+
+#hrv-black-hole-museum-root .bhm-scene-title-group {
+  grid-area:title;
+  min-width:0;
+  max-width:72rem;
+}
+
+#hrv-black-hole-museum-root .bhm-scene-summary {
+  grid-area:summary;
+  min-width:0;
+  max-width:var(--bhm-support);
+  justify-self:end;
+  align-self:end;
+}
+
+#hrv-black-hole-museum-root .bhm-scene-actions {
+  grid-area:actions;
+  min-width:0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.7rem;
+  justify-content:flex-start;
+  align-items:center;
+  justify-self:end;
+  width:min(100%,var(--bhm-support));
+}
+
+#hrv-black-hole-museum-root .bhm-scene-header.is-reversed {
+  grid-template-columns:minmax(24rem,.65fr) minmax(0,1.35fr);
+  grid-template-areas:
+    "summary title"
+    "actions title";
+}
+
+#hrv-black-hole-museum-root .bhm-scene-header.is-reversed .bhm-scene-title-group {
+  justify-self:end;
+  text-align:right;
+}
+
+#hrv-black-hole-museum-root .bhm-scene-header.is-reversed .bhm-scene-summary,
+#hrv-black-hole-museum-root .bhm-scene-header.is-reversed .bhm-scene-actions {
+  justify-self:start;
+}
+
+#hrv-black-hole-museum-root .bhm-scene-title-group .bhm-plaque-head {
+  margin:0 0 1rem;
+}
+
+#hrv-black-hole-museum-root .bhm-scene-title-group h2 {
+  max-width:15ch;
+  margin:.2rem 0 0 !important;
+  color:#fff !important;
+  font-size:clamp(3.4rem,5.4vw,7rem) !important;
+  line-height:.88 !important;
+  letter-spacing:-.055em !important;
+  text-wrap:balance;
+}
+
+#hrv-black-hole-museum-root .bhm-scene-header.is-reversed .bhm-scene-title-group h2 {
+  margin-left:auto !important;
+}
+
+#hrv-black-hole-museum-root .bhm-scene-summary .bhm-evidence-badge {
+  margin:0 0 1rem;
+  font-size:clamp(.72rem,.2vw + .65rem,.84rem) !important;
+  line-height:1.45;
+}
+
+#hrv-black-hole-museum-root .bhm-scene-summary .bhm-child-line {
+  max-width:var(--bhm-support) !important;
+  margin:.3rem 0 0;
+  color:#f7fbff !important;
+  font-size:clamp(1.25rem,.65vw + .95rem,1.7rem) !important;
+  line-height:1.42;
+  font-weight:760;
+}
+
+#hrv-black-hole-museum-root .bhm-scene-summary .bhm-look-deeper {
+  margin-top:1.2rem;
+  padding-top:1rem;
+  font-size:1rem;
+}
+
+#hrv-black-hole-museum-root .bhm-scene-summary .bhm-look-deeper p {
+  font-size:1rem;
+  line-height:1.6;
+}
+
+#hrv-black-hole-museum-root .bhm-scene-actions :where(button,select) {
+  min-height:52px;
+  font-size:1rem !important;
+  padding:.72rem 1.08rem;
+}
+
+#hrv-black-hole-museum-root .bhm-scene-exhibit {
+  position:relative;
+  z-index:4;
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+}
+
+/* Global utilities belong to the entrance, not glued over every room. */
+#hrv-black-hole-museum-root .bhm-control-dock {
+  position:relative !important;
+  top:auto !important;
+  width:min(calc(100% - (2 * var(--bhm-scene-pad))),72rem) !important;
+  margin:-1.5rem var(--bhm-scene-pad) 3rem auto !important;
+  justify-content:flex-end !important;
+  background:rgba(2,7,17,.58) !important;
+  border-color:rgba(184,224,255,.14) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-control-dock :where(button,select) {
+  min-height:46px;
+  font-size:.86rem !important;
+}
+
+/* Media captions are part of the exhibit, not microscopic legal footnotes. */
+#hrv-black-hole-museum-root .bhm-media-card figcaption {
+  padding:1rem 1.15rem 1.15rem !important;
+  font-size:clamp(.9rem,.14vw + .86rem,1rem) !important;
+  line-height:1.5 !important;
+}
+
+#hrv-black-hole-museum-root .bhm-media-card figcaption > strong {
+  display:block;
+  margin-bottom:.28rem;
+  font-size:1.08rem !important;
+  line-height:1.25;
+}
+
+#hrv-black-hole-museum-root .bhm-media-class,
+#hrv-black-hole-museum-root .bhm-credit,
+#hrv-black-hole-museum-root .bhm-source-links {
+  font-size:.8rem !important;
+  line-height:1.45;
+}
+
+#hrv-black-hole-museum-root .bhm-media-frame img,
+#hrv-black-hole-museum-root .bhm-media-frame video {
+  display:block;
+  width:100%;
+}
+
+/* 01 · Entrance hall. The classroom recap is a real room, not a tall card. */
+#hrv-black-hole-museum-root .bhm-threshold-scene {
+  min-height:clamp(42rem,72vh,58rem) !important;
+  display:grid !important;
+  grid-template-columns:minmax(0,1.35fr) minmax(20rem,.65fr);
+  gap:clamp(2rem,5vw,7rem);
+  align-items:end !important;
+  padding:clamp(3rem,6vw,6rem);
+  border:1px solid rgba(151,226,255,.12);
+  border-radius:2rem;
+  overflow:hidden;
+}
+
+#hrv-black-hole-museum-root .bhm-threshold-story {
+  position:relative;
+  z-index:5;
+  max-width:72rem;
+  padding:clamp(1.5rem,2.5vw,2.8rem);
+  border-left:3px solid rgba(114,237,244,.55);
+  background:linear-gradient(90deg,rgba(2,7,17,.88),rgba(2,7,17,.35),transparent);
+}
+
+#hrv-black-hole-museum-root .bhm-threshold-story .bhm-prototype-warning {
+  margin:0 0 1.5rem;
+  font-size:.76rem;
+}
+
+#hrv-black-hole-museum-root .bhm-threshold-story .bhm-recap {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1.25rem 2.25rem;
+}
+
+#hrv-black-hole-museum-root .bhm-threshold-story .bhm-recap p {
+  margin:0;
+  color:#edf3fc !important;
+  font-size:clamp(1.05rem,.28vw + 1rem,1.25rem) !important;
+  line-height:1.65;
+}
+
+#hrv-black-hole-museum-root .bhm-threshold-entry {
+  position:relative;
+  z-index:5;
+  align-self:end;
+  justify-self:end;
+}
+
+#hrv-black-hole-museum-root .bhm-threshold-entry .bhm-primary {
+  min-height:64px;
+  padding:1rem 1.5rem;
+  font-size:1.12rem !important;
+}
+
+/* 02 · Sky atrium. The sky is the exhibit, not a right-hand widget. */
+#hrv-black-hole-museum-root .bhm-lensing .bhm-stage-grid {
+  display:block !important;
+}
+
+#hrv-black-hole-museum-root .bhm-lensing-stage {
+  width:100%;
+  min-height:clamp(34rem,68vh,52rem) !important;
+  border-radius:1.8rem;
+}
+
+/* 03 · Evidence room. One dominant network plus one supporting scientific reference. */
+#hrv-black-hole-museum-root .bhm-evidence-layout {
+  display:grid !important;
+  grid-template-columns:minmax(0,1.55fr) minmax(22rem,.45fr) !important;
+  gap:clamp(1.5rem,3vw,3.5rem) !important;
+  align-items:center !important;
+}
+
+#hrv-black-hole-museum-root .bhm-evidence-network {
+  min-height:clamp(38rem,66vh,52rem) !important;
+  order:1;
+}
+
+#hrv-black-hole-museum-root .bhm-evidence-layout > .bhm-media-card {
+  order:2;
+  width:100% !important;
+  align-self:center;
+}
+
+/* 04 · Observation theater. The real observation gets a cinematic frame. */
+#hrv-black-hole-museum-root .bhm-theater-layout {
+  display:block !important;
+}
+
+#hrv-black-hole-museum-root .bhm-orbit-stage {
+  width:100%;
+  padding:clamp(.6rem,1vw,1rem);
+  border:1px solid rgba(151,226,255,.14);
+  border-radius:1.8rem;
+  background:#000;
+  box-shadow:0 34px 90px rgba(0,0,0,.42);
+}
+
+#hrv-black-hole-museum-root .bhm-orbit-stage .bhm-media-card {
+  width:100%;
+  max-width:none !important;
+  border:0;
+}
+
+#hrv-black-hole-museum-root .bhm-orbit-stage video {
+  max-height:72vh;
+  object-fit:contain;
+  background:#000;
+}
+
+/* 05 · Earth instrument and the real network map work as a composed pair. */
+#hrv-black-hole-museum-root .bhm-network-layout {
+  display:grid !important;
+  grid-template-columns:minmax(0,1.4fr) minmax(24rem,.6fr) !important;
+  gap:clamp(2rem,4vw,5rem) !important;
+  align-items:center !important;
+}
+
+#hrv-black-hole-museum-root .bhm-earth-stage {
+  min-height:clamp(38rem,66vh,52rem) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-earth {
+  width:min(76%,48rem) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-network-layout > .bhm-media-card {
+  width:100% !important;
+}
+
+/* 06 · Reconstruction instrument first, published reference second. */
+#hrv-black-hole-museum-root .bhm-reconstruction-layout {
+  display:grid !important;
+  grid-template-columns:minmax(0,1.42fr) minmax(24rem,.58fr) !important;
+  gap:clamp(2rem,4vw,5rem) !important;
+  align-items:start !important;
+}
+
+#hrv-black-hole-museum-root .bhm-reconstruction-viewer {
+  min-width:0;
+}
+
+#hrv-black-hole-museum-root .bhm-reconstruction-visual {
+  min-height:clamp(36rem,64vh,50rem) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-reconstruction-layout > .bhm-media-card {
+  width:100% !important;
+  align-self:end;
+}
+
+#hrv-black-hole-museum-root .bhm-reconstruction-viewer .bhm-state-controls {
+  display:flex;
+  flex-wrap:wrap;
+  gap:.7rem;
+}
+
+#hrv-black-hole-museum-root .bhm-reconstruction-viewer .bhm-state-controls button {
+  min-height:52px;
+  font-size:1rem !important;
+}
+
+/* 07 · The rotunda remains intentionally symmetrical, but the room gets an entrance. */
+#hrv-black-hole-museum-root .bhm-rotunda-exhibit {
+  display:grid;
+  gap:clamp(2.5rem,4vw,5rem);
+}
+
+#hrv-black-hole-museum-root .bhm-rotunda-stage {
+  width:100%;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:clamp(2rem,4vw,5rem) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-rotunda-stage .bhm-media-frame {
+  min-height:clamp(28rem,48vh,42rem);
+  display:grid;
+  place-items:center;
+  background:#000;
+}
+
+#hrv-black-hole-museum-root .bhm-rotunda-stage .bhm-media-frame img {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+#hrv-black-hole-museum-root .bhm-quiet-bench {
+  margin:0 auto !important;
+  font-size:1.05rem;
+}
+
+/* 08 · Laboratory: one working model first, references become a magazine spread below. */
+#hrv-black-hole-museum-root .bhm-lab-layout {
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:clamp(2.5rem,4vw,5rem) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-accretion-stage {
+  width:100%;
+  min-height:auto !important;
+}
+
+#hrv-black-hole-museum-root .bhm-accretion-visual {
+  min-height:clamp(36rem,62vh,50rem) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-lab-controls {
+  padding:1rem;
+  border-top:1px solid rgba(151,226,255,.12);
+}
+
+#hrv-black-hole-museum-root .bhm-lab-controls :where(button,output) {
+  font-size:1rem !important;
+}
+
+#hrv-black-hole-museum-root .bhm-lab-media {
+  display:grid !important;
+  grid-template-columns:repeat(12,minmax(0,1fr)) !important;
+  gap:clamp(1.2rem,2vw,2.2rem) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(1) {
+  grid-column:span 7 !important;
+  grid-row:span 2;
+}
+
+#hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(2),
+#hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(3) {
+  grid-column:span 5 !important;
+}
+
+#hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(4) {
+  grid-column:6 / -1 !important;
+}
+
+#hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(1) .bhm-media-frame {
+  min-height:100%;
+}
+
+/* 09 · Scientific model dominates; myths become a deliberate interpretation rail. */
+#hrv-black-hole-museum-root .bhm-anatomy-layout {
+  display:grid !important;
+  grid-template-columns:minmax(0,1.4fr) minmax(23rem,.6fr) !important;
+  gap:clamp(2rem,4vw,5rem) !important;
+  align-items:start !important;
+}
+
+#hrv-black-hole-museum-root .bhm-anatomy-diagram {
+  min-height:clamp(34rem,58vh,46rem) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-anatomy-controls {
+  gap:.7rem !important;
+}
+
+#hrv-black-hole-museum-root .bhm-anatomy-controls button {
+  min-height:50px !important;
+  font-size:.95rem !important;
+}
+
+#hrv-black-hole-museum-root .bhm-anatomy-description {
+  font-size:1.08rem;
+}
+
+#hrv-black-hole-museum-root .bhm-myth-wall {
+  gap:1rem !important;
+}
+
+#hrv-black-hole-museum-root .bhm-myth {
+  padding:1.1rem 1.2rem !important;
+  font-size:.98rem !important;
+}
+
+/* Media Center: title above, videos below. It is a room, not three adjacent cards. */
+#hrv-black-hole-museum-root .bhm-structured-media-center {
+  padding:clamp(5rem,8vw,9rem) var(--bhm-scene-pad) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-structured-media-center .bhm-media-center-inner {
+  display:block !important;
+}
+
+#hrv-black-hole-museum-root .bhm-structured-media-center .bhm-media-center-intro {
+  position:relative !important;
+  top:auto !important;
+  width:100% !important;
+  max-width:none !important;
+  margin:0 0 clamp(2.5rem,4vw,4rem);
+  padding:0 0 clamp(1.8rem,3vw,3rem) !important;
+  border:0 !important;
+  border-bottom:1px solid rgba(151,226,255,.16) !important;
+  border-radius:0 !important;
+  background:none !important;
+  box-shadow:none !important;
+}
+
+#hrv-black-hole-museum-root .bhm-structured-media-center .bhm-media-center-intro h2 {
+  max-width:14ch;
+  font-size:clamp(3.6rem,6vw,7rem) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-structured-media-center .bhm-media-center-intro > p:not(.bhm-media-center-kicker):not(.bhm-media-center-warning) {
+  max-width:62ch;
+  font-size:1.08rem !important;
+}
+
+#hrv-black-hole-museum-root .bhm-media-center-grid {
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:clamp(1.5rem,2.5vw,3rem) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-youtube-card-meta {
+  padding:1.15rem 1.3rem 1.4rem !important;
+}
+
+#hrv-black-hole-museum-root .bhm-youtube-card-meta h3 {
+  font-size:1.25rem !important;
+}
+
+#hrv-black-hole-museum-root .bhm-youtube-card-meta p {
+  font-size:.92rem !important;
+}
+
+/* 10 · Known/unknown is the final conceptual split, followed by a clean evidence pullback. */
+#hrv-black-hole-museum-root .bhm-boundary-exhibit {
+  display:grid;
+  gap:clamp(3rem,5vw,6rem);
+}
+
+#hrv-black-hole-museum-root .bhm-boundary-stage {
+  padding:clamp(2rem,4vw,4.5rem) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-known-unknown {
+  width:100% !important;
+  max-width:none !important;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) !important;
+  gap:clamp(2rem,4vw,5rem) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-known h3,
+#hrv-black-hole-museum-root .bhm-unknown h3 {
+  font-size:clamp(1.7rem,2vw,2.5rem) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-known p,
+#hrv-black-hole-museum-root .bhm-unknown p {
+  font-size:1.05rem !important;
+  line-height:1.55;
+}
+
+#hrv-black-hole-museum-root .bhm-boundary-quote {
+  max-width:34ch;
+  margin:clamp(2rem,4vw,4rem) auto 0 !important;
+  font-size:clamp(1.8rem,2.7vw,3.4rem) !important;
+  line-height:1.12 !important;
+}
+
+#hrv-black-hole-museum-root .bhm-pullback {
+  width:100% !important;
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:clamp(1.2rem,2vw,2rem) !important;
+  overflow:visible !important;
+}
+
+#hrv-black-hole-museum-root .bhm-pullback .bhm-media-card {
+  min-width:0;
+  width:100% !important;
+}
+
+#hrv-black-hole-museum-root .bhm-closing-line {
+  margin:0 auto;
+  font-size:clamp(2rem,3vw,4rem) !important;
+}
+
+/* Credits recede into a readable ledger after the conclusion. */
+#hrv-black-hole-museum-root .bhm-structured-credits {
+  padding:clamp(4rem,7vw,7rem) var(--bhm-scene-pad) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-structured-credits > h2 {
+  max-width:18ch;
+  font-size:clamp(2.6rem,4vw,4.6rem) !important;
+}
+
+#hrv-black-hole-museum-root .bhm-credit-list {
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:1rem !important;
+}
+
+#hrv-black-hole-museum-root .bhm-credit-item {
+  padding:1rem !important;
+  font-size:.86rem !important;
+}
+
+/* Environmental identity should orient, not shout over the exhibit. */
+#hrv-black-hole-museum-root .bhm-max-chamber-identity {
+  opacity:.07 !important;
+}
+
+/* Tablet still uses horizontal composition. Only the phone edition becomes linear. */
+@media (max-width:1180px) and (min-width:768px) {
+  #hrv-black-hole-museum-root .bhm-scene-header,
+  #hrv-black-hole-museum-root .bhm-scene-header.is-reversed {
+    grid-template-columns:minmax(0,1.1fr) minmax(20rem,.9fr);
+  }
+
+  #hrv-black-hole-museum-root .bhm-scene-title-group h2 {
+    font-size:clamp(3rem,5.7vw,5.2rem) !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-evidence-layout,
+  #hrv-black-hole-museum-root .bhm-network-layout,
+  #hrv-black-hole-museum-root .bhm-reconstruction-layout,
+  #hrv-black-hole-museum-root .bhm-anatomy-layout {
+    grid-template-columns:minmax(0,1.2fr) minmax(19rem,.8fr) !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-threshold-scene {
+    grid-template-columns:minmax(0,1.2fr) minmax(18rem,.8fr);
+  }
+
+  #hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card:nth-child(1) {
+    grid-column:span 7 !important;
+  }
+}
+
+@media (max-width:767px) {
+  #hrv-black-hole-museum-root {
+    font-size:18px !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-chamber {
+    padding:4.5rem 1rem !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-scene-header,
+  #hrv-black-hole-museum-root .bhm-scene-header.is-reversed {
+    display:grid;
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "title"
+      "summary"
+      "actions";
+    gap:1.25rem;
+    margin-bottom:2rem;
+    text-align:left;
+  }
+
+  #hrv-black-hole-museum-root .bhm-scene-header.is-reversed .bhm-scene-title-group {
+    justify-self:start;
+    text-align:left;
+  }
+
+  #hrv-black-hole-museum-root .bhm-scene-header.is-reversed .bhm-scene-title-group h2 {
+    margin-left:0 !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-scene-summary,
+  #hrv-black-hole-museum-root .bhm-scene-actions,
+  #hrv-black-hole-museum-root .bhm-scene-header.is-reversed .bhm-scene-summary,
+  #hrv-black-hole-museum-root .bhm-scene-header.is-reversed .bhm-scene-actions {
+    justify-self:stretch;
+    width:100%;
+  }
+
+  #hrv-black-hole-museum-root .bhm-scene-title-group h2 {
+    font-size:clamp(2.7rem,13vw,4.5rem) !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-control-dock {
+    width:calc(100% - 2rem) !important;
+    margin:0 1rem 2rem !important;
+    justify-content:flex-start !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-threshold-scene,
+  #hrv-black-hole-museum-root .bhm-evidence-layout,
+  #hrv-black-hole-museum-root .bhm-network-layout,
+  #hrv-black-hole-museum-root .bhm-reconstruction-layout,
+  #hrv-black-hole-museum-root .bhm-anatomy-layout {
+    grid-template-columns:1fr !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-threshold-story .bhm-recap {
+    grid-template-columns:1fr;
+  }
+
+  #hrv-black-hole-museum-root .bhm-threshold-entry {
+    justify-self:start;
+  }
+
+  #hrv-black-hole-museum-root .bhm-rotunda-stage,
+  #hrv-black-hole-museum-root .bhm-media-center-grid,
+  #hrv-black-hole-museum-root .bhm-pullback,
+  #hrv-black-hole-museum-root .bhm-credit-list {
+    grid-template-columns:1fr !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-lab-media {
+    grid-template-columns:1fr !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-lab-media > .bhm-media-card {
+    grid-column:1 !important;
+    grid-row:auto !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-known-unknown {
+    grid-template-columns:1fr !important;
+  }
+
+  #hrv-black-hole-museum-root .bhm-boundary-line {
+    width:100%;
+    height:1px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  #hrv-black-hole-museum-root .bhm-scene-header::after {
+    box-shadow:none;
+  }
+}
