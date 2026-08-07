@@ -1,0 +1,44 @@
+/*
+ * Maximum-Shelf finishing layer.
+ * Small cross-browser fallbacks and final spatial polish only.
+ */
+
+/* Avoid relying on CSS numeric multiplication inside calc() for corridor depth. */
+#hrv-black-hole-museum-root .bhm-max-corridor-frame {
+  scale:1;
+  opacity:1;
+}
+
+#hrv-black-hole-museum-root .bhm-max-corridor-frame:nth-child(2) {
+  scale:.87;
+  opacity:.82;
+}
+
+#hrv-black-hole-museum-root .bhm-max-corridor-frame:nth-child(3) {
+  scale:.74;
+  opacity:.64;
+}
+
+#hrv-black-hole-museum-root .bhm-max-corridor-frame:nth-child(4) {
+  scale:.61;
+  opacity:.46;
+}
+
+/* Give large observation artifacts a little more breathing room on wide screens. */
+@media (min-width:1280px) {
+  #hrv-black-hole-museum-root .bhm-orbit-stage,
+  #hrv-black-hole-museum-root .bhm-reconstruction-viewer,
+  #hrv-black-hole-museum-root .bhm-accretion-stage {
+    transform:translateZ(0);
+  }
+
+  #hrv-black-hole-museum-root .bhm-rotunda-stage {
+    padding-inline:clamp(1rem,3vw,3rem);
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  #hrv-black-hole-museum-root .bhm-max-corridor-frame {
+    transform:none;
+  }
+}
