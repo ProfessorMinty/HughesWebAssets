@@ -8,6 +8,8 @@ BUILD = (ROOT / 'scripts' / 'build_black_hole.py').read_text(encoding='utf-8')
 BASE = (SRC / 'page.css').read_text(encoding='utf-8')
 VIEWPORT = (SRC / 'viewport-breakout.css').read_text(encoding='utf-8')
 MAXIMUM = (SRC / 'maximum-shelf.css').read_text(encoding='utf-8')
+ENHANCEMENTS = (SRC / 'maximum-shelf-enhancements.css').read_text(encoding='utf-8')
+RUNTIME = (SRC / 'maximum-shelf-runtime.js').read_text(encoding='utf-8')
 AMADEUS = (SRC / 'theme-amadeus.css').read_text(encoding='utf-8')
 
 
@@ -42,6 +44,22 @@ require('@media (max-width:767px)' in MAXIMUM,
 require('@media (prefers-reduced-motion:reduce)' in MAXIMUM,
         'Still Museum reduced-motion treatment exists')
 
+# Environmental runtime is decorative and layered on the verified renderer.
+require('mountVerifiedMuseum(args)' in RUNTIME,
+        'maximum-shelf runtime delegates scientific rendering to the verified renderer first')
+require("setAttribute('aria-hidden', 'true')" in RUNTIME,
+        'environmental nodes are hidden from the accessibility tree')
+require('addChamberIdentity' in RUNTIME and 'addEarthNetwork' in RUNTIME and 'addScrollProgress' in RUNTIME,
+        'environmental runtime provides chamber identity, telescope-network staging, and journey progress')
+require('mount.__bhmDestroy' in RUNTIME,
+        'environmental runtime participates in the renderer cleanup lifecycle')
+require('.bhm-max-transition' in ENHANCEMENTS and '.bhm-max-lightfield' in ENHANCEMENTS,
+        'environmental stylesheet provides visual transitions and continuous ambient depth')
+require('@media (prefers-reduced-motion:reduce)' in ENHANCEMENTS,
+        'environmental animation has a Still Museum equivalent')
+require('@media (forced-colors:active)' in ENHANCEMENTS,
+        'decorative maximum-shelf layers withdraw in forced-colors mode')
+
 # Compatibility adapter is allowed to touch the theme only behind the route-ready gate.
 amadeus_without_comments = re.sub(r'/\*.*?\*/', '', AMADEUS, flags=re.S)
 for raw_selector in re.findall(r'([^{}]+)\{', amadeus_without_comments):
@@ -58,19 +76,24 @@ require('.entry-header' in AMADEUS,
         'adapter suppresses the native page-title wrapper after successful enhancement')
 require('.entry-footer' in AMADEUS,
         'adapter prevents native entry footer chrome from interrupting the museum exit')
+require('.page .hentry' in AMADEUS and 'padding:0!important' in AMADEUS.replace(' ', ''),
+        'adapter neutralizes confirmed Amadeus page-card padding')
 
-# Build order is part of the contract: base, breakout, experience, theme adapter.
+# Build order is part of the contract: base, breakout, experience, environment, theme adapter.
 order = [
     "page.css",
     "viewport-breakout.css",
     "maximum-shelf.css",
+    "maximum-shelf-enhancements.css",
     "theme-amadeus.css",
 ]
 positions = [BUILD.find(name) for name in order]
-require(all(pos >= 0 for pos in positions), 'all four style modules are included by the build')
+require(all(pos >= 0 for pos in positions), 'all five style modules are included by the build')
 require(positions == sorted(positions), 'style modules are composed in the required cascade order')
+require("maximum-shelf-runtime.js',DIST/'black-hole-museum.js" in BUILD,
+        'build publishes the maximum-shelf runtime entry point')
 
-# Guard against regressing to the original child-level-only breakout as the final contract.
+# Guard against regressing to one giant base stylesheet.
 require('maximum-shelf.css' not in BASE and 'theme-amadeus.css' not in BASE,
         'base stylesheet remains a separable foundation rather than swallowing compatibility layers')
 
