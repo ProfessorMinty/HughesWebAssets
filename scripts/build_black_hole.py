@@ -66,9 +66,9 @@ def main():
     (DIST/'assets').mkdir(parents=True)
 
     copy(ROOT/'packages/runtime-bootstrap/src/index.js',DIST/'runtime-bootstrap.js')
-    # The maximum-shelf runtime decorates the already-verified immutable .2 renderer.
-    # The base renderer remains in src/index.js as the scientific/interaction authority.
-    copy(ROOT/'apps/black-hole-museum/src/maximum-shelf-runtime.js',DIST/'black-hole-museum.js')
+    # The composed runtime preserves the verified renderer and maximum-shelf behavior,
+    # then restructures the mounted DOM into explicit full-width exhibit scenes.
+    copy(ROOT/'apps/black-hole-museum/src/maximum-shelf-composed-runtime.js',DIST/'black-hole-museum.js')
 
     style_sources=[
         ROOT/'apps/black-hole-museum/src/page.css',
@@ -78,6 +78,7 @@ def main():
         ROOT/'apps/black-hole-museum/src/maximum-shelf-finishing.css',
         ROOT/'apps/black-hole-museum/src/maximum-shelf-wide-performance.css',
         ROOT/'apps/black-hole-museum/src/maximum-shelf-media-center.css',
+        ROOT/'apps/black-hole-museum/src/maximum-shelf-structure.css',
         ROOT/'apps/black-hole-museum/src/theme-amadeus.css',
     ]
     (DIST/'black-hole-museum.css').write_text(
