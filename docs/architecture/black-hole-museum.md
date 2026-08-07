@@ -12,8 +12,9 @@
 - Route id: `repository-page-lab-black-holes`
 - Page system: `black-hole-museum`
 - Mount id: `hrv-black-hole-museum-root`
-- Current delivery release: `0.1.0-black-hole-lab.3`
-- Current release manifest ref: `762566482a6d1202c09082b137c03f66f88b7204`
+- Current delivery release: `0.1.0-black-hole-lab.4`
+- Current release manifest ref: `0b57b2314d10bd846b1e728c6d4d0bef89617348`
+- Preserved viewport-correction release: `0.1.0-black-hole-lab.3`
 - Preserved lean base release: `v0.1.0-black-hole-lab.2`
 - Preserved source-bearing historical release: `v0.1.0-black-hole-lab.1`
 
@@ -33,10 +34,41 @@ The mount root `#hrv-black-hole-museum-root.bhm-mounted` owns the `100vw`, `left
 
 Do not move viewport breakout responsibility onto `.bhm-museum`. A dedicated regression test, `scripts/test_black_hole_viewport_contract.py`, validates the effective CSS cascade. The build appends `apps/black-hole-museum/src/viewport-breakout.css` after the base page stylesheet so the proven contract is authoritative.
 
-Release `0.1.0-black-hole-lab.3` is a commit-pinned viewport patch that reuses the already-verified immutable `.2` JavaScript, content, experience configuration, and media assets while replacing only the stylesheet delivery layer.
+Release `0.1.0-black-hole-lab.3` remains preserved as the isolated viewport correction.
+
+## Maximum-shelf presentation contract
+
+The unpublished black-hole laboratory is the ceiling test, not the balanced production default. The presentation layer therefore follows the Revised Arctic Preferred Maximum-Shelf Experience Blueprint literally: one continuous full-width environmental canvas, ten visually distinct chambers, large scientific artifacts, capped reading widths, strong exhibit lighting, quiet recovery spaces, layered depth, and several signature moments instead of one decorative centerpiece.
+
+The source presentation is intentionally split into independent modules:
+
+1. `apps/black-hole-museum/src/page.css` — base renderer styling and interaction states.
+2. `apps/black-hole-museum/src/viewport-breakout.css` — the proven Edublogs full-viewport mount contract.
+3. `apps/black-hole-museum/src/maximum-shelf.css` — subject-driven museum atmosphere, scale, chamber identity, artifact staging, responsive pocket-museum behavior, and Still Museum equivalents.
+4. `apps/black-hole-museum/src/theme-amadeus.css` — confirmed route-scoped theme compatibility only.
+
+The build composes them in that exact order. The last two layers must not be folded into the historical laboratories or turned into site-wide CSS.
+
+Release `0.1.0-black-hole-lab.4` reuses the already-verified `.2` bootstrap, renderer, content, experience manifest, and scientific media. Its presentation stylesheet is immutable and imports the `.2` base CSS plus the three presentation modules from exact Git commit `8a25a802bdcfaa00ae51e16cf6c702fdb9549ae4`.
+
+## Theme compatibility contract
+
+The runtime laboratory proved that repository headings must explicitly own their color and typography rather than inheriting theme paint. The layout laboratory established that theme exceptions must be measured and route-scoped.
+
+`theme-amadeus.css` therefore activates only behind `html.hrv-route-black-hole-lab-ready`, which the bootstrap adds after a successful museum mount. Before enhancement succeeds, Edublogs fallback remains conventionally styled.
+
+On the enhanced laboratory route the adapter may:
+
+- suppress the native WordPress entry/page title wrapper so the white `Black Holes and Stuff` card does not interrupt the installation;
+- remove native entry background, bottom spacing, and entry-footer chrome that visually split the museum;
+- reinforce repository heading and body color inheritance inside the mount.
+
+It does not replace or hide the Hughes Room Views site header/navigation. It does not apply to any other route.
+
+`scripts/test_black_hole_presentation_contract.py` rejects an unscoped compatibility selector and checks the required presentation/build contracts.
 
 ## Scope
 
-All application CSS is rooted beneath `#hrv-black-hole-museum-root`. The only document-level rule is gated behind `html.hrv-route-black-hole-lab-ready` and clips horizontal overflow after a successful mount.
+Application styling remains rooted beneath `#hrv-black-hole-museum-root` except for narrowly documented compatibility selectors gated behind `html.hrv-route-black-hole-lab-ready`.
 
-The historical `test/repo-runtime-lab/` and `test/repo-layout-lab/` directories are not replaced or edited by this package.
+The historical `test/repo-runtime-lab/` and `test/repo-layout-lab/` directories are evidence sources and are not replaced or edited by this package.
