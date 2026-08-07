@@ -1,6 +1,7 @@
 import { mountBlackHoleMuseum as mountVerifiedMuseum } from 'https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.2/dist/v0.1.0-black-hole-lab.2/black-hole-museum.js';
 
-const PRESENTATION_VERSION = 'maximum-shelf-2026.08.07.1';
+const PRESENTATION_VERSION = 'maximum-shelf-2026.08.07.2';
+const RUNTIME_WINDOW = 'current-plus-one-ahead';
 
 function decorative(tag, className, text = '') {
   const node = document.createElement(tag);
@@ -157,29 +158,142 @@ function addScrollProgress(shell, mount, cleanups) {
   update();
 }
 
-function installActiveChamber(shell, cleanups) {
-  if (!('IntersectionObserver' in window)) return;
-  const observer = new IntersectionObserver(entries => {
-    const visible = entries
-      .filter(entry => entry.isIntersecting)
-      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-    if (visible) shell.dataset.activeStation = visible.target.dataset.station || '';
-  }, { rootMargin: '-18% 0px -52% 0px', threshold: [0.06, 0.18, 0.36] });
+function setVideoBudget(chamber, state) {
+  chamber.querySelectorAll('video').forEach(video => {
+    if (state === 'live') {
+      video.preload = 'auto';
+      return;
+    }
+    if (state === 'next') {
+      video.preload = 'metadata';
+      return;
+    }
+    video.pause();
+    video.preload = 'none';
+  });
+}
 
-  shell.querySelectorAll('.bhm-chamber').forEach(chamber => observer.observe(chamber));
-  cleanups.push(() => observer.disconnect());
+function installRuntimeWindow(shell, cleanups) {
+  const chambers = [...shell.querySelectorAll('.bhm-chamber')];
+  if (!chambers.length) return;
+
+  shell.dataset.runtimeWindow = RUNTIME_WINDOW;
+  let activeIndex = 0;
+  let direction = 1;
+  let lastScrollY = window.scrollY;
+  let raf = 0;
+
+  const chooseActive = () => {
+    const anchor = window.innerHeight * 0.42;
+    let bestIndex = 0;
+    let bestDistance = Number.POSITIVE_INFINITY;
+
+    chambers.forEach((chamber, index) => {
+      const rect = chamber.getBoundingClientRect();
+      const containsAnchor = rect.top <= anchor && rect.bottom >= anchor;
+      const distance = containsAnchor
+        ? 0
+        : Math.min(Math.abs(rect.top - anchor), Math.abs(rect.bottom - anchor));
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestIndex = index;
+      }
+    });
+    return bestIndex;
+  };
+
+  const applyWindow = () => {
+    raf = 0;
+    const nextIndex = Math.max(0, Math.min(chambers.length - 1, activeIndex + direction));
+
+    chambers.forEach((chamber, index) => {
+      const state = index === activeIndex ? 'live' : index === nextIndex ? 'next' : 'dormant';
+      chamber.classList.toggle('is-runtime-live', state === 'live');
+      chamber.classList.toggle('is-runtime-next', state === 'next');
+      chamber.classList.toggle('is-runtime-dormant', state === 'dormant');
+      chamber.dataset.runtimeState = state;
+      setVideoBudget(chamber, state);
+    });
+
+    shell.dataset.runtimeStation = chambers[activeIndex]?.dataset.station || '';
+    shell.dataset.runtimeDirection = direction > 0 ? 'forward' : 'backward';
+  };
+
+  const schedule = () => {
+    const y = window.scrollY;
+    if (Math.abs(y - lastScrollY) > 2) direction = y >= lastScrollY ? 1 : -1;
+    lastScrollY = y;
+    const nextActive = chooseActive();
+    if (nextActive !== activeIndex) activeIndex = nextActive;
+    if (!raf) raf = requestAnimationFrame(applyWindow);
+  };
+
+  activeIndex = chooseActive();
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule, { passive: true });
+  cleanups.push(() => {
+    window.removeEventListener('scroll', schedule);
+    window.removeEventListener('resize', schedule);
+    if (raf) cancelAnimationFrame(raf);
+  });
+  applyWindow();
+}
+
+function simplifyControls(shell) {
+  const dock = shell.querySelector('.bhm-control-dock');
+  if (!dock) return;
+
+  dock.querySelectorAll('button').forEach(button => {
+    const label = button.textContent.trim();
+    if (/essential-content mode/i.test(label) || /standard media mode/i.test(label)) {
+      button.remove();
+      return;
+    }
+    if (/pause museum motion/i.test(label)) button.textContent = 'Pause motion';
+    if (/resume museum motion/i.test(label)) button.textContent = 'Resume motion';
+  });
+
+  dock.querySelectorAll('select').forEach(select => {
+    if (select.getAttribute('aria-label') === 'Laboratory magic profile') select.remove();
+  });
+
+  dock.dataset.maximumShelfControls = 'simplified';
+}
+
+function fixRotundaControls(shell) {
+  const section = shell.querySelector('#twin-ring-rotunda');
+  if (!section) return;
+  const controls = section.querySelector('.bhm-state-controls');
+  if (!controls) return;
+
+  const buttons = [...controls.querySelectorAll('button')];
+  const separate = buttons.find(button => /view separately/i.test(button.textContent));
+  const compare = buttons.find(button => /^compare$/i.test(button.textContent.trim()));
+
+  if (separate) separate.remove();
+  if (compare) {
+    compare.textContent = 'Compare side by side';
+    compare.click();
+  }
 }
 
 function enrichDiagnostics(shell) {
   const dl = shell.querySelector('.bhm-diagnostics dl');
   if (!dl) return;
-  const row = document.createElement('div');
-  const dt = document.createElement('dt');
-  const dd = document.createElement('dd');
-  dt.textContent = 'Presentation';
-  dd.textContent = PRESENTATION_VERSION;
-  row.append(dt, dd);
-  dl.append(row);
+  const rows = [
+    ['Presentation', PRESENTATION_VERSION],
+    ['Scroll budget', RUNTIME_WINDOW]
+  ];
+
+  rows.forEach(([label, value]) => {
+    const row = document.createElement('div');
+    const dt = document.createElement('dt');
+    const dd = document.createElement('dd');
+    dt.textContent = label;
+    dd.textContent = value;
+    row.append(dt, dd);
+    dl.append(row);
+  });
 }
 
 function installMaximumShelf({ mount, content }) {
@@ -197,7 +311,9 @@ function installMaximumShelf({ mount, content }) {
   addEarthNetwork(shell, cleanups);
   addArtifactBays(shell);
   addScrollProgress(shell, mount, cleanups);
-  installActiveChamber(shell, cleanups);
+  installRuntimeWindow(shell, cleanups);
+  simplifyControls(shell);
+  fixRotundaControls(shell);
   enrichDiagnostics(shell);
 
   mount.__bhmDestroy = () => {
