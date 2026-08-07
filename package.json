@@ -5,8 +5,8 @@
   "description": "Route-governed repository page systems for Hughes Room Views.",
   "scripts": {
     "build:black-hole": "python scripts/build_black_hole.py",
-    "test:black-hole": "python scripts/test_black_hole.py",
-    "verify:black-hole": "python scripts/build_black_hole.py --verify-only && python scripts/test_black_hole.py"
+    "test:black-hole": "python scripts/test_black_hole.py && python scripts/test_black_hole_viewport_contract.py && python scripts/test_black_hole_presentation_contract.py",
+    "verify:black-hole": "python scripts/build_black_hole.py --verify-only && python scripts/test_black_hole.py && python scripts/test_black_hole_viewport_contract.py && python scripts/test_black_hole_presentation_contract.py"
   },
   "engines": {
     "node": ">=20"
