@@ -9,6 +9,7 @@ on:
       - 'scripts/build_black_hole.py'
       - 'scripts/test_black_hole_viewport_contract.py'
       - 'scripts/test_black_hole_presentation_contract.py'
+      - 'scripts/test_black_hole_structure_cascade.py'
       - '.github/workflows/black-hole-presentation-ci.yml'
   workflow_dispatch:
 
@@ -44,3 +45,6 @@ jobs:
 
       - name: Verify structured Maximum-Shelf presentation contract
         run: python scripts/test_black_hole_presentation_contract.py
+
+      - name: Verify legacy-grid cascade cleanup
+        run: python scripts/test_black_hole_structure_cascade.py
