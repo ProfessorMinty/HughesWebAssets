@@ -12,8 +12,8 @@
 - Route id: `repository-page-lab-black-holes`
 - Page system: `black-hole-museum`
 - Mount id: `hrv-black-hole-museum-root`
-- Current delivery release: `0.1.0-black-hole-lab.4`
-- Current release manifest ref: `0b57b2314d10bd846b1e728c6d4d0bef89617348`
+- Current delivery release: `0.1.0-black-hole-lab.5`
+- Current release manifest ref: `ddb414f95c201238820299701c6264f04b3c7be5`
 - Preserved viewport-correction release: `0.1.0-black-hole-lab.3`
 - Preserved lean base release: `v0.1.0-black-hole-lab.2`
 - Preserved source-bearing historical release: `v0.1.0-black-hole-lab.1`
@@ -34,7 +34,7 @@ The mount root `#hrv-black-hole-museum-root.bhm-mounted` owns the `100vw`, `left
 
 Do not move viewport breakout responsibility onto `.bhm-museum`. A dedicated regression test, `scripts/test_black_hole_viewport_contract.py`, validates the effective CSS cascade. The build appends `apps/black-hole-museum/src/viewport-breakout.css` after the base page stylesheet so the proven contract is authoritative.
 
-Release `0.1.0-black-hole-lab.3` remains preserved as the isolated viewport correction.
+Release `0.1.0-black-hole-lab.3` remains preserved as the isolated viewport correction and stable presentation rollback target.
 
 ## Maximum-shelf presentation contract
 
@@ -49,7 +49,9 @@ The source presentation is intentionally split into independent modules:
 
 The build composes them in that exact order. The last two layers must not be folded into the historical laboratories or turned into site-wide CSS.
 
-Release `0.1.0-black-hole-lab.4` reuses the already-verified `.2` bootstrap, renderer, content, experience manifest, and scientific media. Its presentation stylesheet is immutable and imports the `.2` base CSS plus the three presentation modules from exact Git commit `8a25a802bdcfaa00ae51e16cf6c702fdb9549ae4`.
+Release `0.1.0-black-hole-lab.5` reuses the already-verified `.2` bootstrap, renderer, content, experience manifest, and scientific media. Its presentation stylesheet is immutable and imports the `.2` base CSS plus the three presentation modules from exact Git commit `0961fa1cd9f102da7f0eadc8253f72116dbd78c5`. The release manifest is pinned at `ddb414f95c201238820299701c6264f04b3c7be5`.
+
+Release `.4` was an internal presentation candidate created before the confirmed Amadeus page-spacing rules were incorporated. It was superseded before handoff and is not the current channel release.
 
 ## Theme compatibility contract
 
@@ -57,10 +59,14 @@ The runtime laboratory proved that repository headings must explicitly own their
 
 `theme-amadeus.css` therefore activates only behind `html.hrv-route-black-hole-lab-ready`, which the bootstrap adds after a successful museum mount. Before enhancement succeeds, Edublogs fallback remains conventionally styled.
 
+The Amadeus page template and stylesheet confirm the relevant native wrappers and spacing: page titles render inside `header.entry-header`; `.site-content` adds top spacing; `.page .hentry` adds article padding; and `.hentry` supplies the white card background, border, radius, and bottom margin.
+
 On the enhanced laboratory route the adapter may:
 
-- suppress the native WordPress entry/page title wrapper so the white `Black Holes and Stuff` card does not interrupt the installation;
-- remove native entry background, bottom spacing, and entry-footer chrome that visually split the museum;
+- suppress the native WordPress entry/page title wrapper so the white `Black Holes and Stuff` strip does not interrupt the installation;
+- zero the confirmed `.site-content` and page-entry spacing;
+- remove the native article white card, border, radius, and padding;
+- remove native entry-content spacing and entry-footer chrome that visually split the museum;
 - reinforce repository heading and body color inheritance inside the mount.
 
 It does not replace or hide the Hughes Room Views site header/navigation. It does not apply to any other route.
