@@ -1,18 +1,27 @@
 # Hughes Room Views Repository Page Systems
 
-This implementation adds the unpublished Arctic Preferred Black Hole Museum page system without modifying the historical repository runtime and layout laboratories.
+This branch contains the unpublished Arctic Preferred Black Hole Museum page system. The historical repository runtime and layout laboratories remain preserved as test evidence.
 
-## Commands
+## Black Hole Museum
 
-```text
-python scripts/build_black_hole.py
-python scripts/test_black_hole.py
-```
+Current laboratory route: `/repository-page-lab/`
 
-Asset acquisition requires a network-enabled environment:
+Current presentation release: `0.1.0-black-hole-lab.6`
 
-```text
-python scripts/acquire_black_hole_assets.py
-```
+The implementation separates verified scientific content and media, the repository runtime, viewport breakout, Maximum-Shelf subject presentation, environmental enhancements, route-scoped Amadeus compatibility, and release evidence.
 
-The build is deliberately marked `deploymentReady: false` until all twelve approved scientific assets are downloaded, optimized, and verified and the immutable release tag is pushed.
+The twelve approved scientific assets have been acquired. The lean `.2` science and media foundation was previously verified. Release `.3` preserves the proven Edublogs viewport correction. Release `.6` adds the current Maximum-Shelf presentation and environmental runtime while reusing the verified scientific foundation.
+
+## Source layout
+
+The Black Hole Museum source lives under `apps/black-hole-museum/`. Presentation source is separated into `page.css`, `viewport-breakout.css`, `maximum-shelf.css`, `maximum-shelf-enhancements.css`, `maximum-shelf-runtime.js`, and `theme-amadeus.css`.
+
+The historical laboratories remain under `test/repo-runtime-lab/` and `test/repo-layout-lab/`. They are evidence sources and are not modified by this page system.
+
+The build composes presentation in this order: base museum styling, proven viewport breakout, Maximum-Shelf chamber presentation, environmental enhancements, then route-scoped Amadeus compatibility.
+
+## Current handoff
+
+The current Edublogs block is `docs/deployment/black-hole-museum-edublogs-block.html`. It preserves the semantic native fallback and points to the immutable `.6` presentation release manifest.
+
+No production classroom data is connected to this laboratory.
