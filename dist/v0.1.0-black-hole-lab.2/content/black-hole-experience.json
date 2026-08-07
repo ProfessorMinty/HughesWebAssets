@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0",
+  "defaultProfile": "5",
+  "profiles": {
+    "0": {
+      "name": "Native calm",
+      "motion": 0,
+      "ambient": 0,
+      "depth": 0,
+      "reflections": 0,
+      "surprise": 0
+    },
+    "1": {
+      "name": "Polished",
+      "motion": 1,
+      "ambient": 0,
+      "depth": 1,
+      "reflections": 1,
+      "surprise": 0
+    },
+    "2": {
+      "name": "Delightful",
+      "motion": 2,
+      "ambient": 1,
+      "depth": 2,
+      "reflections": 1,
+      "surprise": 1
+    },
+    "3": {
+      "name": "Storybook",
+      "motion": 3,
+      "ambient": 2,
+      "depth": 3,
+      "reflections": 2,
+      "surprise": 2
+    },
+    "4": {
+      "name": "Enchanted",
+      "motion": 4,
+      "ambient": 3,
+      "depth": 4,
+      "reflections": 3,
+      "surprise": 3
+    },
+    "5": {
+      "name": "Maximum shelf",
+      "motion": 5,
+      "ambient": 5,
+      "depth": 5,
+      "reflections": 4,
+      "surprise": 4
+    }
+  },
+  "publicControls": {
+    "motionPause": true,
+    "reducedData": true,
+    "stationNavigation": true,
+    "sound": false
+  },
+  "labControls": {
+    "profileSelector": true,
+    "forceReducedMotion": true,
+    "disableReflections": true,
+    "essentialMode": true,
+    "diagnostics": true
+  },
+  "optionalDiscoveries": [
+    "orbit-reflection",
+    "persistent-observatory-lights",
+    "photon-path-echo",
+    "final-observatory-beacon"
+  ],
+  "reducedMotionEdition": "still-museum",
+  "reducedDataEdition": "essential-content",
+  "generatedAt": "2026-08-07T03:01:00Z"
+}
