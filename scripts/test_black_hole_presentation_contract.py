@@ -11,6 +11,7 @@ MAXIMUM = (SRC / 'maximum-shelf.css').read_text(encoding='utf-8')
 ENHANCEMENTS = (SRC / 'maximum-shelf-enhancements.css').read_text(encoding='utf-8')
 FINISHING = (SRC / 'maximum-shelf-finishing.css').read_text(encoding='utf-8')
 WIDE = (SRC / 'maximum-shelf-wide-performance.css').read_text(encoding='utf-8')
+MEDIA = (SRC / 'maximum-shelf-media-center.css').read_text(encoding='utf-8')
 RUNTIME = (SRC / 'maximum-shelf-runtime.js').read_text(encoding='utf-8')
 AMADEUS = (SRC / 'theme-amadeus.css').read_text(encoding='utf-8')
 
@@ -97,6 +98,25 @@ require('backdrop-filter:none!important' in normalized_wide,
 require('word-break:normal!important' in normalized_wide and 'hyphens:none!important' in normalized_wide,
         'exhibit headings cannot be broken into janky mid-word wraps')
 
+# Simulated YouTube Media Center contract.
+normalized_media = MEDIA.replace(' ', '')
+require('bhm-media-center-grid' in MEDIA and 'repeat(2,minmax(0,1fr))' in normalized_media,
+        'Media Center places both YouTube selections side by side on desktop')
+require('@media(max-width:767px)' in normalized_media and 'grid-template-columns:1fr' in normalized_media,
+        'Media Center collapses to a single video column only on mobile')
+require("youtubeId: 'kOEDG3j1bjs'" in RUNTIME and "youtubeId: 'qZWPBKULkdQ'" in RUNTIME,
+        'Media Center contains the two researched prototype YouTube selections')
+require('youtube-nocookie.com/embed/' in RUNTIME,
+        'Media Center uses YouTube privacy-enhanced embeds')
+require('autoplay=0' in RUNTIME and 'controls=1' in RUNTIME,
+        'YouTube players explicitly disable autoplay and keep standard controls')
+require('IntersectionObserver' in RUNTIME and "rootMargin: '100% 0px 100% 0px'" in RUNTIME,
+        'YouTube players wake only when the Media Center approaches the viewport')
+require('deactivateYouTubeFrame' in RUNTIME and 'iframe.remove()' in RUNTIME,
+        'distant Media Center players are removed to stop playback and release overhead')
+require('SIMULATED MEDIA SELECTION' in RUNTIME,
+        'prototype Media Center does not falsely claim Ms. Hughes approval')
+
 # Finishing layer remains a small fallback layer, not another design system.
 require('.bhm-max-corridor-frame:nth-child(4)' in FINISHING,
         'cross-browser threshold-depth fallback remains present')
@@ -124,7 +144,7 @@ require('.site-content > .container' in AMADEUS and 'max-width:none!important' i
 require('.content-area' in AMADEUS and 'float:none!important' in AMADEUS.replace(' ', ''),
         'adapter neutralizes the theme content-area width and float')
 
-# Build order is part of the contract: base, breakout, experience, environment, finishing, wide/performance, theme adapter.
+# Build order is part of the contract: base, breakout, experience, environment, finishing, wide/performance, media center, theme adapter.
 order = [
     'page.css',
     'viewport-breakout.css',
@@ -132,10 +152,11 @@ order = [
     'maximum-shelf-enhancements.css',
     'maximum-shelf-finishing.css',
     'maximum-shelf-wide-performance.css',
+    'maximum-shelf-media-center.css',
     'theme-amadeus.css',
 ]
 positions = [BUILD.find(name) for name in order]
-require(all(pos >= 0 for pos in positions), 'all seven style modules are included by the build')
+require(all(pos >= 0 for pos in positions), 'all eight style modules are included by the build')
 require(positions == sorted(positions), 'style modules are composed in the required cascade order')
 require("maximum-shelf-runtime.js',DIST/'black-hole-museum.js" in BUILD,
         'build publishes the maximum-shelf runtime entry point')
