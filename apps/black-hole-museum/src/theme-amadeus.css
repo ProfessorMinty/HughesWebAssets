@@ -19,18 +19,40 @@ html.hrv-route-black-hole-lab-ready .page-header {
   display:none !important;
 }
 
-/* Confirmed Amadeus defaults add 60px above .site-content, 45px around .page .hentry,
-   and a white bordered article card. The enhanced laboratory owns that space. */
+/* Confirmed Amadeus defaults add 60px above .site-content, a centered .container,
+   a fixed-width content area, and 45px around .page .hentry. The enhanced lab route
+   rejects those article constraints. The viewport is the application canvas. */
 html.hrv-route-black-hole-lab-ready .site-content {
+  width:100% !important;
+  max-width:none !important;
   margin-top:0 !important;
   margin-bottom:0 !important;
+  padding:0 !important;
+}
+
+html.hrv-route-black-hole-lab-ready .site-content > .container {
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+
+html.hrv-route-black-hole-lab-ready .content-area,
+html.hrv-route-black-hole-lab-ready .site-main {
+  width:100% !important;
+  max-width:none !important;
+  float:none !important;
+  margin:0 !important;
+  padding:0 !important;
 }
 
 html.hrv-route-black-hole-lab-ready .page .hentry,
 html.hrv-route-black-hole-lab-ready article.page,
 html.hrv-route-black-hole-lab-ready article.hentry {
+  width:100% !important;
+  max-width:none !important;
   padding:0 !important;
-  margin-bottom:0 !important;
+  margin:0 !important;
   background:transparent !important;
   border:0 !important;
   border-radius:0 !important;
@@ -38,14 +60,10 @@ html.hrv-route-black-hole-lab-ready article.hentry {
 }
 
 /* Prevent Amadeus content typography and spacing from repainting the application island. */
-html.hrv-route-black-hole-lab-ready .entry-content,
-html.hrv-route-black-hole-lab-ready .content-area,
-html.hrv-route-black-hole-lab-ready .site-main {
-  margin-top:0 !important;
-  margin-bottom:0 !important;
-}
-
 html.hrv-route-black-hole-lab-ready .entry-content {
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
   padding:0 !important;
   background:transparent !important;
   box-shadow:none !important;
@@ -71,6 +89,10 @@ html.hrv-route-black-hole-lab-ready #hrv-black-hole-museum-root .bhm-museum h1,
 html.hrv-route-black-hole-lab-ready #hrv-black-hole-museum-root .bhm-museum h2,
 html.hrv-route-black-hole-lab-ready #hrv-black-hole-museum-root .bhm-museum h3 {
   text-transform:none;
+  word-wrap:normal !important;
+  overflow-wrap:normal !important;
+  word-break:normal !important;
+  hyphens:none !important;
 }
 
 /* The repository page owns the visual exit. Hide only page-entry edit/meta chrome. */
