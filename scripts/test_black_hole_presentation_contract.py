@@ -43,9 +43,10 @@ require('@media (prefers-reduced-motion:reduce)' in MAXIMUM,
         'Still Museum reduced-motion treatment exists')
 
 # Compatibility adapter is allowed to touch the theme only behind the route-ready gate.
-for selector in re.findall(r'(^|\n)([^@\n][^\{]+)\{', AMADEUS):
-    text = selector[1].strip()
-    if not text or text.startswith('/*'):
+amadeus_without_comments = re.sub(r'/\*.*?\*/', '', AMADEUS, flags=re.S)
+for raw_selector in re.findall(r'([^{}]+)\{', amadeus_without_comments):
+    text = raw_selector.strip()
+    if not text or text.startswith('@'):
         continue
     for part in text.split(','):
         candidate = part.strip()
