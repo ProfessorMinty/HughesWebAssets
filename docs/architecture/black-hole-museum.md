@@ -6,6 +6,7 @@
 2. The Black Hole Research and Creative Planning Package controls scientific claims, classifications, approved scientific media, and credits.
 3. The Repository Architecture and Manifest Standard controls route ownership, fallback, manifests, releases, testing, and rollback.
 4. The historical `test/repo-layout-lab/` and `test/repo-runtime-lab/` proofs control already-tested Edublogs layout/runtime behavior unless new evidence explicitly supersedes them.
+5. Historical Hughes Room Views pages may inform composition discipline and house-language lessons, but they are not a capability ceiling. Their centered Edublogs container limitations must not be carried into repository-native full-width pages.
 
 ## Route and ownership
 
@@ -13,102 +14,120 @@
 - Route id: `repository-page-lab-black-holes`
 - Page system: `black-hole-museum`
 - Mount id: `hrv-black-hole-museum-root`
-- Current delivery release: `0.1.0-black-hole-lab.8`
-- Current release manifest ref: `8bc03e77770a00da3cdc2b0508c9be8db889ffa2`
-- Current presentation source ref: `fc977a7f2d212513a50c9bd798a7e62c0afe6983`
-- Previous visual checkpoint: `0.1.0-black-hole-lab.7`
-- Preserved viewport correction: `0.1.0-black-hole-lab.3`
+- Current delivery release: `0.1.0-black-hole-lab.10`
+- Current release manifest ref: `c3d34cbdbd9c0988f6f0856eafc9b3126aed29ae`
+- Delivery asset ref: `774351e0c61e7f43e0afe669da6f344e8eaaf4da`
+- Structured source ref: `66206a48d28c3e12194b50c6178d472627c085ac`
+- Immediate rollback: `0.1.0-black-hole-lab.9`
 - Verified lean science/media foundation: `v0.1.0-black-hole-lab.2`
 - Preserved source-bearing historical release: `v0.1.0-black-hole-lab.1`
 
-Edublogs owns the route, native navigation, semantic fallback, and mount. The repository owns the enhanced-mode canvas, exact release, manifests, renderer, scoped CSS, interactions, diagnostics, environmental presentation, optional Media Center, and media delivery.
+Edublogs owns the route, native navigation, semantic fallback, and mount. The repository owns the successful enhanced-mode canvas, release manifests, renderer, DOM composition, scoped CSS, interactions, diagnostics, environmental presentation, optional Media Center, and media delivery.
 
 ## Loading transaction
 
-The bootstrap verifies the exact route, mount contract, schema marker, and fallback before fetching anything. It loads one immutable release manifest with a bounded timeout, then exact CSS, content, assets, experience configuration, and the ES module renderer. The verified `.2` scientific renderer mounts first. Maximum-Shelf presentation decorates only after that mount succeeds.
+The immutable `.2` bootstrap verifies the exact route, mount contract, schema marker, and fallback before loading the release manifest. The verified scientific renderer mounts first. The Maximum-Shelf runtime then adds environmental behavior, performance budgeting, Media Center behavior, and interaction cleanup. Release `.10` adds a final structural composition stage after those proven behaviors mount successfully.
+
+The structural stage moves existing DOM nodes rather than recreating scientific content or interaction controls. Existing buttons, details elements, videos, and event handlers therefore remain owned by the verified renderer/runtime while their visual grouping becomes a real exhibit system.
 
 A failed enhancement returns to the native fallback. A successful enhancement is never allowed to solve an error by retreating into the Amadeus centered article container.
 
 ## Viewport breakout contract
 
-The enhanced repository page uses the root-level breakout proven by `test/repo-layout-lab/`.
+The enhanced route uses the root-level breakout proven by `test/repo-layout-lab/`.
 
-`#hrv-black-hole-museum-root.bhm-mounted` owns `100vw`, `left:50%`, and the symmetric negative half-viewport margins. `.bhm-museum` fills that root with `width:100%` and `margin:0`.
+`#hrv-black-hole-museum-root.bhm-mounted` owns `100vw`, `left:50%`, and symmetric negative half-viewport margins. `.bhm-museum` fills that root. Viewport breakout responsibility must never move to a descendant card or exhibit.
 
-Do not move viewport breakout responsibility onto a child. Do not reintroduce a desktop museum `max-width` shell. `scripts/test_black_hole_viewport_contract.py` guards the proven breakout.
+There is no desktop museum `max-width` shell. Local prose and individual artifacts may have readable size limits, but those limits do not become page limits.
 
-## Desktop horizontal-canvas contract
+## Structured exhibit contract
 
-Release `.8` makes the desktop rule explicit: the viewport is a museum floor plan, not a blog-column container.
+Release `.10` corrects a failure visible in the `.8/.9` screenshots: full width alone did not create composition. Large artifacts and narrow plaques still behaved like unrelated floating modules.
 
-On desktop and normal tablet widths, exhibit structures should use multiple horizontal lanes whenever the content supports it. A story plaque may occupy the left lane while an interactive instrument occupies the center/right. Three related elements may use left/center/right. Observation pairs and media sets may use two- or four-bay grids. Local prose components may cap line length for readability, but those text limits must never become outer-page width limits.
+Every numbered station now has two structural levels:
 
-The single vertical stack is the intentional mobile edition only.
+1. **Scene entrance/header** — station identity, title, scientific classification, one-sentence takeaway, deeper-reading disclosure, and any station-level action.
+2. **Exhibit body** — the dominant observation/interaction plus supporting references arranged for that subject.
 
-`maximum-shelf-wide-performance.css` is the final wide-layout authority. It explicitly removes the old museum-width ceiling, enlarges the typography, prevents ordinary exhibit words from splitting mid-word, and provides two- and three-lane layouts for the major stations.
+`maximum-shelf-structure.js` performs this DOM recomposition after the proven Maximum-Shelf runtime mounts. `maximum-shelf-structure.css` owns the final scene anatomy and typography.
+
+Desktop scene headers use explicit title/summary/action roles. Stations 04, 06, and 09 reverse that header rhythm so the journey does not become a repeated left-title/right-object template.
+
+Specialized anatomy:
+
+- Station 01 becomes an entrance hall with a two-column simulated recap inside the threshold architecture.
+- Station 02 becomes one dominant sky/lensing exhibit below the room header.
+- Station 03 becomes a primary evidence network with one supporting scientific reference.
+- Station 04 becomes an observation theater with the real star-orbit time-lapse as the room-scale artifact.
+- Station 05 pairs the Earth/EHT network instrument with its authoritative observatory map.
+- Station 06 gives the reconstruction instrument primary weight and the published reconstruction reference secondary weight.
+- Station 07 remains intentionally symmetrical because the paired historic observations are the concept.
+- Station 08 uses one working warped-light model followed by an editorial supporting-media spread.
+- Station 09 makes the scientific anatomy model dominant and the myth-correction wall a deliberate interpretation rail.
+- Station 10 preserves the known/unknown conceptual split and follows it with a clean three-artifact evidence pullback.
+
+The simulated Media Center now behaves as a room: its heading/intro precedes the two video players rather than competing with them as a third card.
+
+## Typography and hierarchy contract
+
+The live screenshots established that technically valid 17px-era typography was visually inadequate at modern full-width desktop scale. `.10` raises the museum reading base to approximately 20–23px on desktop, gives station titles exhibit-scale typography, enlarges controls and captions, and keeps classification/source metadata subordinate but legible.
+
+A page may use the whole viewport without making every object equally large. Primary, supporting, and tertiary elements must remain visually distinct.
+
+## Desktop and mobile layout contract
+
+Desktop and normal tablet widths use horizontal composition wherever the content supports it. Full-width means the viewport is available to the designer, not that every child must span edge to edge.
+
+The intentional single-column reading edition begins at phone width (`767px` and below). Mobile stacks the same semantic material without changing its scientific meaning or interaction ownership.
+
+## Performance contract
+
+`maximum-shelf-runtime.js` retains the `current-plus-one-ahead` scroll budget established after live lag was observed. Distant chambers remain semantic DOM but pause animation work, pause native video, set dormant native video to `preload=none`, and use `content-visibility` where appropriate.
+
+The YouTube Media Center keeps privacy-enhanced `youtube-nocookie.com` players, normal controls, `autoplay=0`, and lazy iframe creation/removal based on proximity to the viewport.
+
+The structural compositor does not add scroll listeners, animation loops, media decoders, or duplicate interaction handlers.
 
 ## Amadeus compatibility contract
 
-The runtime laboratory proved repository headings must explicitly own their text paint. The layout laboratory proved theme exceptions must be route-scoped.
+`theme-amadeus.css` activates only behind `html.hrv-route-black-hole-lab-ready`. It neutralizes the native page-title strip, `.site-content` spacing, centered `.site-content > .container`, fixed/floated `.content-area`, page-entry padding, white article card, and entry-footer chrome. Native site navigation remains native and the real site footer remains functional.
 
-`theme-amadeus.css` activates only behind `html.hrv-route-black-hole-lab-ready`. In successful enhanced mode it neutralizes the native page-title strip, `.site-content` spacing, the centered `.site-content > .container`, fixed/floated `.content-area`, page-entry padding, white article card, and entry-footer chrome. The site header/navigation remain native. The native footer remains functional but is visually integrated into the dark museum exit.
+Theme compatibility exists to remove confirmed theme constraints. It must never recreate a centered website-content box around repository-native pages.
 
-This adapter exists to remove confirmed Amadeus constraints, not to recreate a second site-wide CSS system.
+## Durable source layers
 
-## Maximum-Shelf source layers
-
-Presentation remains intentionally modular:
+The durable build composes:
 
 1. `page.css` — verified base renderer styling and core interaction states.
 2. `viewport-breakout.css` — proven Edublogs mount-root breakout.
-3. `maximum-shelf.css` — primary museum scale, chamber identity, artifacts, phone edition, and Still Museum treatment.
-4. `maximum-shelf-enhancements.css` — environmental lightfield, transitions, threshold architecture, reticles, network illumination, artifact bays, and journey cues.
+3. `maximum-shelf.css` — primary atmosphere and responsive experience.
+4. `maximum-shelf-enhancements.css` — environmental transitions and decorative instrumentation.
 5. `maximum-shelf-finishing.css` — small cross-browser spatial fallbacks.
-6. `maximum-shelf-wide-performance.css` — full horizontal desktop composition, larger readable type, word-wrap protection, paint-budget reductions, and dormant-chamber styling.
-7. `maximum-shelf-media-center.css` — optional simulated YouTube Media Center presentation.
-8. `theme-amadeus.css` — route-scoped compatibility adapter.
+6. `maximum-shelf-wide-performance.css` — full-width availability, word-wrap protection, paint-budget reductions, and dormant-chamber styling.
+7. `maximum-shelf-media-center.css` — simulated YouTube Media Center.
+8. `maximum-shelf-structure.css` — final scene anatomy, typography, and exhibit hierarchy.
+9. `theme-amadeus.css` — route-scoped theme compatibility.
 
-The durable build composes those modules in that order.
-
-## Runtime and scroll budget
-
-`maximum-shelf-runtime.js` decorates the verified immutable `.2` renderer rather than replacing its scientific authority.
-
-Release `.8` uses a `current-plus-one-ahead` scroll budget. The runtime identifies the current chamber and keeps exactly one chamber in the scroll direction warm. Distant chambers remain in the semantic DOM but become dormant: their animations pause, native video is paused and set to `preload=none`, and `content-visibility` allows the browser to skip unnecessary rendering work. The next chamber may preload metadata; the current chamber may use its full presentation budget.
-
-The runtime also removes redundant laboratory controls, defaults the Twin-Ring Rotunda to the useful side-by-side comparison state, and strengthens interaction states that were visually ambiguous in live testing.
-
-Cleanup chains into the existing `mount.__bhmDestroy` lifecycle.
-
-## Simulated YouTube Media Center
-
-The real classroom workflow uses one or more YouTube videos approved by Ms. Hughes. No such approval exists for this prototype, so `.8` adds an explicitly simulated Media Center between Station 09 and Station 10.
-
-Prototype selections:
-
-- National Geographic — `Black Holes 101` (`kOEDG3j1bjs`)
-- CrashCourse — `Black Holes: Crash Course Astronomy #33` (`qZWPBKULkdQ`)
-
-The players use `youtube-nocookie.com`, standard YouTube controls, `autoplay=0`, and no programmatic autoplay. The iframes do not exist at initial museum mount. An `IntersectionObserver` creates them only when the Media Center enters a one-viewport prefetch buffer. Leaving that buffered region removes the iframes, which stops playback and releases the external player overhead.
-
-The Media Center is two-up on desktop and one-column on mobile. Its visible label states that it is a simulated selection and not a record of Ms. Hughes approval.
+The durable JavaScript entry is now `maximum-shelf-composed-runtime.js`, which mounts `maximum-shelf-runtime.js` first and then calls `recomposeBlackHoleMuseum()` from `maximum-shelf-structure.js`.
 
 ## Releases and rollback
 
-`.8` reuses the verified `.2` scientific content, experience manifest, twelve scientific media assets, and bootstrap. Its delivery CSS and JS are pinned to delivery commit `12c36263bfeae6a6c252b5271435ae0d6c822f38`; source presentation is pinned to `fc977a7f2d212513a50c9bd798a7e62c0afe6983`; the release manifest is pinned at `8bc03e77770a00da3cdc2b0508c9be8db889ffa2`.
+`.10` reuses the `.9` presentation/media CSS foundation and the verified `.2` scientific content, assets, experience manifest, and bootstrap. Its JavaScript points to the structured source commit `66206a48d28c3e12194b50c6178d472627c085ac`.
 
-`.7` remains the immediate visual rollback. `.3` remains the stable isolated viewport-correction rollback. `.1` and `.2` remain preserved.
+Delivery files are pinned at `774351e0c61e7f43e0afe669da6f344e8eaaf4da`; the release manifest is pinned at `c3d34cbdbd9c0988f6f0856eafc9b3126aed29ae`.
+
+`.9` is the immediate rollback. `.3` remains the preserved isolated viewport-correction release. `.1` and `.2` remain immutable historical/scientific foundations.
 
 ## Testing
 
 `scripts/test_black_hole_viewport_contract.py` guards the historical root-breakout contract.
 
-`scripts/test_black_hole_presentation_contract.py` guards heading ownership, horizontal desktop composition, mobile-only collapse, current-plus-one runtime budgeting, dormant video behavior, Media Center no-autoplay/privacy requirements, route-scoped Amadeus neutralization, and build-module order.
+`scripts/test_black_hole_presentation_contract.py` now also guards the structured compositor, exhibit-scale typography, non-container desktop composition, specialized scene anatomy, mobile-only single-column collapse, current-plus-one performance budget, Media Center behavior, route-scoped Amadeus neutralization, and durable build order.
 
-`.github/workflows/black-hole-presentation-ci.yml` was added as a lightweight remote regression gate for those two tests. The connected GitHub surface did not expose a completed Actions run during the `.8` assembly, so the live Edublogs route remains the required browser/performance smoke test before considering the presentation pass verified.
+`.github/workflows/black-hole-presentation-ci.yml` syntax-checks the Maximum-Shelf runtime, structural compositor, and composed runtime with Node before running the Python contracts. A live Edublogs browser pass remains required because CSS/theme/rendering integration cannot be completely certified by static repository checks.
 
 ## Scope
 
-Application styling remains rooted beneath `#hrv-black-hole-museum-root` except for narrowly documented compatibility selectors gated behind `html.hrv-route-black-hole-lab-ready`.
+Application styling remains beneath `#hrv-black-hole-museum-root` except for narrowly documented compatibility selectors gated behind `html.hrv-route-black-hole-lab-ready`.
 
-The historical runtime/layout laboratories are preserved as evidence and are not edited by this page system.
+Historical runtime/layout laboratories and older classroom pages are evidence sources. They are not edited by this page system and are not treated as limits on what the modern repository architecture may achieve.
