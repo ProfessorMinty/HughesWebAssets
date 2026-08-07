@@ -1,12 +1,35 @@
 import { mountBlackHoleMuseum as mountVerifiedMuseum } from 'https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.2/dist/v0.1.0-black-hole-lab.2/black-hole-museum.js';
 
-const PRESENTATION_VERSION = 'maximum-shelf-2026.08.07.2';
+const PRESENTATION_VERSION = 'maximum-shelf-2026.08.07.3';
 const RUNTIME_WINDOW = 'current-plus-one-ahead';
+const SIMULATED_MEDIA = [
+  {
+    youtubeId: 'kOEDG3j1bjs',
+    title: 'Black Holes 101',
+    source: 'National Geographic',
+    length: 'Short overview',
+    note: 'A compact introduction to black-hole types, formation, and how scientists detect objects that do not emit visible light.'
+  },
+  {
+    youtubeId: 'qZWPBKULkdQ',
+    title: 'Black Holes: Crash Course Astronomy #33',
+    source: 'CrashCourse',
+    length: 'Classroom deep dive',
+    note: 'A longer tour of formation, common misconceptions, stellar-mass black holes, tides, and warped spacetime.'
+  }
+];
 
 function decorative(tag, className, text = '') {
   const node = document.createElement(tag);
   node.className = className;
   node.setAttribute('aria-hidden', 'true');
+  if (text) node.textContent = text;
+  return node;
+}
+
+function element(tag, className, text = '') {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
   if (text) node.textContent = text;
   return node;
 }
@@ -158,6 +181,94 @@ function addScrollProgress(shell, mount, cleanups) {
   update();
 }
 
+function createYouTubeCard(item) {
+  const card = element('article', 'bhm-youtube-card');
+  const frame = element('div', 'bhm-youtube-frame');
+  frame.dataset.youtubeId = item.youtubeId;
+  frame.dataset.youtubeTitle = item.title;
+  frame.append(element('div', 'bhm-youtube-placeholder', 'Video player wakes up when the Media Center is nearby.'));
+
+  const meta = element('div', 'bhm-youtube-card-meta');
+  const heading = element('h3', '', item.title);
+  const source = element('p');
+  source.append(element('span', 'bhm-youtube-source', item.source), document.createTextNode(` · ${item.length}`));
+  const note = element('p', '', item.note);
+  meta.append(heading, source, note);
+  card.append(frame, meta);
+  return card;
+}
+
+function activateYouTubeFrame(frame) {
+  if (frame.querySelector('iframe')) return;
+  const id = frame.dataset.youtubeId;
+  if (!id) return;
+
+  const iframe = document.createElement('iframe');
+  iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=0&controls=1&rel=0&playsinline=1`;
+  iframe.title = frame.dataset.youtubeTitle || 'YouTube video';
+  iframe.loading = 'lazy';
+  iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+  iframe.allow = 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+  iframe.allowFullscreen = true;
+  frame.append(iframe);
+}
+
+function deactivateYouTubeFrame(frame) {
+  const iframe = frame.querySelector('iframe');
+  if (iframe) iframe.remove();
+}
+
+function addMediaCenter(shell, cleanups) {
+  const edge = shell.querySelector('#edge-of-the-known');
+  if (!edge) return;
+
+  const center = element('section', 'bhm-media-center');
+  center.id = 'black-hole-media-center';
+  center.setAttribute('aria-labelledby', 'black-hole-media-center-title');
+  center.dataset.playerState = 'sleeping';
+
+  const inner = element('div', 'bhm-media-center-inner');
+  const intro = element('div', 'bhm-media-center-intro');
+  intro.append(
+    element('p', 'bhm-media-center-kicker', 'Watch · pause · wonder'),
+    element('h2', '', 'Black Hole Media Center'),
+    element('p', '', 'Two optional YouTube stops for visitors who want the story told out loud. Players use normal YouTube controls and never autoplay.'),
+    element('p', 'bhm-media-center-warning', 'SIMULATED MEDIA SELECTION · NOT A RECORD OF MS HUGHES APPROVAL')
+  );
+  intro.querySelector('h2').id = 'black-hole-media-center-title';
+
+  const grid = element('div', 'bhm-media-center-grid');
+  SIMULATED_MEDIA.forEach(item => grid.append(createYouTubeCard(item)));
+  inner.append(intro, grid);
+  center.append(inner);
+  edge.before(center);
+
+  const frames = [...center.querySelectorAll('.bhm-youtube-frame')];
+  const activate = () => {
+    frames.forEach(activateYouTubeFrame);
+    center.dataset.playerState = 'ready';
+  };
+  const sleep = () => {
+    frames.forEach(deactivateYouTubeFrame);
+    center.dataset.playerState = 'sleeping';
+  };
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) activate();
+        else if (center.dataset.playerState === 'ready') sleep();
+      });
+    }, { rootMargin: '100% 0px 100% 0px', threshold: 0 });
+    observer.observe(center);
+    cleanups.push(() => observer.disconnect());
+  } else {
+    activate();
+  }
+
+  cleanups.push(sleep);
+}
+
 function setVideoBudget(chamber, state) {
   chamber.querySelectorAll('video').forEach(video => {
     if (state === 'live') {
@@ -282,7 +393,8 @@ function enrichDiagnostics(shell) {
   if (!dl) return;
   const rows = [
     ['Presentation', PRESENTATION_VERSION],
-    ['Scroll budget', RUNTIME_WINDOW]
+    ['Scroll budget', RUNTIME_WINDOW],
+    ['Media Center', '2 simulated YouTube selections · no autoplay']
   ];
 
   rows.forEach(([label, value]) => {
@@ -311,6 +423,7 @@ function installMaximumShelf({ mount, content }) {
   addEarthNetwork(shell, cleanups);
   addArtifactBays(shell);
   addScrollProgress(shell, mount, cleanups);
+  addMediaCenter(shell, cleanups);
   installRuntimeWindow(shell, cleanups);
   simplifyControls(shell);
   fixRotundaControls(shell);
