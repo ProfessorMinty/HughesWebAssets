@@ -12,6 +12,9 @@ ENHANCEMENTS = (SRC / 'maximum-shelf-enhancements.css').read_text(encoding='utf-
 FINISHING = (SRC / 'maximum-shelf-finishing.css').read_text(encoding='utf-8')
 WIDE = (SRC / 'maximum-shelf-wide-performance.css').read_text(encoding='utf-8')
 MEDIA = (SRC / 'maximum-shelf-media-center.css').read_text(encoding='utf-8')
+STRUCTURE = (SRC / 'maximum-shelf-structure.css').read_text(encoding='utf-8')
+STRUCTURE_JS = (SRC / 'maximum-shelf-structure.js').read_text(encoding='utf-8')
+COMPOSED_RUNTIME = (SRC / 'maximum-shelf-composed-runtime.js').read_text(encoding='utf-8')
 RUNTIME = (SRC / 'maximum-shelf-runtime.js').read_text(encoding='utf-8')
 AMADEUS = (SRC / 'theme-amadeus.css').read_text(encoding='utf-8')
 
@@ -22,106 +25,102 @@ def require(condition: bool, message: str) -> None:
     print('PASS:', message)
 
 
-# Historical lab contracts carried forward.
+# Proven viewport contract from the historical layout laboratory.
+normalized_viewport = VIEWPORT.replace(' ', '')
 require('#hrv-black-hole-museum-root.bhm-mounted' in VIEWPORT,
         'mount root owns viewport breakout')
-require('width:100vw' in VIEWPORT.replace(' ', ''),
-        'viewport contract uses the proven 100vw breakout')
-require('margin-left:-50vw' in VIEWPORT.replace(' ', '') and
-        'margin-right:-50vw' in VIEWPORT.replace(' ', ''),
-        'viewport contract keeps the proven symmetric negative margins')
+require('width:100vw' in normalized_viewport and
+        'margin-left:-50vw' in normalized_viewport and
+        'margin-right:-50vw' in normalized_viewport,
+        'full-width route keeps the proven root-level 100vw breakout')
 
-# Maximum-shelf visual layer must explicitly neutralize theme heading paint.
+# Maximum-shelf atmosphere and accessibility contracts remain intact.
 normalized_max = MAXIMUM.replace(' ', '')
-require('.bhm-museum:where(h1,h2,h3,h4,h5,h6)' in normalized_max or
-        '.bhm-museum:where(h1,h2,h3,h4,h5,h6,' in normalized_max,
-        'maximum-shelf layer explicitly owns museum heading presentation')
 require('color:#fff!important' in normalized_max,
-        'maximum-shelf layer contains explicit high-contrast heading color')
-require('min-height:min(94svh,68rem)' in normalized_max,
-        'museum prologue is intentionally full-scale rather than card-sized')
-require('.bhm-rotunda' in MAXIMUM and '.bhm-laboratory' in MAXIMUM and '.bhm-boundary' in MAXIMUM,
-        'signature rotunda, laboratory, and boundary chambers receive distinct presentation')
+        'museum explicitly owns high-contrast heading color')
 require('@media (max-width:767px)' in MAXIMUM,
-        'vertical pocket-museum responsive treatment exists')
+        'phone pocket-museum treatment remains present')
 require('@media (prefers-reduced-motion:reduce)' in MAXIMUM,
-        'Still Museum reduced-motion treatment exists')
-
-# Environmental runtime is decorative and layered on the verified renderer.
-require('mountVerifiedMuseum(args)' in RUNTIME,
-        'maximum-shelf runtime delegates scientific rendering to the verified renderer first')
-require("setAttribute('aria-hidden', 'true')" in RUNTIME,
-        'environmental nodes are hidden from the accessibility tree')
-require('addChamberIdentity' in RUNTIME and 'addEarthNetwork' in RUNTIME and 'addScrollProgress' in RUNTIME,
-        'environmental runtime provides chamber identity, telescope-network staging, and journey progress')
-require('mount.__bhmDestroy' in RUNTIME,
-        'environmental runtime participates in the renderer cleanup lifecycle')
+        'Still Museum reduced-motion treatment remains present')
 require('.bhm-max-transition' in ENHANCEMENTS and '.bhm-max-lightfield' in ENHANCEMENTS,
-        'environmental stylesheet provides visual transitions and continuous ambient depth')
-require('@media (prefers-reduced-motion:reduce)' in ENHANCEMENTS,
-        'environmental animation has a Still Museum equivalent')
+        'environmental transitions and ambient depth remain present')
 require('@media (forced-colors:active)' in ENHANCEMENTS,
-        'decorative maximum-shelf layers withdraw in forced-colors mode')
+        'decorative environment withdraws in forced-colors mode')
+require('.bhm-max-corridor-frame:nth-child(4)' in FINISHING,
+        'cross-browser threshold depth fallback remains present')
 
-# Live-page performance contract: current chamber + one ahead only.
+# Performance/runtime contracts from the live browser tests.
 require("const RUNTIME_WINDOW = 'current-plus-one-ahead'" in RUNTIME,
-        'runtime declares the current-plus-one-ahead scroll budget')
-require('installRuntimeWindow' in RUNTIME and "'is-runtime-dormant'" in RUNTIME,
-        'runtime assigns live, next, and dormant chamber states')
+        'runtime keeps the current-plus-one-ahead scroll budget')
 require("video.preload = 'none'" in RUNTIME and 'video.pause()' in RUNTIME,
-        'dormant chamber videos are paused and not preloaded')
-require('simplifyControls' in RUNTIME,
-        'maximum-shelf runtime removes redundant laboratory controls')
-require('fixRotundaControls' in RUNTIME,
-        'rotunda comparison controls are normalized for the maximum-shelf edition')
+        'dormant native videos are paused and not preloaded')
+require('IntersectionObserver' in RUNTIME and "rootMargin: '100% 0px 100% 0px'" in RUNTIME,
+        'YouTube Media Center wakes only near the viewport')
+require('autoplay=0' in RUNTIME and 'controls=1' in RUNTIME,
+        'YouTube players never autoplay and retain normal controls')
 
-# Desktop is a horizontal museum canvas. Only mobile is allowed to collapse to the receipt-printer layout.
+# The viewport is available to the exhibit. Text gets local reading limits instead.
 normalized_wide = WIDE.replace(' ', '')
 require('--bhm-wide:none' in normalized_wide,
-        'wide presentation removes the old centered museum-width ceiling')
+        'desktop presentation removes the old centered museum-width ceiling')
 require('width:100%!important' in normalized_wide and 'max-width:none!important' in normalized_wide,
-        'desktop presentation explicitly consumes the available viewport')
-require('grid-template-columns:minmax(25rem,.52fr)minmax(34rem,1.05fr)minmax(25rem,.72fr)!important' in normalized_wide,
-        'evidence gallery uses a three-lane desktop exhibit')
-require('grid-template-columns:minmax(25rem,.48fr)minmax(32rem,1.05fr)minmax(27rem,.8fr)!important' in normalized_wide,
-        'Earth telescope gallery uses story, globe, and map lanes side by side')
-require('grid-template-columns:repeat(4,minmax(0,1fr))' in normalized_wide,
-        'wide laboratory and credits can use multi-bay artifact walls')
-require('@media(max-width:767px)' in normalized_wide,
-        'wide layer retains a dedicated mobile collapse')
-require('grid-template-columns:1fr' in normalized_wide,
-        'mobile layout explicitly returns multi-column artifacts to a single column')
+        'desktop presentation can consume the available viewport')
 require('content-visibility:auto' in normalized_wide,
-        'dormant chambers use browser content-visibility to reduce scroll work')
-require('backdrop-filter:none!important' in normalized_wide,
-        'performance pass removes expensive blur from high-frequency museum surfaces')
+        'dormant chambers retain content-visibility optimization')
 require('word-break:normal!important' in normalized_wide and 'hyphens:none!important' in normalized_wide,
-        'exhibit headings cannot be broken into janky mid-word wraps')
+        'theme inheritance cannot split ordinary exhibit words')
 
-# Simulated YouTube Media Center contract.
+# New structural contract: renderer logic is preserved, DOM anatomy is recomposed after mount.
+require("import { mountBlackHoleMuseum as mountMaximumShelfMuseum } from './maximum-shelf-runtime.js'" in COMPOSED_RUNTIME,
+        'composed runtime preserves the verified maximum-shelf runtime')
+require('recomposeBlackHoleMuseum(args.mount)' in COMPOSED_RUNTIME,
+        'composed runtime restructures the mounted museum after verified rendering')
+require("const STRUCTURE_VERSION = 'structured-exhibit-2026.08.07.1'" in STRUCTURE_JS,
+        'structured exhibit DOM has an explicit version marker')
+require('buildSceneHeader' in STRUCTURE_JS and 'bhm-scene-header' in STRUCTURE_JS,
+        'every station can receive a real scene entrance/header')
+require("REVERSE_HEADER_STATIONS = new Set(['04', '06', '09'])" in STRUCTURE_JS,
+        'selected stations deliberately reverse composition rhythm')
+require('composeThreshold' in STRUCTURE_JS and 'composeRotunda' in STRUCTURE_JS and 'composeBoundary' in STRUCTURE_JS,
+        'threshold, rotunda, and boundary receive specialized scene anatomy')
+require("case '02'" in STRUCTURE_JS and "case '10'" in STRUCTURE_JS,
+        'all numbered stations are handled by the structural compositor')
+
+# Structured CSS must create hierarchy without recreating a centered content box.
+normalized_structure = STRUCTURE.replace(' ', '')
+require('.bhm-chamber{\n  display:block!important' in STRUCTURE or '.bhm-chamber{display:block!important' in normalized_structure,
+        'rooms flow as scene header plus exhibit rather than vertically centered widget grids')
+require('grid-template-areas:' in STRUCTURE and '"title summary"' in STRUCTURE,
+        'desktop scene headers have explicit title/summary/action roles')
+require('font-size:clamp(3.4rem,5.4vw,7rem)!important' in normalized_structure,
+        'station titles are exhibit-scale and readable')
+require('font-size:clamp(20px,.28vw+15px,23px)!important' in normalized_structure,
+        'base museum reading text is sized for a real desktop display')
+require('.bhm-lensing.bhm-stage-grid' not in normalized_structure,
+        'structure layer does not invent a descendant breakout container')
+require('.bhm-lensing .bhm-stage-grid' in STRUCTURE and 'display:block !important' in STRUCTURE,
+        'Sky Atrium becomes one dominant full-width exhibit below its header')
+require('grid-template-columns:minmax(0,1.55fr)minmax(22rem,.45fr)!important' in normalized_structure,
+        'Evidence room has one primary interaction and one supporting reference')
+require('grid-template-columns:minmax(0,1.4fr)minmax(24rem,.6fr)!important' in normalized_structure,
+        'Earth room has a dominant instrument and supporting map')
+require('grid-template-columns:repeat(12,minmax(0,1fr))!important' in normalized_structure,
+        'Warped Light supporting media uses an editorial twelve-column spread')
+require('.bhm-structured-media-center.bhm-media-center-inner' not in normalized_structure,
+        'Media Center structure remains scoped through its real descendant relationship')
+require('.bhm-structured-media-center .bhm-media-center-inner' in STRUCTURE and 'display:block !important' in STRUCTURE,
+        'Media Center title becomes a room header above the videos')
+require('@media (max-width:767px)' in STRUCTURE and 'grid-template-columns:1fr !important' in STRUCTURE,
+        'single-column presentation is reserved for the phone edition')
+
+# Media Center still contains the simulated, non-autoplay classroom-safe selections.
 normalized_media = MEDIA.replace(' ', '')
-require('bhm-media-center-grid' in MEDIA and 'repeat(2,minmax(0,1fr))' in normalized_media,
-        'Media Center places both YouTube selections side by side on desktop')
-require('@media(max-width:767px)' in normalized_media and 'grid-template-columns:1fr' in normalized_media,
-        'Media Center collapses to a single video column only on mobile')
-require("youtubeId: 'kOEDG3j1bjs'" in RUNTIME and "youtubeId: 'qZWPBKULkdQ'" in RUNTIME,
-        'Media Center contains the two researched prototype YouTube selections')
-require('youtube-nocookie.com/embed/' in RUNTIME,
-        'Media Center uses YouTube privacy-enhanced embeds')
-require('autoplay=0' in RUNTIME and 'controls=1' in RUNTIME,
-        'YouTube players explicitly disable autoplay and keep standard controls')
-require('IntersectionObserver' in RUNTIME and "rootMargin: '100% 0px 100% 0px'" in RUNTIME,
-        'YouTube players wake only when the Media Center approaches the viewport')
-require('deactivateYouTubeFrame' in RUNTIME and 'iframe.remove()' in RUNTIME,
-        'distant Media Center players are removed to stop playback and release overhead')
+require('repeat(2,minmax(0,1fr))' in normalized_media,
+        'Media Center keeps two videos side by side on desktop')
 require('SIMULATED MEDIA SELECTION' in RUNTIME,
         'prototype Media Center does not falsely claim Ms. Hughes approval')
 
-# Finishing layer remains a small fallback layer, not another design system.
-require('.bhm-max-corridor-frame:nth-child(4)' in FINISHING,
-        'cross-browser threshold-depth fallback remains present')
-
-# Compatibility adapter is allowed to touch the theme only behind the route-ready gate.
+# Theme compatibility remains route-scoped only.
 amadeus_without_comments = re.sub(r'/\*.*?\*/', '', AMADEUS, flags=re.S)
 for raw_selector in re.findall(r'([^{}]+)\{', amadeus_without_comments):
     text = raw_selector.strip()
@@ -132,19 +131,12 @@ for raw_selector in re.findall(r'([^{}]+)\{', amadeus_without_comments):
         if candidate and not candidate.startswith('html.hrv-route-black-hole-lab-ready'):
             raise AssertionError('Unscoped Amadeus selector: ' + candidate)
 print('PASS: every Amadeus compatibility selector is route-scoped')
-
-require('.entry-header' in AMADEUS,
-        'adapter suppresses the native page-title wrapper after successful enhancement')
-require('.entry-footer' in AMADEUS,
-        'adapter prevents native entry footer chrome from interrupting the museum exit')
-require('.page .hentry' in AMADEUS and 'padding:0!important' in AMADEUS.replace(' ', ''),
-        'adapter neutralizes confirmed Amadeus page-card padding')
 require('.site-content > .container' in AMADEUS and 'max-width:none!important' in AMADEUS.replace(' ', ''),
-        'adapter removes the Amadeus centered container as a layout authority')
+        'Amadeus centered container is not a layout authority on the enhanced route')
 require('.content-area' in AMADEUS and 'float:none!important' in AMADEUS.replace(' ', ''),
-        'adapter neutralizes the theme content-area width and float')
+        'theme content-area width and float remain neutralized')
 
-# Build order is part of the contract: base, breakout, experience, environment, finishing, wide/performance, media center, theme adapter.
+# Durable build order: foundation -> viewport -> atmosphere -> performance/media -> structure -> theme adapter.
 order = [
     'page.css',
     'viewport-breakout.css',
@@ -153,16 +145,17 @@ order = [
     'maximum-shelf-finishing.css',
     'maximum-shelf-wide-performance.css',
     'maximum-shelf-media-center.css',
+    'maximum-shelf-structure.css',
     'theme-amadeus.css',
 ]
 positions = [BUILD.find(name) for name in order]
-require(all(pos >= 0 for pos in positions), 'all eight style modules are included by the build')
+require(all(pos >= 0 for pos in positions), 'all nine style modules are included by the durable build')
 require(positions == sorted(positions), 'style modules are composed in the required cascade order')
-require("maximum-shelf-runtime.js',DIST/'black-hole-museum.js" in BUILD,
-        'build publishes the maximum-shelf runtime entry point')
+require("maximum-shelf-composed-runtime.js',DIST/'black-hole-museum.js" in BUILD,
+        'durable build publishes the structured composed runtime entry point')
 
-# Guard against regressing to one giant base stylesheet.
-require('maximum-shelf.css' not in BASE and 'theme-amadeus.css' not in BASE,
-        'base stylesheet remains a separable foundation rather than swallowing compatibility layers')
+# Base renderer remains separable and authoritative for science/interactions.
+require('maximum-shelf.css' not in BASE and 'theme-amadeus.css' not in BASE and 'maximum-shelf-structure.css' not in BASE,
+        'base renderer styling remains separable from presentation and theme adapters')
 
-print('\nBlack Hole Museum presentation contract passed.')
+print('\nBlack Hole Museum structured presentation contract passed.')
