@@ -73,8 +73,26 @@ html.hrv-route-black-hole-lab-ready #hrv-black-hole-museum-root .bhm-museum h3 {
   text-transform:none;
 }
 
-/* The repository page owns the visual exit. Keep theme metadata/footer chrome from
-   creating a white card immediately beneath the installation. */
+/* The repository page owns the visual exit. Hide only page-entry edit/meta chrome. */
 html.hrv-route-black-hole-lab-ready .entry-footer {
   display:none !important;
+}
+
+/* Amadeus paints the native site footer white. Keep the footer functional, but let
+   it visually continue the museum's return-to-observers exit instead of creating
+   a hard white cliff below the installation. */
+html.hrv-route-black-hole-lab-ready .site-footer {
+  background:#071321 !important;
+  border-top:1px solid rgba(143,222,255,.12) !important;
+  color:#b8c8d8 !important;
+}
+
+html.hrv-route-black-hole-lab-ready .site-footer a,
+html.hrv-route-black-hole-lab-ready .site-footer .site-info {
+  color:#d6e7f3 !important;
+}
+
+html.hrv-route-black-hole-lab-ready .site-footer a:hover,
+html.hrv-route-black-hole-lab-ready .site-footer a:focus-visible {
+  color:#75f2ff !important;
 }
