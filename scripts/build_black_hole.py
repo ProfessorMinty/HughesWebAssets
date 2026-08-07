@@ -66,12 +66,15 @@ def main():
     (DIST/'assets').mkdir(parents=True)
 
     copy(ROOT/'packages/runtime-bootstrap/src/index.js',DIST/'runtime-bootstrap.js')
-    copy(ROOT/'apps/black-hole-museum/src/index.js',DIST/'black-hole-museum.js')
+    # The maximum-shelf runtime decorates the already-verified immutable .2 renderer.
+    # The base renderer remains in src/index.js as the scientific/interaction authority.
+    copy(ROOT/'apps/black-hole-museum/src/maximum-shelf-runtime.js',DIST/'black-hole-museum.js')
 
     style_sources=[
         ROOT/'apps/black-hole-museum/src/page.css',
         ROOT/'apps/black-hole-museum/src/viewport-breakout.css',
         ROOT/'apps/black-hole-museum/src/maximum-shelf.css',
+        ROOT/'apps/black-hole-museum/src/maximum-shelf-enhancements.css',
         ROOT/'apps/black-hole-museum/src/theme-amadeus.css',
     ]
     (DIST/'black-hole-museum.css').write_text(
