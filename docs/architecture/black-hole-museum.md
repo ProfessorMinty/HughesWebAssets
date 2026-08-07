@@ -14,11 +14,13 @@
 - Route id: `repository-page-lab-black-holes`
 - Page system: `black-hole-museum`
 - Mount id: `hrv-black-hole-museum-root`
-- Current delivery release: `0.1.0-black-hole-lab.10`
-- Current release manifest ref: `c3d34cbdbd9c0988f6f0856eafc9b3126aed29ae`
-- Delivery asset ref: `774351e0c61e7f43e0afe669da6f344e8eaaf4da`
+- Current delivery release: `0.1.0-black-hole-lab.11`
+- Current release manifest ref: `6314cf72de597af5fcd05bf1dcc3590560ecbcc5`
+- Current style delivery ref: `cd04af504de7990a053866db3fa3daf7915b8632`
+- Structured runtime delivery ref: `774351e0c61e7f43e0afe669da6f344e8eaaf4da`
 - Structured source ref: `66206a48d28c3e12194b50c6178d472627c085ac`
-- Immediate rollback: `0.1.0-black-hole-lab.9`
+- Cascade-preflight source ref: `cb2e6bfed812eb473fa49ec2d6b7a923c2459319`
+- Immediate rollback: `0.1.0-black-hole-lab.10`
 - Verified lean science/media foundation: `v0.1.0-black-hole-lab.2`
 - Preserved source-bearing historical release: `v0.1.0-black-hole-lab.1`
 
@@ -26,7 +28,7 @@ Edublogs owns the route, native navigation, semantic fallback, and mount. The re
 
 ## Loading transaction
 
-The immutable `.2` bootstrap verifies the exact route, mount contract, schema marker, and fallback before loading the release manifest. The verified scientific renderer mounts first. The Maximum-Shelf runtime then adds environmental behavior, performance budgeting, Media Center behavior, and interaction cleanup. Release `.10` adds a final structural composition stage after those proven behaviors mount successfully.
+The immutable `.2` bootstrap verifies the exact route, mount contract, schema marker, and fallback before loading the release manifest. The verified scientific renderer mounts first. The Maximum-Shelf runtime then adds environmental behavior, performance budgeting, Media Center behavior, and interaction cleanup. The structured runtime then recomposes the already-mounted DOM into explicit exhibit scenes.
 
 The structural stage moves existing DOM nodes rather than recreating scientific content or interaction controls. Existing buttons, details elements, videos, and event handlers therefore remain owned by the verified renderer/runtime while their visual grouping becomes a real exhibit system.
 
@@ -42,7 +44,7 @@ There is no desktop museum `max-width` shell. Local prose and individual artifac
 
 ## Structured exhibit contract
 
-Release `.10` corrects a failure visible in the `.8/.9` screenshots: full width alone did not create composition. Large artifacts and narrow plaques still behaved like unrelated floating modules.
+The structured system corrects the failure visible in the `.8/.9` screenshots: full width alone did not create composition. Large artifacts and narrow plaques still behaved like unrelated floating modules.
 
 Every numbered station now has two structural levels:
 
@@ -66,11 +68,26 @@ Specialized anatomy:
 - Station 09 makes the scientific anatomy model dominant and the myth-correction wall a deliberate interpretation rail.
 - Station 10 preserves the known/unknown conceptual split and follows it with a clean three-artifact evidence pullback.
 
-The simulated Media Center now behaves as a room: its heading/intro precedes the two video players rather than competing with them as a third card.
+The simulated Media Center behaves as a room: its heading/intro precedes the two video players rather than competing with them as a third card.
+
+## Forensic cascade-preflight contract
+
+Release `.11` exists because the `.10` structural module was layered over preserved `.9` presentation CSS. A browser-level cascade audit found that `.9` named grid areas for Stations 03, 05, and 06 could survive after the old plaque DOM cells were removed. That could place the primary exhibit into the narrow support rail or leave blank named cells.
+
+The same audit found inherited `.9` explicit row/column placement on the Station 08 media cards. Without a reset, the first reference could be pushed beneath later cards and the fourth card could occupy an inherited row instead of the intended editorial sequence.
+
+`maximum-shelf-structure-preflight.css` therefore:
+
+- clears `grid-template-areas` and inherited child `grid-area` on Stations 03, 05, and 06;
+- clears inherited Station 08 card row/column placement before reapplying the final 7/5 supporting spread;
+- makes the fourth Station 08 motion reference a full-width closing row;
+- raises remaining prototype-era microtype for station metadata, evidence labels, clue expansion text, and Earth observatory labels.
+
+These are cascade corrections, not a new design system.
 
 ## Typography and hierarchy contract
 
-The live screenshots established that technically valid 17px-era typography was visually inadequate at modern full-width desktop scale. `.10` raises the museum reading base to approximately 20–23px on desktop, gives station titles exhibit-scale typography, enlarges controls and captions, and keeps classification/source metadata subordinate but legible.
+The live screenshots established that technically valid 17px-era typography was visually inadequate at modern full-width desktop scale. The structured system raises the museum reading base to approximately 20–23px on desktop, gives station titles exhibit-scale typography, enlarges controls and captions, and keeps classification/source metadata subordinate but legible.
 
 A page may use the whole viewport without making every object equally large. Primary, supporting, and tertiary elements must remain visually distinct.
 
@@ -106,25 +123,30 @@ The durable build composes:
 6. `maximum-shelf-wide-performance.css` — full-width availability, word-wrap protection, paint-budget reductions, and dormant-chamber styling.
 7. `maximum-shelf-media-center.css` — simulated YouTube Media Center.
 8. `maximum-shelf-structure.css` — final scene anatomy, typography, and exhibit hierarchy.
-9. `theme-amadeus.css` — route-scoped theme compatibility.
+9. `maximum-shelf-structure-preflight.css` — legacy cascade cleanup and instrument-label readability floor.
+10. `theme-amadeus.css` — route-scoped theme compatibility.
 
-The durable JavaScript entry is now `maximum-shelf-composed-runtime.js`, which mounts `maximum-shelf-runtime.js` first and then calls `recomposeBlackHoleMuseum()` from `maximum-shelf-structure.js`.
+The durable JavaScript entry is `maximum-shelf-composed-runtime.js`, which mounts `maximum-shelf-runtime.js` first and then calls `recomposeBlackHoleMuseum()` from `maximum-shelf-structure.js`.
 
 ## Releases and rollback
 
-`.10` reuses the `.9` presentation/media CSS foundation and the verified `.2` scientific content, assets, experience manifest, and bootstrap. Its JavaScript points to the structured source commit `66206a48d28c3e12194b50c6178d472627c085ac`.
+`.11` reuses the `.10` structured runtime, `.10/.9` presentation foundation, and the verified `.2` scientific content, assets, experience manifest, and bootstrap. It adds only the forensic cascade/readability correction stylesheet.
 
-Delivery files are pinned at `774351e0c61e7f43e0afe669da6f344e8eaaf4da`; the release manifest is pinned at `c3d34cbdbd9c0988f6f0856eafc9b3126aed29ae`.
+The `.11` style file is pinned at `cd04af504de7990a053866db3fa3daf7915b8632`; the `.11` release manifest is pinned at `6314cf72de597af5fcd05bf1dcc3590560ecbcc5`.
 
-`.9` is the immediate rollback. `.3` remains the preserved isolated viewport-correction release. `.1` and `.2` remain immutable historical/scientific foundations.
+`.10` is the immediate rollback. `.9` remains the last pre-structure visual checkpoint. `.3` remains the preserved isolated viewport-correction release. `.1` and `.2` remain immutable historical/scientific foundations.
 
 ## Testing
 
 `scripts/test_black_hole_viewport_contract.py` guards the historical root-breakout contract.
 
-`scripts/test_black_hole_presentation_contract.py` now also guards the structured compositor, exhibit-scale typography, non-container desktop composition, specialized scene anatomy, mobile-only single-column collapse, current-plus-one performance budget, Media Center behavior, route-scoped Amadeus neutralization, and durable build order.
+`scripts/test_black_hole_presentation_contract.py` guards the structured compositor, exhibit-scale typography, non-container desktop composition, specialized scene anatomy, mobile-only single-column collapse, current-plus-one performance budget, Media Center behavior, route-scoped Amadeus neutralization, and durable build order.
+
+`scripts/test_black_hole_structure_cascade.py` guards the `.11` named-grid reset, Station 08 row/column reset, final laboratory supporting spread, instrument-label text floor, and durable preflight module ordering.
 
 `.github/workflows/black-hole-presentation-ci.yml` syntax-checks the Maximum-Shelf runtime, structural compositor, and composed runtime with Node before running the Python contracts. A live Edublogs browser pass remains required because CSS/theme/rendering integration cannot be completely certified by static repository checks.
+
+During the `.11` forensic pass, a local Chromium structural harness was also exercised at 1920, 1440, 1180, 1024, 900, 800, 768, and 390px. The corrected geometry produced no horizontal overflow and restored the intended primary/support relationships. This harness validates the structural CSS behavior, not the final Edublogs theme/CDN integration.
 
 ## Scope
 
