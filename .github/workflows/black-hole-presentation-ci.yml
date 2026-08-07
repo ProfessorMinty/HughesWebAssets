@@ -28,8 +28,19 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Verify structured runtime syntax
+        run: |
+          node --check apps/black-hole-museum/src/maximum-shelf-runtime.js
+          node --check apps/black-hole-museum/src/maximum-shelf-structure.js
+          node --check apps/black-hole-museum/src/maximum-shelf-composed-runtime.js
+
       - name: Verify proven viewport breakout
         run: python scripts/test_black_hole_viewport_contract.py
 
-      - name: Verify Maximum-Shelf presentation contract
+      - name: Verify structured Maximum-Shelf presentation contract
         run: python scripts/test_black_hole_presentation_contract.py
