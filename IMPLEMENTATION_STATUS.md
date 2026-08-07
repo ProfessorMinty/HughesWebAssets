@@ -1,12 +1,42 @@
 # Implementation status
 
-The repository-side source, generated offline release, application, schemas, tests, evidence, and Edublogs handoff have been created and tested locally.
+The unpublished Arctic Preferred Black Hole Museum repository page system is deployed to GitHub and has a verified scientific-media foundation.
 
-This package is **not deployment-ready** for two external reasons:
+## Current state
 
-1. The connected GitHub integration returned HTTP 403 for branch and Git object writes, so the feature branch and immutable tag do not exist on GitHub.
-2. The execution environment could not reach the authoritative NASA, ESO, and EHT download hosts, so the approved scientific media could not be vendored and optimized.
+- Route: `/repository-page-lab/`
+- Page system: `black-hole-museum`
+- Feature branch: `feature/arctic-black-hole-museum`
+- Current presentation release: `0.1.0-black-hole-lab.6`
+- Current release manifest commit: `ff5c8c4433c9241d7a853c2b6bfdf68773b34b86`
+- Presentation source commit: `0b50187fe1a3aa6f0d63018d332150abc0d43bb9`
+- Stable presentation rollback: `0.1.0-black-hole-lab.3`
+- Verified lean science/media foundation: `v0.1.0-black-hole-lab.2`
+- Preserved source-bearing release: `v0.1.0-black-hole-lab.1`
 
-The handoff block is final in structure and exact in route/mount contract, but its immutable tag URLs will not resolve until `v0.1.0-black-hole-lab.1` is actually pushed to `ProfessorMinty/HughesWebAssets` with the completed release assets.
+The `.2` foundation contains the approved scientific content, twelve acquired media records and derivatives, runtime bootstrap, renderer, experience manifest, and previously completed repository/browser/CDN verification.
 
-Do not paste the block into Edublogs expecting enhancement until those two blockers are cleared. The native fallback itself is complete and safe.
+The `.3` release corrected the Edublogs viewport breakout using the exact mount-root method proven by `test/repo-layout-lab/`.
+
+The `.6` release is the Maximum-Shelf creative pass. It preserves the verified `.2` science/interaction engine and adds:
+
+- full-scale museum presentation;
+- ten differentiated gallery chambers;
+- large scientific artifact staging;
+- route-scoped Amadeus compatibility;
+- continuous environmental lightfield and gallery transitions;
+- threshold architecture and chamber identity;
+- lensing instrumentation treatment;
+- EHT Earth-network illumination;
+- Twin-Ring Rotunda artifact bays;
+- journey-progress cues;
+- phone pocket-museum behavior;
+- reduced-motion and forced-colors equivalents.
+
+The current Edublogs handoff is:
+
+`docs/deployment/black-hole-museum-edublogs-block.html`
+
+It points to the immutable `.6` release manifest. The only remaining external step for this presentation pass is to replace the Custom HTML block on the test route and perform a live signed-out visual smoke test on Edublogs.
+
+No production classroom data is connected. The visible simulated-classroom warning and native fallback remain required.
