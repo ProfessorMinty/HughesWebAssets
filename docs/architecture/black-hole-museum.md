@@ -3,8 +3,9 @@
 ## Authority order
 
 1. The Revised Arctic Preferred Maximum-Shelf Experience Blueprint controls the creative experience.
-2. The Black Hole Research and Creative Planning Package controls scientific claims, classifications, approved media, and credits.
+2. The Black Hole Research and Creative Planning Package controls scientific claims, classifications, approved scientific media, and credits.
 3. The Repository Architecture and Manifest Standard controls route ownership, fallback, manifests, releases, testing, and rollback.
+4. The historical `test/repo-layout-lab/` and `test/repo-runtime-lab/` proofs control already-tested Edublogs layout/runtime behavior unless new evidence explicitly supersedes them.
 
 ## Route and ownership
 
@@ -12,70 +13,102 @@
 - Route id: `repository-page-lab-black-holes`
 - Page system: `black-hole-museum`
 - Mount id: `hrv-black-hole-museum-root`
-- Current delivery release: `0.1.0-black-hole-lab.7`
-- Current release manifest ref: `1d5c39e413952a840b6f94af9f00060e3291face`
-- Current presentation source ref: `d548ca221ccf5d740897a4177e173ff40a464e54`
-- Preserved viewport-correction release: `0.1.0-black-hole-lab.3`
-- Preserved lean base release: `v0.1.0-black-hole-lab.2`
+- Current delivery release: `0.1.0-black-hole-lab.8`
+- Current release manifest ref: `8bc03e77770a00da3cdc2b0508c9be8db889ffa2`
+- Current presentation source ref: `fc977a7f2d212513a50c9bd798a7e62c0afe6983`
+- Previous visual checkpoint: `0.1.0-black-hole-lab.7`
+- Preserved viewport correction: `0.1.0-black-hole-lab.3`
+- Verified lean science/media foundation: `v0.1.0-black-hole-lab.2`
 - Preserved source-bearing historical release: `v0.1.0-black-hole-lab.1`
 
-Edublogs owns the route, native navigation, readable fallback, and mount. The repository owns the bootstrap, exact release, manifests, renderer, scoped CSS, interactions, diagnostics, environmental presentation, and media delivery.
+Edublogs owns the route, native navigation, semantic fallback, and mount. The repository owns the enhanced-mode canvas, exact release, manifests, renderer, scoped CSS, interactions, diagnostics, environmental presentation, optional Media Center, and media delivery.
 
 ## Loading transaction
 
-The bootstrap verifies the exact route, mount contract, schema marker, and fallback before fetching anything. It loads one immutable release manifest with a bounded timeout, then loads exact CSS, content, assets, experience configuration, and the ES module renderer. The verified renderer builds into a detached `DocumentFragment` and commits only after the required manifests validate. The maximum-shelf runtime then decorates that successfully mounted museum without becoming the authority for scientific content or core interactions.
+The bootstrap verifies the exact route, mount contract, schema marker, and fallback before fetching anything. It loads one immutable release manifest with a bounded timeout, then exact CSS, content, assets, experience configuration, and the ES module renderer. The verified `.2` scientific renderer mounts first. Maximum-Shelf presentation decorates only after that mount succeeds.
 
-If any pre-commit dependency fails, the native fallback remains. If one station fails after mount, the station becomes a readable local error state while the rest of the museum continues.
+A failed enhancement returns to the native fallback. A successful enhancement is never allowed to solve an error by retreating into the Amadeus centered article container.
 
 ## Viewport breakout contract
 
-The full repository page uses the root-level breakout proven by `test/repo-layout-lab/`.
+The enhanced repository page uses the root-level breakout proven by `test/repo-layout-lab/`.
 
-The mount root `#hrv-black-hole-museum-root.bhm-mounted` owns the `100vw`, `left:50%`, and negative half-viewport margins. The rendered `.bhm-museum` fills that root with `width:100%` and `margin:0`.
+`#hrv-black-hole-museum-root.bhm-mounted` owns `100vw`, `left:50%`, and the symmetric negative half-viewport margins. `.bhm-museum` fills that root with `width:100%` and `margin:0`.
 
-Do not move viewport breakout responsibility onto `.bhm-museum`. `scripts/test_black_hole_viewport_contract.py` guards this contract. Release `.3` remains preserved as the isolated viewport correction and stable presentation rollback target.
+Do not move viewport breakout responsibility onto a child. Do not reintroduce a desktop museum `max-width` shell. `scripts/test_black_hole_viewport_contract.py` guards the proven breakout.
 
-## Maximum-shelf presentation contract
+## Desktop horizontal-canvas contract
 
-This unpublished laboratory is the creative ceiling test, not the balanced production default. It follows the Revised Arctic Preferred Maximum-Shelf Experience Blueprint as one continuous full-width environmental canvas with ten visually distinct chambers, large scientific artifacts, capped reading widths, strong exhibit lighting, quiet recovery spaces, layered depth, and several signature moments.
+Release `.8` makes the desktop rule explicit: the viewport is a museum floor plan, not a blog-column container.
 
-Presentation source remains modular:
+On desktop and normal tablet widths, exhibit structures should use multiple horizontal lanes whenever the content supports it. A story plaque may occupy the left lane while an interactive instrument occupies the center/right. Three related elements may use left/center/right. Observation pairs and media sets may use two- or four-bay grids. Local prose components may cap line length for readability, but those text limits must never become outer-page width limits.
 
-1. `page.css` — verified base renderer styling and interaction states.
-2. `viewport-breakout.css` — proven Edublogs full-viewport mount contract.
-3. `maximum-shelf.css` — museum scale, chamber identity, artifact staging, responsive pocket-museum behavior, and Still Museum equivalents.
-4. `maximum-shelf-enhancements.css` — continuous lightfield, gallery transitions, threshold architecture, lensing reticle, EHT network illumination, artifact bays, and scroll-journey cues.
-5. `maximum-shelf-finishing.css` — small cross-browser spatial fallbacks used by the live-theme finishing pass.
-6. `theme-amadeus.css` — confirmed route-scoped theme compatibility only.
+The single vertical stack is the intentional mobile edition only.
 
-The durable build composes the base, breakout, maximum-shelf, environmental, and theme modules. The `.7` lean delivery additionally imports the finishing module from the same exact presentation source commit.
+`maximum-shelf-wide-performance.css` is the final wide-layout authority. It explicitly removes the old museum-width ceiling, enlarges the typography, prevents ordinary exhibit words from splitting mid-word, and provides two- and three-lane layouts for the major stations.
 
-## Maximum-shelf runtime contract
+## Amadeus compatibility contract
 
-`maximum-shelf-runtime.js` decorates the already-verified immutable `.2` renderer. It calls the verified renderer first and only then adds environmental elements.
+The runtime laboratory proved repository headings must explicitly own their text paint. The layout laboratory proved theme exceptions must be route-scoped.
 
-The decorator adds continuous lightfield layers, receding threshold architecture, large decorative chamber identities, transitions between the ten exhibit chambers, a lensing reticle, EHT Earth-network illumination, Twin-Ring Rotunda artifact-bay framing, a museum-journey progress rail, active-chamber atmosphere state, and a presentation version field in diagnostics.
+`theme-amadeus.css` activates only behind `html.hrv-route-black-hole-lab-ready`. In successful enhanced mode it neutralizes the native page-title strip, `.site-content` spacing, the centered `.site-content > .container`, fixed/floated `.content-area`, page-entry padding, white article card, and entry-footer chrome. The site header/navigation remain native. The native footer remains functional but is visually integrated into the dark museum exit.
 
-Decorative nodes are `aria-hidden`. Motion obeys the museum pause state and `prefers-reduced-motion`. Forced-colors mode removes decorative spatial layers. Cleanup chains into the existing `mount.__bhmDestroy` lifecycle.
+This adapter exists to remove confirmed Amadeus constraints, not to recreate a second site-wide CSS system.
 
-Release `.7` reuses the verified `.2` bootstrap, scientific renderer, content, experience manifest, and media. Its delivery entry point and stylesheet are pinned to delivery commit `65d02609abcfde749d81e3108901cc4cf3a7556a`, with presentation modules sourced from exact feature commit `d548ca221ccf5d740897a4177e173ff40a464e54`. The release manifest is pinned at `1d5c39e413952a840b6f94af9f00060e3291face`.
+## Maximum-Shelf source layers
 
-Releases `.4`, `.5`, and `.6` were internal presentation candidates during the live design and compatibility pass. They were superseded before final handoff.
+Presentation remains intentionally modular:
 
-## Theme compatibility contract
+1. `page.css` — verified base renderer styling and core interaction states.
+2. `viewport-breakout.css` — proven Edublogs mount-root breakout.
+3. `maximum-shelf.css` — primary museum scale, chamber identity, artifacts, phone edition, and Still Museum treatment.
+4. `maximum-shelf-enhancements.css` — environmental lightfield, transitions, threshold architecture, reticles, network illumination, artifact bays, and journey cues.
+5. `maximum-shelf-finishing.css` — small cross-browser spatial fallbacks.
+6. `maximum-shelf-wide-performance.css` — full horizontal desktop composition, larger readable type, word-wrap protection, paint-budget reductions, and dormant-chamber styling.
+7. `maximum-shelf-media-center.css` — optional simulated YouTube Media Center presentation.
+8. `theme-amadeus.css` — route-scoped compatibility adapter.
 
-The runtime laboratory proved that repository headings must explicitly own their color and typography rather than inheriting theme paint. The layout laboratory established that theme exceptions must be measured and route-scoped.
+The durable build composes those modules in that order.
 
-`theme-amadeus.css` activates only behind `html.hrv-route-black-hole-lab-ready`, which the bootstrap adds after a successful museum mount. Before enhancement succeeds, Edublogs fallback remains conventionally styled.
+## Runtime and scroll budget
 
-The observed Amadeus structure and source confirm the relevant native wrappers and defaults: the page title is in `header.entry-header`; `.site-content` adds top spacing; `.page .hentry` adds article padding; `.hentry` supplies the white card background/border/radius/bottom margin; and `.site-footer` is white.
+`maximum-shelf-runtime.js` decorates the verified immutable `.2` renderer rather than replacing its scientific authority.
 
-On the enhanced laboratory route the adapter may suppress the native page-title wrapper, zero confirmed page/article spacing, remove the native white article card and entry-footer chrome, reinforce repository text color ownership, and tint the still-functional native site footer into the museum exit. It does not hide or replace the Hughes Room Views site header/navigation and does not apply to any other route.
+Release `.8` uses a `current-plus-one-ahead` scroll budget. The runtime identifies the current chamber and keeps exactly one chamber in the scroll direction warm. Distant chambers remain in the semantic DOM but become dormant: their animations pause, native video is paused and set to `preload=none`, and `content-visibility` allows the browser to skip unnecessary rendering work. The next chamber may preload metadata; the current chamber may use its full presentation budget.
 
-`scripts/test_black_hole_presentation_contract.py` checks the viewport, presentation, environmental runtime, responsive, reduced-motion, cleanup, theme-scope, and build-composition contracts.
+The runtime also removes redundant laboratory controls, defaults the Twin-Ring Rotunda to the useful side-by-side comparison state, and strengthens interaction states that were visually ambiguous in live testing.
+
+Cleanup chains into the existing `mount.__bhmDestroy` lifecycle.
+
+## Simulated YouTube Media Center
+
+The real classroom workflow uses one or more YouTube videos approved by Ms. Hughes. No such approval exists for this prototype, so `.8` adds an explicitly simulated Media Center between Station 09 and Station 10.
+
+Prototype selections:
+
+- National Geographic — `Black Holes 101` (`kOEDG3j1bjs`)
+- CrashCourse — `Black Holes: Crash Course Astronomy #33` (`qZWPBKULkdQ`)
+
+The players use `youtube-nocookie.com`, standard YouTube controls, `autoplay=0`, and no programmatic autoplay. The iframes do not exist at initial museum mount. An `IntersectionObserver` creates them only when the Media Center enters a one-viewport prefetch buffer. Leaving that buffered region removes the iframes, which stops playback and releases the external player overhead.
+
+The Media Center is two-up on desktop and one-column on mobile. Its visible label states that it is a simulated selection and not a record of Ms. Hughes approval.
+
+## Releases and rollback
+
+`.8` reuses the verified `.2` scientific content, experience manifest, twelve scientific media assets, and bootstrap. Its delivery CSS and JS are pinned to delivery commit `12c36263bfeae6a6c252b5271435ae0d6c822f38`; source presentation is pinned to `fc977a7f2d212513a50c9bd798a7e62c0afe6983`; the release manifest is pinned at `8bc03e77770a00da3cdc2b0508c9be8db889ffa2`.
+
+`.7` remains the immediate visual rollback. `.3` remains the stable isolated viewport-correction rollback. `.1` and `.2` remain preserved.
+
+## Testing
+
+`scripts/test_black_hole_viewport_contract.py` guards the historical root-breakout contract.
+
+`scripts/test_black_hole_presentation_contract.py` guards heading ownership, horizontal desktop composition, mobile-only collapse, current-plus-one runtime budgeting, dormant video behavior, Media Center no-autoplay/privacy requirements, route-scoped Amadeus neutralization, and build-module order.
+
+`.github/workflows/black-hole-presentation-ci.yml` was added as a lightweight remote regression gate for those two tests. The connected GitHub surface did not expose a completed Actions run during the `.8` assembly, so the live Edublogs route remains the required browser/performance smoke test before considering the presentation pass verified.
 
 ## Scope
 
 Application styling remains rooted beneath `#hrv-black-hole-museum-root` except for narrowly documented compatibility selectors gated behind `html.hrv-route-black-hole-lab-ready`.
 
-The historical `test/repo-runtime-lab/` and `test/repo-layout-lab/` directories are evidence sources and are not replaced or edited by this package.
+The historical runtime/layout laboratories are preserved as evidence and are not edited by this page system.
