@@ -74,6 +74,7 @@ The following proven behaviors are preserved as small helpers rather than inheri
 - normal YouTube controls
 - lazy iframe creation and removal by viewport proximity
 - reduced-motion awareness
+- explicit manual pause/resume of currently running ambient CSS animations
 - explicit cleanup of observers, listeners, videos, and iframes
 - section wayfinding state
 
@@ -113,11 +114,11 @@ Owns only the page-local enhancement transaction:
 - wait for DOM readiness
 - validate the semantic mount contract
 - fetch the exact pinned V2 staging release manifest
-- load repository CSS
-- load repository content/assets/experience manifests
-- import the repository renderer
+- validate/fetch repository content, asset, and experience manifests plus the renderer module
+- load enhanced repository CSS only after those prerequisite requests have succeeded
+- mount the repository renderer
 - mark the route ready only after successful mounting
-- leave the native fallback intact on failure
+- remove enhanced CSS and leave the native fallback intact on failure
 
 The loader has no published-slug check, pathname check, WordPress page ID, or theme-global bootstrap dependency. Its presence in the page-local JavaScript tab plus the semantic mount contract establishes page identity.
 
@@ -139,7 +140,7 @@ It does not repaint the site footer, body, navigation, or unrelated theme surfac
 
 The verified black-hole `.2` content, asset, and experience manifests are reusable pinned input, not permanent V2 release architecture.
 
-The first two staging releases, `0.2.0-black-hole-v2-lab.1` and `0.2.0-black-hole-v2-lab.2`, intentionally reference the verified black-hole `.2` manifests as a **temporary pinned seed** so the new presentation can be previewed without casually rewriting or duplicating the verified science foundation during the clean rebuild.
+The early unpublished staging releases intentionally reference the verified black-hole `.2` manifests as a **temporary pinned seed** so the new presentation can be previewed without casually rewriting or duplicating the verified science foundation during the clean rebuild.
 
 `scripts/build_black_hole_v2.py` defines the forward release architecture. Future V2 releases built through it publish V2-owned copies of:
 
@@ -154,17 +155,21 @@ The builder contains no black-hole `.2` runtime dependency and cannot write `cha
 
 ## Current V2 staging release
 
-Release: `0.2.0-black-hole-v2-lab.2`
+Release: `0.2.0-black-hole-v2-lab.3`
 
 Channel: `black-hole-v2-lab`
 
-Current manifest ref: `bcd109d97e9c984a28e5521e04a037a737b2bdc1`
+Current manifest ref: `3681ac8a5bea00c73e69be1b6f1688bf3b727ada`
 
-Previous V2 staging release: `0.2.0-black-hole-v2-lab.1`
+Current application source ref: `5a50e6a7bdf514e878929ceaa7ca3dbfd7c0488e`
 
-The current release manifest is pinned independently from the legacy Black Hole channel. `.2` rolls back to immutable V2 staging `.1`; the staging line itself remains separate from historical Black Hole `.12`.
+Previous V2 staging release: `0.2.0-black-hole-v2-lab.2`
+
+The current release manifest is pinned independently from the legacy Black Hole channel. `.3` rolls back to immutable V2 staging `.2`; the staging line itself remains separate from historical Black Hole `.12`.
 
 The current staging release is explicitly marked `unpublished-v2-staging` and records its verified black-hole `.2` use as `temporary-pinned-seed`.
+
+Staging `.3` adds two integrity corrections over `.2`: the public Pause Motion control now pauses currently running ambient CSS animations as well as native video, and the page-local loader validates its data/module prerequisites before loading enhanced CSS so a fast prerequisite failure cannot leave late-arriving enhanced styling on the native fallback.
 
 ## Testing discipline
 
@@ -176,12 +181,13 @@ The current staging release is explicitly marked `unpublished-v2-staging` and re
 - root viewport breakout
 - no giant generic chamber heights
 - phone linear edition
-- reduced motion
+- reduced motion and explicit ambient-motion pause
 - current-plus-one media budgeting
 - no-autoplay/lazy YouTube behavior
 - minimal route-scoped Amadeus neutralization
 - complete neutralization of proven page-entry spacing
 - semantic page-local loader identity with no slug/page-ID dependency
+- loader ordering that keeps enhanced CSS out until prerequisites succeed
 - separate V2 staging channel and rollback checkpoint
 - temporary verified black-hole `.2` seed status
 - future V2-owned data release path
