@@ -22,7 +22,7 @@ presentation = text('apps/black-hole-museum/src/v2/presentation.css')
 amadeus = text('apps/black-hole-museum/src/v2/amadeus-compat.css')
 loader = text('docs/deployment/black-hole-v2-edublogs-javascript.js')
 builder = text('scripts/build_black_hole_v2.py')
-release = json.loads(text('dist/v0.2.0-black-hole-v2-lab.2/release.json'))
+release = json.loads(text('dist/v0.2.0-black-hole-v2-lab.3/release.json'))
 channel = json.loads(text('channels/black-hole-v2-lab.json'))
 
 legacy_markers = [
@@ -44,6 +44,7 @@ require("RUNTIME_WINDOW = 'current-plus-one-ahead'" in runtime, 'current-plus-on
 require("video.preload = 'none'" in runtime and 'video.pause()' in runtime, 'dormant native video is paused and cold')
 require('youtube-nocookie.com' in runtime and 'autoplay=0' in runtime and 'controls=1' in runtime, 'YouTube stays privacy-enhanced, lazy, controlled, and non-autoplay')
 require('IntersectionObserver' in runtime, 'viewport-proximity runtime behavior uses observers where appropriate')
+require('pauseRunningAnimations' in runtime and 'getAnimations({ subtree: true })' in runtime and 'animation.pause()' in runtime, 'explicit motion pause also controls ambient CSS animations')
 
 normalized_css = presentation.replace(' ', '')
 require('#hrv-black-hole-v2-root.bhv2-mounted' in presentation and 'width:100vw' in normalized_css, 'V2 mount root owns viewport breakout')
@@ -69,17 +70,18 @@ require('DOMContentLoaded' in loader, 'Edublogs JavaScript tab loader is DOM-rea
 require("root.dataset.hrvPage !== PAGE_ID" in loader and "root.dataset.hrvPageSystem !== PAGE_SYSTEM" in loader, 'loader validates semantic mount identity')
 for forbidden in ['window.location', '.pathname', 'data-path', 'wp-post', 'page-id']:
     require(forbidden not in loader, f'loader has no slug or WordPress identity dependency: {forbidden}')
-require('RELEASE_MANIFEST' in loader and 'bcd109d97e9c984a28e5521e04a037a737b2bdc1' in loader, 'page-local loader pins the exact current V2 staging manifest')
+require('RELEASE_MANIFEST' in loader and '3681ac8a5bea00c73e69be1b6f1688bf3b727ada' in loader, 'page-local loader pins the exact current V2 staging manifest')
 require('fallback preserved' in loader.lower(), 'loader failure path explicitly preserves native fallback')
+require(loader.index('const [content, assets, experience, module] = await Promise.all') < loader.index('await loadStyle(system.style.url)'), 'enhanced CSS loads only after data/module requests succeed')
 
 system = release['pageSystems']['black-hole-museum-v2']
 require(release['releasePurpose'] == 'unpublished-v2-staging', 'current V2 release is explicitly staging-only')
 require(release['dataFoundation']['mode'] == 'temporary-pinned-seed', 'verified black-hole .2 data is recorded as temporary pinned staging input')
 require('v0.1.0-black-hole-lab.2' in system['content']['url'], 'current staging release intentionally seeds from verified black-hole .2 content')
-require(release['rollbackRelease'] == '0.2.0-black-hole-v2-lab.1', 'staging .2 rolls back to immutable V2 staging .1')
+require(release['rollbackRelease'] == '0.2.0-black-hole-v2-lab.2', 'staging .3 rolls back to immutable V2 staging .2')
 require(channel['channel'] == 'black-hole-v2-lab', 'V2 has its own isolated channel')
 require(channel['currentRelease']['id'] == release['release'], 'V2 staging channel points at current V2 staging release')
-require(channel['previousRelease']['id'] == '0.2.0-black-hole-v2-lab.1', 'V2 staging channel retains the previous V2 checkpoint')
+require(channel['previousRelease']['id'] == '0.2.0-black-hole-v2-lab.2', 'V2 staging channel retains the previous V2 checkpoint')
 
 require('v2-owned-copy' in builder, 'future V2 builder publishes V2-owned data copies')
 require('black-hole-v2-lab.2' in builder, 'builder examples remain in the V2 release namespace')
