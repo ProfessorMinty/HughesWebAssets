@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0",
+  "channel": "black-hole-v2-lab",
+  "currentRelease": {
+    "id": "0.2.0-black-hole-v2-lab.1",
+    "manifestUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@ab97b61ff3e21731cdb96bd0ed13d56641d08ddb/dist/v0.2.0-black-hole-v2-lab.1/release.json",
+    "immutableRef": "ab97b61ff3e21731cdb96bd0ed13d56641d08ddb"
+  },
+  "previousRelease": {
+    "id": "native-fallback",
+    "manifestUrl": null,
+    "immutableRef": null
+  }
+}
