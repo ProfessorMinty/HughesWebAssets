@@ -75,7 +75,7 @@ for old_micro in ['font-size:.68rem', 'font-size:.72rem', 'font-size:.75rem', 'f
 for old_cap in ['width:min(100%,340px)', 'width:min(100%,520px)', 'width:min(100%,760px)']:
     require(old_cap not in presentation.replace(' ', ''), f'old generic module cap is absent: {old_cap}')
 require('width:100vw' in presentation.replace(' ', ''), 'repository root still owns the full-width environmental canvas')
-require('bhv2-media-dialog' in presentation and 'dialog::backdrop' not in presentation, 'diagram enlargement is styled inside the owned museum surface')
+require('.bhv2-media-dialog' in presentation and '.bhv2-media-dialog::backdrop' in presentation, 'diagram enlargement is fully styled inside the owned museum surface')
 require('@media (max-width:900px)' in presentation and '@media (max-width:700px)' in presentation, 'desktop compositions have explicit responsive collapse editions')
 require('@media (prefers-reduced-motion:reduce)' in presentation, 'reduced-motion edition remains explicit')
 
@@ -100,7 +100,7 @@ require('channels/black-hole-lab.json' not in builder, 'V2 builder cannot write 
 
 # Edublogs loader and fallback contract.
 require("EXPECTED_RELEASE = '0.2.0-black-hole-v2-lab.9'" in loader, 'page-local loader expects consolidated staging .9')
-require('6072e7f02f098eb8fe858af7df57b004c822ca70' in loader, 'loader pins the exact immutable .9 release manifest')
+require('319a0cc74b2e529ea5e25a454faa656b3f4d5805' in loader, 'loader pins the exact corrected .9 release manifest')
 require('system?.compatStyle?.url' in loader, 'loader requires the explicit compatibility asset')
 require("loadStyle(system.style.url, 'presentation')" in loader and "loadStyle(system.compatStyle.url, 'compatibility')" in loader, 'loader applies presentation then compatibility deliberately')
 require(loader.index('const [content, assets, experience, module] = await Promise.all') < loader.index("loadStyle(system.style.url, 'presentation')"), 'enhanced CSS still waits for successful data/module prerequisites')
@@ -110,6 +110,7 @@ require('font-size:20px' in fallback_css and 'Atkinson Hyperlegible' in fallback
 system = release['pageSystems']['black-hole-museum-v2']
 require(release['releasePurpose'] == 'unpublished-v2-consolidated-staging', 'release identifies itself as consolidated unpublished staging')
 require(release['deliveryMode'] == 'clean-source-pinned-staging', 'staging delivery is explicitly immutable clean-source direct, not wrapper/import layering')
+require(release['commit'] == release['immutableRef'] == '98e10e0f7e611bdd1f7bb48cf8c7065fe9242f12', 'release provenance points to the exact clean payload snapshot')
 require('/apps/black-hole-museum/src/v2/renderer.js' in system['script']['url'], 'staging renderer is the direct consolidated module')
 require('/apps/black-hole-museum/src/v2/presentation.css' in system['style']['url'], 'staging presentation is the direct canonical stylesheet')
 require('/apps/black-hole-museum/src/v2/amadeus-compat.css' in system['compatStyle']['url'], 'staging compatibility is the direct narrow stylesheet')
@@ -117,6 +118,7 @@ require('v0.1.0-black-hole-lab.2' in system['content']['url'] and 'v0.1.0-black-
 require('v0.2.0-black-hole-v2-lab.9/content/black-hole-experience.json' in system['experience']['url'], 'V2 staging owns its truthful experience manifest')
 require(release['rollbackRelease'] == '0.2.0-black-hole-v2-lab.8', 'consolidated .9 rolls back to immutable .8')
 require(channel['currentRelease']['id'] == '0.2.0-black-hole-v2-lab.9', 'V2 channel points at consolidated .9')
+require(channel['currentRelease']['immutableRef'] == '319a0cc74b2e529ea5e25a454faa656b3f4d5805', 'V2 channel pins the corrected .9 manifest')
 require(channel['previousRelease']['id'] == '0.2.0-black-hole-v2-lab.8', 'V2 channel retains .8 as immediate rollback')
 
 print('\nBlack Hole Museum V2 consolidated contract passed.')
