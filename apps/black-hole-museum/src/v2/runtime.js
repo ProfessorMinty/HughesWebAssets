@@ -102,50 +102,59 @@ export function installLazyYouTube(center, cleanups) {
   if (!center) return;
   const frames = [...center.querySelectorAll('[data-youtube-id]')];
 
-  const activate = () => {
-    frames.forEach((frame) => {
-      if (frame.querySelector('iframe')) return;
-      const id = frame.dataset.youtubeId;
-      if (!id) return;
-      const iframe = document.createElement('iframe');
-      iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=0&controls=1&rel=0&playsinline=1`;
-      iframe.title = frame.dataset.youtubeTitle || 'YouTube video';
-      iframe.loading = 'lazy';
-      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-      iframe.allow = 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-      iframe.allowFullscreen = true;
-      frame.replaceChildren(iframe);
-    });
-    center.dataset.playerState = 'ready';
-  };
+  function restorePoster(frame) {
+    const iframe = frame.querySelector('iframe');
+    if (iframe) iframe.remove();
+    if (frame.__bhv2Poster) frame.replaceChildren(frame.__bhv2Poster);
+    frame.dataset.playerState = 'poster';
+  }
+
+  function activateFrame(frame) {
+    if (frame.querySelector('iframe')) return;
+    const id = frame.dataset.youtubeId;
+    if (!id) return;
+
+    const poster = frame.querySelector('.bhv2-youtube-poster');
+    if (poster && !frame.__bhv2Poster) frame.__bhv2Poster = poster;
+
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=0&controls=1&rel=0&playsinline=1`;
+    iframe.title = frame.dataset.youtubeTitle || 'YouTube video';
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    iframe.allow = 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    frame.replaceChildren(iframe);
+    frame.dataset.playerState = 'active';
+    center.dataset.playerState = 'active';
+  }
+
+  frames.forEach((frame) => {
+    frame.dataset.playerState = 'poster';
+    const poster = frame.querySelector('.bhv2-youtube-poster');
+    if (poster) frame.__bhv2Poster = poster;
+    const play = poster?.querySelector('.bhv2-youtube-play');
+    if (!play) return;
+    const onPlay = () => activateFrame(frame);
+    play.addEventListener('click', onPlay);
+    cleanups.push(() => play.removeEventListener('click', onPlay));
+  });
 
   const sleep = () => {
     const activeElement = document.activeElement;
     if (activeElement && center.contains(activeElement)) return;
-    frames.forEach((frame) => {
-      const iframe = frame.querySelector('iframe');
-      if (iframe) iframe.remove();
-      if (!frame.firstChild) {
-        const placeholder = document.createElement('div');
-        placeholder.className = 'bhv2-youtube-placeholder';
-        placeholder.textContent = 'Video player wakes up when the Media Center is nearby.';
-        frame.append(placeholder);
-      }
-    });
+    frames.forEach((frame) => restorePoster(frame));
     center.dataset.playerState = 'sleeping';
   };
 
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) activate();
-        else if (center.dataset.playerState === 'ready') sleep();
+        if (!entry.isIntersecting && center.dataset.playerState === 'active') sleep();
       });
     }, { rootMargin: '100% 0px 100% 0px', threshold: 0 });
     observer.observe(center);
     cleanups.push(() => observer.disconnect());
-  } else {
-    activate();
   }
 
   cleanups.push(sleep);
