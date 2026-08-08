@@ -24,6 +24,41 @@ function setToggle(control, active) {
   control.setAttribute('aria-pressed', String(active));
 }
 
+function createDetailTray(entries, options = {}) {
+  const system = el('div', `bhv2-detail-system${options.className ? ' ' + options.className : ''}`);
+  const tabs = el('div', 'bhv2-detail-tabs');
+  tabs.setAttribute('role', 'group');
+  tabs.setAttribute('aria-label', options.label || 'Explanatory notes');
+
+  const tray = el('div', 'bhv2-detail-tray');
+  tray.setAttribute('aria-live', 'polite');
+  tray.append(
+    el('span', 'bhv2-detail-kicker', options.kicker || 'EXPLANATION'),
+    el('strong', 'bhv2-detail-title'),
+    el('p', 'bhv2-detail-copy')
+  );
+
+  const buttons = entries.map((entry, index) => {
+    const control = button(entry.label, 'bhv2-detail-tab');
+    control.setAttribute('aria-pressed', 'false');
+    control.addEventListener('click', () => select(index));
+    tabs.append(control);
+    return control;
+  });
+
+  function select(index) {
+    const entry = entries[index];
+    if (!entry) return;
+    setPressed(buttons, index);
+    tray.querySelector('.bhv2-detail-title').textContent = entry.title || entry.label;
+    tray.querySelector('.bhv2-detail-copy').textContent = entry.text || '';
+  }
+
+  system.append(tabs, tray);
+  if (entries.length) select(Math.min(options.initialIndex || 0, entries.length - 1));
+  return { system, select, buttons, tray };
+}
+
 export function createLensingInteractive(station) {
   const module = el('div', 'bhv2-lensing bhv2-atrium-instrument');
   const canvas = document.createElement('canvas');
@@ -128,22 +163,26 @@ export function createEvidenceInteractive(station) {
   const clueWrap = el('div', 'bhv2-evidence-clues');
   const clueButtons = [];
 
+  function setClue(card, index, expanded) {
+    const copy = card.querySelector('.bhv2-clue-copy');
+    card.classList.toggle('is-open', expanded);
+    card.setAttribute('aria-expanded', String(expanded));
+    if (copy) copy.setAttribute('aria-hidden', String(!expanded));
+    lines.querySelector(`[data-clue-line="${index}"]`)?.classList.toggle('is-on', expanded);
+  }
+
   (station.clues || []).forEach((clue, index) => {
     const card = button('', `bhv2-clue bhv2-clue--${index + 1}${index === 3 ? ' bhv2-clue--support' : ''}`);
     card.setAttribute('aria-expanded', 'false');
     const copy = el('span', 'bhv2-clue-copy', clue.text || '');
-    copy.hidden = true;
+    copy.setAttribute('aria-hidden', 'true');
     card.append(
       el('span', 'bhv2-clue-symbol', clue.symbol || '•'),
       el('strong', 'bhv2-clue-title', clue.title || ''),
       copy
     );
     card.addEventListener('click', () => {
-      const expanded = !card.classList.contains('is-open');
-      card.classList.toggle('is-open', expanded);
-      card.setAttribute('aria-expanded', String(expanded));
-      copy.hidden = !expanded;
-      lines.querySelector(`[data-clue-line="${index}"]`)?.classList.toggle('is-on', expanded);
+      setClue(card, index, !card.classList.contains('is-open'));
       syncMaster();
     });
     clueButtons.push(card);
@@ -158,13 +197,7 @@ export function createEvidenceInteractive(station) {
   }
   reveal.addEventListener('click', () => {
     const shouldOpen = !clueButtons.every((card) => card.classList.contains('is-open'));
-    clueButtons.forEach((card, index) => {
-      const copy = card.querySelector('.bhv2-clue-copy');
-      card.classList.toggle('is-open', shouldOpen);
-      card.setAttribute('aria-expanded', String(shouldOpen));
-      if (copy) copy.hidden = !shouldOpen;
-      lines.querySelector(`[data-clue-line="${index}"]`)?.classList.toggle('is-on', shouldOpen);
-    });
+    clueButtons.forEach((card, index) => setClue(card, index, shouldOpen));
     syncMaster();
   });
 
@@ -188,27 +221,38 @@ export function createOrbitOverlay() {
   const trace = button('Trace featured orbit', 'bhv2-primary');
   const center = button('Mark invisible center');
   const compare = button('Show simplified comparison');
-  [trace, center, compare].forEach((control) => control.setAttribute('aria-pressed', 'false'));
+  const overlayControls = [trace, center, compare];
+  overlayControls.forEach((control) => control.setAttribute('aria-pressed', 'false'));
   const status = el('p', 'bhv2-state-readout', 'Observation only. Explanatory overlays are currently hidden.');
   status.setAttribute('aria-live', 'polite');
+
+  function syncStatus() {
+    const active = [];
+    if (overlay.classList.contains('show-trace')) active.push('featured orbit');
+    if (overlay.classList.contains('show-center')) active.push('invisible-center marker');
+    if (overlay.classList.contains('show-comparison')) active.push('simplified comparison');
+    status.textContent = active.length
+      ? `Explanatory overlay active: ${active.join(', ')}.`
+      : 'Observation only. Explanatory overlays are currently hidden.';
+  }
 
   trace.addEventListener('click', () => {
     const active = overlay.classList.toggle('show-trace');
     setToggle(trace, active);
     trace.textContent = active ? 'Hide featured orbit' : 'Trace featured orbit';
-    status.textContent = active
-      ? 'A simplified explanatory path is overlaid on the real observation.'
-      : 'Observation only. The orbit guide is hidden.';
+    syncStatus();
   });
   center.addEventListener('click', () => {
     const active = overlay.classList.toggle('show-center');
     setToggle(center, active);
     center.textContent = active ? 'Hide center marker' : 'Mark invisible center';
+    syncStatus();
   });
   compare.addEventListener('click', () => {
     const active = overlay.classList.toggle('show-comparison');
     setToggle(compare, active);
     compare.textContent = active ? 'Hide comparison guide' : 'Show simplified comparison';
+    syncStatus();
   });
 
   controls.append(trace, center, compare, status);
@@ -328,15 +372,25 @@ export function createReconstructionInteractive() {
     status.textContent = state.text;
   }
 
-  const explainers = el('div', 'bhv2-reconstruction-explainers');
-  const several = document.createElement('details');
-  several.append(el('summary', '', 'Why are there several versions?'), el('p', '', 'Several reconstructions can fit the telescope data. The published Sagittarius A* image is an average assembled from thousands of compatible reconstructions.'));
-  const orange = document.createElement('details');
-  orange.append(el('summary', '', 'Why orange?'), el('p', '', 'Orange is a presentation choice applied to radio data. It is not a visible-light color recorded by the telescope.'));
-  explainers.append(several, orange);
+  const details = createDetailTray([
+    {
+      label: 'Why several versions?',
+      title: 'Why are there several versions?',
+      text: 'Several reconstructions can fit the telescope data. The published Sagittarius A* image is an average assembled from thousands of compatible reconstructions.'
+    },
+    {
+      label: 'Why orange?',
+      title: 'Why orange?',
+      text: 'Orange is a presentation choice applied to radio data. It is not a visible-light color recorded by the telescope.'
+    }
+  ], {
+    className: 'bhv2-reconstruction-details',
+    label: 'Reconstruction explanations',
+    kicker: 'HOW TO READ THE IMAGE'
+  });
 
   setState(0);
-  module.append(visual, controls, status, explainers);
+  module.append(visual, controls, status, details.system);
   return { module, states };
 }
 
@@ -349,7 +403,7 @@ export function createComparisonControls(station, onState) {
     if (index === 0) control.classList.add('is-active');
     control.addEventListener('click', () => {
       setPressed(buttons, index);
-      onState(index);
+      onState(index, control);
     });
     wrap.append(control);
     return control;
@@ -357,7 +411,7 @@ export function createComparisonControls(station, onState) {
   return wrap;
 }
 
-export function createWarpedLightInteractive() {
+export function createWarpedLightInteractive(station) {
   const module = el('div', 'bhv2-warped-light');
   const visual = el('div', 'bhv2-accretion-visual');
   visual.innerHTML = '<div class="bhv2-disk bhv2-disk-back"></div><div class="bhv2-shadow"></div><div class="bhv2-disk bhv2-disk-front"></div><div class="bhv2-photon-ring"></div><div class="bhv2-boundary-horizon"></div><div class="bhv2-boundary-shadow"></div><svg viewBox="0 0 800 500" class="bhv2-photon-overlay" aria-hidden="true"><path d="M40 110 C240 90 280 250 400 250 C520 250 560 410 760 390"/><path d="M40 390 C240 410 280 250 400 250 C520 250 560 90 760 110"/></svg>';
@@ -399,9 +453,27 @@ export function createWarpedLightInteractive() {
     boundaryToggle.textContent = active ? 'Hide shadow/horizon guide' : 'Compare shadow and horizon';
   });
 
-  const doppler = document.createElement('details');
-  doppler.className = 'bhv2-lab-explainer';
-  doppler.append(el('summary', '', 'Why can one side look brighter?'), el('p', '', 'Material moving toward the observer can appear brighter than material moving away. This effect is called Doppler beaming.'));
+  const details = createDetailTray([
+    {
+      label: 'Viewing angle',
+      title: 'What changes when the viewpoint changes?',
+      text: station?.deeper || 'Changing the viewing angle changes how the same simplified accretion-disk model appears.'
+    },
+    {
+      label: 'Brightness',
+      title: 'Why can one side look brighter?',
+      text: 'Material moving toward the observer can appear brighter than material moving away. This effect is called Doppler beaming.'
+    },
+    {
+      label: 'Shadow vs horizon',
+      title: 'Why show two boundaries?',
+      text: 'The event horizon and the larger observed black-hole shadow are not the same boundary. This guide keeps them visually distinct in the simplified model.'
+    }
+  ], {
+    className: 'bhv2-warp-details',
+    label: 'Warped Light explanations',
+    kicker: 'MODEL NOTES'
+  });
 
   function apply(value) {
     const numeric = Number(value);
@@ -413,7 +485,7 @@ export function createWarpedLightInteractive() {
   }
 
   range.addEventListener('input', (event) => apply(event.target.value));
-  controls.append(range, output, presets, pathToggle, boundaryToggle, doppler);
+  controls.append(range, output, presets, pathToggle, boundaryToggle, details.system);
   apply(48);
   module.append(visual, controls);
   return module;
