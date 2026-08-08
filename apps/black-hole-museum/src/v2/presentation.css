@@ -1,15 +1,29 @@
-/* Black Hole Museum V2. Fresh presentation system. No legacy presentation imports. */
+/* Black Hole Museum V2 · consolidated canonical presentation
+   One page presentation authority. No staging override layers. */
+
 #hrv-black-hole-v2-root.bhv2-mounted {
-  --bhv2-bg:#02050b;
-  --bhv2-panel:#081523;
-  --bhv2-panel-2:#0b1d2e;
-  --bhv2-text:#f4f8fb;
-  --bhv2-muted:#b9c8d4;
-  --bhv2-cyan:#7ff4ff;
-  --bhv2-blue:#7aa8ff;
-  --bhv2-gold:#f0d9a5;
-  --bhv2-border:rgba(157,224,255,.2);
-  --bhv2-gutter:clamp(1rem,3vw,3.5rem);
+  --bhv2-bg:#071522;
+  --bhv2-surface:#10283a;
+  --bhv2-surface-2:#17384c;
+  --bhv2-text:#f8fbfd;
+  --bhv2-muted:#d5e2e9;
+  --bhv2-soft:#a9bfcb;
+  --bhv2-cyan:#8cf4ff;
+  --bhv2-blue:#9bb9ff;
+  --bhv2-gold:#ffd77e;
+  --bhv2-amber:#ff9e54;
+  --bhv2-border:rgba(171,230,255,.38);
+  --bhv2-gutter:clamp(1rem,3.2vw,4rem);
+  --bhv2-reading:68ch;
+  /* Human-readable type tokens use CSS pixels intentionally. `rem` resolves
+     against the WordPress document root, not this application root, and the
+     previous staging stack accidentally turned meaningful labels into ~14px
+     text on desktop. */
+  --bhv2-type-body:20px;
+  --bhv2-type-support:19px;
+  --bhv2-type-ui:18px;
+  --bhv2-type-label:17px;
+  --bhv2-type-lead:22px;
   width:100vw;
   max-width:none!important;
   position:relative;
@@ -18,9 +32,10 @@
   margin-right:-50vw;
   background:var(--bhv2-bg);
   color:var(--bhv2-text);
-  font-size:clamp(17px,.14vw + 16px,20px);
-  line-height:1.58;
-  overflow:clip;
+  font-family:'Atkinson Hyperlegible',Arial,sans-serif;
+  font-size:clamp(18px,.2vw + 17px,20px);
+  line-height:1.6;
+  overflow-x:clip;
 }
 
 #hrv-black-hole-v2-root.bhv2-mounted *,
@@ -30,41 +45,38 @@
 #hrv-black-hole-v2-root .bhv2-shell {
   position:relative;
   width:100%;
-  max-width:none;
-  margin:0;
+  min-height:100vh;
   color:var(--bhv2-text);
-  font-family:'Atkinson Hyperlegible',sans-serif;
   background:
-    radial-gradient(circle at 12% 8%,rgba(73,120,208,.12),transparent 28rem),
-    radial-gradient(circle at 86% 24%,rgba(60,206,229,.07),transparent 34rem),
-    linear-gradient(180deg,#010308 0%,#040a13 52%,#02050b 100%);
+    radial-gradient(circle at 14% 5%,rgba(72,151,238,.22),transparent 30rem),
+    radial-gradient(circle at 84% 17%,rgba(68,222,229,.16),transparent 36rem),
+    linear-gradient(180deg,#071522 0%,#091b29 42%,#071521 72%,#091724 100%);
 }
-
 #hrv-black-hole-v2-root .bhv2-shell::before {
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.28;
+  z-index:0;
+  opacity:.45;
   background-image:
-    radial-gradient(circle at 14% 7%,rgba(255,255,255,.7) 0 1px,transparent 1.5px),
-    radial-gradient(circle at 68% 12%,rgba(127,244,255,.65) 0 1px,transparent 1.5px),
-    radial-gradient(circle at 42% 19%,rgba(255,255,255,.45) 0 1px,transparent 1.5px),
-    radial-gradient(circle at 91% 32%,rgba(255,255,255,.5) 0 1px,transparent 1.5px);
+    radial-gradient(circle at 14% 7%,rgba(255,255,255,.78) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 68% 12%,rgba(140,244,255,.7) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 42% 19%,rgba(255,255,255,.52) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 91% 32%,rgba(255,255,255,.55) 0 1px,transparent 1.6px);
   background-size:23rem 19rem,31rem 27rem,37rem 29rem,41rem 33rem;
+  animation:bhv2-star-drift 52s linear infinite;
 }
 
 #hrv-black-hole-v2-root .bhv2-shell :where(h1,h2,h3,h4,h5,h6) {
-  color:var(--bhv2-text)!important;
-  font-family:'Nunito Sans',sans-serif!important;
-}
-#hrv-black-hole-v2-root .bhv2-shell :where(h1,h2,h3,p,figure,blockquote) { margin-top:0; }
-#hrv-black-hole-v2-root .bhv2-shell :where(h1,h2,h3,button,summary) {
+  color:#fff!important;
+  font-family:'Nunito Sans',Arial,sans-serif!important;
   overflow-wrap:normal!important;
   word-break:normal!important;
   hyphens:none!important;
 }
 #hrv-black-hole-v2-root .bhv2-shell :where(p,li,figcaption) { overflow-wrap:break-word; }
+#hrv-black-hole-v2-root .bhv2-shell :where(h1,h2,h3,p,figure,blockquote) { margin-top:0; }
 #hrv-black-hole-v2-root .bhv2-shell a { color:var(--bhv2-cyan); }
 #hrv-black-hole-v2-root .bhv2-shell a:focus-visible,
 #hrv-black-hole-v2-root .bhv2-shell button:focus-visible,
@@ -75,75 +87,100 @@
 }
 
 #hrv-black-hole-v2-root .bhv2-zone {
-  width:min(calc(100% - (2 * var(--bhv2-gutter))),var(--bhv2-zone-max,1360px));
+  width:min(calc(100% - (2 * var(--bhv2-gutter))),var(--bhv2-zone-max,1440px));
   margin-inline:auto;
   position:relative;
   z-index:1;
 }
-#hrv-black-hole-v2-root .bhv2-zone--compact { --bhv2-zone-max:1220px; }
-#hrv-black-hole-v2-root .bhv2-zone--standard { --bhv2-zone-max:1380px; }
-#hrv-black-hole-v2-root .bhv2-zone--wide { --bhv2-zone-max:1500px; }
-#hrv-black-hole-v2-root .bhv2-zone--hero { --bhv2-zone-max:1480px; }
+#hrv-black-hole-v2-root .bhv2-zone--compact { --bhv2-zone-max:1260px; }
+#hrv-black-hole-v2-root .bhv2-zone--standard { --bhv2-zone-max:1440px; }
+#hrv-black-hole-v2-root .bhv2-zone--wide { --bhv2-zone-max:1560px; }
+#hrv-black-hole-v2-root .bhv2-zone--hero { --bhv2-zone-max:1520px; }
 
 #hrv-black-hole-v2-root .bhv2-skip {
   position:absolute;
-  z-index:50;
+  z-index:90;
   left:1rem;
   top:1rem;
   padding:.7rem 1rem;
-  transform:translateY(-180%);
+  transform:translateY(-190%);
+  border-radius:.6rem;
   background:#fff;
   color:#000;
-  border-radius:.5rem;
+  font-weight:800;
 }
 #hrv-black-hole-v2-root .bhv2-skip:focus { transform:none; }
 
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
 #hrv-black-hole-v2-root .bhv2-hero {
   position:relative;
-  padding:clamp(3rem,7vw,7rem) 0 clamp(2.5rem,5vw,5rem);
-  overflow:hidden;
+  isolation:isolate;
+  padding:clamp(3.5rem,7vw,7rem) 0 clamp(3rem,6vw,6rem);
+  border-bottom:1px solid rgba(151,225,255,.18);
+  background:
+    radial-gradient(circle at 78% 45%,rgba(255,151,65,.2),transparent 26rem),
+    linear-gradient(180deg,rgba(15,39,55,.8),rgba(5,17,27,.35));
 }
 #hrv-black-hole-v2-root .bhv2-hero .bhv2-zone {
   display:grid;
-  grid-template-columns:minmax(0,7fr) minmax(18rem,5fr);
+  grid-template-columns:minmax(0,1.15fr) minmax(24rem,.85fr);
   align-items:center;
-  gap:clamp(2rem,5vw,5rem);
-  min-height:clamp(32rem,60svh,44rem);
+  gap:clamp(2.5rem,5vw,6rem);
+  min-height:clamp(34rem,66svh,47rem);
 }
-#hrv-black-hole-v2-root .bhv2-hero-copy { max-width:46rem; }
+#hrv-black-hole-v2-root .bhv2-hero-copy {
+  max-width:48rem;
+  padding:clamp(1.5rem,2.6vw,2.25rem);
+  border:1px solid rgba(171,231,255,.3);
+  border-left:5px solid var(--bhv2-cyan);
+  border-radius:1.4rem;
+  background:linear-gradient(135deg,rgba(22,53,72,.94),rgba(8,26,40,.82));
+  box-shadow:0 28px 75px rgba(0,0,0,.34),inset 0 1px rgba(255,255,255,.11),0 0 44px rgba(60,196,224,.1);
+  backdrop-filter:blur(12px);
+}
 #hrv-black-hole-v2-root .bhv2-eyebrow,
 #hrv-black-hole-v2-root .bhv2-kicker,
 #hrv-black-hole-v2-root .bhv2-sidecar-label {
+  margin-bottom:.65rem;
   color:var(--bhv2-cyan);
-  font-size:.82rem;
-  font-weight:800;
-  letter-spacing:.13em;
+  font-size:var(--bhv2-type-ui);
+  line-height:1.35;
+  font-weight:850;
+  letter-spacing:.09em;
   text-transform:uppercase;
 }
 #hrv-black-hole-v2-root .bhv2-hero h1 {
-  margin-bottom:1.25rem;
-  font-size:clamp(3.2rem,6vw,6.7rem);
-  line-height:.9;
-  letter-spacing:-.055em;
+  margin-bottom:1.3rem;
+  font-size:clamp(3.4rem,5.8vw,6.5rem);
+  line-height:.92;
+  letter-spacing:-.052em;
   text-wrap:balance;
+  text-shadow:0 2px 24px rgba(102,220,255,.18);
 }
 #hrv-black-hole-v2-root .bhv2-hero-line {
-  max-width:40rem;
-  color:#d9e7f0;
-  font-size:clamp(1.2rem,1.45vw,1.55rem);
+  max-width:39rem;
+  margin-bottom:1.25rem;
+  color:#e1edf4;
+  font-size:clamp(1.25rem,1.35vw,1.55rem);
+  line-height:1.5;
 }
 #hrv-black-hole-v2-root .bhv2-prototype-warning,
 #hrv-black-hole-v2-root .bhv2-media-warning {
-  color:#d8c79f;
-  font-size:.78rem;
-  letter-spacing:.06em;
+  color:#f2dcaa;
+  font-size:var(--bhv2-type-ui);
+  line-height:1.45;
+  letter-spacing:.04em;
+  font-weight:800;
 }
 #hrv-black-hole-v2-root .bhv2-hero-visual {
   position:relative;
+  width:min(100%,39rem);
   aspect-ratio:1;
-  width:min(100%,36rem);
   justify-self:end;
   border-radius:50%;
+  filter:drop-shadow(0 0 45px rgba(255,143,55,.2));
 }
 #hrv-black-hole-v2-root .bhv2-hero-shadow,
 #hrv-black-hole-v2-root .bhv2-hero-disk,
@@ -155,20 +192,21 @@
 }
 #hrv-black-hole-v2-root .bhv2-hero-halo--outer {
   width:92%;height:92%;
-  border:1px solid rgba(127,244,255,.2);
-  box-shadow:0 0 80px rgba(71,180,239,.12);
+  border:1px solid rgba(140,244,255,.5);
+  box-shadow:0 0 62px rgba(79,205,255,.2),inset 0 0 48px rgba(79,205,255,.08);
   animation:bhv2-spin 46s linear infinite;
 }
 #hrv-black-hole-v2-root .bhv2-hero-halo--inner {
   width:68%;height:68%;
-  border:1px dashed rgba(240,217,165,.22);
+  border:1px dashed rgba(255,215,126,.45);
   animation:bhv2-spin 30s linear infinite reverse;
 }
 #hrv-black-hole-v2-root .bhv2-hero-disk {
   width:84%;height:24%;
   background:radial-gradient(ellipse at center,#fff5d0 0 4%,#ffc867 10%,#ef762f 24%,rgba(124,45,23,.7) 50%,transparent 72%);
-  filter:blur(.2px) drop-shadow(0 0 30px rgba(255,150,60,.25));
+  filter:drop-shadow(0 0 25px rgba(255,170,68,.55)) drop-shadow(0 0 60px rgba(255,118,42,.22));
   transform:translate(-50%,-50%) rotate(-12deg);
+  animation:bhv2-disk-breathe 5.8s ease-in-out infinite;
 }
 #hrv-black-hole-v2-root .bhv2-hero-shadow {
   width:31%;height:31%;
@@ -176,369 +214,800 @@
   box-shadow:0 0 28px 12px rgba(0,0,0,.9),0 0 52px rgba(255,182,81,.12);
 }
 
-#hrv-black-hole-v2-root .bhv2-wayfinding {
+/* --------------------------------------------------------------------------
+   Museum utility bar
+   -------------------------------------------------------------------------- */
+#hrv-black-hole-v2-root .bhv2-utility-bar {
   position:sticky;
-  z-index:20;
-  top:.75rem;
-  width:max-content;
-  max-width:calc(100% - 2rem);
-  margin:0 auto;
+  z-index:40;
+  top:.65rem;
+  width:min(calc(100% - 2rem),1540px);
+  margin:.7rem auto 0;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:.8rem;
+  align-items:center;
+  padding:.55rem;
+  border:1px solid rgba(162,231,255,.34);
+  border-radius:1rem;
+  background:rgba(7,24,36,.94);
+  box-shadow:0 14px 42px rgba(0,0,0,.3),inset 0 1px rgba(255,255,255,.08);
+  backdrop-filter:blur(14px);
+}
+#hrv-black-hole-v2-root .bhv2-wayfinding {
   display:flex;
   gap:.35rem;
-  padding:.45rem;
-  border:1px solid rgba(142,216,255,.18);
-  border-radius:999px;
-  background:rgba(3,10,19,.9);
+  overflow-x:auto;
+  scrollbar-width:thin;
 }
 #hrv-black-hole-v2-root .bhv2-wayfinding a {
-  display:grid;
-  place-items:center;
-  width:2.35rem;
-  min-height:2.35rem;
-  border-radius:50%;
-  color:#c9dce8;
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  gap:.45rem;
+  min-height:44px;
+  padding:.5rem .72rem;
+  border:1px solid transparent;
+  border-radius:.75rem;
+  color:#dceaf1;
   text-decoration:none;
-  font-size:.78rem;
+  font-size:var(--bhv2-type-label);
   font-weight:800;
 }
-#hrv-black-hole-v2-root .bhv2-wayfinding a.is-active { background:var(--bhv2-cyan); color:#041119; }
-
-#hrv-black-hole-v2-root .bhv2-controls {
-  position:sticky;
-  z-index:19;
-  top:4rem;
-  margin:.6rem var(--bhv2-gutter) 0 auto;
-  width:max-content;
+#hrv-black-hole-v2-root .bhv2-nav-number { color:var(--bhv2-cyan); font-variant-numeric:tabular-nums; }
+#hrv-black-hole-v2-root .bhv2-wayfinding a.is-active {
+  color:#05202a;
+  background:linear-gradient(135deg,var(--bhv2-cyan),#c8fbff);
+  border-color:#fff;
+  box-shadow:0 0 18px rgba(127,244,255,.42);
 }
-#hrv-black-hole-v2-root .bhv2-controls button,
+#hrv-black-hole-v2-root .bhv2-motion-control,
 #hrv-black-hole-v2-root .bhv2-control-row button,
 #hrv-black-hole-v2-root .bhv2-primary,
 #hrv-black-hole-v2-root .bhv2-process-button,
-#hrv-black-hole-v2-root .bhv2-anatomy-controls button {
+#hrv-black-hole-v2-root .bhv2-anatomy-controls button,
+#hrv-black-hole-v2-root .bhv2-orbit-controls button,
+#hrv-black-hole-v2-root .bhv2-site,
+#hrv-black-hole-v2-root .bhv2-zoom-button,
+#hrv-black-hole-v2-root .bhv2-dialog-close {
   min-height:44px;
-  border:1px solid rgba(127,244,255,.28);
-  border-radius:.75rem;
-  padding:.62rem .9rem;
-  background:#0a1a29;
-  color:#effaff;
+  padding:.68rem .95rem;
+  border:1px solid rgba(var(--bhv2-accent-rgb,140,244,255),.48);
+  border-radius:.72rem;
+  background:linear-gradient(180deg,rgba(28,67,88,.98),rgba(12,39,55,.98));
+  color:#f8fcfe;
   font:inherit;
+  font-size:var(--bhv2-type-ui);
+  line-height:1.25;
+  font-weight:750;
   cursor:pointer;
+  box-shadow:0 8px 22px rgba(0,0,0,.24),inset 0 1px rgba(255,255,255,.1);
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background .18s ease;
 }
 #hrv-black-hole-v2-root button.is-active,
-#hrv-black-hole-v2-root button[aria-pressed="true"] { border-color:var(--bhv2-cyan); background:#123246; }
-#hrv-black-hole-v2-root .bhv2-primary { background:linear-gradient(135deg,#103d51,#173252); font-weight:800; }
+#hrv-black-hole-v2-root button[aria-pressed="true"] {
+  color:#071720!important;
+  background:var(--bhv2-accent,var(--bhv2-cyan))!important;
+  border-color:#fff!important;
+  box-shadow:0 0 0 2px rgba(var(--bhv2-accent-rgb,140,244,255),.2),0 0 25px rgba(var(--bhv2-accent-rgb,140,244,255),.28)!important;
+}
 
+/* --------------------------------------------------------------------------
+   Section foundations and readable scale
+   -------------------------------------------------------------------------- */
 #hrv-black-hole-v2-root .bhv2-main { position:relative; z-index:1; }
 #hrv-black-hole-v2-root .bhv2-section,
 #hrv-black-hole-v2-root .bhv2-media-center,
 #hrv-black-hole-v2-root .bhv2-credits {
+  --bhv2-accent:var(--bhv2-cyan);
+  --bhv2-accent-rgb:140,244,255;
   position:relative;
-  padding:clamp(2.4rem,5vw,4.8rem) 0;
-  scroll-margin-top:6rem;
+  padding:clamp(4rem,6.5vw,7rem) 0;
+  scroll-margin-top:6.5rem;
+  border-top:1px solid rgba(187,235,255,.12);
 }
-#hrv-black-hole-v2-root .bhv2-section::before {
+#hrv-black-hole-v2-root .bhv2-section::after {
   content:"";
   position:absolute;
-  left:50%;
-  top:0;
-  width:min(80vw,64rem);
-  height:1px;
-  transform:translateX(-50%);
-  background:linear-gradient(90deg,transparent,rgba(127,244,255,.16),transparent);
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  opacity:.56;
+  background:radial-gradient(circle at 50% 4%,rgba(var(--bhv2-accent-rgb),.14),transparent 26rem);
 }
+#hrv-black-hole-v2-root .bhv2-section.is-runtime-live::after { animation:bhv2-chamber-light 8s ease-in-out infinite; }
 
-#hrv-black-hole-v2-root .bhv2-section-header {
+#hrv-black-hole-v2-root .bhv2-section-intro {
   display:grid;
-  grid-template-columns:minmax(10rem,2fr) minmax(0,8fr);
-  gap:clamp(1.25rem,3vw,3.5rem);
+  grid-template-columns:minmax(12rem,.28fr) minmax(0,.72fr);
+  gap:clamp(1.5rem,3.5vw,4rem);
   align-items:start;
-  margin-bottom:clamp(1.5rem,3vw,2.75rem);
+  margin-bottom:clamp(2rem,4vw,4rem);
+}
+#hrv-black-hole-v2-root .bhv2-section-marker {
+  display:grid;
+  gap:.55rem;
+  align-content:start;
 }
 #hrv-black-hole-v2-root .bhv2-section-number {
-  display:block;
-  color:rgba(127,244,255,.55);
-  font-size:clamp(2.4rem,4vw,4rem);
+  display:inline-grid;
+  width:max-content;
+  min-width:4.5rem;
+  min-height:4.5rem;
+  place-items:center;
+  border:1px solid rgba(var(--bhv2-accent-rgb),.5);
+  border-radius:.8rem;
+  background:rgba(var(--bhv2-accent-rgb),.12);
+  color:var(--bhv2-accent);
+  font-family:'Nunito Sans',Arial,sans-serif;
+  font-size:36px;
   line-height:1;
   font-weight:900;
+  box-shadow:0 0 25px rgba(var(--bhv2-accent-rgb),.08);
 }
-#hrv-black-hole-v2-root .bhv2-section-header h2,
+#hrv-black-hole-v2-root .bhv2-section-copy { max-width:var(--bhv2-reading); }
+#hrv-black-hole-v2-root .bhv2-section-copy h2,
 #hrv-black-hole-v2-root .bhv2-media-center h2,
 #hrv-black-hole-v2-root .bhv2-credits h2 {
-  margin-bottom:.8rem;
-  font-size:clamp(2.5rem,3.25vw,4rem);
-  line-height:.98;
-  letter-spacing:-.04em;
+  margin-bottom:.85rem;
+  font-size:clamp(2.5rem,3.15vw,4rem);
+  line-height:1;
+  letter-spacing:-.035em;
   text-wrap:balance;
 }
-#hrv-black-hole-v2-root .bhv2-section-copy { max-width:55rem; }
-#hrv-black-hole-v2-root .bhv2-child-line { max-width:42rem; color:#e2edf4; font-size:clamp(1.08rem,1vw,1.24rem); }
-#hrv-black-hole-v2-root .bhv2-evidence-badge { margin-bottom:.7rem; color:#91b7cb; font-size:.8rem; line-height:1.35; }
-#hrv-black-hole-v2-root .bhv2-look-deeper { max-width:46rem; color:var(--bhv2-muted); }
-#hrv-black-hole-v2-root .bhv2-look-deeper summary { cursor:pointer; color:#dcecf4; font-weight:800; }
+#hrv-black-hole-v2-root .bhv2-child-line {
+  max-width:58ch;
+  margin:.75rem 0 0;
+  color:#edf6fa;
+  font-size:var(--bhv2-type-lead);
+  line-height:1.55;
+}
+#hrv-black-hole-v2-root .bhv2-evidence-badge {
+  display:inline-flex;
+  width:max-content;
+  max-width:100%;
+  margin:.2rem 0 .2rem;
+  padding:.42rem .68rem;
+  border:1px solid rgba(var(--bhv2-accent-rgb),.38);
+  border-radius:999px;
+  background:rgba(var(--bhv2-accent-rgb),.09);
+  color:#e4f2f7;
+  font-size:var(--bhv2-type-label);
+  line-height:1.35;
+  font-weight:750;
+}
+#hrv-black-hole-v2-root .bhv2-deeper-drawer {
+  max-width:60ch;
+  margin-top:1rem;
+  color:var(--bhv2-muted);
+}
+#hrv-black-hole-v2-root .bhv2-deeper-drawer summary {
+  width:max-content;
+  max-width:100%;
+  cursor:pointer;
+  color:#f4fafc;
+  font-weight:800;
+  font-size:var(--bhv2-type-body);
+}
+#hrv-black-hole-v2-root .bhv2-deeper-drawer p { margin:.7rem 0 0; }
+#hrv-black-hole-v2-root .bhv2-state-readout {
+  margin:.65rem 0 0;
+  color:#dce9ef;
+  font-size:var(--bhv2-type-support);
+  line-height:1.45;
+}
 
-#hrv-black-hole-v2-root .bhv2-two-up,
-#hrv-black-hole-v2-root .bhv2-observation-pair,
-#hrv-black-hole-v2-root .bhv2-reconstruction-pair,
-#hrv-black-hole-v2-root .bhv2-warped-pair,
-#hrv-black-hole-v2-root .bhv2-anatomy-cluster {
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:clamp(1.25rem,3vw,3rem);
-  align-items:start;
-}
-#hrv-black-hole-v2-root .bhv2-two-up--feature { grid-template-columns:minmax(18rem,.72fr) minmax(0,1.28fr); align-items:center; }
-#hrv-black-hole-v2-root .bhv2-story-panel,
-#hrv-black-hole-v2-root .bhv2-sidecar,
-#hrv-black-hole-v2-root .bhv2-observatory-stack,
-#hrv-black-hole-v2-root .bhv2-media-signage {
-  padding:clamp(1rem,2vw,1.75rem);
-  border:1px solid var(--bhv2-border);
-  border-radius:1.25rem;
-  background:rgba(7,20,34,.72);
-}
+/* Distinct chamber lighting */
+#hrv-black-hole-v2-root [data-station="01"] { --bhv2-accent:#ffd77e; --bhv2-accent-rgb:255,215,126; background:linear-gradient(180deg,#18313c,#102532 62%,#0c1d29); }
+#hrv-black-hole-v2-root [data-station="02"] { --bhv2-accent:#8cf4ff; --bhv2-accent-rgb:140,244,255; background:radial-gradient(circle at 65% 42%,rgba(60,176,220,.16),transparent 33rem),linear-gradient(180deg,#071624,#0a1d2e 60%,#081624); }
+#hrv-black-hole-v2-root [data-station="03"] { --bhv2-accent:#7feaff; --bhv2-accent-rgb:127,234,255; background:radial-gradient(circle at 84% 60%,rgba(255,198,92,.12),transparent 27rem),linear-gradient(180deg,#0b2231,#0d2738 58%,#0a1b28); }
+#hrv-black-hole-v2-root [data-station="04"] { --bhv2-accent:#a8beff; --bhv2-accent-rgb:168,190,255; background:linear-gradient(180deg,#080f1d,#0b1730 58%,#081522); }
+#hrv-black-hole-v2-root [data-station="05"] { --bhv2-accent:#72f0ed; --bhv2-accent-rgb:114,240,237; background:radial-gradient(circle at 50% 52%,rgba(60,220,216,.17),transparent 38rem),linear-gradient(180deg,#0a2533,#0d3342 55%,#09202d); }
+#hrv-black-hole-v2-root [data-station="06"] { --bhv2-accent:#ffc36d; --bhv2-accent-rgb:255,195,109; background:linear-gradient(180deg,#172837,#152534 52%,#101e2c); }
+#hrv-black-hole-v2-root [data-station="07"] { --bhv2-accent:#ffad62; --bhv2-accent-rgb:255,173,98; background:radial-gradient(circle at 24% 52%,rgba(255,133,47,.2),transparent 32rem),radial-gradient(circle at 77% 52%,rgba(255,181,79,.18),transparent 34rem),linear-gradient(180deg,#171d27,#161c28 58%,#101823); }
+#hrv-black-hole-v2-root [data-station="08"] { --bhv2-accent:#ffd06f; --bhv2-accent-rgb:255,208,111; background:radial-gradient(circle at 30% 45%,rgba(255,191,68,.17),transparent 31rem),radial-gradient(circle at 80% 30%,rgba(73,223,238,.15),transparent 29rem),linear-gradient(180deg,#102431,#122b38 56%,#0d1e2c); }
+#hrv-black-hole-v2-root [data-station="09"] { --bhv2-accent:#c0ceff; --bhv2-accent-rgb:192,206,255; background:linear-gradient(180deg,#101d2a,#142433 58%,#0d1b28); }
+#hrv-black-hole-v2-root [data-station="10"] { --bhv2-accent:#e4f7ff; --bhv2-accent-rgb:228,247,255; background:radial-gradient(circle at 50% 76%,rgba(114,207,236,.12),transparent 31rem),linear-gradient(180deg,#0d1925,#09141e 64%,#07111a); }
 
-#hrv-black-hole-v2-root .bhv2-recap-grid {
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:1rem;
-}
-#hrv-black-hole-v2-root .bhv2-recap-card,
-#hrv-black-hole-v2-root .bhv2-process-card,
-#hrv-black-hole-v2-root .bhv2-myth,
-#hrv-black-hole-v2-root .bhv2-credit-item {
-  border:1px solid var(--bhv2-border);
-  border-radius:1rem;
-  background:linear-gradient(145deg,rgba(10,27,44,.8),rgba(4,12,22,.9));
-}
-#hrv-black-hole-v2-root .bhv2-recap-card { padding:1rem; }
-#hrv-black-hole-v2-root .bhv2-recap-index,
-#hrv-black-hole-v2-root .bhv2-process-index { color:var(--bhv2-cyan); font-weight:900; font-size:.8rem; }
-
-#hrv-black-hole-v2-root .bhv2-feature-module,
-#hrv-black-hole-v2-root .bhv2-standard-module,
+/* --------------------------------------------------------------------------
+   Scientific media
+   -------------------------------------------------------------------------- */
 #hrv-black-hole-v2-root .bhv2-media-card {
-  min-width:0;
-}
-#hrv-black-hole-v2-root .bhv2-feature-module { width:min(100%,760px); }
-#hrv-black-hole-v2-root .bhv2-standard-module { width:min(100%,520px); }
-#hrv-black-hole-v2-root .bhv2-small-module { width:min(100%,340px); }
-
-#hrv-black-hole-v2-root .bhv2-media-card {
+  position:relative;
   margin:0;
-  border:1px solid var(--bhv2-border);
+  min-width:0;
+  border:1px solid rgba(var(--bhv2-accent-rgb),.42);
   border-radius:1.2rem;
-  overflow:hidden;
-  background:#06111d;
+  background:linear-gradient(145deg,rgba(22,54,73,.96),rgba(9,29,43,.98));
+  box-shadow:0 22px 62px rgba(0,0,0,.34),inset 0 1px rgba(255,255,255,.08);
 }
 #hrv-black-hole-v2-root .bhv2-media-frame {
   position:relative;
   aspect-ratio:var(--media-aspect,16 / 10);
-  overflow:hidden;
-  background:#01040a;
+  overflow:clip;
+  border-radius:1.2rem 1.2rem 0 0;
+  background:#01050b;
 }
 #hrv-black-hole-v2-root .bhv2-media-frame :where(img,video,picture) { width:100%; height:100%; }
 #hrv-black-hole-v2-root .bhv2-media-frame :where(img,video) { display:block; object-fit:contain; }
-#hrv-black-hole-v2-root .bhv2-media-card figcaption { display:grid; gap:.45rem; padding:.85rem 1rem 1rem; color:var(--bhv2-muted); font-size:.86rem; line-height:1.45; }
-#hrv-black-hole-v2-root .bhv2-media-title { color:#f5fbff; font-size:1rem; }
-#hrv-black-hole-v2-root .bhv2-media-credit { color:#8ca5b6; }
-#hrv-black-hole-v2-root .bhv2-media-failure { display:grid; place-items:center; height:100%; padding:1rem; text-align:center; color:#d7e4ec; }
+#hrv-black-hole-v2-root .bhv2-media-card figcaption {
+  display:grid;
+  gap:.55rem;
+  padding:1.05rem 1.15rem 1.2rem;
+  color:#dbe8ee;
+  font-size:var(--bhv2-type-ui);
+  line-height:1.5;
+  background:linear-gradient(180deg,rgba(19,46,62,.98),rgba(10,29,42,.99));
+  border-radius:0 0 1.2rem 1.2rem;
+}
+#hrv-black-hole-v2-root .bhv2-media-title { color:#fff; font-size:21px; line-height:1.35; }
+#hrv-black-hole-v2-root .bhv2-media-credit { color:#b3c6d0; font-size:var(--bhv2-type-label); }
+#hrv-black-hole-v2-root .bhv2-media-failure { display:grid; place-items:center; min-height:18rem; padding:1.2rem; text-align:center; }
+#hrv-black-hole-v2-root .bhv2-zoom-button { margin:.8rem 1rem 1rem; }
+#hrv-black-hole-v2-root .bhv2-media-dialog {
+  width:min(94vw,1500px);
+  max-height:94vh;
+  padding:1rem;
+  border:1px solid rgba(140,244,255,.5);
+  border-radius:1rem;
+  background:#07131f;
+  color:#fff;
+}
+#hrv-black-hole-v2-root .bhv2-media-dialog::backdrop { background:rgba(0,0,0,.82); backdrop-filter:blur(4px); }
+#hrv-black-hole-v2-root .bhv2-media-dialog img { display:block; width:100%; max-height:78vh; object-fit:contain; }
+#hrv-black-hole-v2-root .bhv2-dialog-close { margin-bottom:.75rem; }
+#hrv-black-hole-v2-root .bhv2-dialog-caption { margin:.75rem 0 0; font-size:var(--bhv2-type-body); }
 
+/* --------------------------------------------------------------------------
+   01 · Classroom threshold
+   -------------------------------------------------------------------------- */
+#hrv-black-hole-v2-root .bhv2-threshold-zone {
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(24rem,.92fr);
+  gap:clamp(2rem,4vw,5rem);
+  align-items:center;
+}
+#hrv-black-hole-v2-root .bhv2-threshold-plaque {
+  padding:clamp(1.5rem,2.5vw,2.4rem);
+  border:1px solid rgba(255,215,126,.46);
+  border-left:5px solid #ffd77e;
+  border-radius:1.4rem;
+  background:linear-gradient(145deg,rgba(36,66,75,.96),rgba(16,38,49,.98));
+  box-shadow:0 28px 75px rgba(0,0,0,.32),0 0 38px rgba(255,215,126,.08),inset 0 1px rgba(255,255,255,.1);
+}
+#hrv-black-hole-v2-root .bhv2-threshold-plaque .bhv2-section-intro { grid-template-columns:1fr; gap:.8rem; margin-bottom:1.5rem; }
+#hrv-black-hole-v2-root .bhv2-threshold-plaque .bhv2-section-marker { grid-template-columns:auto 1fr; align-items:center; }
+#hrv-black-hole-v2-root .bhv2-threshold-warning {
+  margin:0 0 1.35rem;
+  padding:.8rem .95rem;
+  border:1px solid rgba(255,215,126,.36);
+  border-radius:.75rem;
+  background:rgba(255,215,126,.08);
+}
+#hrv-black-hole-v2-root .bhv2-recap-copy { display:grid; gap:.9rem; }
+#hrv-black-hole-v2-root .bhv2-recap-row {
+  display:grid;
+  grid-template-columns:2.5rem minmax(0,1fr);
+  gap:.85rem;
+  align-items:start;
+}
+#hrv-black-hole-v2-root .bhv2-recap-index {
+  display:grid;
+  place-items:center;
+  min-height:2.5rem;
+  border:1px solid rgba(255,215,126,.34);
+  border-radius:.6rem;
+  color:#ffd77e;
+  font-weight:900;
+}
+#hrv-black-hole-v2-root .bhv2-recap-row p { margin:.1rem 0 0; font-size:21px; }
+#hrv-black-hole-v2-root .bhv2-threshold-aperture {
+  position:relative;
+  min-height:34rem;
+  border:1px solid rgba(140,244,255,.25);
+  border-radius:2rem 2rem .4rem .4rem;
+  background:radial-gradient(circle at 50% 35%,rgba(140,244,255,.12),transparent 14rem),linear-gradient(180deg,#020812,#061522 75%,rgba(32,83,101,.42));
+  box-shadow:inset 0 0 90px rgba(0,0,0,.75),0 28px 90px rgba(0,0,0,.3),0 0 60px rgba(140,244,255,.08);
+}
+#hrv-black-hole-v2-root .bhv2-aperture-stars {
+  position:absolute;
+  inset:8% 7% 16%;
+  opacity:.75;
+  background-image:radial-gradient(circle at 20% 30%,#fff 0 1px,transparent 1.6px),radial-gradient(circle at 68% 18%,#9ff7ff 0 1px,transparent 1.5px),radial-gradient(circle at 48% 72%,#fff 0 1px,transparent 1.5px),radial-gradient(circle at 82% 58%,#fff 0 1px,transparent 1.4px);
+  background-size:11rem 9rem,15rem 13rem,17rem 14rem,20rem 18rem;
+}
+#hrv-black-hole-v2-root .bhv2-aperture-label { position:absolute; left:50%; bottom:1.5rem; transform:translateX(-50%); width:max-content; max-width:90%; margin:0; color:#dff9fc; font-family:'Nunito Sans',sans-serif; font-size:25px; font-weight:900; }
+
+/* --------------------------------------------------------------------------
+   02 · Invisible sky atrium
+   -------------------------------------------------------------------------- */
+#hrv-black-hole-v2-root .bhv2-atrium-zone { display:grid; gap:1.5rem; }
+#hrv-black-hole-v2-root .bhv2-atrium-zone .bhv2-section-intro { max-width:1120px; }
 #hrv-black-hole-v2-root .bhv2-lensing {
   position:relative;
-  width:min(100%,760px);
-  aspect-ratio:1200 / 650;
-  border:1px solid var(--bhv2-border);
-  border-radius:1.25rem;
-  overflow:hidden;
-  background:#02040a;
+  width:100%;
+  min-height:clamp(31rem,52vw,43rem);
+  border:1px solid rgba(140,244,255,.4);
+  border-radius:1.5rem;
+  background:#02050c;
+  box-shadow:0 30px 90px rgba(0,0,0,.46),0 0 65px rgba(88,207,239,.08);
+  overflow:clip;
 }
 #hrv-black-hole-v2-root .bhv2-lensing canvas,
 #hrv-black-hole-v2-root .bhv2-lensing-paths { position:absolute; inset:0; width:100%; height:100%; }
-#hrv-black-hole-v2-root .bhv2-lensing-paths { opacity:0; transition:opacity .2s ease; fill:none; stroke:var(--bhv2-cyan); stroke-width:3; }
-#hrv-black-hole-v2-root .bhv2-lensing.show-paths .bhv2-lensing-paths { opacity:.82; }
-#hrv-black-hole-v2-root .bhv2-lensing-center { position:absolute; left:50%; top:50%; width:12%; aspect-ratio:1; transform:translate(-50%,-50%); border-radius:50%; background:#000; box-shadow:0 0 34px 12px rgba(0,0,0,.86); }
-#hrv-black-hole-v2-root .bhv2-lensing .bhv2-control-row { position:absolute; left:50%; bottom:.7rem; transform:translateX(-50%); width:max-content; max-width:calc(100% - 1.4rem); }
+#hrv-black-hole-v2-root .bhv2-lensing-paths { opacity:0; fill:none; stroke:#8cf4ff; stroke-width:3; transition:opacity .24s ease; }
+#hrv-black-hole-v2-root .bhv2-lensing.show-paths .bhv2-lensing-paths { opacity:.88; }
+#hrv-black-hole-v2-root .bhv2-lensing-center { position:absolute; left:50%; top:50%; width:10%; aspect-ratio:1; transform:translate(-50%,-50%); border-radius:50%; background:#000; box-shadow:0 0 42px 14px rgba(0,0,0,.9); }
+#hrv-black-hole-v2-root .bhv2-atrium-controls { position:absolute; left:50%; bottom:1.3rem; transform:translateX(-50%); justify-content:center; width:min(92%,52rem); }
+#hrv-black-hole-v2-root .bhv2-lensing .bhv2-state-readout { position:absolute; left:50%; bottom:5.2rem; transform:translateX(-50%); width:min(90%,48rem); padding:.65rem .9rem; border-radius:.7rem; background:rgba(4,18,29,.78); text-align:center; }
+#hrv-black-hole-v2-root .bhv2-control-row { display:flex; flex-wrap:wrap; gap:.6rem; }
+#hrv-black-hole-v2-root .bhv2-wall-label { max-width:58ch; margin:0 auto; padding:1rem 1.2rem; border-left:4px solid var(--bhv2-accent); background:rgba(10,34,50,.72); }
+#hrv-black-hole-v2-root .bhv2-wall-label p { margin:.35rem 0 0; color:var(--bhv2-muted); }
 
-#hrv-black-hole-v2-root .bhv2-control-row { display:flex; flex-wrap:wrap; gap:.55rem; }
-#hrv-black-hole-v2-root .bhv2-evidence-cluster {
+/* --------------------------------------------------------------------------
+   03 · Evidence gallery
+   -------------------------------------------------------------------------- */
+#hrv-black-hole-v2-root .bhv2-evidence-gallery {
   display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(260px,390px);
-  gap:clamp(1.25rem,3vw,2.5rem);
+  grid-template-columns:minmax(0,1.32fr) minmax(30rem,.68fr);
+  gap:clamp(1.5rem,3vw,3.5rem);
+  align-items:stretch;
+}
+#hrv-black-hole-v2-root .bhv2-evidence-model {
+  position:relative;
+  min-height:47rem;
+  border:1px solid rgba(127,234,255,.34);
+  border-radius:1.5rem;
+  background:radial-gradient(circle at center,rgba(55,137,172,.18),rgba(5,18,29,.94) 52%);
+  box-shadow:0 28px 75px rgba(0,0,0,.34),inset 0 0 80px rgba(127,234,255,.04);
+}
+#hrv-black-hole-v2-root .bhv2-evidence-lines { position:absolute; inset:0; width:100%; height:100%; fill:none; stroke:rgba(127,234,255,.14); stroke-width:3; pointer-events:none; }
+#hrv-black-hole-v2-root .bhv2-evidence-lines path { transition:stroke .22s ease,filter .22s ease,stroke-width .22s ease; }
+#hrv-black-hole-v2-root .bhv2-evidence-lines path.is-on { stroke:var(--bhv2-accent); stroke-width:5; filter:drop-shadow(0 0 8px rgba(127,234,255,.45)); }
+#hrv-black-hole-v2-root .bhv2-evidence-center {
+  position:absolute;
+  left:50%;top:50%;transform:translate(-50%,-50%);
+  z-index:2;
+  width:min(17rem,38%);
+  aspect-ratio:1;
+  display:grid;
+  place-content:center;
+  gap:.35rem;
+  padding:1.1rem;
+  border:1px solid rgba(255,215,126,.38);
+  border-radius:50%;
+  background:radial-gradient(circle,#0b2233,#050c13 70%);
+  text-align:center;
+  box-shadow:0 0 48px rgba(255,215,126,.08),inset 0 0 38px rgba(0,0,0,.58);
+}
+#hrv-black-hole-v2-root .bhv2-evidence-center strong { color:#ffd77e; font-size:25px; }
+#hrv-black-hole-v2-root .bhv2-evidence-center span { color:#cbdbe3; font-size:var(--bhv2-type-ui); line-height:1.35; }
+#hrv-black-hole-v2-root .bhv2-evidence-clues { position:absolute; inset:0; }
+#hrv-black-hole-v2-root .bhv2-clue {
+  position:absolute;
+  z-index:3;
+  width:min(22rem,38%);
+  min-height:8.5rem;
+  padding:1rem 1.05rem;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:.4rem .65rem;
+  text-align:left;
+  border:1px solid rgba(142,229,255,.36);
+  border-left:4px solid #7feaff;
+  border-radius:1rem;
+  background:linear-gradient(145deg,#123449,#0a2232);
+  color:#fff;
+  font:inherit;
+  cursor:pointer;
+  box-shadow:0 14px 38px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.08);
+}
+#hrv-black-hole-v2-root .bhv2-clue--1 { left:4%; top:7%; }
+#hrv-black-hole-v2-root .bhv2-clue--2 { right:4%; top:9%; border-left-color:#ffd77e; background:linear-gradient(145deg,#3a3022,#171f29); }
+#hrv-black-hole-v2-root .bhv2-clue--3 { left:6%; bottom:8%; border-left-color:#aabaff; background:linear-gradient(145deg,#252f50,#141d34); }
+#hrv-black-hole-v2-root .bhv2-clue--4 { right:5%; bottom:10%; width:min(19rem,34%); min-height:7rem; border-left-color:#f39b70; background:linear-gradient(145deg,#3b2730,#171d29); }
+#hrv-black-hole-v2-root .bhv2-clue-symbol { color:var(--bhv2-accent); font-size:28px; }
+#hrv-black-hole-v2-root .bhv2-clue-title { font-size:21px; line-height:1.35; }
+#hrv-black-hole-v2-root .bhv2-clue-copy { grid-column:1/-1; color:#e0ebf0; font-size:var(--bhv2-type-support); line-height:1.45; }
+#hrv-black-hole-v2-root .bhv2-clue-copy[hidden] { display:none; }
+#hrv-black-hole-v2-root .bhv2-clue.is-open { border-color:rgba(255,255,255,.65); box-shadow:0 18px 50px rgba(0,0,0,.34),0 0 30px rgba(127,234,255,.14); }
+#hrv-black-hole-v2-root .bhv2-evidence-master { position:absolute; left:50%; bottom:1.1rem; transform:translateX(-50%); z-index:4; }
+#hrv-black-hole-v2-root .bhv2-diagram-pedestal { align-self:center; }
+#hrv-black-hole-v2-root .bhv2-diagram-pedestal .bhv2-media-frame { min-height:31rem; aspect-ratio:4/3; }
+
+/* --------------------------------------------------------------------------
+   04 · Star-orbit theater
+   -------------------------------------------------------------------------- */
+#hrv-black-hole-v2-root .bhv2-section--theater { background:radial-gradient(ellipse at 50% 55%,rgba(82,105,173,.14),transparent 42rem),linear-gradient(180deg,#050a12,#081426 60%,#07111d); }
+#hrv-black-hole-v2-root .bhv2-theater {
+  padding:clamp(1rem,2vw,1.6rem);
+  border:1px solid rgba(168,190,255,.3);
+  border-radius:1.6rem;
+  background:#040912;
+  box-shadow:0 32px 95px rgba(0,0,0,.5),0 0 60px rgba(100,130,220,.08);
+}
+#hrv-black-hole-v2-root .bhv2-theater-screen { position:relative; width:100%; }
+#hrv-black-hole-v2-root .bhv2-orbit-observation { width:100%; border-radius:1rem; }
+#hrv-black-hole-v2-root .bhv2-orbit-observation .bhv2-media-frame { aspect-ratio:16/9; min-height:34rem; }
+#hrv-black-hole-v2-root .bhv2-orbit-overlay { position:absolute; left:1rem; right:1rem; top:1rem; width:calc(100% - 2rem); aspect-ratio:16/9; pointer-events:none; fill:none; stroke:#8cf4ff; stroke-width:4; opacity:.92; }
+#hrv-black-hole-v2-root .bhv2-orbit-trace,
+#hrv-black-hole-v2-root .bhv2-orbit-center-marker,
+#hrv-black-hole-v2-root .bhv2-orbit-comparison { opacity:0; transition:opacity .2s ease; }
+#hrv-black-hole-v2-root .bhv2-orbit-overlay.show-trace .bhv2-orbit-trace,
+#hrv-black-hole-v2-root .bhv2-orbit-overlay.show-center .bhv2-orbit-center-marker,
+#hrv-black-hole-v2-root .bhv2-orbit-overlay.show-comparison .bhv2-orbit-comparison { opacity:1; }
+#hrv-black-hole-v2-root .bhv2-orbit-comparison { stroke:#ffd77e; stroke-dasharray:12 10; opacity:0; }
+#hrv-black-hole-v2-root .bhv2-orbit-center-marker { stroke:#ffd77e; }
+#hrv-black-hole-v2-root .bhv2-orbit-star { fill:#ffd77e; stroke:none; }
+#hrv-black-hole-v2-root .bhv2-theater-console {
+  width:min(100%,70rem);
+  margin:1.2rem auto 0;
+  padding:1.2rem 1.35rem;
+  border:1px solid rgba(168,190,255,.34);
+  border-left:4px solid var(--bhv2-accent);
+  border-radius:1rem;
+  background:linear-gradient(145deg,rgba(20,34,60,.96),rgba(8,21,38,.98));
+}
+#hrv-black-hole-v2-root .bhv2-theater-console h3 { margin-bottom:.5rem; font-size:27px; }
+#hrv-black-hole-v2-root .bhv2-theater-console > p:not(.bhv2-sidecar-label) { color:var(--bhv2-muted); }
+#hrv-black-hole-v2-root .bhv2-orbit-controls { display:flex; flex-wrap:wrap; gap:.65rem; align-items:center; }
+#hrv-black-hole-v2-root .bhv2-orbit-controls .bhv2-state-readout { flex-basis:100%; }
+
+/* --------------------------------------------------------------------------
+   05 · Planetary telescope hall
+   -------------------------------------------------------------------------- */
+#hrv-black-hole-v2-root .bhv2-map-wall { width:100%; border-radius:1.5rem; }
+#hrv-black-hole-v2-root .bhv2-map-wall .bhv2-media-frame { aspect-ratio:16/8; min-height:36rem; }
+#hrv-black-hole-v2-root .bhv2-earth-network {
+  margin-top:clamp(2rem,4vw,4rem);
+  padding:clamp(1.2rem,2vw,1.8rem);
+  border:1px solid rgba(114,240,237,.36);
+  border-radius:1.5rem;
+  background:linear-gradient(145deg,rgba(15,57,70,.92),rgba(6,30,43,.96));
+  box-shadow:0 26px 76px rgba(0,0,0,.3),0 0 55px rgba(72,226,222,.08);
+}
+#hrv-black-hole-v2-root .bhv2-network-stage {
+  display:grid;
+  grid-template-columns:minmax(28rem,1fr) minmax(19rem,.55fr);
+  gap:clamp(1.5rem,3vw,3rem);
   align-items:center;
 }
-#hrv-black-hole-v2-root .bhv2-evidence-model { width:100%; max-width:800px; padding:1.2rem; border:1px solid var(--bhv2-border); border-radius:1.25rem; background:radial-gradient(circle at center,rgba(39,118,159,.14),rgba(4,12,22,.9) 55%); }
-#hrv-black-hole-v2-root .bhv2-evidence-center { width:max-content; margin:0 auto 1rem; padding:.65rem .9rem; border:1px solid rgba(240,217,165,.24); border-radius:999px; color:var(--bhv2-gold); }
-#hrv-black-hole-v2-root .bhv2-clue-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem; }
-#hrv-black-hole-v2-root .bhv2-clue { display:grid; grid-template-columns:auto 1fr; text-align:left; gap:.3rem .65rem; min-height:8rem; padding:.9rem; border:1px solid var(--bhv2-border); border-radius:1rem; background:#071725; color:#fff; cursor:pointer; }
-#hrv-black-hole-v2-root .bhv2-clue-copy { grid-column:1/-1; color:var(--bhv2-muted); opacity:.5; transition:opacity .18s ease; }
-#hrv-black-hole-v2-root .bhv2-clue.is-open .bhv2-clue-copy { opacity:1; }
-#hrv-black-hole-v2-root .bhv2-clue-symbol { color:var(--bhv2-cyan); font-size:1.5rem; }
-#hrv-black-hole-v2-root .bhv2-evidence-model > .bhv2-primary { margin-top:.9rem; }
-
-#hrv-black-hole-v2-root .bhv2-observation-pair { grid-template-columns:minmax(0,2fr) minmax(250px,.75fr); align-items:center; }
-#hrv-black-hole-v2-root .bhv2-orbit-observation { position:relative; width:min(100%,800px); }
-#hrv-black-hole-v2-root .bhv2-orbit-overlay { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; fill:none; stroke:var(--bhv2-cyan); stroke-width:4; opacity:0; transition:opacity .2s ease; }
-#hrv-black-hole-v2-root .bhv2-orbit-overlay.is-traced { opacity:.8; }
-#hrv-black-hole-v2-root .bhv2-orbit-star { fill:var(--bhv2-gold); stroke:none; }
-
-#hrv-black-hole-v2-root .bhv2-telescope-cluster {
-  display:grid;
-  grid-template-columns:minmax(0,5fr) minmax(280px,4fr) minmax(220px,3fr);
-  gap:clamp(1rem,2vw,2rem);
-  align-items:center;
+#hrv-black-hole-v2-root .bhv2-earth {
+  position:relative;
+  width:min(100%,42rem);
+  aspect-ratio:1;
+  justify-self:center;
+  border-radius:50%;
+  background:radial-gradient(circle at 42% 38%,#2b7695,#0c3650 55%,#06111e 74%);
+  border:1px solid rgba(114,240,237,.62);
+  box-shadow:inset -35px -20px 70px rgba(0,0,0,.45),0 0 45px rgba(72,226,222,.22),0 0 100px rgba(72,226,222,.08);
 }
-#hrv-black-hole-v2-root .bhv2-telescope-map { width:min(100%,600px); }
-#hrv-black-hole-v2-root .bhv2-earth-network { display:grid; gap:.9rem; justify-items:center; width:100%; }
-#hrv-black-hole-v2-root .bhv2-earth { position:relative; width:min(100%,430px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 42% 38%,#246381,#0b2b43 55%,#06111e 72%); border:1px solid rgba(127,244,255,.28); box-shadow:inset -35px -20px 70px rgba(0,0,0,.5); }
-#hrv-black-hole-v2-root .bhv2-earth::after { content:""; position:absolute; inset:13%; border-radius:50%; border:1px dashed rgba(127,244,255,.17); }
+#hrv-black-hole-v2-root .bhv2-earth::after { content:""; position:absolute; inset:13%; border-radius:50%; border:1px dashed rgba(127,244,255,.2); pointer-events:none; }
 #hrv-black-hole-v2-root .bhv2-earth-lines { position:absolute; inset:0; width:100%; height:100%; fill:none; stroke:rgba(127,244,255,.16); stroke-width:.55; }
-#hrv-black-hole-v2-root .bhv2-earth-lines path.is-on { stroke:var(--bhv2-cyan); stroke-width:1; }
-#hrv-black-hole-v2-root .bhv2-site { position:absolute; transform:translate(-50%,-50%); min-height:32px!important; padding:.25rem .4rem!important; border-radius:.45rem!important; font-size:.68rem!important; z-index:2; }
-#hrv-black-hole-v2-root .bhv2-chip-list { display:flex; flex-wrap:wrap; gap:.45rem; }
-#hrv-black-hole-v2-root .bhv2-chip { padding:.38rem .55rem; border:1px solid rgba(127,244,255,.18); border-radius:999px; color:#dcebf3; font-size:.75rem; }
+#hrv-black-hole-v2-root .bhv2-earth-lines path.is-on { stroke:var(--bhv2-cyan); stroke-width:1.05; filter:drop-shadow(0 0 2px rgba(127,244,255,.5)); }
+#hrv-black-hole-v2-root .bhv2-site {
+  position:absolute;
+  z-index:3;
+  transform:translate(-50%,-50%);
+  min-width:3.6rem;
+  padding:.45rem .6rem;
+  font-size:var(--bhv2-type-label);
+  font-weight:850;
+}
+#hrv-black-hole-v2-root .bhv2-network-detail {
+  padding:1.25rem 1.35rem;
+  border:1px solid rgba(114,240,237,.34);
+  border-left:4px solid var(--bhv2-accent);
+  border-radius:1rem;
+  background:rgba(6,32,45,.84);
+}
+#hrv-black-hole-v2-root .bhv2-network-detail h3 { font-size:29px; margin-bottom:.55rem; }
+#hrv-black-hole-v2-root .bhv2-network-controls { display:grid; justify-items:center; gap:.3rem; margin-top:1rem; }
+#hrv-black-hole-v2-root .bhv2-earth-network[data-network-state="complete"] { box-shadow:0 26px 76px rgba(0,0,0,.3),0 0 100px rgba(72,226,222,.24),inset 0 0 80px rgba(72,226,222,.08); }
+#hrv-black-hole-v2-root .bhv2-section[data-station="05"]:has(.bhv2-earth[data-network-state="complete"])::after { opacity:.9; background:radial-gradient(circle at 50% 62%,rgba(114,240,237,.27),transparent 42rem); }
+#hrv-black-hole-v2-root .bhv2-sync-strip {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:.8rem;
+  margin-top:1.2rem;
+}
+#hrv-black-hole-v2-root .bhv2-sync-step {
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:.7rem;
+  align-items:center;
+  padding:.9rem 1rem;
+  border-top:3px solid var(--bhv2-accent);
+  background:rgba(8,38,50,.78);
+}
+#hrv-black-hole-v2-root .bhv2-sync-step span { color:var(--bhv2-accent); font-weight:900; }
 
-#hrv-black-hole-v2-root .bhv2-process-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin-bottom:1.25rem; }
-#hrv-black-hole-v2-root .bhv2-process-card { padding:1rem; }
-#hrv-black-hole-v2-root .bhv2-process-card h3 { margin:.4rem 0; font-size:1.15rem; }
-#hrv-black-hole-v2-root .bhv2-process-card p { color:var(--bhv2-muted); }
-#hrv-black-hole-v2-root .bhv2-reconstruction-pair { grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr); align-items:center; }
-#hrv-black-hole-v2-root .bhv2-reconstruction { width:min(100%,620px); padding:1rem; border:1px solid var(--bhv2-border); border-radius:1.25rem; background:#06111d; }
-#hrv-black-hole-v2-root .bhv2-reconstruction-visual { min-height:21rem; border-radius:1rem; background:radial-gradient(circle,#6ec8e0 0 2%,transparent 3%),linear-gradient(135deg,#081624,#02060c); }
+/* --------------------------------------------------------------------------
+   06 · Reconstruction corridor
+   -------------------------------------------------------------------------- */
+#hrv-black-hole-v2-root .bhv2-process-track {
+  position:relative;
+  list-style:none;
+  margin:0 0 clamp(2rem,4vw,3.5rem);
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.2rem;
+}
+#hrv-black-hole-v2-root .bhv2-process-track::before { content:""; position:absolute; left:5%;right:5%;top:2.1rem;height:3px;background:linear-gradient(90deg,#6acfe5,#ffc36d,#ff9a4d);box-shadow:0 0 15px rgba(255,195,109,.2); }
+#hrv-black-hole-v2-root .bhv2-process-stop { position:relative; z-index:1; padding:1rem 1.15rem 1.15rem; border:1px solid rgba(255,195,109,.34); border-radius:1rem; background:linear-gradient(145deg,rgba(40,56,68,.96),rgba(17,34,47,.98)); }
+#hrv-black-hole-v2-root .bhv2-process-index { display:grid; place-items:center; width:2.5rem;height:2.5rem;border-radius:50%;background:#172737;border:2px solid var(--bhv2-accent);color:var(--bhv2-accent);font-weight:900; }
+#hrv-black-hole-v2-root .bhv2-process-stop h3 { margin:.75rem 0 .35rem; font-size:24px; }
+#hrv-black-hole-v2-root .bhv2-process-stop p { margin:0; color:var(--bhv2-muted); font-size:var(--bhv2-type-support); }
+#hrv-black-hole-v2-root .bhv2-reconstruction-workbench {
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(30rem,.92fr);
+  gap:clamp(1.5rem,3vw,3.2rem);
+  align-items:start;
+}
+#hrv-black-hole-v2-root .bhv2-reconstruction {
+  padding:1.2rem;
+  border:1px solid rgba(255,195,109,.4);
+  border-radius:1.35rem;
+  background:linear-gradient(145deg,rgba(39,53,64,.98),rgba(14,29,42,.98));
+  box-shadow:0 25px 70px rgba(0,0,0,.32);
+}
+#hrv-black-hole-v2-root .bhv2-reconstruction-visual {
+  position:relative;
+  min-height:32rem;
+  border-radius:1rem;
+  background:radial-gradient(circle,#6ec8e0 0 2%,transparent 3%),linear-gradient(135deg,#081624,#02060c);
+  overflow:clip;
+}
+#hrv-black-hole-v2-root .bhv2-reconstruction-visual::after { content:"";position:absolute;left:0;right:0;top:-20%;height:20%;background:linear-gradient(180deg,transparent,rgba(255,203,116,.22),transparent);transform:skewY(-4deg);pointer-events:none; }
+#hrv-black-hole-v2-root .bhv2-section[data-station="06"].is-runtime-live .bhv2-reconstruction-visual::after { animation:bhv2-data-scan 5.6s ease-in-out infinite; }
 #hrv-black-hole-v2-root .bhv2-reconstruction-visual.is-possibilities { background:radial-gradient(circle at 38% 48%,rgba(255,157,73,.65) 0 12%,transparent 24%),radial-gradient(circle at 65% 50%,rgba(255,192,98,.45) 0 10%,transparent 23%),#06111d; }
 #hrv-black-hole-v2-root .bhv2-reconstruction-visual.is-average { background:radial-gradient(circle at center,transparent 0 17%,#f09846 20% 30%,#6e2818 38%,transparent 52%),#03060a; }
-#hrv-black-hole-v2-root .bhv2-process-controls { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.8rem; }
+#hrv-black-hole-v2-root .bhv2-process-controls { display:flex; flex-wrap:wrap; gap:.65rem; margin-top:1rem; }
+#hrv-black-hole-v2-root .bhv2-reconstruction-explainers { display:grid; grid-template-columns:repeat(2,1fr); gap:.75rem; margin-top:1rem; }
+#hrv-black-hole-v2-root .bhv2-reconstruction-explainers details { padding:.8rem .9rem; border-left:3px solid var(--bhv2-accent); background:rgba(255,195,109,.07); }
+#hrv-black-hole-v2-root .bhv2-reconstruction-explainers summary { cursor:pointer; font-weight:850; }
+#hrv-black-hole-v2-root .bhv2-reconstruction-explainers p { margin:.55rem 0 0; color:var(--bhv2-muted); }
+#hrv-black-hole-v2-root .bhv2-reconstruction-reference .bhv2-media-frame { min-height:32rem; aspect-ratio:4/5; }
 
-#hrv-black-hole-v2-root .bhv2-comparison-pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(1rem,3vw,2.5rem); justify-items:center; }
-#hrv-black-hole-v2-root .bhv2-comparison-card { width:min(100%,34rem); }
-#hrv-black-hole-v2-root .bhv2-comparison-support { display:grid; gap:1rem; justify-items:center; margin-top:1rem; }
+/* --------------------------------------------------------------------------
+   07 · Twin-ring rotunda
+   -------------------------------------------------------------------------- */
+#hrv-black-hole-v2-root .bhv2-section--rotunda { padding-top:clamp(5rem,8vw,8rem); padding-bottom:clamp(5rem,8vw,8rem); }
+#hrv-black-hole-v2-root .bhv2-rotunda-zone { --bhv2-zone-max:1640px; }
+#hrv-black-hole-v2-root .bhv2-rotunda-bays {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(1.5rem,3.4vw,4rem);
+  align-items:start;
+}
+#hrv-black-hole-v2-root .bhv2-monument-card { border-color:rgba(255,173,98,.58); box-shadow:0 36px 100px rgba(0,0,0,.48),0 0 65px rgba(255,140,54,.13); }
+#hrv-black-hole-v2-root .bhv2-monument-card .bhv2-media-frame { min-height:38rem; aspect-ratio:1/1; }
+#hrv-black-hole-v2-root .bhv2-section[data-station="07"].is-runtime-live .bhv2-monument-card { animation:bhv2-artifact-glow 6.5s ease-in-out infinite alternate; }
+#hrv-black-hole-v2-root .bhv2-rotunda-controls { display:flex; justify-content:center; margin-top:1.5rem; }
+#hrv-black-hole-v2-root .bhv2-comparison-controls { justify-content:center; }
+#hrv-black-hole-v2-root .bhv2-context-deck { width:min(100%,70rem); margin:1.5rem auto 0; }
+#hrv-black-hole-v2-root .bhv2-context-card .bhv2-media-frame { min-height:28rem; }
+#hrv-black-hole-v2-root .bhv2-quiet-bench {
+  width:min(100%,62rem);
+  margin:clamp(2rem,4vw,4rem) auto 0;
+  padding:1rem 1.25rem;
+  border-top:1px solid rgba(255,173,98,.34);
+  border-bottom:1px solid rgba(255,173,98,.18);
+  text-align:center;
+  color:#e6d9cf;
+}
+#hrv-black-hole-v2-root .bhv2-quiet-bench span { display:block; color:var(--bhv2-accent); font-size:var(--bhv2-type-label); font-weight:900; letter-spacing:.12em; }
+#hrv-black-hole-v2-root .bhv2-quiet-bench p { margin:.45rem 0 0; }
 
-#hrv-black-hole-v2-root .bhv2-warped-pair { grid-template-columns:minmax(0,7fr) minmax(300px,5fr); align-items:center; }
-#hrv-black-hole-v2-root .bhv2-warped-light { width:100%; max-width:760px; padding:1rem; border:1px solid var(--bhv2-border); border-radius:1.25rem; background:#03070d; }
-#hrv-black-hole-v2-root .bhv2-accretion-visual { position:relative; min-height:25rem; overflow:hidden; border-radius:1rem; background:radial-gradient(circle at center,#000 0 13%,rgba(0,0,0,.9) 15%,transparent 17%),radial-gradient(ellipse at center,rgba(255,195,100,.8) 0 5%,rgba(239,103,42,.65) 13%,rgba(114,34,19,.45) 26%,transparent 48%),#03050a; }
-#hrv-black-hole-v2-root .bhv2-disk { position:absolute; left:50%; top:50%; width:80%; height:19%; transform:translate(-50%,-50%) rotate(calc((var(--angle,48deg) - 50deg) * .15)); border-radius:50%; border:5px solid rgba(255,163,69,.6); }
-#hrv-black-hole-v2-root .bhv2-shadow { position:absolute; left:50%; top:50%; width:23%; aspect-ratio:1; transform:translate(-50%,-50%); border-radius:50%; background:#000; z-index:3; }
-#hrv-black-hole-v2-root .bhv2-photon-ring { position:absolute; left:50%; top:50%; width:30%; aspect-ratio:1; transform:translate(-50%,-50%); border-radius:50%; border:2px solid rgba(255,233,173,.75); z-index:4; }
-#hrv-black-hole-v2-root .bhv2-photon-overlay { position:absolute; inset:0; width:100%; height:100%; opacity:0; fill:none; stroke:var(--bhv2-cyan); stroke-width:3; z-index:5; }
-#hrv-black-hole-v2-root .show-paths .bhv2-photon-overlay { opacity:.75; }
-#hrv-black-hole-v2-root .bhv2-warp-controls { display:grid; gap:.8rem; margin-top:.9rem; }
-#hrv-black-hole-v2-root .bhv2-warp-controls input[type="range"] { width:100%; }
-#hrv-black-hole-v2-root .bhv2-support-gallery { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin-top:1rem; justify-items:center; }
+/* --------------------------------------------------------------------------
+   08 · Warped-light laboratory
+   -------------------------------------------------------------------------- */
+#hrv-black-hole-v2-root .bhv2-lab-bench {
+  display:grid;
+  grid-template-columns:minmax(0,1.12fr) minmax(30rem,.88fr);
+  gap:clamp(1.5rem,3vw,3.4rem);
+  align-items:start;
+}
+#hrv-black-hole-v2-root .bhv2-warped-light { padding:1.2rem; border:1px solid rgba(255,208,111,.42); border-radius:1.4rem; background:#07151d; box-shadow:0 25px 72px rgba(0,0,0,.35),0 0 50px rgba(255,199,93,.09); }
+#hrv-black-hole-v2-root .bhv2-accretion-visual { position:relative; min-height:36rem; overflow:clip; border-radius:1rem; background:radial-gradient(circle at center,#000 0 13%,rgba(0,0,0,.9) 15%,transparent 17%),radial-gradient(ellipse at center,rgba(255,195,100,.8) 0 5%,rgba(239,103,42,.65) 13%,rgba(114,34,19,.45) 26%,transparent 48%),#03050a; }
+#hrv-black-hole-v2-root .bhv2-disk { position:absolute; left:50%;top:50%;width:80%;height:19%;transform:translate(-50%,-50%) rotate(calc((var(--angle,48deg) - 50deg) * .15));border-radius:50%;border:5px solid rgba(255,163,69,.62); }
+#hrv-black-hole-v2-root .bhv2-shadow { position:absolute;left:50%;top:50%;width:23%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:#000;z-index:3; }
+#hrv-black-hole-v2-root .bhv2-photon-ring { position:absolute;left:50%;top:50%;width:30%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:2px solid rgba(255,233,173,.78);z-index:4; }
+#hrv-black-hole-v2-root .bhv2-section[data-station="08"].is-runtime-live .bhv2-photon-ring { animation:bhv2-photon-pulse 2.8s ease-in-out infinite; }
+#hrv-black-hole-v2-root .bhv2-photon-overlay { position:absolute;inset:0;width:100%;height:100%;opacity:0;fill:none;stroke:#8cf4ff;stroke-width:3;z-index:5;transition:opacity .2s ease; }
+#hrv-black-hole-v2-root .show-paths .bhv2-photon-overlay { opacity:.78; }
+#hrv-black-hole-v2-root .bhv2-boundary-horizon,
+#hrv-black-hole-v2-root .bhv2-boundary-shadow { position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;z-index:6;opacity:0;transition:opacity .2s ease; }
+#hrv-black-hole-v2-root .bhv2-boundary-horizon { width:20%;aspect-ratio:1;border:3px solid #8cf4ff; }
+#hrv-black-hole-v2-root .bhv2-boundary-shadow { width:29%;aspect-ratio:1;border:3px dashed #ffd77e; }
+#hrv-black-hole-v2-root .show-boundaries .bhv2-boundary-horizon,
+#hrv-black-hole-v2-root .show-boundaries .bhv2-boundary-shadow { opacity:1; }
+#hrv-black-hole-v2-root .bhv2-warp-controls { display:grid; gap:.85rem; margin-top:1rem; }
+#hrv-black-hole-v2-root .bhv2-warp-controls input[type="range"] { width:100%; min-height:32px; accent-color:var(--bhv2-accent); }
+#hrv-black-hole-v2-root .bhv2-warp-controls output { width:max-content; max-width:100%; padding:.4rem .7rem; border:1px solid rgba(255,208,111,.38); border-radius:999px; background:rgba(255,208,111,.09); font-weight:850; }
+#hrv-black-hole-v2-root .bhv2-lab-explainer { padding:.75rem .9rem; border-left:3px solid var(--bhv2-accent); background:rgba(255,208,111,.07); }
+#hrv-black-hole-v2-root .bhv2-lab-explainer summary { cursor:pointer; font-weight:850; }
+#hrv-black-hole-v2-root .bhv2-lab-explainer p { margin:.55rem 0 0; }
+#hrv-black-hole-v2-root .bhv2-lab-diagram .bhv2-media-frame { min-height:35rem; aspect-ratio:4/3; }
+#hrv-black-hole-v2-root .bhv2-support-gallery { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin-top:1.5rem; }
+#hrv-black-hole-v2-root .bhv2-lab-reference .bhv2-media-frame { min-height:18rem; }
 
-#hrv-black-hole-v2-root .bhv2-anatomy-cluster { grid-template-columns:minmax(0,7fr) minmax(280px,5fr); }
-#hrv-black-hole-v2-root .bhv2-anatomy { width:100%; max-width:760px; padding:1rem; border:1px solid var(--bhv2-border); border-radius:1.25rem; background:#06111d; }
-#hrv-black-hole-v2-root .bhv2-anatomy-diagram { position:relative; min-height:23rem; border-radius:1rem; background:radial-gradient(circle at center,#000 0 13%,rgba(239,133,59,.65) 18% 25%,rgba(90,30,20,.25) 35%,transparent 48%),#02060c; }
-#hrv-black-hole-v2-root .bhv2-layer { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); border-radius:50%; opacity:.25; }
-#hrv-black-hole-v2-root .bhv2-layer.horizon { width:24%; aspect-ratio:1; border:3px solid #7ff4ff; }
-#hrv-black-hole-v2-root .bhv2-layer.photon { width:34%; aspect-ratio:1; border:2px dashed #f0d9a5; }
-#hrv-black-hole-v2-root .bhv2-layer.shadow { width:42%; aspect-ratio:1; border:1px solid #8596ff; }
-#hrv-black-hole-v2-root .bhv2-layer.emission { width:70%; height:24%; border:3px solid #ee8b4a; }
+/* --------------------------------------------------------------------------
+   09 · Quiet anatomy and myth gallery
+   -------------------------------------------------------------------------- */
+#hrv-black-hole-v2-root .bhv2-anatomy-cluster { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(26rem,.85fr); gap:clamp(1.5rem,3vw,3.5rem); align-items:start; }
+#hrv-black-hole-v2-root .bhv2-anatomy { padding:1.2rem; border:1px solid rgba(192,206,255,.38); border-radius:1.35rem; background:rgba(12,29,42,.88); }
+#hrv-black-hole-v2-root .bhv2-anatomy-diagram { position:relative; min-height:34rem; border-radius:1rem; background:radial-gradient(circle at center,#000 0 13%,rgba(239,133,59,.65) 18% 25%,rgba(90,30,20,.25) 35%,transparent 48%),#02060c; }
+#hrv-black-hole-v2-root .bhv2-layer { position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;opacity:.22; }
+#hrv-black-hole-v2-root .bhv2-layer.horizon { width:24%;aspect-ratio:1;border:3px solid #7ff4ff; }
+#hrv-black-hole-v2-root .bhv2-layer.photon { width:34%;aspect-ratio:1;border:2px dashed #f0d9a5; }
+#hrv-black-hole-v2-root .bhv2-layer.shadow { width:42%;aspect-ratio:1;border:1px solid #8596ff; }
+#hrv-black-hole-v2-root .bhv2-layer.emission { width:70%;height:24%;border:3px solid #ee8b4a; }
 #hrv-black-hole-v2-root .bhv2-anatomy-diagram[data-layer="horizon"] .horizon,
 #hrv-black-hole-v2-root .bhv2-anatomy-diagram[data-layer="photon-region"] .photon,
 #hrv-black-hole-v2-root .bhv2-anatomy-diagram[data-layer="shadow"] .shadow,
-#hrv-black-hole-v2-root .bhv2-anatomy-diagram[data-layer="emission"] .emission { opacity:1; box-shadow:0 0 20px currentColor; }
-#hrv-black-hole-v2-root .bhv2-anatomy-controls { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.55rem; margin-top:.8rem; }
-#hrv-black-hole-v2-root .bhv2-anatomy-description { color:var(--bhv2-muted); }
-#hrv-black-hole-v2-root .bhv2-myth-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem; }
-#hrv-black-hole-v2-root .bhv2-myth { padding:.85rem; }
-#hrv-black-hole-v2-root .bhv2-myth summary { cursor:pointer; font-weight:800; }
-#hrv-black-hole-v2-root .bhv2-myth p { margin:.65rem 0 0; color:var(--bhv2-muted); }
+#hrv-black-hole-v2-root .bhv2-anatomy-diagram[data-layer="emission"] .emission { opacity:1; box-shadow:0 0 24px currentColor; }
+#hrv-black-hole-v2-root .bhv2-anatomy-controls { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.65rem; margin-top:.9rem; }
+#hrv-black-hole-v2-root .bhv2-anatomy-description { min-height:5rem; margin:1rem 0 0; padding:.8rem .95rem; border-left:3px solid var(--bhv2-accent); background:rgba(192,206,255,.07); }
+#hrv-black-hole-v2-root .bhv2-myth-stack { display:grid; gap:.75rem; }
+#hrv-black-hole-v2-root .bhv2-myth-stack > h3 { font-size:30px; margin-bottom:.2rem; }
+#hrv-black-hole-v2-root .bhv2-myth { padding:.95rem 1rem; border:1px solid rgba(192,206,255,.28); border-left:4px solid var(--bhv2-accent); border-radius:.8rem; background:rgba(17,34,50,.72); }
+#hrv-black-hole-v2-root .bhv2-myth summary { cursor:pointer; font-weight:850; font-size:var(--bhv2-type-body); }
+#hrv-black-hole-v2-root .bhv2-myth p { margin:.7rem 0 0; color:var(--bhv2-muted); }
 
-#hrv-black-hole-v2-root .bhv2-media-center-zone { display:grid; grid-template-columns:minmax(220px,3fr) minmax(0,9fr); gap:clamp(1rem,2.5vw,2.5rem); align-items:start; }
+/* --------------------------------------------------------------------------
+   Media center
+   -------------------------------------------------------------------------- */
+#hrv-black-hole-v2-root .bhv2-media-center { background:radial-gradient(circle at 50% 20%,rgba(95,174,218,.12),transparent 32rem),linear-gradient(180deg,#0e2230,#0a1b28); }
+#hrv-black-hole-v2-root .bhv2-media-center-zone { display:grid; grid-template-columns:minmax(18rem,.28fr) minmax(0,.72fr); gap:clamp(1.2rem,2.5vw,2.5rem); padding:clamp(1rem,2vw,1.5rem); border:1px solid rgba(147,224,255,.22); border-radius:1.4rem; background:rgba(16,42,58,.62); }
+#hrv-black-hole-v2-root .bhv2-media-signage { padding:1.2rem; border-left:4px solid var(--bhv2-cyan); }
+#hrv-black-hole-v2-root .bhv2-media-signage p { font-size:var(--bhv2-type-body); }
 #hrv-black-hole-v2-root .bhv2-youtube-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
-#hrv-black-hole-v2-root .bhv2-youtube-card { overflow:hidden; border:1px solid var(--bhv2-border); border-radius:1.2rem; background:#06111d; }
-#hrv-black-hole-v2-root .bhv2-youtube-frame { aspect-ratio:16 / 9; background:#010409; }
+#hrv-black-hole-v2-root .bhv2-youtube-card { border:1px solid rgba(147,224,255,.28); border-radius:1.2rem; background:#06111d; box-shadow:0 18px 50px rgba(0,0,0,.28); }
+#hrv-black-hole-v2-root .bhv2-youtube-frame { aspect-ratio:16/9; overflow:clip; border-radius:1.2rem 1.2rem 0 0; background:#010409; }
 #hrv-black-hole-v2-root .bhv2-youtube-frame iframe { display:block; width:100%; height:100%; border:0; }
-#hrv-black-hole-v2-root .bhv2-youtube-placeholder { display:grid; place-items:center; height:100%; padding:1rem; color:#91a7b8; text-align:center; }
-#hrv-black-hole-v2-root .bhv2-youtube-meta { padding:1rem; }
-#hrv-black-hole-v2-root .bhv2-youtube-meta h3 { margin-bottom:.4rem; font-size:1.1rem; }
-#hrv-black-hole-v2-root .bhv2-youtube-source { color:var(--bhv2-cyan); font-size:.82rem; }
+#hrv-black-hole-v2-root .bhv2-youtube-placeholder { display:grid; place-items:center; height:100%; padding:1rem; color:#a9bdc8; text-align:center; }
+#hrv-black-hole-v2-root .bhv2-youtube-meta { padding:1rem 1.1rem 1.2rem; }
+#hrv-black-hole-v2-root .bhv2-youtube-meta h3 { margin-bottom:.4rem; font-size:24px; }
+#hrv-black-hole-v2-root .bhv2-youtube-source { color:var(--bhv2-cyan); font-size:var(--bhv2-type-ui); }
 
-#hrv-black-hole-v2-root .bhv2-knowledge-split { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+/* --------------------------------------------------------------------------
+   10 · Boundary and return to observers
+   -------------------------------------------------------------------------- */
+#hrv-black-hole-v2-root .bhv2-knowledge-boundary {
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:1rem;
+  align-items:center;
+  margin:0 0 2rem;
+  color:#dff6fa;
+  font-family:'Nunito Sans',sans-serif;
+  font-size:var(--bhv2-type-ui);
+  font-weight:900;
+  letter-spacing:.08em;
+  text-align:center;
+}
+#hrv-black-hole-v2-root .bhv2-knowledge-boundary i { display:block; width:3px; height:8rem; background:linear-gradient(180deg,transparent,#fff,transparent); box-shadow:0 0 28px rgba(228,247,255,.55); }
+#hrv-black-hole-v2-root .bhv2-knowledge-split { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.2rem; }
 #hrv-black-hole-v2-root .bhv2-known,
-#hrv-black-hole-v2-root .bhv2-unknown { padding:1rem 1.15rem; border:1px solid var(--bhv2-border); border-radius:1.2rem; background:rgba(7,21,34,.76); }
-#hrv-black-hole-v2-root .bhv2-known p,
-#hrv-black-hole-v2-root .bhv2-unknown p { display:inline-block; margin:.3rem .3rem .3rem 0; padding:.35rem .55rem; border:1px solid rgba(127,244,255,.13); border-radius:999px; color:#dce9f1; font-size:.84rem; }
-#hrv-black-hole-v2-root .bhv2-evidence-pullback { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin-top:1rem; justify-items:center; }
-#hrv-black-hole-v2-root .bhv2-closing-line { max-width:48rem; margin:clamp(1.5rem,4vw,3rem) auto 0; color:#f0e1b8; font-size:clamp(1.3rem,1.7vw,1.8rem); text-align:center; }
+#hrv-black-hole-v2-root .bhv2-unknown { padding:1.3rem 1.4rem; border:1px solid rgba(228,247,255,.25); border-radius:1rem; background:rgba(8,25,37,.76); }
+#hrv-black-hole-v2-root .bhv2-known { border-top:4px solid #8cf4ff; }
+#hrv-black-hole-v2-root .bhv2-unknown { border-top:4px solid #ffd77e; }
+#hrv-black-hole-v2-root .bhv2-known h3,
+#hrv-black-hole-v2-root .bhv2-unknown h3 { font-size:29px; }
+#hrv-black-hole-v2-root .bhv2-known ul,
+#hrv-black-hole-v2-root .bhv2-unknown ul { margin:0; padding-left:1.25rem; columns:2; column-gap:2rem; }
+#hrv-black-hole-v2-root .bhv2-known li,
+#hrv-black-hole-v2-root .bhv2-unknown li { margin:.45rem 0; break-inside:avoid; }
+#hrv-black-hole-v2-root .bhv2-return-sequence { display:grid; gap:clamp(2rem,4vw,4rem); margin-top:clamp(2.5rem,5vw,5rem); }
+#hrv-black-hole-v2-root .bhv2-pullback-artifact { width:min(100%,76rem); justify-self:center; }
+#hrv-black-hole-v2-root .bhv2-pullback-artifact .bhv2-media-frame { min-height:34rem; }
+#hrv-black-hole-v2-root .bhv2-observer-artifact { width:100%; }
+#hrv-black-hole-v2-root .bhv2-observer-artifact .bhv2-media-frame { min-height:40rem; aspect-ratio:16/8; }
+#hrv-black-hole-v2-root .bhv2-closing-line { max-width:54rem; margin:clamp(2rem,5vw,4rem) auto 0; color:#f0e2bd; font-size:clamp(1.4rem,1.7vw,1.85rem); line-height:1.45; text-align:center; }
 
-#hrv-black-hole-v2-root .bhv2-credits { background:rgba(2,6,11,.72); }
-#hrv-black-hole-v2-root .bhv2-credit-intro { max-width:48rem; color:var(--bhv2-muted); }
-#hrv-black-hole-v2-root .bhv2-credit-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.75rem; }
-#hrv-black-hole-v2-root .bhv2-credit-item { padding:.85rem; }
-#hrv-black-hole-v2-root .bhv2-credit-item h3 { font-size:1rem; margin-bottom:.45rem; }
-#hrv-black-hole-v2-root .bhv2-credit-item p { color:var(--bhv2-muted); font-size:.82rem; }
-#hrv-black-hole-v2-root .bhv2-footer { padding:2rem 0 3rem; color:#8fa3b1; font-size:.8rem; }
+/* --------------------------------------------------------------------------
+   Credits
+   -------------------------------------------------------------------------- */
+#hrv-black-hole-v2-root .bhv2-credits { background:rgba(3,10,16,.82); }
+#hrv-black-hole-v2-root .bhv2-credit-intro { max-width:58ch; color:var(--bhv2-muted); }
+#hrv-black-hole-v2-root .bhv2-credit-ledger { margin-top:1.25rem; padding:1rem 1.1rem; border:1px solid rgba(140,244,255,.2); border-radius:1rem; background:rgba(8,25,37,.7); }
+#hrv-black-hole-v2-root .bhv2-credit-ledger > summary { cursor:pointer; font-weight:850; font-size:21px; }
+#hrv-black-hole-v2-root .bhv2-credit-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.7rem 1.5rem; margin-top:1rem; }
+#hrv-black-hole-v2-root .bhv2-credit-item { padding:.8rem 0; border-bottom:1px solid rgba(140,244,255,.12); }
+#hrv-black-hole-v2-root .bhv2-credit-item h3 { margin-bottom:.35rem; font-size:var(--bhv2-type-body); }
+#hrv-black-hole-v2-root .bhv2-credit-item p { margin:.35rem 0; color:var(--bhv2-muted); font-size:var(--bhv2-type-ui); }
+#hrv-black-hole-v2-root .bhv2-credit-item .bhv2-evidence-badge { font-size:var(--bhv2-type-label); }
+#hrv-black-hole-v2-root .bhv2-footer { padding:2rem 0 3rem; color:#9eb2bd; font-size:var(--bhv2-type-ui); }
 #hrv-black-hole-v2-root .bhv2-footer-zone { border-top:1px solid rgba(127,244,255,.12); padding-top:1rem; }
 
-#hrv-black-hole-v2-root .bhv2-section.is-runtime-dormant { content-visibility:auto; contain-intrinsic-size:auto 900px; }
-#hrv-black-hole-v2-root .bhv2-section:not(.is-runtime-live) *,
-#hrv-black-hole-v2-root .bhv2-section:not(.is-runtime-live) *::before,
-#hrv-black-hole-v2-root .bhv2-section:not(.is-runtime-live) *::after { animation-play-state:paused!important; }
+/* --------------------------------------------------------------------------
+   Failure and hover states
+   -------------------------------------------------------------------------- */
+#hrv-black-hole-v2-root .bhv2-station-fallback { padding:1.3rem; border:1px solid rgba(255,215,126,.35); border-radius:1rem; background:rgba(38,30,22,.78); }
+#hrv-black-hole-v2-root .bhv2-failure-note { color:#f0d9a5; }
 
-@keyframes bhv2-spin { to { transform:translate(-50%,-50%) rotate(360deg); } }
-
-@media (max-width:1100px) {
-  #hrv-black-hole-v2-root .bhv2-recap-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  #hrv-black-hole-v2-root .bhv2-telescope-cluster { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  #hrv-black-hole-v2-root .bhv2-observatory-stack { grid-column:1/-1; }
-  #hrv-black-hole-v2-root .bhv2-credit-list { grid-template-columns:repeat(2,minmax(0,1fr)); }
+@media (hover:hover) and (pointer:fine) {
+  #hrv-black-hole-v2-root :where(.bhv2-media-card,.bhv2-myth,.bhv2-process-stop,.bhv2-threshold-plaque,.bhv2-theater-console,.bhv2-network-detail) { transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease; }
+  #hrv-black-hole-v2-root :where(.bhv2-media-card,.bhv2-myth,.bhv2-process-stop,.bhv2-threshold-plaque,.bhv2-theater-console,.bhv2-network-detail):hover { transform:translateY(-4px); border-color:rgba(var(--bhv2-accent-rgb),.62); box-shadow:0 28px 72px rgba(0,0,0,.38),0 0 30px rgba(var(--bhv2-accent-rgb),.08); }
+  #hrv-black-hole-v2-root :where(.bhv2-motion-control,.bhv2-control-row button,.bhv2-primary,.bhv2-process-button,.bhv2-anatomy-controls button,.bhv2-orbit-controls button,.bhv2-site,.bhv2-zoom-button):hover { transform:translateY(-2px); border-color:var(--bhv2-accent,var(--bhv2-cyan)); }
 }
 
-@media (max-width:800px) {
-  #hrv-black-hole-v2-root .bhv2-section-header { grid-template-columns:1fr; gap:.5rem; }
-  #hrv-black-hole-v2-root .bhv2-section-number { font-size:2rem; }
-  #hrv-black-hole-v2-root .bhv2-two-up--feature,
-  #hrv-black-hole-v2-root .bhv2-observation-pair,
-  #hrv-black-hole-v2-root .bhv2-reconstruction-pair,
-  #hrv-black-hole-v2-root .bhv2-warped-pair,
-  #hrv-black-hole-v2-root .bhv2-anatomy-cluster,
+/* --------------------------------------------------------------------------
+   Responsive editions
+   -------------------------------------------------------------------------- */
+@media (max-width:1180px) {
+  #hrv-black-hole-v2-root .bhv2-nav-label { display:none; }
+  #hrv-black-hole-v2-root .bhv2-section-intro { grid-template-columns:10rem 1fr; }
+  #hrv-black-hole-v2-root .bhv2-evidence-gallery,
+  #hrv-black-hole-v2-root .bhv2-reconstruction-workbench,
+  #hrv-black-hole-v2-root .bhv2-lab-bench,
+  #hrv-black-hole-v2-root .bhv2-anatomy-cluster { grid-template-columns:1fr; }
+  #hrv-black-hole-v2-root .bhv2-diagram-pedestal,
+  #hrv-black-hole-v2-root .bhv2-reconstruction-reference,
+  #hrv-black-hole-v2-root .bhv2-lab-diagram { width:min(100%,50rem); justify-self:center; }
+}
+
+@media (max-width:900px) {
+  #hrv-black-hole-v2-root .bhv2-hero .bhv2-zone,
+  #hrv-black-hole-v2-root .bhv2-threshold-zone,
+  #hrv-black-hole-v2-root .bhv2-network-stage,
   #hrv-black-hole-v2-root .bhv2-media-center-zone { grid-template-columns:1fr; }
-  #hrv-black-hole-v2-root .bhv2-evidence-cluster { grid-template-columns:minmax(0,1fr) minmax(240px,320px); }
-  #hrv-black-hole-v2-root .bhv2-support-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  #hrv-black-hole-v2-root .bhv2-hero-visual { width:min(78vw,29rem); justify-self:center; order:-1; }
+  #hrv-black-hole-v2-root .bhv2-section-intro { grid-template-columns:1fr; gap:.8rem; }
+  #hrv-black-hole-v2-root .bhv2-section-marker { grid-template-columns:auto 1fr; align-items:center; }
+  #hrv-black-hole-v2-root .bhv2-threshold-aperture { min-height:24rem; }
+  #hrv-black-hole-v2-root .bhv2-evidence-model { min-height:auto; padding:1rem; }
+  #hrv-black-hole-v2-root .bhv2-evidence-lines { display:none; }
+  #hrv-black-hole-v2-root .bhv2-evidence-center { position:relative; left:auto;top:auto;transform:none;width:min(100%,22rem);aspect-ratio:auto;margin:0 auto 1rem;border-radius:1rem; }
+  #hrv-black-hole-v2-root .bhv2-evidence-clues { position:relative; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem; }
+  #hrv-black-hole-v2-root .bhv2-clue { position:relative!important; inset:auto!important; width:auto!important; min-height:8rem; }
+  #hrv-black-hole-v2-root .bhv2-evidence-master { position:relative; left:auto;bottom:auto;transform:none;display:block;margin:1rem auto 0; }
+  #hrv-black-hole-v2-root .bhv2-orbit-observation .bhv2-media-frame,
+  #hrv-black-hole-v2-root .bhv2-map-wall .bhv2-media-frame,
+  #hrv-black-hole-v2-root .bhv2-monument-card .bhv2-media-frame,
+  #hrv-black-hole-v2-root .bhv2-observer-artifact .bhv2-media-frame { min-height:auto; }
+  #hrv-black-hole-v2-root .bhv2-sync-strip,
+  #hrv-black-hole-v2-root .bhv2-process-track,
+  #hrv-black-hole-v2-root .bhv2-rotunda-bays,
+  #hrv-black-hole-v2-root .bhv2-support-gallery,
+  #hrv-black-hole-v2-root .bhv2-knowledge-split,
+  #hrv-black-hole-v2-root .bhv2-credit-list { grid-template-columns:1fr; }
+  #hrv-black-hole-v2-root .bhv2-process-track::before { display:none; }
+  #hrv-black-hole-v2-root .bhv2-known ul,
+  #hrv-black-hole-v2-root .bhv2-unknown ul { columns:1; }
 }
 
 @media (max-width:700px) {
-  #hrv-black-hole-v2-root.bhv2-mounted { --bhv2-gutter:.9rem; font-size:17px; }
-  #hrv-black-hole-v2-root .bhv2-hero { padding-top:3.5rem; }
-  #hrv-black-hole-v2-root .bhv2-hero .bhv2-zone { grid-template-columns:1fr; min-height:auto; }
-  #hrv-black-hole-v2-root .bhv2-hero-copy { order:1; }
-  #hrv-black-hole-v2-root .bhv2-hero-visual { order:0; width:min(78vw,24rem); justify-self:center; }
-  #hrv-black-hole-v2-root .bhv2-hero h1 { font-size:clamp(2.9rem,14vw,4.8rem); }
-  #hrv-black-hole-v2-root .bhv2-wayfinding { overflow-x:auto; justify-content:flex-start; width:calc(100% - 1rem); }
-  #hrv-black-hole-v2-root .bhv2-controls { position:relative; top:auto; margin:.7rem auto 0; }
-  #hrv-black-hole-v2-root .bhv2-section { padding:2.6rem 0; }
-  #hrv-black-hole-v2-root .bhv2-section-header h2,
+  #hrv-black-hole-v2-root.bhv2-mounted { --bhv2-gutter:.9rem; font-size:18px; }
+  #hrv-black-hole-v2-root .bhv2-hero { padding-top:3rem; }
+  #hrv-black-hole-v2-root .bhv2-hero h1 { font-size:clamp(2.85rem,14vw,4.7rem); }
+  #hrv-black-hole-v2-root .bhv2-utility-bar { position:relative; top:auto; grid-template-columns:1fr; width:calc(100% - 1rem); }
+  #hrv-black-hole-v2-root .bhv2-wayfinding a { min-width:3rem; justify-content:center; }
+  #hrv-black-hole-v2-root .bhv2-motion-control { width:100%; }
+  #hrv-black-hole-v2-root .bhv2-section,
+  #hrv-black-hole-v2-root .bhv2-media-center,
+  #hrv-black-hole-v2-root .bhv2-credits { padding:3.5rem 0; scroll-margin-top:1rem; }
+  #hrv-black-hole-v2-root .bhv2-section-number { min-width:3.7rem; min-height:3.7rem; font-size:30px; }
+  #hrv-black-hole-v2-root .bhv2-section-copy h2,
   #hrv-black-hole-v2-root .bhv2-media-center h2,
   #hrv-black-hole-v2-root .bhv2-credits h2 { font-size:clamp(2.2rem,10vw,3.25rem); }
-  #hrv-black-hole-v2-root .bhv2-recap-grid,
-  #hrv-black-hole-v2-root .bhv2-two-up,
-  #hrv-black-hole-v2-root .bhv2-evidence-cluster,
-  #hrv-black-hole-v2-root .bhv2-observation-pair,
-  #hrv-black-hole-v2-root .bhv2-telescope-cluster,
-  #hrv-black-hole-v2-root .bhv2-process-row,
-  #hrv-black-hole-v2-root .bhv2-reconstruction-pair,
-  #hrv-black-hole-v2-root .bhv2-comparison-pair,
-  #hrv-black-hole-v2-root .bhv2-warped-pair,
-  #hrv-black-hole-v2-root .bhv2-support-gallery,
-  #hrv-black-hole-v2-root .bhv2-anatomy-cluster,
-  #hrv-black-hole-v2-root .bhv2-myth-grid,
-  #hrv-black-hole-v2-root .bhv2-media-center-zone,
-  #hrv-black-hole-v2-root .bhv2-youtube-grid,
-  #hrv-black-hole-v2-root .bhv2-knowledge-split,
-  #hrv-black-hole-v2-root .bhv2-evidence-pullback,
-  #hrv-black-hole-v2-root .bhv2-credit-list { grid-template-columns:1fr!important; }
-  #hrv-black-hole-v2-root .bhv2-feature-module,
-  #hrv-black-hole-v2-root .bhv2-standard-module,
-  #hrv-black-hole-v2-root .bhv2-small-module { width:100%; max-width:none; }
-  #hrv-black-hole-v2-root .bhv2-lensing .bhv2-control-row { position:relative; left:auto; bottom:auto; transform:none; width:auto; margin:.7rem; }
-  #hrv-black-hole-v2-root .bhv2-lensing { aspect-ratio:auto; min-height:22rem; }
-  #hrv-black-hole-v2-root .bhv2-lensing canvas,
-  #hrv-black-hole-v2-root .bhv2-lensing-paths { height:auto; aspect-ratio:1200 / 650; }
-  #hrv-black-hole-v2-root .bhv2-clue-grid,
+  #hrv-black-hole-v2-root .bhv2-lensing { min-height:31rem; }
+  #hrv-black-hole-v2-root .bhv2-atrium-controls { position:absolute; left:.7rem;right:.7rem;bottom:.7rem;transform:none;width:auto; }
+  #hrv-black-hole-v2-root .bhv2-lensing .bhv2-state-readout { bottom:9.5rem; }
+  #hrv-black-hole-v2-root .bhv2-evidence-clues,
+  #hrv-black-hole-v2-root .bhv2-reconstruction-explainers,
   #hrv-black-hole-v2-root .bhv2-anatomy-controls { grid-template-columns:1fr; }
+  #hrv-black-hole-v2-root .bhv2-earth { width:min(100%,28rem); }
+  #hrv-black-hole-v2-root .bhv2-site { min-width:3.3rem; font-size:17px; }
+  #hrv-black-hole-v2-root .bhv2-reconstruction-visual,
   #hrv-black-hole-v2-root .bhv2-accretion-visual,
-  #hrv-black-hole-v2-root .bhv2-anatomy-diagram,
-  #hrv-black-hole-v2-root .bhv2-reconstruction-visual { min-height:18rem; }
+  #hrv-black-hole-v2-root .bhv2-anatomy-diagram { min-height:22rem; }
+  #hrv-black-hole-v2-root .bhv2-orbit-controls { display:grid; grid-template-columns:1fr; }
+  #hrv-black-hole-v2-root .bhv2-orbit-controls button { width:100%; }
+  #hrv-black-hole-v2-root .bhv2-knowledge-boundary { grid-template-columns:1fr; }
+  #hrv-black-hole-v2-root .bhv2-knowledge-boundary i { width:80%; height:2px; justify-self:center; }
 }
 
 @media (prefers-reduced-motion:reduce) {
@@ -554,9 +1023,15 @@
 
 @media (forced-colors:active) {
   #hrv-black-hole-v2-root .bhv2-shell::before,
-  #hrv-black-hole-v2-root .bhv2-hero-visual { display:none; }
-  #hrv-black-hole-v2-root .bhv2-media-card,
-  #hrv-black-hole-v2-root .bhv2-recap-card,
-  #hrv-black-hole-v2-root .bhv2-process-card,
-  #hrv-black-hole-v2-root .bhv2-myth { forced-color-adjust:auto; border:1px solid CanvasText; }
+  #hrv-black-hole-v2-root .bhv2-hero-visual,
+  #hrv-black-hole-v2-root .bhv2-section::after { display:none; }
+  #hrv-black-hole-v2-root :where(.bhv2-media-card,.bhv2-clue,.bhv2-myth,.bhv2-known,.bhv2-unknown,.bhv2-threshold-plaque) { forced-color-adjust:auto; border:1px solid CanvasText; }
 }
+
+@keyframes bhv2-spin { to { transform:translate(-50%,-50%) rotate(360deg); } }
+@keyframes bhv2-star-drift { from { background-position:0 0,0 0,0 0,0 0; } to { background-position:4rem 2rem,-3rem 4rem,5rem -3rem,-4rem -2rem; } }
+@keyframes bhv2-disk-breathe { 0%,100% { opacity:.88; transform:translate(-50%,-50%) rotate(-12deg) scale(.98); } 50% { opacity:1; transform:translate(-50%,-50%) rotate(-12deg) scale(1.04); } }
+@keyframes bhv2-chamber-light { 0%,100% { opacity:.48; } 50% { opacity:.7; } }
+@keyframes bhv2-data-scan { 0%,12% { transform:translateY(0) skewY(-4deg); opacity:0; } 24% { opacity:.7; } 76% { opacity:.7; } 88%,100% { transform:translateY(620%) skewY(-4deg); opacity:0; } }
+@keyframes bhv2-artifact-glow { from { filter:saturate(.96) brightness(.98); } to { filter:saturate(1.08) brightness(1.04); } }
+@keyframes bhv2-photon-pulse { 0%,100% { opacity:.58; box-shadow:0 0 10px rgba(255,233,173,.18); } 50% { opacity:1; box-shadow:0 0 24px rgba(255,233,173,.42); } }
