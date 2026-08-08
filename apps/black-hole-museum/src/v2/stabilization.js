@@ -73,9 +73,21 @@ function stabilizeEarthNetwork(root, cleanups) {
 
 function stabilizeOrbit(root, cleanups) {
   const section = root.querySelector('[data-station="04"]');
-  const button = section?.querySelector('.bhv2-sidecar .bhv2-primary');
-  if (!button) return;
-  const defaultLabel = button.textContent || 'Trace the featured star';
+  const sidecar = section?.querySelector('.bhv2-sidecar');
+  const button = sidecar?.querySelector('.bhv2-primary');
+  if (!sidecar || !button) return;
+
+  const label = sidecar.querySelector('.bhv2-sidecar-label');
+  if (label) label.textContent = 'Trace the orbit';
+
+  if (!sidecar.querySelector('.bhv2-tool-instruction')) {
+    const helper = document.createElement('p');
+    helper.className = 'bhv2-tool-instruction';
+    helper.textContent = 'Press the button to overlay a simplified orbit guide on the observation. Press it again to remove the guide.';
+    sidecar.insertBefore(helper, button);
+  }
+
+  const defaultLabel = 'Trace the featured star';
   const sync = () => {
     const active = button.getAttribute('aria-pressed') === 'true';
     button.classList.toggle('is-active', active);
@@ -90,17 +102,30 @@ function stabilizeEvidence(root, cleanups) {
   const module = root.querySelector('.bhv2-evidence-model');
   const reveal = module?.querySelector(':scope > .bhv2-primary');
   if (!module || !reveal) return;
-  const defaultLabel = reveal.textContent || 'Reveal all clues';
+
+  const clues = [...module.querySelectorAll('.bhv2-clue')];
   const sync = () => {
-    const clues = [...module.querySelectorAll('.bhv2-clue')];
+    clues.forEach((clue) => {
+      const open = clue.getAttribute('aria-expanded') === 'true';
+      const copy = clue.querySelector('.bhv2-clue-copy');
+      if (copy) copy.setAttribute('aria-hidden', String(!open));
+    });
+
     const allOpen = clues.length > 0 && clues.every((clue) => clue.getAttribute('aria-expanded') === 'true');
     setButtonState(reveal, allOpen);
-    reveal.textContent = allOpen ? 'All clues revealed' : defaultLabel;
+    reveal.textContent = allOpen ? 'All clues revealed' : 'Reveal all clues';
   };
-  module.querySelectorAll('.bhv2-clue').forEach((clue) => {
+
+  /* The exhibit is a discovery interaction. Always begin the enhanced page
+     with clue details closed, regardless of authored button wording. */
+  clues.forEach((clue) => {
+    clue.classList.remove('is-open');
+    clue.setAttribute('aria-expanded', 'false');
+    clue.querySelector('.bhv2-clue-copy')?.setAttribute('aria-hidden', 'true');
     clue.addEventListener('click', sync);
     cleanups.push(() => clue.removeEventListener('click', sync));
   });
+
   reveal.addEventListener('click', sync);
   cleanups.push(() => reveal.removeEventListener('click', sync));
   sync();
@@ -110,7 +135,7 @@ export function stabilizeBlackHoleV2(root) {
   const cleanups = [];
   if (!root?.classList?.contains('bhv2-mounted')) return () => {};
 
-  root.dataset.hrvStabilization = '0.1.0';
+  root.dataset.hrvStabilization = '0.2.0';
   stabilizeWarpedLight(root, cleanups);
   stabilizeAnatomy(root);
   stabilizeEarthNetwork(root, cleanups);
