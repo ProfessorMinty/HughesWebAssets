@@ -36,7 +36,33 @@ V2 source lives under `apps/black-hole-museum/src/v2/`:
 - `presentation.css` is the fresh page presentation system and root viewport breakout owner.
 - `interactions.js` contains isolated scientific interaction components without page-layout authority.
 - `runtime.js` contains performance/media/lifecycle helpers without page-layout authority.
-- `amadeus-compat.css` contains only the minimal proven theme neutralization required after successful enhancement.
+- `amadeus-compat.css` contains only the minimal proven structural theme neutralization required after successful enhancement.
+
+## Native Amadeus baseline and V2 typography ownership
+
+The native Hughes Room Views Amadeus layer is intentionally a calm, readable classroom foundation rather than presentation debt.
+
+Its intended baseline is:
+
+- body: `Atkinson Hyperlegible`, 400/700 plus italic variants, 20px native size
+- headings: `Nunito Sans`, 600/700
+- native light background: `#F8FAFA`
+- native branding background: `#EEF5F6`
+- native dark teal title/heading family: `#173A43`
+- native body text: `#263238`
+- native primary teal: `#0F6B78`
+
+The repository is allowed to layer subject atmosphere and page-specific visual identity over that foundation. When V2 replaces the native light surface with its near-black museum canvas, it must explicitly establish its own foreground colors rather than rely on inherited Amadeus text colors.
+
+Therefore `presentation.css`, not `amadeus-compat.css`, owns the V2 typography boundary:
+
+- normal V2 body copy uses `Atkinson Hyperlegible` as its readable baseline
+- V2 headings use `Nunito Sans` as their normal baseline
+- the repository retains its own responsive heading scale rather than inheriting the native Amadeus H1-H6 sizes
+- headings explicitly use the V2 light foreground on the dark canvas
+- individual museum components may deliberately opt into cyan, gold, muted tones, or future subject-specific display typography when earned
+
+`amadeus-compat.css` must remain structural. It must not become a second presentation stylesheet or a place to fight theme colors one selector at a time.
 
 ## Visual architecture
 
@@ -134,7 +160,7 @@ It activates only behind `html.hrv-route-black-hole-v2-ready` and neutralizes on
 - proven site-content and page-entry margin/padding constraints
 - article-card background, border, and shadow chrome
 
-It does not repaint the site footer, body, navigation, or unrelated theme surfaces.
+It does not own V2 fonts, heading colors, body colors, or other aesthetic presentation. It does not repaint the site footer, body, navigation, or unrelated theme surfaces.
 
 ## Data foundation policy
 
@@ -155,21 +181,25 @@ The builder contains no black-hole `.2` runtime dependency and cannot write `cha
 
 ## Current V2 staging release
 
-Release: `0.2.0-black-hole-v2-lab.3`
+Release: `0.2.0-black-hole-v2-lab.5`
 
 Channel: `black-hole-v2-lab`
 
-Current manifest ref: `3681ac8a5bea00c73e69be1b6f1688bf3b727ada`
+Current manifest ref: `4c8cd3833a79d2777b91ab7d1c5363dbefc6895a`
 
-Current application source ref: `5a50e6a7bdf514e878929ceaa7ca3dbfd7c0488e`
+Current application source ref: `5205c7e03d06e05444778f1de9be21831dc59dff`
 
-Previous V2 staging release: `0.2.0-black-hole-v2-lab.2`
+Previous V2 staging release: `0.2.0-black-hole-v2-lab.4`
 
-The current release manifest is pinned independently from the legacy Black Hole channel. `.3` rolls back to immutable V2 staging `.2`; the staging line itself remains separate from historical Black Hole `.12`.
+The current release manifest is pinned independently from the legacy Black Hole channel. `.5` rolls back to immutable V2 staging `.4`; the staging line itself remains separate from historical Black Hole `.12`.
 
 The current staging release is explicitly marked `unpublished-v2-staging` and records its verified black-hole `.2` use as `temporary-pinned-seed`.
 
-Staging `.3` adds two integrity corrections over `.2`: the public Pause Motion control now pauses currently running ambient CSS animations as well as native video, and the page-local loader validates its data/module prerequisites before loading enhanced CSS so a fast prerequisite failure cannot leave late-arriving enhanced styling on the native fallback.
+Staging `.3` added two integrity corrections: the public Pause Motion control pauses currently running ambient CSS animations as well as native video, and the page-local loader validates its data/module prerequisites before loading enhanced CSS so a fast prerequisite failure cannot leave late-arriving enhanced styling on the native fallback.
+
+Staging `.4` captured the first real Edublogs Preview diagnosis: native Amadeus dark heading colors were competing with V2's dark canvas. `.4` proved the symptom and is retained as immutable history.
+
+Staging `.5` places the fix at the correct architectural boundary. `presentation.css` now explicitly establishes the Atkinson/Nunito baseline and V2 light heading foregrounds, while `amadeus-compat.css` returns to structural-only theme neutralization.
 
 ## Testing discipline
 
@@ -184,8 +214,11 @@ Staging `.3` adds two integrity corrections over `.2`: the public Pause Motion c
 - reduced motion and explicit ambient-motion pause
 - current-plus-one media budgeting
 - no-autoplay/lazy YouTube behavior
-- minimal route-scoped Amadeus neutralization
+- V2-owned Atkinson body and Nunito Sans heading baseline
+- explicit V2 heading foreground ownership on the dark canvas
+- minimal route-scoped structural Amadeus neutralization
 - complete neutralization of proven page-entry spacing
+- no typography/palette ownership in the Amadeus adapter
 - semantic page-local loader identity with no slug/page-ID dependency
 - loader ordering that keeps enhanced CSS out until prerequisites succeed
 - separate V2 staging channel and rollback checkpoint
