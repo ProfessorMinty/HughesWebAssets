@@ -19,8 +19,13 @@ function setPressed(buttons, activeIndex) {
   });
 }
 
+function setToggle(control, active) {
+  control.classList.toggle('is-active', active);
+  control.setAttribute('aria-pressed', String(active));
+}
+
 export function createLensingInteractive(station) {
-  const module = el('div', 'bhv2-lensing bhv2-feature-module');
+  const module = el('div', 'bhv2-lensing');
   const canvas = document.createElement('canvas');
   canvas.width = 1200;
   canvas.height = 650;
@@ -35,7 +40,7 @@ export function createLensingInteractive(station) {
   const center = el('div', 'bhv2-lensing-center');
   center.setAttribute('aria-hidden', 'true');
 
-  const controls = el('div', 'bhv2-control-row');
+  const controls = el('div', 'bhv2-control-row bhv2-atrium-controls');
   const labels = station.interaction?.states || ['Quiet sky', 'Bent light', 'Show paths'];
   const buttons = labels.map((label, index) => {
     const control = button(label);
@@ -44,6 +49,8 @@ export function createLensingInteractive(station) {
     controls.append(control);
     return control;
   });
+  const readout = el('p', 'bhv2-state-readout', 'Quiet sky. The center contains no visible object.');
+  readout.setAttribute('aria-live', 'polite');
 
   const ctx = canvas.getContext('2d');
   const stars = Array.from({ length: 115 }, (_, i) => {
@@ -90,65 +97,119 @@ export function createLensingInteractive(station) {
       setPressed(buttons, index);
       draw(index === 0 ? 'quiet' : 'bent');
       module.classList.toggle('show-paths', index === 2);
+      readout.textContent = index === 0
+        ? 'Quiet sky. The center contains no visible object.'
+        : index === 1
+          ? 'Bent light. Background stars shift and stretch around the invisible center.'
+          : 'Light paths shown. The cyan lines are a simplified explanatory diagram.';
     });
   });
 
   draw('quiet');
-  module.append(canvas, paths, center, controls);
+  module.append(canvas, paths, center, controls, readout);
   return module;
 }
 
 export function createEvidenceInteractive(station) {
-  const module = el('div', 'bhv2-evidence-model bhv2-feature-module');
-  const center = el('div', 'bhv2-evidence-center', 'Invisible mass');
-  const clues = el('div', 'bhv2-clue-grid');
+  const module = el('div', 'bhv2-evidence-model');
+  const center = el('div', 'bhv2-evidence-center');
+  center.append(el('strong', '', 'Invisible mass'), el('span', '', 'We infer the hidden object from several independent clues.'));
 
-  (station.clues || []).forEach((clue) => {
-    const card = button('', 'bhv2-clue');
+  const lines = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  lines.setAttribute('class', 'bhv2-evidence-lines');
+  lines.setAttribute('viewBox', '0 0 1000 650');
+  lines.setAttribute('aria-hidden', 'true');
+  lines.innerHTML = '<path data-line="0" d="M500 325 Q330 220 185 130"/><path data-line="1" d="M500 325 Q680 215 820 140"/><path data-line="2" d="M500 325 Q315 465 170 535"/><path data-line="3" d="M500 325 Q690 470 830 535"/>';
+
+  const clues = el('div', 'bhv2-evidence-clues');
+  const cards = [];
+  (station.clues || []).forEach((clue, index) => {
+    const card = button('', `bhv2-clue bhv2-clue--${index + 1}`);
     card.setAttribute('aria-expanded', 'false');
+    const copy = el('span', 'bhv2-clue-copy', clue.text || '');
+    copy.hidden = true;
     card.append(
       el('span', 'bhv2-clue-symbol', clue.symbol || '•'),
-      el('strong', '', clue.title || ''),
-      el('span', 'bhv2-clue-copy', clue.text || '')
+      el('strong', 'bhv2-clue-title', clue.title || ''),
+      copy
     );
     card.addEventListener('click', () => {
-      const expanded = card.classList.toggle('is-open');
+      const expanded = !card.classList.contains('is-open');
+      card.classList.toggle('is-open', expanded);
       card.setAttribute('aria-expanded', String(expanded));
+      copy.hidden = !expanded;
+      lines.querySelector(`[data-line="${index}"]`)?.classList.toggle('is-on', expanded);
+      syncMaster();
     });
     clues.append(card);
+    cards.push(card);
   });
 
-  const reveal = button(station.interaction?.label || 'Reveal all clues', 'bhv2-primary');
+  const reveal = button(station.interaction?.label || 'Reveal all clues', 'bhv2-primary bhv2-evidence-master');
+  reveal.setAttribute('aria-pressed', 'false');
+  function syncMaster() {
+    const allOpen = cards.length > 0 && cards.every((card) => card.classList.contains('is-open'));
+    setToggle(reveal, allOpen);
+    reveal.textContent = allOpen ? 'Hide all clues' : 'Reveal all clues';
+  }
   reveal.addEventListener('click', () => {
-    clues.querySelectorAll('.bhv2-clue').forEach((card) => {
-      card.classList.add('is-open');
-      card.setAttribute('aria-expanded', 'true');
+    const shouldOpen = !cards.every((card) => card.classList.contains('is-open'));
+    cards.forEach((card, index) => {
+      card.classList.toggle('is-open', shouldOpen);
+      card.setAttribute('aria-expanded', String(shouldOpen));
+      const copy = card.querySelector('.bhv2-clue-copy');
+      if (copy) copy.hidden = !shouldOpen;
+      lines.querySelector(`[data-line="${index}"]`)?.classList.toggle('is-on', shouldOpen);
     });
+    syncMaster();
   });
 
-  module.append(center, clues, reveal);
+  module.append(lines, center, clues, reveal);
+  syncMaster();
   return module;
 }
 
-export function createOrbitOverlay(station) {
+export function createOrbitOverlay() {
   const overlay = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   overlay.setAttribute('class', 'bhv2-orbit-overlay');
   overlay.setAttribute('viewBox', '0 0 1000 560');
   overlay.setAttribute('aria-hidden', 'true');
-  overlay.innerHTML = '<ellipse cx="500" cy="280" rx="270" ry="120"/><circle cx="500" cy="280" r="9"/><circle class="bhv2-orbit-star" cx="770" cy="280" r="13"/>';
+  overlay.innerHTML = '<g class="bhv2-orbit-trace"><ellipse cx="500" cy="280" rx="270" ry="120"/><circle class="bhv2-orbit-star" cx="770" cy="280" r="13"/></g><g class="bhv2-orbit-center-marker"><circle cx="500" cy="280" r="11"/><path d="M470 280h60M500 250v60"/></g><g class="bhv2-orbit-comparison"><ellipse cx="500" cy="280" rx="185" ry="82"/><ellipse cx="500" cy="280" rx="330" ry="154"/></g>';
 
-  const control = button(station.interaction?.label || 'Trace the featured star', 'bhv2-primary');
-  control.setAttribute('aria-pressed', 'false');
-  control.addEventListener('click', () => {
-    const active = overlay.classList.toggle('is-traced');
-    control.setAttribute('aria-pressed', String(active));
+  const controls = el('div', 'bhv2-orbit-controls');
+  const trace = button('Trace featured orbit');
+  const center = button('Mark invisible center');
+  const comparison = button('Show simplified comparison');
+  [trace, center, comparison].forEach((control) => control.setAttribute('aria-pressed', 'false'));
+  const readout = el('p', 'bhv2-state-readout', 'Observation only. Explanatory overlays are currently hidden.');
+  readout.setAttribute('aria-live', 'polite');
+
+  trace.addEventListener('click', () => {
+    const active = overlay.classList.toggle('show-trace');
+    setToggle(trace, active);
+    trace.textContent = active ? 'Hide featured orbit' : 'Trace featured orbit';
+    readout.textContent = active ? 'The cyan ellipse is an explanatory orbit guide, not part of the original observation.' : 'Featured orbit guide hidden.';
+  });
+  center.addEventListener('click', () => {
+    const active = overlay.classList.toggle('show-center');
+    setToggle(center, active);
+    center.textContent = active ? 'Hide invisible-center marker' : 'Mark invisible center';
+    readout.textContent = active ? 'The crosshair marks the compact invisible center inferred from the stellar motion.' : 'Invisible-center marker hidden.';
+  });
+  comparison.addEventListener('click', () => {
+    const active = overlay.classList.toggle('show-comparison');
+    setToggle(comparison, active);
+    comparison.textContent = active ? 'Hide simplified comparison' : 'Show simplified comparison';
+    readout.textContent = active ? 'The additional ellipses are a simplified diagram showing that stars can follow different orbits around the same hidden center.' : 'Simplified comparison hidden.';
   });
 
-  return { overlay, control };
+  controls.append(trace, center, comparison, readout);
+  return { overlay, controls };
 }
 
 export function createEarthNetwork(station) {
-  const module = el('div', 'bhv2-earth-network bhv2-standard-module');
+  const module = el('div', 'bhv2-earth-network');
+  const stage = el('div', 'bhv2-network-stage');
   const earth = el('div', 'bhv2-earth');
   const sites = [
     ['ALMA', 25, 72], ['APEX', 30, 72], ['LMT', 36, 42], ['SMT', 31, 37],
@@ -160,6 +221,10 @@ export function createEarthNetwork(station) {
   lines.setAttribute('viewBox', '0 0 100 100');
   lines.setAttribute('aria-hidden', 'true');
 
+  const detail = el('aside', 'bhv2-network-detail');
+  detail.append(el('p', 'bhv2-sidecar-label', 'Selected observatory'), el('h3', '', 'Choose a site'), el('p', 'bhv2-network-copy', 'Each selected station contributes synchronized radio measurements to the shared network.'));
+  const detailTitle = detail.querySelector('h3');
+  const detailCopy = detail.querySelector('.bhv2-network-copy');
   const siteButtons = sites.map(([name, top, left], index) => {
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     const bend = index % 2 === 0 ? 7 : -7;
@@ -172,11 +237,21 @@ export function createEarthNetwork(station) {
     node.style.left = left + '%';
     node.setAttribute('aria-pressed', 'false');
     node.dataset.siteIndex = String(index);
+    node.addEventListener('click', () => {
+      node.classList.toggle('is-on');
+      detailTitle.textContent = name;
+      detailCopy.textContent = `${name} is one of the widely separated observatories whose synchronized radio measurements contribute to the Event Horizon Telescope network.`;
+      update();
+    });
     earth.append(node);
     return node;
   });
 
   earth.prepend(lines);
+  const all = button(station.interaction?.label || 'Show the complete network', 'bhv2-primary');
+  all.setAttribute('aria-pressed', 'false');
+  const status = el('p', 'bhv2-state-readout', 'No observatories selected yet.');
+  status.setAttribute('aria-live', 'polite');
 
   function update() {
     siteButtons.forEach((site, index) => {
@@ -185,29 +260,31 @@ export function createEarthNetwork(station) {
       lines.querySelector(`[data-site-index="${index}"]`)?.classList.toggle('is-on', active);
     });
     const activeCount = siteButtons.filter((site) => site.classList.contains('is-on')).length;
-    earth.dataset.networkState = activeCount === 0 ? 'quiet' : activeCount === siteButtons.length ? 'complete' : 'partial';
+    const complete = activeCount === siteButtons.length;
+    earth.dataset.networkState = activeCount === 0 ? 'quiet' : complete ? 'complete' : 'partial';
+    setToggle(all, complete);
+    all.textContent = complete ? 'Reset network' : 'Show the complete network';
+    status.textContent = activeCount === 0 ? 'No observatories selected yet.' : complete ? 'Complete network: widely separated sites now act together as one virtual telescope.' : `${activeCount} of ${siteButtons.length} observatories selected.`;
   }
 
-  siteButtons.forEach((site) => {
-    site.addEventListener('click', () => {
-      site.classList.toggle('is-on');
-      update();
-    });
-  });
-
-  const all = button(station.interaction?.label || 'Show the complete network', 'bhv2-primary');
   all.addEventListener('click', () => {
-    siteButtons.forEach((site) => site.classList.add('is-on'));
+    const complete = siteButtons.every((site) => site.classList.contains('is-on'));
+    siteButtons.forEach((site) => site.classList.toggle('is-on', !complete));
+    detailTitle.textContent = complete ? 'Choose a site' : 'Complete network';
+    detailCopy.textContent = complete ? 'Each selected station contributes synchronized radio measurements to the shared network.' : 'Widely separated observatories synchronize radio measurements so the network can act like an Earth-sized virtual telescope.';
     update();
   });
 
+  const controls = el('div', 'bhv2-network-controls');
+  controls.append(all, status);
+  stage.append(earth, detail);
+  module.append(stage, controls);
   update();
-  module.append(earth, all);
   return { module, siteNames: sites.map(([name]) => name) };
 }
 
-export function createReconstructionInteractive(station) {
-  const module = el('div', 'bhv2-reconstruction bhv2-standard-module');
+export function createReconstructionInteractive() {
+  const module = el('div', 'bhv2-reconstruction');
   const visual = el('div', 'bhv2-reconstruction-visual');
   const controls = el('div', 'bhv2-process-controls');
   const states = [
@@ -223,16 +300,28 @@ export function createReconstructionInteractive(station) {
     controls.append(control);
     return control;
   });
+  const readout = el('p', 'bhv2-state-readout');
+  readout.setAttribute('aria-live', 'polite');
 
   function setState(index) {
     const state = states[index];
     visual.className = `bhv2-reconstruction-visual is-${state.cls}`;
     visual.setAttribute('aria-label', state.text);
+    readout.textContent = state.text;
     setPressed(buttons, index);
   }
 
+  const whySeveral = document.createElement('details');
+  whySeveral.className = 'bhv2-process-explainer';
+  whySeveral.append(el('summary', '', 'Why are there several versions?'), el('p', '', 'Several reconstructions can fit the telescope data. The published Sagittarius A* image is an average assembled from thousands of compatible reconstructions.'));
+  const whyOrange = document.createElement('details');
+  whyOrange.className = 'bhv2-process-explainer';
+  whyOrange.append(el('summary', '', 'Why orange?'), el('p', '', 'Orange is a presentation choice applied to radio data. It is not the color a human eye would see through a window.'));
+  const explainers = el('div', 'bhv2-reconstruction-explainers');
+  explainers.append(whySeveral, whyOrange);
+
   setState(0);
-  module.append(visual, controls);
+  module.append(visual, controls, readout, explainers);
   return { module, states };
 }
 
@@ -253,10 +342,10 @@ export function createComparisonControls(station, onState) {
   return wrap;
 }
 
-export function createWarpedLightInteractive(station) {
-  const module = el('div', 'bhv2-warped-light bhv2-feature-module');
+export function createWarpedLightInteractive() {
+  const module = el('div', 'bhv2-warped-light');
   const visual = el('div', 'bhv2-accretion-visual');
-  visual.innerHTML = '<div class="bhv2-disk bhv2-disk-back"></div><div class="bhv2-shadow"></div><div class="bhv2-disk bhv2-disk-front"></div><div class="bhv2-photon-ring"></div><svg viewBox="0 0 800 500" class="bhv2-photon-overlay" aria-hidden="true"><path d="M40 110 C240 90 280 250 400 250 C520 250 560 410 760 390"/><path d="M40 390 C240 410 280 250 400 250 C520 250 560 90 760 110"/></svg>';
+  visual.innerHTML = '<div class="bhv2-disk bhv2-disk-back"></div><div class="bhv2-shadow"></div><div class="bhv2-disk bhv2-disk-front"></div><div class="bhv2-photon-ring"></div><div class="bhv2-boundary-horizon"></div><div class="bhv2-boundary-shadow"></div><svg viewBox="0 0 800 500" class="bhv2-photon-overlay" aria-hidden="true"><path d="M40 110 C240 90 280 250 400 250 C520 250 560 410 760 390"/><path d="M40 390 C240 410 280 250 400 250 C520 250 560 90 760 110"/></svg>';
 
   const controls = el('div', 'bhv2-warp-controls');
   const range = document.createElement('input');
@@ -266,60 +355,81 @@ export function createWarpedLightInteractive(station) {
   range.value = '48';
   range.setAttribute('aria-label', 'Accretion-disk viewing angle');
   const output = el('output', '', 'Slanted viewpoint');
+  const presets = el('div', 'bhv2-control-row');
+  const presetButtons = [];
+  const presetValues = [10, 48, 88];
+  ['Above', 'Slanted', 'Edge-on'].forEach((label, index) => {
+    const control = button(label);
+    control.addEventListener('click', () => {
+      range.value = String(presetValues[index]);
+      apply(presetValues[index]);
+    });
+    presets.append(control);
+    presetButtons.push(control);
+  });
+
+  const pathToggle = button('Show photon paths', 'bhv2-primary');
+  pathToggle.setAttribute('aria-pressed', 'false');
+  pathToggle.addEventListener('click', () => {
+    const active = visual.classList.toggle('show-paths');
+    setToggle(pathToggle, active);
+    pathToggle.textContent = active ? 'Hide photon paths' : 'Show photon paths';
+  });
+
+  const boundaryToggle = button('Compare shadow and horizon', 'bhv2-primary');
+  boundaryToggle.setAttribute('aria-pressed', 'false');
+  boundaryToggle.addEventListener('click', () => {
+    const active = visual.classList.toggle('show-boundaries');
+    setToggle(boundaryToggle, active);
+    boundaryToggle.textContent = active ? 'Hide shadow/horizon guide' : 'Compare shadow and horizon';
+  });
+
+  const doppler = document.createElement('details');
+  doppler.className = 'bhv2-lab-explainer';
+  doppler.append(el('summary', '', 'Why can one side look brighter?'), el('p', '', 'Material moving toward the observer can appear brighter than material moving away. This effect is called Doppler beaming.'));
 
   function apply(value) {
     const numeric = Number(value);
     visual.style.setProperty('--angle', numeric + 'deg');
     visual.dataset.angle = numeric < 25 ? 'above' : numeric > 75 ? 'edge' : 'slanted';
     output.textContent = numeric < 25 ? 'Above viewpoint' : numeric > 75 ? 'Edge-on viewpoint' : 'Slanted viewpoint';
+    const closest = presetValues.indexOf(numeric);
+    presetButtons.forEach((control, index) => setToggle(control, index === closest));
   }
 
   range.addEventListener('input', (event) => apply(event.target.value));
-  controls.append(range, output);
-
-  const presets = el('div', 'bhv2-control-row');
-  const values = [10, 48, 88];
-  (station.interaction?.presets || ['Above', 'Slanted', 'Edge-on']).forEach((label, index) => {
-    const control = button(label);
-    control.addEventListener('click', () => {
-      range.value = String(values[index]);
-      apply(values[index]);
-    });
-    presets.append(control);
-  });
-
-  const paths = button('Show photon paths');
-  paths.setAttribute('aria-pressed', 'false');
-  paths.addEventListener('click', () => {
-    const active = visual.classList.toggle('show-paths');
-    paths.setAttribute('aria-pressed', String(active));
-  });
-
-  controls.append(presets, paths);
+  controls.append(range, output, presets, pathToggle, boundaryToggle, doppler);
   apply(48);
   module.append(visual, controls);
   return module;
 }
 
 export function createAnatomyInteractive(station) {
-  const module = el('div', 'bhv2-anatomy bhv2-feature-module');
+  const module = el('div', 'bhv2-anatomy');
   const diagram = el('div', 'bhv2-anatomy-diagram');
   diagram.innerHTML = '<i class="bhv2-layer emission"></i><i class="bhv2-layer shadow"></i><i class="bhv2-layer photon"></i><i class="bhv2-layer horizon"></i>';
   const controls = el('div', 'bhv2-anatomy-controls');
-  const description = el('p', 'bhv2-anatomy-description', 'Select a layer to inspect the model.');
+  const description = el('p', 'bhv2-anatomy-description');
+  description.setAttribute('aria-live', 'polite');
+  const buttons = [];
 
-  (station.layers || []).forEach((layer) => {
+  function setLayer(index) {
+    const layer = (station.layers || [])[index];
+    if (!layer) return;
+    diagram.dataset.layer = layer.id;
+    setPressed(buttons, index);
+    description.textContent = layer.text;
+  }
+
+  (station.layers || []).forEach((layer, index) => {
     const control = button(layer.title);
     control.setAttribute('aria-pressed', 'false');
-    control.addEventListener('click', () => {
-      diagram.dataset.layer = layer.id;
-      controls.querySelectorAll('button').forEach((item) => item.setAttribute('aria-pressed', 'false'));
-      control.setAttribute('aria-pressed', 'true');
-      description.textContent = layer.text;
-    });
+    control.addEventListener('click', () => setLayer(index));
     controls.append(control);
+    buttons.push(control);
   });
 
   module.append(diagram, controls, description);
+  setLayer(0);
   return module;
 }
