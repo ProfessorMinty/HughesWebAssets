@@ -32,3 +32,11 @@ html.hrv-route-black-hole-v2-ready .entry-content {
   border:0!important;
   box-shadow:none!important;
 }
+
+/* The enhanced V2 page owns a complete closing, provenance ledger, and footer.
+   Suppress the duplicate native Amadeus footer only on this successfully
+   mounted route; the .6 preview proved its widget colors and controls collide
+   with the museum ending. */
+html.hrv-route-black-hole-v2-ready .site-footer {
+  display:none!important;
+}
