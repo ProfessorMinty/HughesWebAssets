@@ -7,8 +7,8 @@
   const ROOT_ID = 'hrv-black-hole-v2-root';
   const PAGE_ID = 'repository-page-lab-black-holes-v2';
   const PAGE_SYSTEM = 'black-hole-museum-v2';
-  const EXPECTED_RELEASE = '0.2.0-black-hole-v2-lab.8';
-  const RELEASE_MANIFEST = 'https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@987069eb6194ecc86c6287b6f7d25d00cdc7ec4c/dist/v0.2.0-black-hole-v2-lab.8/release.json';
+  const EXPECTED_RELEASE = '0.2.0-black-hole-v2-lab.9';
+  const RELEASE_MANIFEST = 'https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@6072e7f02f098eb8fe858af7df57b004c822ca70/dist/v0.2.0-black-hole-v2-lab.9/release.json';
   const TIMEOUT_MS = 12000;
 
   function ready(callback) {
@@ -35,14 +35,14 @@
     }
   }
 
-  function loadStyle(url) {
+  function loadStyle(url, role) {
     return new Promise((resolve, reject) => {
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = url;
-      link.dataset.hrvBlackHoleV2Style = 'staging';
+      link.dataset.hrvBlackHoleV2Style = role;
       link.addEventListener('load', () => resolve(link), { once: true });
-      link.addEventListener('error', () => reject(new Error(`V2 stylesheet failed: ${url}`)), { once: true });
+      link.addEventListener('error', () => reject(new Error(`V2 ${role} stylesheet failed: ${url}`)), { once: true });
       document.head.appendChild(link);
     });
   }
@@ -80,7 +80,14 @@
         throw new Error('Unexpected V2 release manifest.');
       }
       const system = release.pageSystems?.[PAGE_SYSTEM];
-      if (!system?.script?.url || !system?.style?.url || !system?.content?.url || !system?.assets?.url || !system?.experience?.url) {
+      if (
+        !system?.script?.url ||
+        !system?.style?.url ||
+        !system?.compatStyle?.url ||
+        !system?.content?.url ||
+        !system?.assets?.url ||
+        !system?.experience?.url
+      ) {
         throw new Error('V2 release manifest is missing required page-system resources.');
       }
 
@@ -90,7 +97,7 @@
       status(root, 'Loading the Black Hole Museum V2…');
 
       /* Validate all data and the module before introducing enhanced CSS.
-         This keeps a failed enhancement visually native even if another request fails quickly. */
+         This keeps a failed enhancement visually native if any prerequisite fails. */
       const [content, assets, experience, module] = await Promise.all([
         fetchJson(system.content.url, 'V2 content manifest'),
         fetchJson(system.assets.url, 'V2 asset manifest'),
@@ -102,14 +109,15 @@
         throw new Error('V2 renderer entry point is unavailable.');
       }
 
-      await loadStyle(system.style.url);
+      await loadStyle(system.style.url, 'presentation');
+      await loadStyle(system.compatStyle.url, 'compatibility');
       await module.mountBlackHoleMuseum({ root, mount: root, release, content, assets, experience });
       document.documentElement.classList.add('hrv-route-black-hole-v2-ready');
       root.removeAttribute('aria-busy');
       root.dataset.hrvState = 'ready';
-      console.info('[HRV BHM V2] Staging enhancement ready.', { release: release.release, commit: release.commit });
+      console.info('[HRV BHM V2] Consolidated staging enhancement ready.', { release: release.release, commit: release.commit });
     } catch (error) {
-      document.querySelectorAll('link[data-hrv-black-hole-v2-style="staging"]').forEach((link) => link.remove());
+      document.querySelectorAll('link[data-hrv-black-hole-v2-style]').forEach((link) => link.remove());
       document.documentElement.classList.remove('hrv-route-black-hole-v2-ready');
       root.removeAttribute('aria-busy');
       root.dataset.hrvState = 'failed';
