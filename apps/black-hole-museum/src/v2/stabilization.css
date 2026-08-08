@@ -1,0 +1,153 @@
+/* Black Hole Museum V2 · staging stabilization layer
+   Purpose: correct defects observed in the real Edublogs .6 preview without
+   changing the approved maximum-shelf visual direction. */
+
+/* Keep hover sheen inside the exhibit that owns it. */
+@media (hover:hover) and (pointer:fine) {
+  #hrv-black-hole-v2-root :where(
+    .bhv2-recap-card,
+    .bhv2-process-card,
+    .bhv2-myth,
+    .bhv2-sidecar
+  ) {
+    overflow:hidden;
+    isolation:isolate;
+  }
+
+  #hrv-black-hole-v2-root :where(
+    .bhv2-recap-card,
+    .bhv2-process-card,
+    .bhv2-myth,
+    .bhv2-sidecar
+  )::after {
+    inset:-18% -34%;
+    z-index:3;
+    border-radius:inherit;
+    opacity:.66;
+    transform:translateX(-68%) rotate(7deg);
+    transition:transform .55s ease;
+  }
+
+  #hrv-black-hole-v2-root :where(
+    .bhv2-recap-card,
+    .bhv2-process-card,
+    .bhv2-myth,
+    .bhv2-sidecar
+  ):hover::after {
+    transform:translateX(68%) rotate(7deg);
+  }
+
+  /* Media already has real highlights. Do not sweep a synthetic sheen over
+     scientific images, videos, or embedded players. */
+  #hrv-black-hole-v2-root .bhv2-media-card::after,
+  #hrv-black-hole-v2-root .bhv2-youtube-card::after {
+    display:none!important;
+  }
+}
+
+/* Orbit trace belongs to the 16:9 observation viewport, not the caption. */
+#hrv-black-hole-v2-root [data-station="04"] .bhv2-orbit-observation {
+  position:relative;
+  overflow:hidden;
+}
+#hrv-black-hole-v2-root [data-station="04"] .bhv2-orbit-overlay {
+  top:.7rem;
+  left:.7rem;
+  right:auto;
+  bottom:auto;
+  width:calc(100% - 1.4rem);
+  height:auto;
+  aspect-ratio:16 / 9;
+}
+
+/* Selected controls must look unmistakably selected. */
+#hrv-black-hole-v2-root :where(
+  .bhv2-control-row button,
+  .bhv2-primary,
+  .bhv2-process-button,
+  .bhv2-anatomy-controls button,
+  .bhv2-site
+)[aria-pressed="true"],
+#hrv-black-hole-v2-root :where(
+  .bhv2-control-row button,
+  .bhv2-primary,
+  .bhv2-process-button,
+  .bhv2-anatomy-controls button,
+  .bhv2-site
+).is-active {
+  color:#06151d!important;
+  font-weight:850;
+  background:rgba(var(--bhv2-accent-rgb),.92)!important;
+  border-color:#fff!important;
+  box-shadow:
+    0 0 0 2px rgba(var(--bhv2-accent-rgb),.22),
+    0 0 26px rgba(var(--bhv2-accent-rgb),.32),
+    inset 0 1px rgba(255,255,255,.35)!important;
+}
+
+/* Earth-network nodes need to read as controls, not tiny labels. */
+#hrv-black-hole-v2-root .bhv2-site {
+  min-height:36px!important;
+  min-width:3.15rem;
+  padding:.3rem .5rem!important;
+  border-color:rgba(153,245,242,.48)!important;
+  background:rgba(8,40,51,.94)!important;
+  color:#eaffff!important;
+  font-size:.72rem!important;
+  font-weight:800;
+  box-shadow:0 5px 14px rgba(0,0,0,.28);
+}
+#hrv-black-hole-v2-root .bhv2-earth-network:has(.bhv2-earth[data-network-state="complete"]) > .bhv2-primary {
+  color:#06151d!important;
+  background:rgba(114,240,237,.94)!important;
+  border-color:#fff!important;
+}
+
+/* Comparison mode should visibly become a paired exhibit. */
+#hrv-black-hole-v2-root .bhv2-comparison-pair {
+  transition:gap .25s ease,background .25s ease,border-color .25s ease,padding .25s ease;
+}
+#hrv-black-hole-v2-root .bhv2-comparison-pair[data-view="compare"] {
+  gap:.7rem;
+  padding:.85rem;
+  border:1px solid rgba(255,174,98,.5);
+  border-radius:1.4rem;
+  background:rgba(52,32,24,.42);
+  box-shadow:inset 0 1px rgba(255,255,255,.06),0 0 34px rgba(255,140,54,.08);
+}
+#hrv-black-hole-v2-root .bhv2-comparison-pair[data-view="compare"] .bhv2-comparison-card {
+  border-color:rgba(255,207,155,.75);
+}
+
+/* Warped Light controls need a visible instrument readout. */
+#hrv-black-hole-v2-root .bhv2-warp-controls output {
+  display:inline-flex;
+  width:max-content;
+  max-width:100%;
+  padding:.38rem .65rem;
+  border:1px solid rgba(var(--bhv2-accent-rgb),.42);
+  border-radius:999px;
+  background:rgba(var(--bhv2-accent-rgb),.1);
+  color:#f7fbfd;
+  font-weight:800;
+}
+#hrv-black-hole-v2-root .bhv2-warp-controls input[type="range"] {
+  min-height:28px;
+  accent-color:var(--bhv2-accent);
+}
+
+/* Keep anatomy copy stable as labels change. */
+#hrv-black-hole-v2-root .bhv2-anatomy-description {
+  min-height:4.2rem;
+  margin-top:.8rem;
+  padding:.7rem .85rem;
+  border-left:3px solid var(--bhv2-accent);
+  background:rgba(var(--bhv2-accent-rgb),.07);
+  border-radius:.45rem;
+}
+
+@media (prefers-reduced-motion:reduce) {
+  #hrv-black-hole-v2-root .bhv2-comparison-pair {
+    transition:none!important;
+  }
+}
