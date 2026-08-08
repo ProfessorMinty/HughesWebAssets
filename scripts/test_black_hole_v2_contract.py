@@ -22,10 +22,11 @@ presentation = text('apps/black-hole-museum/src/v2/presentation.css')
 experience = text('apps/black-hole-museum/src/v2/experience-layer.css')
 stabilization_css = text('apps/black-hole-museum/src/v2/stabilization.css')
 stabilization_js = text('apps/black-hole-museum/src/v2/stabilization.js')
+normalization = text('apps/black-hole-museum/src/v2/normalization.css')
 amadeus = text('apps/black-hole-museum/src/v2/amadeus-compat.css')
 loader = text('docs/deployment/black-hole-v2-edublogs-javascript.js')
 builder = text('scripts/build_black_hole_v2.py')
-release = json.loads(text('dist/v0.2.0-black-hole-v2-lab.7/release.json'))
+release = json.loads(text('dist/v0.2.0-black-hole-v2-lab.8/release.json'))
 channel = json.loads(text('channels/black-hole-v2-lab.json'))
 
 legacy_markers = [
@@ -35,7 +36,7 @@ legacy_markers = [
 ]
 combined_v2 = '\n'.join([
     renderer, interactions, runtime, presentation, experience,
-    stabilization_css, stabilization_js, amadeus
+    stabilization_css, stabilization_js, normalization, amadeus
 ])
 for marker in legacy_markers:
     require(marker not in combined_v2, f'V2 source does not inherit legacy presentation marker: {marker}')
@@ -79,6 +80,17 @@ require('[data-station="04"] .bhv2-orbit-overlay' in stabilization_css and 'aspe
 require('[aria-pressed="true"]' in stabilization_css and 'font-weight:850' in stabilization_css, 'selected tool states are visually unmistakable')
 require('stabilizeWarpedLight' in stabilization_js and 'stabilizeAnatomy' in stabilization_js and 'stabilizeEarthNetwork' in stabilization_js, 'stabilization helper synchronizes interactive tool feedback')
 require('buttons[0].click()' in stabilization_js, 'anatomy tool initializes into a real first layer')
+require("reveal.textContent = allOpen ? 'All clues revealed' : 'Reveal all clues'" in stabilization_js, 'evidence reveal control has an explicit closed-state label')
+require("clue.setAttribute('aria-expanded', 'false')" in stabilization_js and "aria-hidden', 'true'" in stabilization_js, 'evidence clues begin semantically concealed')
+require("label.textContent = 'Trace the orbit'" in stabilization_js and 'bhv2-tool-instruction' in stabilization_js, 'orbit tool explains its purpose in the interface')
+
+require('.bhv2-prototype-warning' in normalization and 'font-size:clamp(.9rem' in normalization, 'normalization raises prototype/microcopy readability floor')
+require('[data-station="03"] .bhv2-evidence-cluster' in normalization and '1.12fr' in normalization, 'station 03 uses a substantial evidence/reference composition')
+require('[data-station="03"] .bhv2-clue-copy' in normalization and 'max-height:0' in normalization, 'station 03 clue details are visually concealed until reveal')
+require('[data-station="04"] .bhv2-observation-pair' in normalization and 'minmax(330px,.72fr)' in normalization, 'station 04 gives the observation tool real exhibit scale')
+require('[data-station="05"] .bhv2-observatory-stack' in normalization and 'grid-column:1 / -1' in normalization, 'station 05 explanation spans beneath the two primary exhibits')
+require('[data-station="06"] .bhv2-reconstruction-pair' in normalization and 'repeat(2,minmax(0,1fr))' in normalization, 'station 06 uses a balanced interactive/reference pair')
+require('@media (max-width:1100px)' in normalization and 'grid-template-columns:1fr' in normalization, 'normalized feature compositions collapse before cramped desktop widths')
 
 normalized_amadeus = amadeus.replace(' ', '')
 require('html.hrv-route-black-hole-v2-ready' in amadeus, 'Amadeus neutralization is route-ready scoped')
@@ -92,7 +104,7 @@ require('DOMContentLoaded' in loader, 'Edublogs JavaScript tab loader is DOM-rea
 require("root.dataset.hrvPage !== PAGE_ID" in loader and "root.dataset.hrvPageSystem !== PAGE_SYSTEM" in loader, 'loader validates semantic mount identity')
 for forbidden in ['window.location', '.pathname', 'data-path', 'wp-post', 'page-id']:
     require(forbidden not in loader, f'loader has no slug or WordPress identity dependency: {forbidden}')
-require('RELEASE_MANIFEST' in loader and '0d0c5ba2e463d2b76ec880f1dfe25fcf8cb4769c' in loader, 'page-local loader pins the exact current V2 staging manifest')
+require('RELEASE_MANIFEST' in loader and '987069eb6194ecc86c6287b6f7d25d00cdc7ec4c' in loader, 'page-local loader pins the exact current V2 staging manifest')
 require('fallback preserved' in loader.lower(), 'loader failure path explicitly preserves native fallback')
 require(loader.index('const [content, assets, experience, module] = await Promise.all') < loader.index('await loadStyle(system.style.url)'), 'enhanced CSS loads only after data/module requests succeed')
 
@@ -100,10 +112,10 @@ system = release['pageSystems']['black-hole-museum-v2']
 require(release['releasePurpose'] == 'unpublished-v2-staging', 'current V2 release is explicitly staging-only')
 require(release['dataFoundation']['mode'] == 'temporary-pinned-seed', 'verified black-hole .2 data is recorded as temporary pinned staging input')
 require('v0.1.0-black-hole-lab.2' in system['content']['url'], 'current staging release intentionally seeds from verified black-hole .2 content')
-require(release['rollbackRelease'] == '0.2.0-black-hole-v2-lab.6', 'staging .7 rolls back to immutable V2 staging .6')
+require(release['rollbackRelease'] == '0.2.0-black-hole-v2-lab.7', 'staging .8 rolls back to immutable V2 staging .7')
 require(channel['channel'] == 'black-hole-v2-lab', 'V2 has its own isolated channel')
 require(channel['currentRelease']['id'] == release['release'], 'V2 staging channel points at current V2 staging release')
-require(channel['previousRelease']['id'] == '0.2.0-black-hole-v2-lab.6', 'V2 staging channel retains .6 as its previous checkpoint')
+require(channel['previousRelease']['id'] == '0.2.0-black-hole-v2-lab.7', 'V2 staging channel retains .7 as its previous checkpoint')
 
 require('v2-owned-copy' in builder, 'future V2 builder publishes V2-owned data copies')
 require('black-hole-v2-lab.2' in builder, 'builder examples remain in the V2 release namespace')
