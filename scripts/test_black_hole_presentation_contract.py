@@ -34,12 +34,10 @@ require('width:100vw' in normalized_viewport and
         'margin-right:-50vw' in normalized_viewport,
         'full-width route keeps the proven root-level 100vw breakout')
 
-# Maximum-shelf atmosphere and accessibility contracts remain intact.
+# Maximum-shelf atmosphere/accessibility remain available around the human-scale composition.
 normalized_max = MAXIMUM.replace(' ', '')
 require('color:#fff!important' in normalized_max,
         'museum explicitly owns high-contrast heading color')
-require('@media (max-width:767px)' in MAXIMUM,
-        'phone pocket-museum treatment remains present')
 require('@media (prefers-reduced-motion:reduce)' in MAXIMUM,
         'Still Museum reduced-motion treatment remains present')
 require('.bhm-max-transition' in ENHANCEMENTS and '.bhm-max-lightfield' in ENHANCEMENTS,
@@ -47,9 +45,9 @@ require('.bhm-max-transition' in ENHANCEMENTS and '.bhm-max-lightfield' in ENHAN
 require('@media (forced-colors:active)' in ENHANCEMENTS,
         'decorative environment withdraws in forced-colors mode')
 require('.bhm-max-corridor-frame:nth-child(4)' in FINISHING,
-        'cross-browser threshold depth fallback remains present')
+        'cross-browser threshold-depth fallback remains present')
 
-# Performance/runtime contracts from the live browser tests.
+# Live-page performance rules remain unchanged.
 require("const RUNTIME_WINDOW = 'current-plus-one-ahead'" in RUNTIME,
         'runtime keeps the current-plus-one-ahead scroll budget')
 require("video.preload = 'none'" in RUNTIME and 'video.pause()' in RUNTIME,
@@ -59,10 +57,10 @@ require('IntersectionObserver' in RUNTIME and "rootMargin: '100% 0px 100% 0px'" 
 require('autoplay=0' in RUNTIME and 'controls=1' in RUNTIME,
         'YouTube players never autoplay and retain normal controls')
 
-# The viewport is available to the exhibit. Text gets local reading limits instead.
+# The viewport remains available. No centered master content shell is allowed back in.
 normalized_wide = WIDE.replace(' ', '')
 require('--bhm-wide:none' in normalized_wide,
-        'desktop presentation removes the old centered museum-width ceiling')
+        'desktop presentation removes the old museum-width ceiling')
 require('width:100%!important' in normalized_wide and 'max-width:none!important' in normalized_wide,
         'desktop presentation can consume the available viewport')
 require('content-visibility:auto' in normalized_wide,
@@ -70,53 +68,95 @@ require('content-visibility:auto' in normalized_wide,
 require('word-break:normal!important' in normalized_wide and 'hyphens:none!important' in normalized_wide,
         'theme inheritance cannot split ordinary exhibit words')
 
-# New structural contract: renderer logic is preserved, DOM anatomy is recomposed after mount.
+# Runtime composition is now story-aware rather than one universal station template.
 require("import { mountBlackHoleMuseum as mountMaximumShelfMuseum } from './maximum-shelf-runtime.js'" in COMPOSED_RUNTIME,
         'composed runtime preserves the verified maximum-shelf runtime')
 require('recomposeBlackHoleMuseum(args.mount)' in COMPOSED_RUNTIME,
         'composed runtime restructures the mounted museum after verified rendering')
-require("const STRUCTURE_VERSION = 'structured-exhibit-2026.08.07.1'" in STRUCTURE_JS,
-        'structured exhibit DOM has an explicit version marker')
-require('buildSceneHeader' in STRUCTURE_JS and 'bhm-scene-header' in STRUCTURE_JS,
-        'every station can receive a real scene entrance/header')
-require("REVERSE_HEADER_STATIONS = new Set(['04', '06', '09'])" in STRUCTURE_JS,
-        'selected stations deliberately reverse composition rhythm')
-require('composeThreshold' in STRUCTURE_JS and 'composeRotunda' in STRUCTURE_JS and 'composeBoundary' in STRUCTURE_JS,
-        'threshold, rotunda, and boundary receive specialized scene anatomy')
-require("case '02'" in STRUCTURE_JS and "case '10'" in STRUCTURE_JS,
-        'all numbered stations are handled by the structural compositor')
+require("const STRUCTURE_VERSION = 'story-clusters-2026.08.07.2'" in STRUCTURE_JS,
+        'story-cluster DOM has an explicit version marker')
+for name in [
+    'threshold-cluster', 'interactive-pair', 'evidence-cluster', 'media-story-pair',
+    'telescope-cluster', 'three-stage-process', 'comparison-pair',
+    'interactive-gallery', 'myth-grid', 'knowledge-split'
+]:
+    require(name in STRUCTURE_JS, f'named composition exists: {name}')
+require('composeHero' in STRUCTURE_JS and 'bhm-hero-visual' in STRUCTURE_JS,
+        'page hero receives a dedicated composed visual')
+require('buildSectionIntro' in STRUCTURE_JS and 'bhm-section-intro' in STRUCTURE_JS,
+        'every station receives a compact section entrance')
+require('bhm-clue-grid' in STRUCTURE_JS and "network.querySelectorAll('.bhm-clue')" in STRUCTURE_JS,
+        'gravity clues are grouped as evidence cards instead of orbiting a giant canvas')
+require('bhm-observatory-stack' in STRUCTURE_JS and 'bhm-observatory-chip' in STRUCTURE_JS,
+        'EHT observatory sites receive a compact supporting group')
+require('bhm-process-row' in STRUCTURE_JS and 'bhm-process-card' in STRUCTURE_JS,
+        'reconstruction exposes three adjacent process stages')
+require('bhm-lab-companion' in STRUCTURE_JS and 'bhm-support-gallery' in STRUCTURE_JS,
+        'Warped Light separates its companion reference from the supporting gallery')
+require("case '01'" in STRUCTURE_JS and "case '10'" in STRUCTURE_JS,
+        'all ten numbered stations are routed through the story compositor')
 
-# Structured CSS must create hierarchy without recreating a centered content box.
-normalized_structure = STRUCTURE.replace(' ', '')
-require('.bhm-chamber{\n  display:block!important' in STRUCTURE or '.bhm-chamber{display:block!important' in normalized_structure,
-        'rooms flow as scene header plus exhibit rather than vertically centered widget grids')
-require('grid-template-areas:' in STRUCTURE and '"title summary"' in STRUCTURE,
-        'desktop scene headers have explicit title/summary/action roles')
-require('font-size:clamp(3.4rem,5.4vw,7rem)!important' in normalized_structure,
-        'station titles are exhibit-scale and readable')
-require('font-size:clamp(20px,.28vw+15px,23px)!important' in normalized_structure,
-        'base museum reading text is sized for a real desktop display')
-require('.bhm-lensing.bhm-stage-grid' not in normalized_structure,
-        'structure layer does not invent a descendant breakout container')
-require('.bhm-lensing .bhm-stage-grid' in STRUCTURE and 'display:block !important' in STRUCTURE,
-        'Sky Atrium becomes one dominant full-width exhibit below its header')
-require('grid-template-columns:minmax(0,1.55fr)minmax(22rem,.45fr)!important' in normalized_structure,
-        'Evidence room has one primary interaction and one supporting reference')
-require('grid-template-columns:minmax(0,1.4fr)minmax(24rem,.6fr)!important' in normalized_structure,
-        'Earth room has a dominant instrument and supporting map')
-require('grid-template-columns:repeat(12,minmax(0,1fr))!important' in normalized_structure,
-        'Warped Light supporting media uses an editorial twelve-column spread')
-require('.bhm-structured-media-center.bhm-media-center-inner' not in normalized_structure,
-        'Media Center structure remains scoped through its real descendant relationship')
-require('.bhm-structured-media-center .bhm-media-center-inner' in STRUCTURE and 'display:block !important' in STRUCTURE,
-        'Media Center title becomes a room header above the videos')
-require('@media (max-width:767px)' in STRUCTURE and 'grid-template-columns:1fr !important' in STRUCTURE,
-        'single-column presentation is reserved for the phone edition')
+# Human-scale layout doctrine.
+normalized_structure = re.sub(r'\s+', '', STRUCTURE)
+require('font-size:clamp(18px,.15vw+16px,20px)!important' in normalized_structure,
+        'desktop reading base stays human-scale')
+require('min-height:auto!important' in normalized_structure,
+        'content height replaces the old room-height mandate')
+require('min-height:90vh' not in STRUCTURE and 'min-height:110vh' not in STRUCTURE and 'min-height:130vh' not in STRUCTURE and 'min-height:150vh' not in STRUCTURE,
+        'story-grid layer contains no giant generic chamber heights')
+require('grid-template-columns:minmax(0,7fr)minmax(18rem,5fr)' in normalized_structure,
+        'opening hero uses a purposeful 7/5 composition')
+require('min-height:clamp(32rem,60svh,44rem)!important' in normalized_structure,
+        'hero is substantial but capped for a normal desktop')
+require('font-size:clamp(2.5rem,3.25vw,4rem)!important' in normalized_structure,
+        'station headings stay readable without becoming room-scale billboards')
+require('.bhm-story-exhibit' in STRUCTURE and 'max-width:none!important' in normalized_structure,
+        'full-width availability belongs to the exhibit canvas, not a centered container')
+require('grid-template-columns:repeat(12,minmax(0,1fr))' in normalized_structure,
+        'desktop story system uses a flexible twelve-column composition grid')
 
-# Media Center still contains the simulated, non-autoplay classroom-safe selections.
+# Specific relationship layouts from the approved paper plan.
+require('.bhm-clue-grid' in STRUCTURE and 'grid-template-columns:repeat(2,minmax(0,1fr))' in normalized_structure,
+        'Gravity Leaves Clues groups evidence cards together')
+require('.bhm-telescope-cluster>.bhm-media-card' in normalized_structure and 'grid-column:1/span5!important' in normalized_structure,
+        'Earth telescope room gives the real map five columns')
+require('.bhm-telescope-cluster.bhm-earth-stage' not in normalized_structure,
+        'telescope selectors preserve real descendant relationships')
+require('.bhm-telescope-cluster .bhm-earth-stage' in STRUCTURE and 'grid-column:6/span4!important' in normalized_structure,
+        'Earth visualization receives four purposeful columns')
+require('.bhm-telescope-cluster .bhm-observatory-stack' in STRUCTURE and 'grid-column:10/-1' in normalized_structure,
+        'observatory stack receives the remaining three columns')
+require('.bhm-process-row' in STRUCTURE and 'grid-template-columns:repeat(3,minmax(0,1fr))' in normalized_structure,
+        'reconstruction process presents three comparable stages')
+require('max-width:34rem' in STRUCTURE and '.bhm-comparison-pair' in STRUCTURE,
+        'Twin-Ring cards are capped at human viewing scale')
+require('.bhm-interactive-gallery .bhm-accretion-stage' in STRUCTURE and 'grid-column:1/span7!important' in normalized_structure,
+        'Warped Light gives the interactive seven columns rather than the whole screen')
+require('.bhm-interactive-gallery .bhm-lab-companion' in STRUCTURE and 'grid-column:8/-1!important' in normalized_structure,
+        'Warped Light companion reference occupies the remaining five columns')
+require('.bhm-support-gallery' in STRUCTURE and 'grid-template-columns:repeat(3,minmax(0,1fr))!important' in normalized_structure,
+        'Warped Light supporting references form a compact three-card gallery')
+require('.bhm-myth-grid' in STRUCTURE and 'grid-template-columns:repeat(2,minmax(0,1fr))' in normalized_structure,
+        'myth corrections form a visible 2x2 relationship cluster')
+require('.bhm-story-media-center .bhm-media-center-intro' in STRUCTURE and 'grid-column:1/span3' in normalized_structure,
+        'Media Center intro is compact signage rather than a third giant card')
+require('.bhm-story-media-center .bhm-media-center-grid' in STRUCTURE and 'grid-column:4/-1' in normalized_structure,
+        'Media Center gives the paired videos the remaining lounge space')
+require('.bhm-evidence-pullback' in STRUCTURE and 'grid-template-columns:repeat(3,minmax(0,1fr))!important' in normalized_structure,
+        'closing evidence pullback keeps three related artifacts visible together')
+
+# Phone is the intentional linear edition. Desktop is not.
+require('@media(max-width:700px)' in normalized_structure,
+        'phone edition has an explicit collapse threshold')
+require('grid-template-columns:1fr!important' in normalized_structure,
+        'phone edition stacks semantic groups into one readable column')
+require('aspect-ratio:16/9' in normalized_structure,
+        'embedded media preserves normal video proportions rather than giant viewport heights')
+
+# Media Center remains simulated and safe.
 normalized_media = MEDIA.replace(' ', '')
 require('repeat(2,minmax(0,1fr))' in normalized_media,
-        'Media Center keeps two videos side by side on desktop')
+        'base Media Center supports two videos side by side on desktop')
 require('SIMULATED MEDIA SELECTION' in RUNTIME,
         'prototype Media Center does not falsely claim Ms. Hughes approval')
 
@@ -136,7 +176,7 @@ require('.site-content > .container' in AMADEUS and 'max-width:none!important' i
 require('.content-area' in AMADEUS and 'float:none!important' in AMADEUS.replace(' ', ''),
         'theme content-area width and float remain neutralized')
 
-# Durable build order: foundation -> viewport -> atmosphere -> performance/media -> structure -> theme adapter.
+# Durable build order.
 order = [
     'page.css',
     'viewport-breakout.css',
@@ -152,10 +192,10 @@ positions = [BUILD.find(name) for name in order]
 require(all(pos >= 0 for pos in positions), 'all nine style modules are included by the durable build')
 require(positions == sorted(positions), 'style modules are composed in the required cascade order')
 require("maximum-shelf-composed-runtime.js',DIST/'black-hole-museum.js" in BUILD,
-        'durable build publishes the structured composed runtime entry point')
+        'durable build publishes the story-composed runtime entry point')
 
 # Base renderer remains separable and authoritative for science/interactions.
 require('maximum-shelf.css' not in BASE and 'theme-amadeus.css' not in BASE and 'maximum-shelf-structure.css' not in BASE,
         'base renderer styling remains separable from presentation and theme adapters')
 
-print('\nBlack Hole Museum structured presentation contract passed.')
+print('\nBlack Hole Museum human-scale story-grid contract passed.')
