@@ -7,8 +7,8 @@
   const ROOT_ID = 'hrv-black-hole-v2-root';
   const PAGE_ID = 'repository-page-lab-black-holes-v2';
   const PAGE_SYSTEM = 'black-hole-museum-v2';
-  const EXPECTED_RELEASE = '0.2.0-black-hole-v2-lab.3';
-  const RELEASE_MANIFEST = 'https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@3681ac8a5bea00c73e69be1b6f1688bf3b727ada/dist/v0.2.0-black-hole-v2-lab.3/release.json';
+  const EXPECTED_RELEASE = '0.2.0-black-hole-v2-lab.4';
+  const RELEASE_MANIFEST = 'https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@21e8ad037509a4cb530000a8564ff4a6ce431e28/dist/v0.2.0-black-hole-v2-lab.4/release.json';
   const TIMEOUT_MS = 12000;
 
   function ready(callback) {
