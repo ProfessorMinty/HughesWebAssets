@@ -270,9 +270,10 @@
 #hrv-black-hole-v2-root .bhv2-state-readout { margin:.65rem 0 0;color:#dce9ef;font-size:var(--bhv2-type-support);line-height:1.45; }
 
 /* Stable in-place explanation system */
-#hrv-black-hole-v2-root .bhv2-detail-system { display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:.8rem;margin-top:1rem;align-items:stretch; }
+#hrv-black-hole-v2-root .bhv2-detail-system { display:grid;grid-template-columns:1fr;gap:.6rem;margin-top:.85rem;align-items:stretch; }
 #hrv-black-hole-v2-root .bhv2-detail-tabs { display:flex;flex-wrap:wrap;gap:.55rem;align-content:start; }
 #hrv-black-hole-v2-root .bhv2-detail-tray { min-height:8.75rem;padding:.9rem 1rem;border:1px solid rgba(var(--bhv2-accent-rgb),.28);border-left:4px solid var(--bhv2-accent);border-radius:.8rem;background:rgba(var(--bhv2-accent-rgb),.07); }
+#hrv-black-hole-v2-root .bhv2-warp-details .bhv2-detail-tray { min-height:11.75rem; }
 #hrv-black-hole-v2-root .bhv2-detail-kicker { display:block;margin-bottom:.3rem;color:var(--bhv2-accent);font-size:var(--bhv2-type-label);font-weight:900;letter-spacing:.08em; }
 #hrv-black-hole-v2-root .bhv2-detail-title { display:block;color:#fff;font-size:21px;line-height:1.35; }
 #hrv-black-hole-v2-root .bhv2-detail-copy { margin:.4rem 0 0;color:var(--bhv2-muted);font-size:var(--bhv2-type-support);line-height:1.48; }
@@ -360,13 +361,16 @@
 
 /* 04 · Star-orbit theater */
 #hrv-black-hole-v2-root .bhv2-section--theater { background:radial-gradient(ellipse at 50% 55%,rgba(82,105,173,.14),transparent 42rem),linear-gradient(180deg,#050a12,#081426 60%,#07111d); }
-#hrv-black-hole-v2-root .bhv2-theater { width:min(100%,70rem);margin-inline:auto;padding:1rem;border:1px solid rgba(168,190,255,.3);border-radius:1.6rem;background:#040912;box-shadow:0 32px 95px rgba(0,0,0,.5),0 0 60px rgba(100,130,220,.08); }
+#hrv-black-hole-v2-root .bhv2-theater { width:min(100%,64rem);margin-inline:auto;padding:1rem;border:1px solid rgba(168,190,255,.3);border-radius:1.6rem;background:#040912;box-shadow:0 32px 95px rgba(0,0,0,.5),0 0 60px rgba(100,130,220,.08); }
 #hrv-black-hole-v2-root .bhv2-theater-screen { position:relative;width:100%; }
 #hrv-black-hole-v2-root .bhv2-orbit-observation { width:100%;border-radius:1rem; }
 #hrv-black-hole-v2-root .bhv2-orbit-observation .bhv2-media-frame { aspect-ratio:16/9;min-height:0; }
-#hrv-black-hole-v2-root .bhv2-orbit-observation figcaption { grid-template-columns:minmax(0,1fr) auto;gap:.35rem .8rem;padding:.72rem .85rem .82rem; }
-#hrv-black-hole-v2-root .bhv2-orbit-observation :where(.bhv2-media-caption,.bhv2-media-credit) { grid-column:1/-1; }
-#hrv-black-hole-v2-root .bhv2-orbit-observation figcaption > a { justify-self:end; }
+#hrv-black-hole-v2-root .bhv2-orbit-observation figcaption { grid-template-columns:minmax(0,1fr) auto;gap:.25rem .65rem;padding:.58rem .75rem .65rem;align-items:center; }
+#hrv-black-hole-v2-root .bhv2-orbit-observation .bhv2-media-caption { display:none; }
+#hrv-black-hole-v2-root .bhv2-orbit-observation .bhv2-media-title { grid-column:1; }
+#hrv-black-hole-v2-root .bhv2-orbit-observation .bhv2-evidence-badge { grid-column:2;justify-self:end; }
+#hrv-black-hole-v2-root .bhv2-orbit-observation .bhv2-media-credit { grid-column:1; }
+#hrv-black-hole-v2-root .bhv2-orbit-observation figcaption > a { grid-column:2;grid-row:2;justify-self:end; }
 #hrv-black-hole-v2-root .bhv2-orbit-overlay { position:absolute;inset:0;width:100%;height:100%;pointer-events:none;fill:none;stroke:#8cf4ff;stroke-width:4;opacity:.92; }
 #hrv-black-hole-v2-root .bhv2-orbit-trace,
 #hrv-black-hole-v2-root .bhv2-orbit-center-marker,
