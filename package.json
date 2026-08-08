@@ -6,7 +6,8 @@
   "scripts": {
     "build:black-hole": "python scripts/build_black_hole.py",
     "test:black-hole": "python scripts/test_black_hole.py && python scripts/test_black_hole_viewport_contract.py && python scripts/test_black_hole_presentation_contract.py && python scripts/test_black_hole_finishing_contract.py",
-    "verify:black-hole": "python scripts/build_black_hole.py --verify-only && python scripts/test_black_hole.py && python scripts/test_black_hole_viewport_contract.py && python scripts/test_black_hole_presentation_contract.py && python scripts/test_black_hole_finishing_contract.py"
+    "verify:black-hole": "python scripts/build_black_hole.py --verify-only && python scripts/test_black_hole.py && python scripts/test_black_hole_viewport_contract.py && python scripts/test_black_hole_presentation_contract.py && python scripts/test_black_hole_finishing_contract.py",
+    "test:black-hole-v2": "python scripts/test_black_hole_v2_contract.py"
   },
   "engines": {
     "node": ">=20"
