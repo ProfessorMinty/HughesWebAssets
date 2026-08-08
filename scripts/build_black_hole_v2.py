@@ -45,7 +45,7 @@ def full_sha(value: str, label: str) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description='Build a self-owned Black Hole Museum V2 release.')
-    parser.add_argument('--release', required=True, help='Release id without leading v, for example 0.2.0-black-hole-v2-lab.2')
+    parser.add_argument('--release', required=True, help='Release id without leading v, for example 0.2.0-black-hole-v2-lab.9')
     parser.add_argument('--cdn-ref', required=True, help='Immutable CDN ref that will own this release, normally a release tag or committed immutable ref.')
     parser.add_argument('--source-commit', default=os.environ.get('HRV_RELEASE_SOURCE_COMMIT', ''), help='Full source commit SHA recorded in release metadata.')
     parser.add_argument('--verify-only', action='store_true')
@@ -74,8 +74,15 @@ def main() -> int:
         if not (SRC / filename).is_file():
             raise SystemExit(f'Missing V2 source file: {filename}')
 
+    obsolete_source = ['experience-layer.css', 'stabilization.css', 'normalization.css', 'stabilization.js']
+    for filename in obsolete_source:
+        if (SRC / filename).exists():
+            raise SystemExit(f'Obsolete layered V2 source must be removed from active runtime ownership: {filename}')
+
     if args.verify_only:
         print('[verify] V2 sources and authoritative data validate')
+        print('[verify] presentationAuthority=single-canonical-stylesheet')
+        print('[verify] compatibilityAuthority=separate-structural-adapter')
         return 0
 
     if dist.exists():
@@ -86,11 +93,8 @@ def main() -> int:
     copy(SRC / 'renderer.js', dist / 'black-hole-museum.js')
     copy(SRC / 'runtime.js', dist / 'runtime.js')
     copy(SRC / 'interactions.js', dist / 'interactions.js')
-    (dist / 'black-hole-museum.css').write_text(
-        (SRC / 'presentation.css').read_text(encoding='utf-8').rstrip() + '\n\n' +
-        (SRC / 'amadeus-compat.css').read_text(encoding='utf-8').rstrip() + '\n',
-        encoding='utf-8'
-    )
+    copy(SRC / 'presentation.css', dist / 'black-hole-museum.css')
+    copy(SRC / 'amadeus-compat.css', dist / 'amadeus-compat.css')
 
     runtime_assets = []
     for item in assets['assets']:
@@ -159,6 +163,7 @@ def main() -> int:
             'black-hole-museum-v2': {
                 'script': {'url': f'{cdn}/black-hole-museum.js', 'type': 'module', 'sha256': digest(dist / 'black-hole-museum.js')},
                 'style': {'url': f'{cdn}/black-hole-museum.css', 'sha256': digest(dist / 'black-hole-museum.css')},
+                'compatStyle': {'url': f'{cdn}/amadeus-compat.css', 'sha256': digest(dist / 'amadeus-compat.css')},
                 'content': {'url': f'{cdn}/content/black-hole-museum.json', 'schemaVersion': '1.0', 'sha256': digest(dist / 'content/black-hole-museum.json')},
                 'assets': {'url': f'{cdn}/content/black-hole-assets.json', 'schemaVersion': '1.0', 'sha256': digest(dist / 'content/black-hole-assets.json')},
                 'experience': {'url': f'{cdn}/content/black-hole-experience.json', 'schemaVersion': '1.0', 'sha256': digest(dist / 'content/black-hole-experience.json')},
@@ -171,6 +176,8 @@ def main() -> int:
 
     print(f'[build] {folder}')
     print('[build] dataFoundation=v2-owned-copy')
+    print('[build] presentation=direct owned CSS')
+    print('[build] compatibility=separate owned structural CSS')
     print(f'[build] deploymentReady={release["deploymentReady"]}')
     return 0
 
