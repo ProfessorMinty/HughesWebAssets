@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-08-08T06:47:00Z",
+  "defaultProfile": "5",
+  "profiles": {
+    "0": { "name": "Native calm", "motion": 0, "ambient": 0, "depth": 0, "reflections": 0, "surprise": 0 },
+    "1": { "name": "Polished", "motion": 1, "ambient": 0, "depth": 1, "reflections": 1, "surprise": 0 },
+    "2": { "name": "Delightful", "motion": 2, "ambient": 1, "depth": 2, "reflections": 1, "surprise": 1 },
+    "3": { "name": "Storybook", "motion": 3, "ambient": 2, "depth": 3, "reflections": 2, "surprise": 2 },
+    "4": { "name": "Enchanted", "motion": 4, "ambient": 3, "depth": 4, "reflections": 3, "surprise": 3 },
+    "5": { "name": "Maximum shelf", "motion": 5, "ambient": 5, "depth": 5, "reflections": 4, "surprise": 4 }
+  },
+  "publicControls": {
+    "motionPause": true,
+    "reducedData": false,
+    "stationNavigation": true,
+    "sound": false
+  },
+  "labControls": {
+    "profileSelector": false,
+    "forceReducedMotion": false,
+    "disableReflections": false,
+    "essentialMode": false,
+    "diagnostics": false
+  },
+  "optionalDiscoveries": [],
+  "reducedMotionEdition": "still-museum",
+  "reducedDataEdition": "not-implemented"
+}
