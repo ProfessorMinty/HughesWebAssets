@@ -120,6 +120,8 @@ export function installLazyYouTube(center, cleanups) {
   };
 
   const sleep = () => {
+    const activeElement = document.activeElement;
+    if (activeElement && center.contains(activeElement)) return;
     frames.forEach((frame) => {
       const iframe = frame.querySelector('iframe');
       if (iframe) iframe.remove();
