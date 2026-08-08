@@ -25,7 +25,7 @@ function setToggle(control, active) {
 }
 
 export function createLensingInteractive(station) {
-  const module = el('div', 'bhv2-lensing');
+  const module = el('div', 'bhv2-lensing bhv2-atrium-instrument');
   const canvas = document.createElement('canvas');
   canvas.width = 1200;
   canvas.height = 650;
@@ -42,6 +42,8 @@ export function createLensingInteractive(station) {
 
   const controls = el('div', 'bhv2-control-row bhv2-atrium-controls');
   const labels = station.interaction?.states || ['Quiet sky', 'Bent light', 'Show paths'];
+  const readout = el('p', 'bhv2-state-readout', 'Quiet sky: the background stars are undisturbed.');
+  readout.setAttribute('aria-live', 'polite');
   const buttons = labels.map((label, index) => {
     const control = button(label);
     control.setAttribute('aria-pressed', index === 0 ? 'true' : 'false');
@@ -49,13 +51,11 @@ export function createLensingInteractive(station) {
     controls.append(control);
     return control;
   });
-  const readout = el('p', 'bhv2-state-readout', 'Quiet sky. The center contains no visible object.');
-  readout.setAttribute('aria-live', 'polite');
 
   const ctx = canvas.getContext('2d');
-  const stars = Array.from({ length: 115 }, (_, i) => {
+  const stars = Array.from({ length: 128 }, (_, i) => {
     const angle = (i * 2.3999632297) % (Math.PI * 2);
-    const radius = 80 + ((i * 83) % 500);
+    const radius = 76 + ((i * 83) % 520);
     return { x: 600 + Math.cos(angle) * radius, y: 325 + Math.sin(angle) * radius * .55, r: 1 + (i % 4) * .45 };
   });
 
@@ -83,7 +83,7 @@ export function createLensingInteractive(station) {
       ctx.save();
       ctx.translate(x, y);
       ctx.rotate(Math.atan2(y - 325, x - 600) + Math.PI / 2);
-      ctx.fillStyle = i % 8 === 0 ? '#7ff4ff' : '#ffffff';
+      ctx.fillStyle = i % 8 === 0 ? '#8cf4ff' : '#ffffff';
       ctx.globalAlpha = .55 + (i % 5) * .09;
       ctx.beginPath();
       ctx.ellipse(0, 0, star.r * stretch, star.r, 0, 0, Math.PI * 2);
@@ -98,10 +98,10 @@ export function createLensingInteractive(station) {
       draw(index === 0 ? 'quiet' : 'bent');
       module.classList.toggle('show-paths', index === 2);
       readout.textContent = index === 0
-        ? 'Quiet sky. The center contains no visible object.'
+        ? 'Quiet sky: the background stars are undisturbed.'
         : index === 1
-          ? 'Bent light. Background stars shift and stretch around the invisible center.'
-          : 'Light paths shown. The cyan lines are a simplified explanatory diagram.';
+          ? 'Bent light: the empty center becomes visible through changes around it.'
+          : 'Light paths: a simplified diagram shows how the apparent paths bend around the invisible center.';
     });
   });
 
@@ -112,19 +112,24 @@ export function createLensingInteractive(station) {
 
 export function createEvidenceInteractive(station) {
   const module = el('div', 'bhv2-evidence-model');
-  const center = el('div', 'bhv2-evidence-center');
-  center.append(el('strong', '', 'Invisible mass'), el('span', '', 'We infer the hidden object from several independent clues.'));
-
   const lines = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   lines.setAttribute('class', 'bhv2-evidence-lines');
-  lines.setAttribute('viewBox', '0 0 1000 650');
+  lines.setAttribute('viewBox', '0 0 1000 700');
   lines.setAttribute('aria-hidden', 'true');
-  lines.innerHTML = '<path data-line="0" d="M500 325 Q330 220 185 130"/><path data-line="1" d="M500 325 Q680 215 820 140"/><path data-line="2" d="M500 325 Q315 465 170 535"/><path data-line="3" d="M500 325 Q690 470 830 535"/>';
+  lines.innerHTML = [
+    '<path data-clue-line="0" d="M500 350 C390 290 310 205 185 155"/>',
+    '<path data-clue-line="1" d="M500 350 C635 270 730 210 825 165"/>',
+    '<path data-clue-line="2" d="M500 350 C385 455 300 520 170 555"/>',
+    '<path data-clue-line="3" d="M500 350 C640 430 725 500 840 555"/>'
+  ].join('');
 
-  const clues = el('div', 'bhv2-evidence-clues');
-  const cards = [];
+  const center = el('div', 'bhv2-evidence-center');
+  center.innerHTML = '<strong>Invisible mass</strong><span>We infer the hidden object from several independent clues.</span>';
+  const clueWrap = el('div', 'bhv2-evidence-clues');
+  const clueButtons = [];
+
   (station.clues || []).forEach((clue, index) => {
-    const card = button('', `bhv2-clue bhv2-clue--${index + 1}`);
+    const card = button('', `bhv2-clue bhv2-clue--${index + 1}${index === 3 ? ' bhv2-clue--support' : ''}`);
     card.setAttribute('aria-expanded', 'false');
     const copy = el('span', 'bhv2-clue-copy', clue.text || '');
     copy.hidden = true;
@@ -138,33 +143,32 @@ export function createEvidenceInteractive(station) {
       card.classList.toggle('is-open', expanded);
       card.setAttribute('aria-expanded', String(expanded));
       copy.hidden = !expanded;
-      lines.querySelector(`[data-line="${index}"]`)?.classList.toggle('is-on', expanded);
+      lines.querySelector(`[data-clue-line="${index}"]`)?.classList.toggle('is-on', expanded);
       syncMaster();
     });
-    clues.append(card);
-    cards.push(card);
+    clueButtons.push(card);
+    clueWrap.append(card);
   });
 
   const reveal = button(station.interaction?.label || 'Reveal all clues', 'bhv2-primary bhv2-evidence-master');
-  reveal.setAttribute('aria-pressed', 'false');
   function syncMaster() {
-    const allOpen = cards.length > 0 && cards.every((card) => card.classList.contains('is-open'));
+    const allOpen = clueButtons.length > 0 && clueButtons.every((card) => card.classList.contains('is-open'));
     setToggle(reveal, allOpen);
     reveal.textContent = allOpen ? 'Hide all clues' : 'Reveal all clues';
   }
   reveal.addEventListener('click', () => {
-    const shouldOpen = !cards.every((card) => card.classList.contains('is-open'));
-    cards.forEach((card, index) => {
+    const shouldOpen = !clueButtons.every((card) => card.classList.contains('is-open'));
+    clueButtons.forEach((card, index) => {
+      const copy = card.querySelector('.bhv2-clue-copy');
       card.classList.toggle('is-open', shouldOpen);
       card.setAttribute('aria-expanded', String(shouldOpen));
-      const copy = card.querySelector('.bhv2-clue-copy');
       if (copy) copy.hidden = !shouldOpen;
-      lines.querySelector(`[data-line="${index}"]`)?.classList.toggle('is-on', shouldOpen);
+      lines.querySelector(`[data-clue-line="${index}"]`)?.classList.toggle('is-on', shouldOpen);
     });
     syncMaster();
   });
 
-  module.append(lines, center, clues, reveal);
+  module.append(lines, center, clueWrap, reveal);
   syncMaster();
   return module;
 }
@@ -174,36 +178,40 @@ export function createOrbitOverlay() {
   overlay.setAttribute('class', 'bhv2-orbit-overlay');
   overlay.setAttribute('viewBox', '0 0 1000 560');
   overlay.setAttribute('aria-hidden', 'true');
-  overlay.innerHTML = '<g class="bhv2-orbit-trace"><ellipse cx="500" cy="280" rx="270" ry="120"/><circle class="bhv2-orbit-star" cx="770" cy="280" r="13"/></g><g class="bhv2-orbit-center-marker"><circle cx="500" cy="280" r="11"/><path d="M470 280h60M500 250v60"/></g><g class="bhv2-orbit-comparison"><ellipse cx="500" cy="280" rx="185" ry="82"/><ellipse cx="500" cy="280" rx="330" ry="154"/></g>';
+  overlay.innerHTML = [
+    '<g class="bhv2-orbit-trace"><path d="M188 327 C246 177 410 112 585 151 C746 188 824 306 763 407 C704 505 532 514 388 466 C254 421 145 385 188 327"/><circle class="bhv2-orbit-star" cx="763" cy="407" r="13"/></g>',
+    '<g class="bhv2-orbit-center-marker"><circle cx="500" cy="315" r="18"/><path d="M500 281v68M466 315h68"/></g>',
+    '<g class="bhv2-orbit-compare"><ellipse cx="500" cy="315" rx="320" ry="168"/></g>'
+  ].join('');
 
   const controls = el('div', 'bhv2-orbit-controls');
-  const trace = button('Trace featured orbit');
+  const trace = button('Trace featured orbit', 'bhv2-primary');
   const center = button('Mark invisible center');
-  const comparison = button('Show simplified comparison');
-  [trace, center, comparison].forEach((control) => control.setAttribute('aria-pressed', 'false'));
-  const readout = el('p', 'bhv2-state-readout', 'Observation only. Explanatory overlays are currently hidden.');
-  readout.setAttribute('aria-live', 'polite');
+  const compare = button('Show simplified comparison');
+  [trace, center, compare].forEach((control) => control.setAttribute('aria-pressed', 'false'));
+  const status = el('p', 'bhv2-state-readout', 'Observation only. Explanatory overlays are currently hidden.');
+  status.setAttribute('aria-live', 'polite');
 
   trace.addEventListener('click', () => {
     const active = overlay.classList.toggle('show-trace');
     setToggle(trace, active);
     trace.textContent = active ? 'Hide featured orbit' : 'Trace featured orbit';
-    readout.textContent = active ? 'The cyan ellipse is an explanatory orbit guide, not part of the original observation.' : 'Featured orbit guide hidden.';
+    status.textContent = active
+      ? 'A simplified explanatory path is overlaid on the real observation.'
+      : 'Observation only. The orbit guide is hidden.';
   });
   center.addEventListener('click', () => {
     const active = overlay.classList.toggle('show-center');
     setToggle(center, active);
-    center.textContent = active ? 'Hide invisible-center marker' : 'Mark invisible center';
-    readout.textContent = active ? 'The crosshair marks the compact invisible center inferred from the stellar motion.' : 'Invisible-center marker hidden.';
+    center.textContent = active ? 'Hide center marker' : 'Mark invisible center';
   });
-  comparison.addEventListener('click', () => {
-    const active = overlay.classList.toggle('show-comparison');
-    setToggle(comparison, active);
-    comparison.textContent = active ? 'Hide simplified comparison' : 'Show simplified comparison';
-    readout.textContent = active ? 'The additional ellipses are a simplified diagram showing that stars can follow different orbits around the same hidden center.' : 'Simplified comparison hidden.';
+  compare.addEventListener('click', () => {
+    const active = overlay.classList.toggle('show-compare');
+    setToggle(compare, active);
+    compare.textContent = active ? 'Hide comparison guide' : 'Show simplified comparison';
   });
 
-  controls.append(trace, center, comparison, readout);
+  controls.append(trace, center, compare, status);
   return { overlay, controls };
 }
 
@@ -222,9 +230,12 @@ export function createEarthNetwork(station) {
   lines.setAttribute('aria-hidden', 'true');
 
   const detail = el('aside', 'bhv2-network-detail');
-  detail.append(el('p', 'bhv2-sidecar-label', 'Selected observatory'), el('h3', '', 'Choose a site'), el('p', 'bhv2-network-copy', 'Each selected station contributes synchronized radio measurements to the shared network.'));
-  const detailTitle = detail.querySelector('h3');
-  const detailCopy = detail.querySelector('.bhv2-network-copy');
+  detail.append(
+    el('p', 'bhv2-sidecar-label', 'Selected observatory'),
+    el('h3', '', 'Choose a site'),
+    el('p', '', 'Each selected station contributes synchronized radio measurements to the shared network.')
+  );
+
   const siteButtons = sites.map(([name, top, left], index) => {
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     const bend = index % 2 === 0 ? 7 : -7;
@@ -239,8 +250,8 @@ export function createEarthNetwork(station) {
     node.dataset.siteIndex = String(index);
     node.addEventListener('click', () => {
       node.classList.toggle('is-on');
-      detailTitle.textContent = name;
-      detailCopy.textContent = `${name} is one of the widely separated observatories whose synchronized radio measurements contribute to the Event Horizon Telescope network.`;
+      detail.querySelector('h3').textContent = name;
+      detail.querySelector('p:last-child').textContent = `${name} is ${node.classList.contains('is-on') ? 'active in' : 'currently removed from'} the simplified synchronized network model.`;
       update();
     });
     earth.append(node);
@@ -248,8 +259,7 @@ export function createEarthNetwork(station) {
   });
 
   earth.prepend(lines);
-  const all = button(station.interaction?.label || 'Show the complete network', 'bhv2-primary');
-  all.setAttribute('aria-pressed', 'false');
+  const all = button(station.interaction?.label || 'Show the complete network', 'bhv2-primary bhv2-network-master');
   const status = el('p', 'bhv2-state-readout', 'No observatories selected yet.');
   status.setAttribute('aria-live', 'polite');
 
@@ -262,23 +272,28 @@ export function createEarthNetwork(station) {
     const activeCount = siteButtons.filter((site) => site.classList.contains('is-on')).length;
     const complete = activeCount === siteButtons.length;
     earth.dataset.networkState = activeCount === 0 ? 'quiet' : complete ? 'complete' : 'partial';
+    module.dataset.networkState = earth.dataset.networkState;
     setToggle(all, complete);
-    all.textContent = complete ? 'Reset network' : 'Show the complete network';
-    status.textContent = activeCount === 0 ? 'No observatories selected yet.' : complete ? 'Complete network: widely separated sites now act together as one virtual telescope.' : `${activeCount} of ${siteButtons.length} observatories selected.`;
+    all.textContent = complete ? 'Reset the network' : 'Show the complete network';
+    status.textContent = activeCount === 0
+      ? 'No observatories selected yet.'
+      : complete
+        ? 'Complete network: many observatories now act as one coordinated instrument.'
+        : `${activeCount} of ${siteButtons.length} observatories are active in this simplified model.`;
   }
 
   all.addEventListener('click', () => {
-    const complete = siteButtons.every((site) => site.classList.contains('is-on'));
+    const complete = earth.dataset.networkState === 'complete';
     siteButtons.forEach((site) => site.classList.toggle('is-on', !complete));
-    detailTitle.textContent = complete ? 'Choose a site' : 'Complete network';
-    detailCopy.textContent = complete ? 'Each selected station contributes synchronized radio measurements to the shared network.' : 'Widely separated observatories synchronize radio measurements so the network can act like an Earth-sized virtual telescope.';
+    if (complete) {
+      detail.querySelector('h3').textContent = 'Choose a site';
+      detail.querySelector('p:last-child').textContent = 'Each selected station contributes synchronized radio measurements to the shared network.';
+    }
     update();
   });
 
-  const controls = el('div', 'bhv2-network-controls');
-  controls.append(all, status);
   stage.append(earth, detail);
-  module.append(stage, controls);
+  module.append(stage, all, status);
   update();
   return { module, siteNames: sites.map(([name]) => name) };
 }
@@ -287,6 +302,8 @@ export function createReconstructionInteractive() {
   const module = el('div', 'bhv2-reconstruction');
   const visual = el('div', 'bhv2-reconstruction-visual');
   const controls = el('div', 'bhv2-process-controls');
+  const status = el('p', 'bhv2-state-readout');
+  status.setAttribute('aria-live', 'polite');
   const states = [
     { name: 'Measurements', cls: 'measurements', text: 'Timed radio measurements from many observatories.' },
     { name: 'Possible reconstructions', cls: 'possibilities', text: 'Several image structures can fit the data.' },
@@ -300,28 +317,24 @@ export function createReconstructionInteractive() {
     controls.append(control);
     return control;
   });
-  const readout = el('p', 'bhv2-state-readout');
-  readout.setAttribute('aria-live', 'polite');
 
   function setState(index) {
     const state = states[index];
     visual.className = `bhv2-reconstruction-visual is-${state.cls}`;
     visual.setAttribute('aria-label', state.text);
-    readout.textContent = state.text;
     setPressed(buttons, index);
+    status.textContent = state.text;
   }
 
-  const whySeveral = document.createElement('details');
-  whySeveral.className = 'bhv2-process-explainer';
-  whySeveral.append(el('summary', '', 'Why are there several versions?'), el('p', '', 'Several reconstructions can fit the telescope data. The published Sagittarius A* image is an average assembled from thousands of compatible reconstructions.'));
-  const whyOrange = document.createElement('details');
-  whyOrange.className = 'bhv2-process-explainer';
-  whyOrange.append(el('summary', '', 'Why orange?'), el('p', '', 'Orange is a presentation choice applied to radio data. It is not the color a human eye would see through a window.'));
   const explainers = el('div', 'bhv2-reconstruction-explainers');
-  explainers.append(whySeveral, whyOrange);
+  const several = document.createElement('details');
+  several.append(el('summary', '', 'Why are there several versions?'), el('p', '', 'Several reconstructions can fit the telescope data. The published Sagittarius A* image is an average assembled from thousands of compatible reconstructions.'));
+  const orange = document.createElement('details');
+  orange.append(el('summary', '', 'Why orange?'), el('p', '', 'Orange is a presentation choice applied to radio data. It is not a visible-light color recorded by the telescope.'));
+  explainers.append(several, orange);
 
   setState(0);
-  module.append(visual, controls, readout, explainers);
+  module.append(visual, controls, status, explainers);
   return { module, states };
 }
 
