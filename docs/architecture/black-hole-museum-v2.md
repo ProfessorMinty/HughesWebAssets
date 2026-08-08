@@ -130,15 +130,16 @@ It activates only behind `html.hrv-route-black-hole-v2-ready` and neutralizes on
 - native page-title/footer entry chrome that conflicts with the enhanced application island
 - centered `.site-content > .container` width restrictions
 - `.content-area` / `.site-main` width and float restrictions
-- article/entry horizontal padding and article-card chrome
+- proven site-content and page-entry margin/padding constraints
+- article-card background, border, and shadow chrome
 
 It does not repaint the site footer, body, navigation, or unrelated theme surfaces.
 
 ## Data foundation policy
 
-The verified `.2` content, asset, and experience manifests are reusable pinned input, not permanent V2 release architecture.
+The verified black-hole `.2` content, asset, and experience manifests are reusable pinned input, not permanent V2 release architecture.
 
-The first staging release `0.2.0-black-hole-v2-lab.1` intentionally references `.2` as a **temporary pinned seed** so the new presentation can be previewed without casually rewriting or duplicating the verified science foundation during the clean rebuild.
+The first two staging releases, `0.2.0-black-hole-v2-lab.1` and `0.2.0-black-hole-v2-lab.2`, intentionally reference the verified black-hole `.2` manifests as a **temporary pinned seed** so the new presentation can be previewed without casually rewriting or duplicating the verified science foundation during the clean rebuild.
 
 `scripts/build_black_hole_v2.py` defines the forward release architecture. Future V2 releases built through it publish V2-owned copies of:
 
@@ -149,17 +150,21 @@ The first staging release `0.2.0-black-hole-v2-lab.1` intentionally references `
 - renderer/runtime/interaction modules
 - combined V2 presentation plus minimal Amadeus adapter
 
-The builder contains no `.2` runtime dependency and cannot write `channels/black-hole-lab.json`.
+The builder contains no black-hole `.2` runtime dependency and cannot write `channels/black-hole-lab.json`.
 
 ## Current V2 staging release
 
-Release: `0.2.0-black-hole-v2-lab.1`
+Release: `0.2.0-black-hole-v2-lab.2`
 
 Channel: `black-hole-v2-lab`
 
-Release manifest is pinned independently from the legacy Black Hole channel. Rollback for this unpublished staging path is the native fallback, not `.12`.
+Current manifest ref: `bcd109d97e9c984a28e5521e04a037a737b2bdc1`
 
-The staging release is explicitly marked `unpublished-v2-staging` and records its `.2` use as `temporary-pinned-seed`.
+Previous V2 staging release: `0.2.0-black-hole-v2-lab.1`
+
+The current release manifest is pinned independently from the legacy Black Hole channel. `.2` rolls back to immutable V2 staging `.1`; the staging line itself remains separate from historical Black Hole `.12`.
+
+The current staging release is explicitly marked `unpublished-v2-staging` and records its verified black-hole `.2` use as `temporary-pinned-seed`.
 
 ## Testing discipline
 
@@ -175,9 +180,10 @@ The staging release is explicitly marked `unpublished-v2-staging` and records it
 - current-plus-one media budgeting
 - no-autoplay/lazy YouTube behavior
 - minimal route-scoped Amadeus neutralization
+- complete neutralization of proven page-entry spacing
 - semantic page-local loader identity with no slug/page-ID dependency
-- separate V2 staging channel
-- temporary `.2` seed status
+- separate V2 staging channel and rollback checkpoint
+- temporary verified black-hole `.2` seed status
 - future V2-owned data release path
 
 The real unpublished Edublogs Preview remains the required integration smoke test after the three tab contents are installed on the page.
