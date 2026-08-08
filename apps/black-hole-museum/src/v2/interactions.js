@@ -181,7 +181,7 @@ export function createOrbitOverlay() {
   overlay.innerHTML = [
     '<g class="bhv2-orbit-trace"><path d="M188 327 C246 177 410 112 585 151 C746 188 824 306 763 407 C704 505 532 514 388 466 C254 421 145 385 188 327"/><circle class="bhv2-orbit-star" cx="763" cy="407" r="13"/></g>',
     '<g class="bhv2-orbit-center-marker"><circle cx="500" cy="315" r="18"/><path d="M500 281v68M466 315h68"/></g>',
-    '<g class="bhv2-orbit-compare"><ellipse cx="500" cy="315" rx="320" ry="168"/></g>'
+    '<g class="bhv2-orbit-comparison"><ellipse cx="500" cy="315" rx="320" ry="168"/></g>'
   ].join('');
 
   const controls = el('div', 'bhv2-orbit-controls');
@@ -206,7 +206,7 @@ export function createOrbitOverlay() {
     center.textContent = active ? 'Hide center marker' : 'Mark invisible center';
   });
   compare.addEventListener('click', () => {
-    const active = overlay.classList.toggle('show-compare');
+    const active = overlay.classList.toggle('show-comparison');
     setToggle(compare, active);
     compare.textContent = active ? 'Hide comparison guide' : 'Show simplified comparison';
   });
@@ -259,7 +259,7 @@ export function createEarthNetwork(station) {
   });
 
   earth.prepend(lines);
-  const all = button(station.interaction?.label || 'Show the complete network', 'bhv2-primary bhv2-network-master');
+  const all = button(station.interaction?.label || 'Show the complete network', 'bhv2-primary');
   const status = el('p', 'bhv2-state-readout', 'No observatories selected yet.');
   status.setAttribute('aria-live', 'polite');
 
@@ -292,8 +292,10 @@ export function createEarthNetwork(station) {
     update();
   });
 
+  const networkControls = el('div', 'bhv2-network-controls');
+  networkControls.append(all, status);
   stage.append(earth, detail);
-  module.append(stage, all, status);
+  module.append(stage, networkControls);
   update();
   return { module, siteNames: sites.map(([name]) => name) };
 }
