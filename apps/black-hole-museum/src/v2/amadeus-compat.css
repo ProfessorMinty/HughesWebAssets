@@ -1,0 +1,36 @@
+/* Minimal Amadeus compatibility for Black Hole Museum V2.
+   Activates only after successful V2 enhancement. No visual styling lives here. */
+html.hrv-route-black-hole-v2-ready .entry-header,
+html.hrv-route-black-hole-v2-ready .page-header,
+html.hrv-route-black-hole-v2-ready .entry-footer {
+  display:none!important;
+}
+
+html.hrv-route-black-hole-v2-ready .site-content,
+html.hrv-route-black-hole-v2-ready .site-content > .container,
+html.hrv-route-black-hole-v2-ready .content-area,
+html.hrv-route-black-hole-v2-ready .site-main,
+html.hrv-route-black-hole-v2-ready .page .hentry,
+html.hrv-route-black-hole-v2-ready article.page,
+html.hrv-route-black-hole-v2-ready article.hentry,
+html.hrv-route-black-hole-v2-ready .entry-content {
+  width:100%!important;
+  max-width:none!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  padding-left:0!important;
+  padding-right:0!important;
+}
+
+html.hrv-route-black-hole-v2-ready .site-content { margin-top:0!important; margin-bottom:0!important; padding-top:0!important; padding-bottom:0!important; }
+html.hrv-route-black-hole-v2-ready .content-area,
+html.hrv-route-black-hole-v2-ready .site-main { float:none!important; }
+
+html.hrv-route-black-hole-v2-ready .page .hentry,
+html.hrv-route-black-hole-v2-ready article.page,
+html.hrv-route-black-hole-v2-ready article.hentry,
+html.hrv-route-black-hole-v2-ready .entry-content {
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
