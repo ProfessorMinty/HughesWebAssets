@@ -7,8 +7,8 @@
   const ROOT_ID = 'hrv-black-hole-v2-root';
   const PAGE_ID = 'repository-page-lab-black-holes-v2';
   const PAGE_SYSTEM = 'black-hole-museum-v2';
-  const EXPECTED_RELEASE = '0.2.0-black-hole-v2-lab.2';
-  const RELEASE_MANIFEST = 'https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@bcd109d97e9c984a28e5521e04a037a737b2bdc1/dist/v0.2.0-black-hole-v2-lab.2/release.json';
+  const EXPECTED_RELEASE = '0.2.0-black-hole-v2-lab.3';
+  const RELEASE_MANIFEST = 'https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@3681ac8a5bea00c73e69be1b6f1688bf3b727ada/dist/v0.2.0-black-hole-v2-lab.3/release.json';
   const TIMEOUT_MS = 12000;
 
   function ready(callback) {
@@ -43,7 +43,7 @@
       link.dataset.hrvBlackHoleV2Style = 'staging';
       link.addEventListener('load', () => resolve(link), { once: true });
       link.addEventListener('error', () => reject(new Error(`V2 stylesheet failed: ${url}`)), { once: true });
-      document.head.append(link);
+      document.head.appendChild(link);
     });
   }
 
@@ -89,8 +89,9 @@
       root.dataset.hrvState = 'loading';
       status(root, 'Loading the Black Hole Museum V2…');
 
-      const [, content, assets, experience, module] = await Promise.all([
-        loadStyle(system.style.url),
+      /* Validate all data and the module before introducing enhanced CSS.
+         This keeps a failed enhancement visually native even if another request fails quickly. */
+      const [content, assets, experience, module] = await Promise.all([
         fetchJson(system.content.url, 'V2 content manifest'),
         fetchJson(system.assets.url, 'V2 asset manifest'),
         fetchJson(system.experience.url, 'V2 experience manifest'),
@@ -101,6 +102,7 @@
         throw new Error('V2 renderer entry point is unavailable.');
       }
 
+      await loadStyle(system.style.url);
       await module.mountBlackHoleMuseum({ root, mount: root, release, content, assets, experience });
       document.documentElement.classList.add('hrv-route-black-hole-v2-ready');
       root.removeAttribute('aria-busy');
