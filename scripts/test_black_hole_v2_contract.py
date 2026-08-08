@@ -19,17 +19,24 @@ renderer = text('apps/black-hole-museum/src/v2/renderer.js')
 interactions = text('apps/black-hole-museum/src/v2/interactions.js')
 runtime = text('apps/black-hole-museum/src/v2/runtime.js')
 presentation = text('apps/black-hole-museum/src/v2/presentation.css')
+experience = text('apps/black-hole-museum/src/v2/experience-layer.css')
+stabilization_css = text('apps/black-hole-museum/src/v2/stabilization.css')
+stabilization_js = text('apps/black-hole-museum/src/v2/stabilization.js')
 amadeus = text('apps/black-hole-museum/src/v2/amadeus-compat.css')
 loader = text('docs/deployment/black-hole-v2-edublogs-javascript.js')
 builder = text('scripts/build_black_hole_v2.py')
-release = json.loads(text('dist/v0.2.0-black-hole-v2-lab.5/release.json'))
+release = json.loads(text('dist/v0.2.0-black-hole-v2-lab.7/release.json'))
 channel = json.loads(text('channels/black-hole-v2-lab.json'))
 
 legacy_markers = [
-    'maximum-shelf', 'maximumShelf', 'recomposeBlackHoleMuseum',
-    'bhm-chamber', 'page.css', 'maximum-shelf.css', 'maximum-shelf-structure.css'
+    'maximumShelf', 'recomposeBlackHoleMuseum', 'bhm-chamber',
+    'page.css', 'maximum-shelf.css', 'maximum-shelf-structure.css',
+    'maximum-shelf-runtime.js', 'maximum-shelf-composed-runtime.js'
 ]
-combined_v2 = '\n'.join([renderer, interactions, runtime, presentation, amadeus])
+combined_v2 = '\n'.join([
+    renderer, interactions, runtime, presentation, experience,
+    stabilization_css, stabilization_js, amadeus
+])
 for marker in legacy_markers:
     require(marker not in combined_v2, f'V2 source does not inherit legacy presentation marker: {marker}')
 
@@ -62,19 +69,30 @@ require('color:var(--bhv2-text)!important' in normalized_css, 'V2 presentation e
 for giant in ['min-height:90vh', 'min-height:110vh', 'min-height:130vh', 'min-height:150vh']:
     require(giant not in normalized_css, f'no generic giant room-height mandate: {giant}')
 
+require('EXHIBIT ' in experience and 'data-station="10"' in experience, 'experience layer provides distinct station thresholds through exhibit 10')
+require('bhv2-chamber-light' in experience and 'bhv2-star-drift' in experience, 'maximum-shelf atmosphere includes controlled ambient motion')
+require('@media (hover:hover) and (pointer:fine)' in experience, 'hover depth is limited to hover-capable fine pointers')
+require('@media (prefers-reduced-motion:reduce)' in experience, 'experience-layer motion has a reduced-motion escape hatch')
+
+require('overflow:hidden' in stabilization_css and '.bhv2-media-card::after' in stabilization_css and 'display:none!important' in stabilization_css, 'stabilization contains runaway sheen and excludes scientific media from synthetic shimmer')
+require('[data-station="04"] .bhv2-orbit-overlay' in stabilization_css and 'aspect-ratio:16 / 9' in stabilization_css, 'orbit overlay is registered to the observation viewport')
+require('[aria-pressed="true"]' in stabilization_css and 'font-weight:850' in stabilization_css, 'selected tool states are visually unmistakable')
+require('stabilizeWarpedLight' in stabilization_js and 'stabilizeAnatomy' in stabilization_js and 'stabilizeEarthNetwork' in stabilization_js, 'stabilization helper synchronizes interactive tool feedback')
+require('buttons[0].click()' in stabilization_js, 'anatomy tool initializes into a real first layer')
+
 normalized_amadeus = amadeus.replace(' ', '')
 require('html.hrv-route-black-hole-v2-ready' in amadeus, 'Amadeus neutralization is route-ready scoped')
 require('.site-content > .container' in amadeus and '.content-area' in amadeus, 'minimal adapter neutralizes proven width/float constraints')
 require('margin:0!important' in normalized_amadeus and 'padding:0!important' in normalized_amadeus, 'proven Amadeus page-entry spacing is fully neutralized')
-require('.site-footer' not in amadeus and 'body {' not in amadeus, 'minimal adapter does not repaint unrelated theme chrome')
-require('font-family' not in amadeus and '--bhv2-text' not in amadeus, 'Amadeus adapter remains structural and does not own V2 typography or palette')
+require('.site-footer' in amadeus and 'display:none!important' in normalized_amadeus, 'duplicate native footer is suppressed only after successful V2 mount')
+require('background:' not in amadeus and 'color:' not in amadeus and 'font-family' not in amadeus, 'Amadeus adapter remains structural and does not repaint theme or V2 typography')
 require('bhm-' not in amadeus, 'minimal adapter does not import legacy presentation selectors')
 
 require('DOMContentLoaded' in loader, 'Edublogs JavaScript tab loader is DOM-ready safe')
 require("root.dataset.hrvPage !== PAGE_ID" in loader and "root.dataset.hrvPageSystem !== PAGE_SYSTEM" in loader, 'loader validates semantic mount identity')
 for forbidden in ['window.location', '.pathname', 'data-path', 'wp-post', 'page-id']:
     require(forbidden not in loader, f'loader has no slug or WordPress identity dependency: {forbidden}')
-require('RELEASE_MANIFEST' in loader and '4c8cd3833a79d2777b91ab7d1c5363dbefc6895a' in loader, 'page-local loader pins the exact current V2 staging manifest')
+require('RELEASE_MANIFEST' in loader and '0d0c5ba2e463d2b76ec880f1dfe25fcf8cb4769c' in loader, 'page-local loader pins the exact current V2 staging manifest')
 require('fallback preserved' in loader.lower(), 'loader failure path explicitly preserves native fallback')
 require(loader.index('const [content, assets, experience, module] = await Promise.all') < loader.index('await loadStyle(system.style.url)'), 'enhanced CSS loads only after data/module requests succeed')
 
@@ -82,10 +100,10 @@ system = release['pageSystems']['black-hole-museum-v2']
 require(release['releasePurpose'] == 'unpublished-v2-staging', 'current V2 release is explicitly staging-only')
 require(release['dataFoundation']['mode'] == 'temporary-pinned-seed', 'verified black-hole .2 data is recorded as temporary pinned staging input')
 require('v0.1.0-black-hole-lab.2' in system['content']['url'], 'current staging release intentionally seeds from verified black-hole .2 content')
-require(release['rollbackRelease'] == '0.2.0-black-hole-v2-lab.4', 'staging .5 rolls back to immutable V2 staging .4')
+require(release['rollbackRelease'] == '0.2.0-black-hole-v2-lab.6', 'staging .7 rolls back to immutable V2 staging .6')
 require(channel['channel'] == 'black-hole-v2-lab', 'V2 has its own isolated channel')
 require(channel['currentRelease']['id'] == release['release'], 'V2 staging channel points at current V2 staging release')
-require(channel['previousRelease']['id'] == '0.2.0-black-hole-v2-lab.4', 'V2 staging channel retains .4 as its previous checkpoint')
+require(channel['previousRelease']['id'] == '0.2.0-black-hole-v2-lab.6', 'V2 staging channel retains .6 as its previous checkpoint')
 
 require('v2-owned-copy' in builder, 'future V2 builder publishes V2-owned data copies')
 require('black-hole-v2-lab.2' in builder, 'builder examples remain in the V2 release namespace')
