@@ -7,8 +7,8 @@
   const ROOT_ID = 'hrv-black-hole-v2-root';
   const PAGE_ID = 'repository-page-lab-black-holes-v2';
   const PAGE_SYSTEM = 'black-hole-museum-v2';
-  const EXPECTED_RELEASE = '0.2.0-black-hole-v2-lab.9';
-  const RELEASE_MANIFEST = 'https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@319a0cc74b2e529ea5e25a454faa656b3f4d5805/dist/v0.2.0-black-hole-v2-lab.9/release.json';
+  const EXPECTED_RELEASE = '0.2.0-black-hole-v2-lab.10';
+  const RELEASE_MANIFEST = 'https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@e658e5e74950380772fc456fdb3f24a064eed730/dist/v0.2.0-black-hole-v2-lab.10/release.json';
   const TIMEOUT_MS = 12000;
 
   function ready(callback) {
@@ -44,6 +44,96 @@
       link.addEventListener('load', () => resolve(link), { once: true });
       link.addEventListener('error', () => reject(new Error(`V2 ${role} stylesheet failed: ${url}`)), { once: true });
       document.head.appendChild(link);
+    });
+  }
+
+  function describeNode(node) {
+    if (!(node instanceof Element)) return null;
+    const rect = node.getBoundingClientRect();
+    return {
+      tag: node.tagName.toLowerCase(),
+      id: node.id || '',
+      classes: [...node.classList].slice(0, 8).join(' '),
+      role: node.getAttribute('role') || '',
+      page: node.getAttribute('data-hrv-page') || '',
+      pageSystem: node.getAttribute('data-hrv-page-system') || '',
+      left: Math.round(rect.left * 10) / 10,
+      right: Math.round(rect.right * 10) / 10,
+      width: Math.round(rect.width * 10) / 10,
+      text: (node.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 120)
+    };
+  }
+
+  function collectIntegrationDiagnostics(root, release) {
+    const scrolling = document.scrollingElement || document.documentElement;
+    const clientWidth = scrolling.clientWidth;
+    const scrollWidth = scrolling.scrollWidth;
+    const overflow = [];
+
+    document.body.querySelectorAll('*').forEach((node) => {
+      const rect = node.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      if (rect.left < -1 || rect.right > clientWidth + 1) {
+        overflow.push(describeNode(node));
+      }
+    });
+
+    const ancestry = [];
+    let current = root;
+    for (let depth = 0; current && depth < 8; depth += 1, current = current.parentElement) {
+      ancestry.push({
+        depth,
+        node: describeNode(current),
+        nextSibling: describeNode(current.nextElementSibling),
+        previousSibling: describeNode(current.previousElementSibling)
+      });
+    }
+
+    const cluePatterns = [
+      /Explorations Hub Home/i,
+      /Next Exploration/i,
+      /Previous/i,
+      /^\s*Nav\s*$/i
+    ];
+    const matchedElements = new Set();
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    let textNode;
+    while ((textNode = walker.nextNode())) {
+      const text = (textNode.nodeValue || '').replace(/\s+/g, ' ').trim();
+      if (!text) continue;
+      if (cluePatterns.some((pattern) => pattern.test(text))) {
+        if (textNode.parentElement) matchedElements.add(textNode.parentElement);
+      }
+    }
+
+    const report = {
+      version: 1,
+      release: release?.release || '',
+      commit: release?.commit || '',
+      viewport: {
+        innerWidth: window.innerWidth,
+        clientWidth,
+        scrollWidth,
+        overflowDelta: scrollWidth - clientWidth
+      },
+      overflowElements: overflow.slice(0, 80),
+      mountAncestry: ancestry,
+      ownershipTextMatches: [...matchedElements].map(describeNode).filter(Boolean)
+    };
+
+    window.__HRV_BLACK_HOLE_V2_DIAGNOSTICS__ = report;
+    console.groupCollapsed('[HRV BHM V2] Unpublished integration diagnostics');
+    console.log('Viewport', report.viewport);
+    console.table(report.overflowElements);
+    console.log('Mount ancestry and adjacent siblings', report.mountAncestry);
+    console.table(report.ownershipTextMatches);
+    console.log('Full report is available at window.__HRV_BLACK_HOLE_V2_DIAGNOSTICS__');
+    console.groupEnd();
+  }
+
+  function scheduleIntegrationDiagnostics(root, release) {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => collectIntegrationDiagnostics(root, release));
     });
   }
 
@@ -115,7 +205,8 @@
       document.documentElement.classList.add('hrv-route-black-hole-v2-ready');
       root.removeAttribute('aria-busy');
       root.dataset.hrvState = 'ready';
-      console.info('[HRV BHM V2] Consolidated staging enhancement ready.', { release: release.release, commit: release.commit });
+      console.info('[HRV BHM V2] Refinement staging enhancement ready.', { release: release.release, commit: release.commit });
+      scheduleIntegrationDiagnostics(root, release);
     } catch (error) {
       document.querySelectorAll('link[data-hrv-black-hole-v2-style]').forEach((link) => link.remove());
       document.documentElement.classList.remove('hrv-route-black-hole-v2-ready');
