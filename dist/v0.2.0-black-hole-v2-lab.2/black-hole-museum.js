@@ -1,0 +1,1 @@
+export { mountBlackHoleMuseum } from 'https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@c79a7cbf308ced6849d1363be9abe8fbf59ad472/apps/black-hole-museum/src/v2/renderer.js';
