@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "pageId": "hrv-hybrid-architecture-test",
+  "contentVersion": "2026.08.07.1",
+  "status": "test",
+  "presentation": {
+    "eyebrow": "Repository enhancement online",
+    "title": "Hybrid Architecture Test",
+    "lede": "This enhanced view was rendered from a pinned HughesWebAssets release while the Edublogs fallback remained available until initialization completed.",
+    "statusLabel": "Manifest loaded successfully"
+  },
+  "cards": [
+    {
+      "id": "fallback",
+      "title": "Native fallback",
+      "body": "Edublogs owns the route and the readable emergency state."
+    },
+    {
+      "id": "renderer",
+      "title": "Repository renderer",
+      "body": "Versioned code owns the enhanced presentation inside the page mount root."
+    },
+    {
+      "id": "manifest",
+      "title": "Manifest-driven content",
+      "body": "Structured state can change without rebuilding the Edublogs page."
+    }
+  ]
+}
