@@ -2,15 +2,16 @@
 
 **Purpose:** canonical chronological implementation log for the Arctic Preferred Black Hole repository prototype.  
 **Status:** active living document. Update this file whenever the page changes in a way that teaches us something reusable for future Hughes Room Views repository pages.  
-**Current staging release at start of this entry:** `0.2.0-black-hole-v2-lab.9`  
+**Current staging release:** `0.2.0-black-hole-v2-lab.10`  
+**Immediate rollback:** `0.2.0-black-hole-v2-lab.9`  
 **Current branch:** `feature/black-hole-presentation-v2`  
 **Exact clean-room base:** `c18a87560ff529eb7d5ad496522b9f5020bc688a`
 
-This document is not the architecture specification and not the defect ledger. It records the story of how this page was actually built, what failed in the real browser, what was learned, and which lessons should influence future repository pages.
+This document is not the architecture specification and not the defect ledger. It records how the page was actually built, what failed in real browsers, what was learned, which repairs succeeded, and what future repository pages should inherit from the experiment.
 
 Related authoritative records:
 
-- `docs/architecture/black-hole-museum-v2.md` — current architecture and ownership contract.
+- `docs/architecture/black-hole-museum-v2.md` — architecture and ownership contract.
 - `docs/evidence/black-hole-v2-human-visual-audit.md` — canonical human-visible defect ledger and acceptance gates.
 - `docs/evidence/black-hole-v2-consolidation-result.md` — implementation response that produced consolidated staging `.9`.
 - `apps/black-hole-museum/src/v2/Archive of things not to do lol/README.md` — anti-pattern index for the `.6`–`.8` patch-layer period.
@@ -24,13 +25,13 @@ The Black Hole Museum is the maximum-shelf Arctic Preferred prototype for Hughes
 1. demonstrate the fullest creative expression the repository page system can support;
 2. stress-test the repository architecture while remaining scientifically accurate, accessible, responsive, performant, reversible, and maintainable.
 
-It is intentionally not the production-default level of ornament for every classroom page. It is the upper-bound experiment from which calmer future pages can scale downward.
+It is intentionally not the production-default ornament level for every classroom page. It is the upper-bound experiment from which calmer future pages can scale downward.
 
 The governing presentation doctrine remains:
 
 > **FULL WIDTH BELONGS TO ATMOSPHERE. HUMAN-SCALE COMPOSITIONS LIVE INSIDE IT.**
 
-A full-width page does not mean every card, paragraph, image, or player should be full-width. Atmosphere may occupy the viewport. Content should be composed intentionally at a scale appropriate to its job.
+A full-width page does not mean every card, paragraph, image, player, or interaction should be full-width. Atmosphere may occupy the viewport. Content should be composed intentionally at a scale appropriate to its job.
 
 ---
 
@@ -46,13 +47,11 @@ The native theme layer is intentionally calm and readable:
 - light neutral background;
 - dark slate/teal text palette.
 
-The repository is allowed to establish page-specific atmosphere and foreground colors inside its own application island, but should preserve the underlying readability philosophy unless a page intentionally earns a different typographic treatment.
+The repository may establish page-specific atmosphere and foreground colors inside its own application island, but should preserve the underlying readability philosophy unless a page intentionally earns a different typographic treatment.
 
-### 2.2 V2 clean-room ownership
+### 2.2 Clean V2 ownership
 
-V2 was deliberately branched from `c18a87560ff529eb7d5ad496522b9f5020bc688a` rather than inheriting the old maximum-shelf implementation stack.
-
-The active clean architecture after consolidation is:
+The active architecture is intentionally small:
 
 - `renderer.js` — station/document structure;
 - `interactions.js` — interaction state and behavior;
@@ -67,7 +66,8 @@ Forbidden return patterns:
 - old maximum-shelf inheritance;
 - generic giant `vh` chambers;
 - hand-packaged release wrappers that import another commit's source;
-- layout fixes implemented as global theme hacks.
+- layout fixes implemented as global theme hacks;
+- unknown integration defects hidden with global overflow rules.
 
 ### 2.3 Verified science/data foundation
 
@@ -77,102 +77,79 @@ Production-capable V2 builds must publish validated V2-owned copies.
 
 ---
 
-## 3. Chronology and lessons
+## 3. Release chronology and reusable lessons
 
-### `.1`–`.3`: clean-room skeleton and delivery proof
+### `.1`–`.3` — clean-room skeleton and delivery proof
 
-The early V2 releases proved the new renderer/runtime/Edublogs page-local loader approach without importing the legacy presentation stack.
+These releases proved the new repository renderer/runtime and page-local Edublogs loader without importing the old presentation stack.
 
 Important wins:
 
-- semantic fallback in the Edublogs HTML tab;
+- semantic native fallback;
 - tiny fallback-only Edublogs CSS;
 - page-local JavaScript loader pinned to an immutable release;
 - no slug, WordPress page ID, or pathname identity requirement;
 - current-plus-one media lifecycle;
-- privacy-enhanced lazy YouTube with no autoplay;
+- privacy-enhanced YouTube with no autoplay;
 - reduced motion and explicit motion pause;
-- minimal Amadeus width/entry neutralization.
+- minimal Amadeus structural neutralization.
 
-Important lesson:
+**Lesson:** architecture correctness is necessary but not sufficient. A technically clean page can still fail the visual brief.
 
-A technically clean page can still fail the visual brief. Architecture correctness is necessary but not sufficient.
+### `.4`–`.5` — Amadeus typography/color collision
 
-### `.4`–`.5`: Amadeus typography/color collision
+The real Edublogs preview showed the intentional dark Amadeus heading color surviving on the near-black repository canvas.
 
-The real Edublogs preview showed dark Amadeus heading colors bleeding into the near-black repository canvas.
+The corrected boundary became:
 
-The key discovery was that the Amadeus baseline itself was intentional, not random legacy debris. The correct boundary became:
+- Amadeus compatibility owns structural neutralization;
+- V2 presentation explicitly owns foreground colors and repository-island typography.
 
-- Amadeus adapter owns structural neutralization;
-- V2 presentation explicitly owns its dark-canvas foreground colors and repository-island typography.
+**Lesson:** know the intended native theme contract before layering a repository experience over it. Do not assume the theme is random legacy debris.
 
-Lesson for future pages:
-
-**Do not treat the theme as hostile by default. Know the intended native theme contract before layering a repository experience over it.**
-
-### `.6`: visual direction breakthrough
+### `.6` — visual-direction breakthrough
 
 `.6` was the first version that visually approached the maximum-shelf brief.
 
-It introduced distinct chamber lighting, exhibit thresholds, stronger card/material surfaces, controlled gloss, motion, color progression, and station-specific atmosphere.
+It introduced distinct chamber lighting, exhibit thresholds, stronger surfaces, controlled gloss, motion, color progression, and station-specific atmosphere.
 
-This was the first release worth refining instead of replacing.
+**Lesson:** strong visual hierarchy comes from contrast between surfaces, spatial staging, lighting, transitions, and exhibit identity, not merely from brighter colors or larger headings.
 
-Lesson:
+### `.7`–`.8` — patch-layer anti-pattern
 
-Maximum-shelf hierarchy comes from **contrast between surfaces, spatial staging, lighting, transitions, and clear exhibit identity**, not merely from larger fonts or brighter colors.
+Real-browser defects in `.6` led to temporary `stabilization`, `normalization`, and secondary experience presentation layers.
 
-### `.7`–`.8`: the patch-layer mistake
+They corrected real symptoms but fragmented ownership. The page became the result of multiple style systems negotiating with each other.
 
-Real-browser defects in `.6` led to the creation of:
+**Lesson:** fix the owning component or canonical rule. Do not accumulate corrective layers.
 
-- `stabilization.css`;
-- `stabilization.js`;
-- `normalization.css`;
-- the existing `experience-layer.css` increasingly acting as another presentation authority.
+The old patterns are indexed in `Archive of things not to do lol`; immutable `.6`–`.8` releases remain rollback/evidence only.
 
-These layers corrected real symptoms, but active ownership fragmented. The page became the emergent result of multiple style systems negotiating with each other.
-
-This period also revealed a critical human-scale problem: important exhibits had been reduced to small support-card widths in the name of avoiding giant layouts.
-
-Lesson:
-
-**Fix the owning component or canonical presentation rule. Do not accumulate corrective layers.**
-
-Historical anti-pattern details are preserved in `Archive of things not to do lol` and immutable `.6`–`.8` staging releases.
-
-### `.9`: consolidation and human-render preflight
+### `.9` — consolidation and human-render preflight
 
 `.9` removed the patch-layer architecture and returned V2 to one canonical presentation authority.
 
-Major discoveries and corrections:
+#### Critical typography discovery
 
-#### The `rem` root mistake
+A Chromium render proved that `rem` values inside the V2 island resolve against the document `<html>` root, not the museum mount root.
 
-A real Chromium render proved that `rem` values inside the V2 island resolve against the document `<html>` root, not the museum mount root.
+Values assumed to be roughly 17–18px were actually rendering near 14px in the WordPress-shaped browser environment.
 
-Values that looked like 17–18px in source were rendering around 14px in the actual browser.
-
-The canonical presentation therefore adopted explicit human-readable tokens:
+The canonical presentation adopted explicit meaningful-text floors:
 
 - body: 20px;
 - support: 19px;
 - UI: 18px;
-- meaningful label/classification: 17px;
+- meaningful labels/classifications: 17px;
 - lead copy: 22px.
 
-Reusable lesson:
-
-**Code-scale intuition is not human visual QA. Browser-computed values must be measured.**
+**Lesson:** source-code scale intuition is not human visual QA. Measure browser-computed pixels.
 
 #### Human-scale correction
 
-Generic 340/520/760px major-module caps were removed. Reading measure remains constrained, but major scientific media and signature interactions may occupy broad local composition space.
+Generic 340/520/760px major-module caps were removed. Reading measure remains controlled, but major scientific artifacts may occupy broad local composition space.
 
-Reusable lesson:
-
-**Human scale means readable composition, not thumbnail scale.**
+**Lesson:** human scale means readable composition, not thumbnail scale.
 
 #### Structural station differentiation
 
@@ -189,299 +166,364 @@ Stations became distinct spatial experiences rather than repeated “header + eq
 - anatomy/myth gallery;
 - final known/unknown boundary and observer return.
 
-#### Diagram enlargement
+#### Scientific-media enlargement
 
-Large-view access for labeled scientific diagrams proved valuable because labels baked into source imagery cannot be repaired through HTML/CSS typography alone.
+Large-view access for labeled scientific diagrams proved valuable because labels baked into source imagery cannot be repaired through HTML typography.
 
-Reusable lesson:
-
-**Scientific media readability is part of the layout contract. A high-resolution image displayed too small is still inaccessible information.**
-
-#### Local Chromium preflight
-
-The consolidated candidate was rendered at 1920, 1440, 960, and 390 widths before Edublogs handoff. This caught typography, overflow, and control-style problems that source review had missed.
-
-Reusable lesson:
-
-**A repository page cannot be considered ready for human review until it has been rendered and inspected as pixels.**
+**Lesson:** scientific-media readability is part of the layout contract.
 
 ---
 
-## 4. Current `.9` real-Edublogs forensic review
+## 4. `.9` real-Edublogs forensic review
 
-A full 5:12 unpublished Edublogs preview recording was reviewed after `.9` deployment.
+A full unpublished Edublogs recording established that `.9` had finally become a foundation worth refining rather than rebuilding.
 
 ### Confirmed strengths
 
-- body/support/UI text is now comfortably readable at desktop viewing distance;
-- major chamber hierarchy is successful;
-- scientific artifacts have appropriate physical presence;
-- Gravity Leaves Clues now communicates an evidence-network metaphor rather than a generic card grid;
-- Earth Becomes One Telescope is understandable and visually memorable;
-- Warped Light and Anatomy are meaningful interactive exhibits rather than decorative controls;
-- enlarged scientific diagrams are useful and should be preserved;
-- the overall foundation is now worth refining rather than rebuilding.
+- desktop body/support/UI text was comfortably readable;
+- chamber hierarchy was successful;
+- scientific artifacts had appropriate physical presence;
+- Gravity communicated an evidence-network metaphor;
+- Earth Becomes One Telescope became understandable and memorable;
+- Warped Light and Anatomy became meaningful interactive exhibits;
+- diagram enlargement was useful and should remain.
 
-### Confirmed remaining systemic defects
+### Confirmed defects that drove `.10`
 
-#### 4.1 Interaction locality failure — Orbit
+#### Orbit interaction locality
 
-The Orbit theater is vertically too tall for its screen and controls to coexist at the reference desktop viewport.
+The visitor had to scroll below the observation to reach controls, activate an overlay, and scroll back up to see the consequence.
 
-Observed journey:
-
-1. visitor sees the observation;
-2. visitor scrolls downward until the observation is mostly gone;
-3. visitor presses an overlay control;
-4. visitor scrolls back upward to see the result.
-
-This violates the interaction-locality requirement.
-
-Acceptance rule for future pages:
+This produced the reusable rule:
 
 > **A control and its primary visual consequence should normally be perceivable together without scroll travel.**
 
-For the Orbit station specifically, the observation and its control shelf must coexist at 1920×1032.
+#### Disclosure layout turbulence
 
-#### 4.2 Reveal/disclosure layout turbulence
+Gravity clue cards, Reconstruction explanations, Warped Light explanations, and Myth accordions changed surrounding document height while being used.
 
-Several interactions still use document growth as their explanation mechanism:
+Reusable rule:
 
-- Gravity clue cards resize as content appears;
-- Reconstruction explanations add vertical panels;
-- Warped Light explanations add large disclosure blocks;
-- Myth explanations alter stack height.
+> **Interactive explanation should usually replace content inside reserved geometry rather than repeatedly grow the document.**
 
-The correct museum pattern is a stable detail region whose content changes in place, not an accordion that keeps making the document taller.
+#### Inline scientific-image enlargement
 
-Reusable lesson:
+The large view was valuable, but inline expansion changed page geometry and risked losing visual position.
 
-> **Interactive explanation should usually replace content inside a reserved detail tray rather than push the surrounding museum through document reflow.**
+Desired replacement: viewport-local modal dialog with focus restoration and no page reflow.
 
-#### 4.3 Diagram enlargement changes page geometry
+#### Vertical overextension
 
-The ability to inspect diagrams larger is correct. The inline expansion mechanic is not ideal because it changes document geometry and can disorient the visitor.
+Typography should remain readable. Condensation should come from structure and chrome, not smaller type.
 
-Desired pattern:
+#### Real Edublogs horizontal overflow
 
-- viewport-centered dialog/lightbox;
-- stable underlying document;
-- Escape/Close support;
-- focus moves into the viewer and returns to the opener;
-- no lost scroll position.
+The real page displayed a horizontal scrollbar even though the isolated `.9` Chromium harness did not.
 
-#### 4.4 Some rooms are vertically overextended
+This became an integration-ownership problem, not permission for `body { overflow-x:hidden; }`.
 
-Typography should remain at `.9` scale. Condensation should come from structure, not smaller text.
+#### Unrelated teal Explorations navigation after the museum
 
-Most important candidates:
+After repository credits, unrelated Explorations Hub / Previous / Next / Nav content appeared.
 
-- Station 04 Orbit — substantial condensation and attached controls;
-- Station 05 Earth — reduce redundant vertical presentation while preserving map and network prominence;
-- Station 06 Reconstruction — replace three large concept cards with a compact process rail and stable detail tray;
-- Station 07 Twin Ring — preserve monumental default but avoid alternate states that create large unused acreage;
-- Station 08 Warped Light — stable explanation tray instead of stacking disclosures;
-- Station 09 Myths — compact selector plus one stable explanation region.
+Repository search found no matching copy inside `HughesWebAssets`, while the existing Amadeus adapter already suppressed `.site-footer`. The exact Edublogs/global owner remains unknown pending real-DOM diagnostics.
 
-Stations 01 and 02 need little or no structural change.
+#### Media Center embed degradation
 
-#### 4.5 Real Edublogs horizontal overflow
+Viewport-triggered YouTube activation replaced authored cards with YouTube's gray authentication/bot-check surface.
 
-The real preview still shows a horizontal scrollbar.
+Reusable rule:
 
-The isolated Chromium harness did not.
-
-Therefore this is an integration-specific problem and must be diagnosed from the actual rendered ownership boundary rather than hidden globally.
-
-Possible causes include the viewport breakout and/or unrelated theme/global page chrome, but no fix should be made until the overflowing element is identified.
-
-Reusable lesson:
-
-**Do not use `overflow-x:hidden` to conceal an unidentified integration defect. Find the owner.**
-
-#### 4.6 Unrelated teal Explorations navigation appears after the museum
-
-After the repository-owned credits, the real preview falls into an unrelated teal navigation area containing Explorations Hub/Previous/Next/Nav content.
-
-The current Amadeus adapter already suppresses `.site-footer`, so this appears to be a separate global Explorations/theme/widget owner rather than the footer selector already handled.
-
-The correct fix is to identify and correct that system's page ownership/gating. Do not add a mysterious Black Hole selector merely to hide it.
-
-Reusable lesson:
-
-**Route ownership failures must be repaired at the owner, not cosmetically hidden by the page that happened to expose them.**
-
-#### 4.7 Media Center iframe degradation
-
-YouTube players visually degrade into “Sign in to confirm you're not a bot” screens after iframe activation.
-
-The museum should therefore remain poster-first. Do not instantiate third-party players merely because a section approaches the viewport.
-
-Preferred behavior:
-
-- museum poster/thumbnail remains until explicit Play action;
-- iframe is created only after user intent;
-- if embed playback fails, preserve the exhibit and provide an external-watch fallback rather than replacing the whole card with a gray authentication panel.
-
-Reusable lesson:
-
-**Third-party embeds should not be allowed to replace authored page design until the visitor explicitly asks to use them.**
+> **Third-party embeds are guests. Preserve authored presentation until explicit visitor intent.**
 
 ---
 
-## 5. Active implementation plan — `.10 Refinement and Interaction Locality Pass`
+## 5. `.10` Refinement and Interaction Locality Pass
 
-**Status:** approved to begin after this living log is committed.
+### Status
 
-No secondary correction stylesheet or fixer script may be created. All work must remain inside the canonical owners established by `.9`.
+**Implemented and cut as unpublished staging release `0.2.0-black-hole-v2-lab.10`. Real Edublogs integration revalidation is still pending.**
 
-### Phase 1 — real integration ownership forensics
+Immediate rollback is `.9`.
 
-1. Identify the actual horizontal-overflow owner.
-2. Identify the exact owner of the teal Explorations navigation after museum credits.
-3. Correct ownership at the responsible source/system.
-4. Do not apply generic `body/html overflow-x:hidden` or page-local mystery selectors.
+No new presentation layer, fixer script, emergency compositor, or archived file was introduced.
 
-If unpublished Edublogs DOM cannot be inspected directly from the development environment, reproduce the relevant Amadeus/wrapper conditions locally where possible and defer only the owner-specific integration assertion to the next real preview.
+### 5.1 Interaction ownership changes
 
-### Phase 2 — Orbit interaction locality
+All behavior remains in `interactions.js`.
 
-Recompose Station 04 as one observation-theater instrument:
+#### Gravity
 
-- retain a dominant 16:9 observation;
-- attach a compact control shelf directly to the screen;
-- keep overlay status/readout local;
-- ensure trace, center, and comparison effects are visible without scrolling at 1920×1032;
-- preserve real-observation vs explanatory-overlay classification.
+- clue card geometry remains reserved while details are concealed;
+- reveal changes semantic/visual visibility rather than removing copy from layout;
+- individual and reveal-all states remain directly component-owned.
 
-### Phase 3 — stable detail-tray interaction system
+Local Chromium result: clue height unchanged and document shift `0px`.
 
-Introduce one reusable interaction pattern owned by existing components, not a new framework layer.
+#### Orbit
 
-Use one reserved detail region for:
+- overlay state remains owned by the Orbit component;
+- local status readout now describes all active explanatory overlays;
+- overlay geometry is attached to the actual observation viewport by the renderer.
 
-- Reconstruction explanatory questions;
-- Warped Light explanatory notes;
-- Myth Gallery explanation selection.
+#### Reconstruction
 
-The tray changes content in place rather than stacking panels.
+- old growing explainer stack removed;
+- “Why several versions?” and “Why orange?” now share one stable detail tray.
 
-Gravity remains a special spatial reveal system but should stabilize card geometry during reveal.
+Local Chromium result: explanation switching document shift `0px`.
 
-Reduced-motion mode swaps content without animated transitions.
+#### Warped Light
 
-### Phase 4 — diagram lightbox/dialog
+- old growing explanatory block removed;
+- Viewing angle, Brightness, and Shadow-vs-horizon notes use one stable tray;
+- tray reserves enough height for the longest approved explanation.
 
-Replace inline page-reflow enlargement with a reusable accessible viewer:
+Local Chromium result after preflight correction: explanation switching document shift `0px`.
 
-- native dialog semantics where practical;
-- viewport-centered image;
-- maximum useful viewport size;
-- dark backdrop;
-- Close button;
-- Escape support;
-- focus trap/managed focus;
-- focus restored to opener;
-- scroll position preserved;
-- no document reflow.
+#### Anatomy/Myths
 
-Use for all labeled scientific diagrams that currently provide “Open diagram larger.”
+- Anatomy still initializes a valid selected layer directly;
+- myths are now a selector plus one stable detail region rather than multiple expanding accordions.
 
-### Phase 5 — structural condensation without typography regression
+Local Chromium result: myth switching document shift `0px`.
 
-Preserve `.9` readability floors.
+### 5.2 Orbit theater locality repair
 
-Condense by reducing redundant chrome and improving composition:
+The observation overlay is now placed inside the media frame it describes.
 
-- Station 01: minor spacing only;
-- Station 02: preserve;
-- Station 03: preserve scale, stabilize clue reveal;
-- Station 04: major vertical condensation through theater composition;
-- Station 05: tighten map-to-network transition and reduce redundant vertical height;
-- Station 06: compact process rail + primary interactive/reference pair + detail tray;
-- Station 07: preserve monumental rotunda but remove empty alternate-state acreage;
-- Station 08: retain laboratory scale, replace stacked disclosures with tray;
-- Station 09: compact myth selector + stable explanation panel;
-- Station 10/credits: preserve unless integration cleanup requires ownership changes.
+The theater was condensed without reducing the `.9` typography floor:
 
-### Phase 6 — Media Center poster-first lifecycle
+- maximum theater width: `64rem`;
+- compact observation caption treatment retains title, classification, credit, and source;
+- three overlay controls form an attached shelf immediately below the screen;
+- status remains part of the same instrument.
 
-Change runtime/player behavior so:
+Local Chromium at 1920×1032 measured the complete theater at approximately `862.875px` tall, allowing the observation and controls to coexist within the reference viewport.
 
-- scrolling near Media Center does not create YouTube iframes;
-- explicit visitor Play creates the player;
-- no autoplay;
-- focus-aware lifecycle remains intact;
-- failures retain authored poster/exhibit treatment and expose an external-watch fallback.
+The real Edublogs preview remains the final locality verification.
 
-### Phase 7 — interaction-centered visual QA
+### 5.3 Viewport-local scientific media dialogs
 
-Before `.10` release handoff, test the actual user journeys rather than static component presence.
+Scientific enlargement now uses native modal-dialog semantics rather than inline document expansion.
 
-Reference checks:
+Implemented behavior:
 
-- 1920×1032 desktop;
-- 1440 desktop;
-- tablet/narrow desktop;
-- 390 phone;
-- keyboard only;
-- reduced motion;
-- 200% zoom/reflow.
+- centered viewport-local viewer;
+- backdrop;
+- explicit Close control;
+- native Escape behavior;
+- opener remembered;
+- focus moves into the viewer;
+- focus returns to the opener with `preventScroll`;
+- document geometry remains stable.
 
-Mandatory journey checks:
+Twin-Ring galaxy-context and relative-scale views use the same model instead of creating huge alternate-state acreage in the rotunda.
 
-- Orbit control consequence visible without scroll;
-- every diagram opens/closes without moving the page;
-- every Gravity clue state;
-- all Reconstruction states and explanations;
-- all Earth network states;
-- all Warped Light controls/explanations;
-- Anatomy layer initialization and switching;
-- Myth detail switching;
-- Media Center explicit Play lifecycle;
-- absolute page bottom;
-- no horizontal overflow;
-- no non-V2 navigation/chrome after repository credits.
+Local Chromium result: dialog document shift `0px`; test scroll position was restored exactly after close.
 
-### Release gate
+### 5.4 Structural condensation without typography regression
 
-Do not cut `.10` unless:
+The explicit `.9` human-readable type tokens remain unchanged.
 
-- typography remains at `.9` readability quality;
-- controls and consequences are locally visible;
-- disclosures do not cause major layout jumps;
-- diagram enlargement is viewport-local;
-- Media Center is poster-first;
-- horizontal overflow is absent in the candidate environment and investigated in real integration;
-- the museum ending is actually the end of the page system;
-- architecture remains one presentation stylesheet, one renderer, one interaction owner, one runtime, and one narrow compatibility adapter.
+Condensation came from geometry instead:
 
-No `.10-fixes.css`. No emergency compositor. No resurrected archive files.
+- Orbit screen/console treated as one instrument;
+- Earth map-to-network transition tightened and forced map height reduced;
+- Earth network and synchronization strip condensed;
+- Reconstruction process cards converted into a slimmer process rail;
+- Reconstruction workbench geometry tightened;
+- Twin-Ring alternate context artifacts moved to modal viewers while monumental default remains;
+- Warped Light explanation geometry stabilized;
+- Myth Gallery converted to selector + fixed detail region.
+
+### 5.5 Root-width correction
+
+The `.9` root still used `width:100vw` plus `left:50%` and negative `50vw` margins, a breakout technique originally needed before Amadeus's parent container was properly neutralized.
+
+Because the current route-scoped Amadeus adapter already gives the repository parent full width with zero page-entry spacing, `.10` now uses:
+
+- `width:100%`;
+- normal positioning;
+- zero breakout margins.
+
+This removes a known class of viewport-scrollbar-width overflow without adding a global overflow-hiding rule.
+
+Local Chromium reports no horizontal overflow at the tested viewports.
+
+**Unknown until real Edublogs preview:** whether this also removes the production-like horizontal scrollbar, or whether another Edublogs/global element remains an overflow owner.
+
+### 5.6 Poster-first Media Center
+
+The Media Center no longer creates YouTube iframes merely because the visitor scrolls near it.
+
+Current behavior:
+
+- authored poster and Play control render first;
+- scrolling into the lounge keeps iframe count at zero;
+- explicit Play creates only that selected privacy-enhanced iframe;
+- autoplay remains disabled;
+- normal controls remain enabled;
+- an external YouTube link remains available outside the iframe;
+- when a player sleeps, its original authored poster is restored;
+- focus-aware lifecycle protection remains.
+
+Local Chromium result:
+
+- iframes before Play: `0`;
+- iframes after one explicit Play: `1`.
+
+### 5.7 Integration ownership diagnostics
+
+The teal Explorations tail cannot currently be traced to repository source. Exact phrase searches found no owner in `HughesWebAssets`.
+
+The unpublished `.10` Edublogs loader therefore includes a **read-only** integration diagnostic.
+
+It records:
+
+- viewport/client/scroll width and overflow delta;
+- visible elements whose bounding rectangles exceed the viewport;
+- the Black Hole mount ancestor chain;
+- previous/next siblings at each ancestor level;
+- DOM elements containing text clues such as “Explorations Hub Home” and “Next Exploration”.
+
+The report is stored at:
+
+`window.__HRV_BLACK_HOLE_V2_DIAGNOSTICS__`
+
+and logged to the console.
+
+The diagnostic does **not** hide elements, change overflow, resize theme wrappers, or apply a visual correction.
+
+Reusable lesson:
+
+> **When ownership is unknown, instrument the boundary before changing it.**
 
 ---
 
-## 6. Reusable rules for future Arctic Preferred repository pages
+## 6. `.10` local Chromium preflight evidence
+
+The `.10` source was exercised as a rendered interaction journey, not only inspected as code.
+
+Reference environments checked:
+
+- 1920×1032;
+- 1440×900;
+- 960×900, including narrow/reflow-equivalent conditions;
+- 390×844.
+
+Confirmed local measurements/results:
+
+| Check | Result |
+|---|---|
+| Desktop body | 20px |
+| Meaningful label/classification | 17px |
+| Figure caption | 18px |
+| Horizontal overflow | none in local harness |
+| Orbit theater at 1920×1032 | ~862.875px tall |
+| Gravity reveal document shift | 0px |
+| Reconstruction detail document shift | 0px |
+| Warped Light detail document shift | 0px |
+| Myth detail document shift | 0px |
+| Dialog document shift | 0px |
+| Media Center iframes before explicit Play | 0 |
+| Page errors in tested interaction run | none observed |
+
+Additional journey checks performed locally:
+
+- Orbit trace state changed in-place and local status updated;
+- Gravity individual reveal preserved card height;
+- Reconstruction explanation swap preserved document height;
+- Warped Light explanation swap preserved document height after tray-height correction;
+- Myth selection preserved document height;
+- scientific dialog opened and closed without changing document height or scroll position;
+- Media Center remained poster-only on scroll and created an iframe only after Play;
+- phone-width base layout had no horizontal overflow in the fixture.
+
+### Evidence boundary
+
+The Chromium fixture is not Edublogs/Amadeus itself.
+
+Therefore the following are **not yet closed**:
+
+1. real Edublogs horizontal overflow;
+2. ownership/removal of the teal Explorations tail;
+3. real Edublogs confirmation that Orbit control and consequence coexist as intended under the live admin/theme chrome;
+4. real third-party YouTube behavior after explicit Play.
+
+---
+
+## 7. `.10` release architecture
+
+`.10` remains clean-source-pinned staging.
+
+- payload snapshot: `b4eef573a9f11a5f54ce99cfe60e2bc63059d271`;
+- immutable release manifest commit: `e658e5e74950380772fc456fdb3f24a064eed730`;
+- current V2 channel: `.10`;
+- previous/rollback: `.9`;
+- verified `.2` content/assets remain temporary staging seed;
+- `.10` owns its truthful V2 experience JSON.
+
+The release does not contain wrapper JavaScript or presentation `@import` chaining.
+
+The manifest's renderer, interactions, runtime, presentation, and compatibility blob identities were re-fetched from the payload snapshot and matched the recorded source blobs.
+
+### Contract-test status
+
+`scripts/test_black_hole_v2_contract.py` has been updated to protect the `.10` architecture and behavior, including:
+
+- no retired patch-layer files;
+- renderer version and blueprint-specific compositions;
+- viewport dialog semantics;
+- Orbit overlay locality;
+- stable Reconstruction/Warped/Myth detail patterns;
+- poster-first explicit-play YouTube;
+- preserved human-readable typography tokens;
+- removal of the old `100vw/-50vw` breakout math;
+- read-only Edublogs integration diagnostics;
+- `.10 → .9` release/channel relationship.
+
+**Important verification boundary:** the revised contract file has not been executed from a fresh repository checkout in this environment. Do not record it as a passed test run until it is actually executed.
+
+---
+
+## 8. Reusable rules for future Arctic Preferred repository pages
 
 1. **Render before asking a human to review.** Source values are not visual evidence.
 2. **Theme contract first.** Know the native site's fonts, colors, width rules, and ownership before layering a repository experience over it.
 3. **One presentation authority.** Avoid late override layers even when the symptom is real.
 4. **Controls belong near consequences.** Interactive travel distance is a UX metric.
-5. **Stable details beat growing accordions.** Museum interactions should not repeatedly shove the rest of the page downward.
-6. **Scientific diagrams need physical readability.** Provide meaningful display size or a proper large-view mechanism.
-7. **Condense chrome before content.** Do not solve page length by shrinking text or turning major artifacts into thumbnails.
-8. **Full-width atmosphere, local composition.** Preserve visual immersion without abandoning human reading scale.
-9. **Third-party embeds are guests.** Keep authored posters until explicit visitor intent.
-10. **Integration problems have owners.** Do not hide unknown WordPress/Edublogs/global-runtime defects from inside a page-specific stylesheet.
-11. **Immutable staging releases are evidence.** Keep rollback checkpoints, but do not treat their architecture as current doctrine.
-12. **The living log is part of the page system.** Update this file after every consequential visual/architectural discovery so future page builders inherit verified lessons instead of repeating the experiment.
+5. **Stable details beat growing accordions.** Reserve explanation geometry and swap content in place when practical.
+6. **Dialogs beat document reflow for inspectable scientific media.** Preserve the visitor's place.
+7. **Scientific diagrams need physical readability.** Provide meaningful display size or a proper large-view mechanism.
+8. **Condense chrome before content.** Do not solve page length by shrinking text or turning major artifacts into thumbnails.
+9. **Full-width atmosphere, local composition.** Preserve immersion without abandoning human reading scale.
+10. **Third-party embeds are guests.** Keep authored posters until explicit visitor intent.
+11. **Integration problems have owners.** Do not hide unknown WordPress/Edublogs/global-runtime defects from inside page-specific styling.
+12. **Instrument unknown boundaries before changing them.** Diagnostics are preferable to guessed selectors.
+13. **Immutable staging releases are evidence.** Keep rollback checkpoints, but do not treat historical staging architecture as current doctrine.
+14. **The living log is part of the page system.** Update it after consequential visual, browser, architecture, or integration discoveries so future pages inherit verified lessons instead of repeating the experiment.
 
 ---
 
-## 7. Next update trigger
+## 9. Next required gate
 
-Update this log when the `.10` implementation reaches either:
+The next evidence must come from one fresh unpublished Edublogs Preview using the `.10` HTML/CSS/JavaScript deployment tabs.
 
-- a new staging release ready for real Edublogs preview; or
-- a consequential discovery that changes the implementation plan before release.
+That review should evaluate the existing defect ledger rather than asking the human reviewer to rediscover the page from scratch.
 
-The next entry must record what was changed, what was rendered/tested, what remains unverified, and what lessons should be promoted into the general repository-page architecture standard.
+Required real-preview checks:
+
+- typography remains at `.9` readability quality;
+- Orbit controls and consequences coexist without scroll travel;
+- Gravity reveals do not jump card geometry;
+- Reconstruction/Warped/Myth explanations remain spatially stable;
+- scientific dialogs do not move the underlying page;
+- Twin-Ring context viewers do not create empty rotunda acreage;
+- Media Center stays authored/poster-first until Play;
+- horizontal scrollbar is absent, or the diagnostic identifies the remaining owner;
+- teal Explorations tail is absent, or the diagnostic identifies its actual owner;
+- repository credits/closing remain visually coherent;
+- no new Amadeus typography/color/width collisions appear.
+
+Only after that real integration review should the corresponding human-visible defects be marked closed or the owner-specific final integration correction be planned.
