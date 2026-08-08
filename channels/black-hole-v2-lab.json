@@ -2,13 +2,13 @@
   "schemaVersion": "1.0",
   "channel": "black-hole-v2-lab",
   "currentRelease": {
+    "id": "0.2.0-black-hole-v2-lab.9",
+    "manifestUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@6072e7f02f098eb8fe858af7df57b004c822ca70/dist/v0.2.0-black-hole-v2-lab.9/release.json",
+    "immutableRef": "6072e7f02f098eb8fe858af7df57b004c822ca70"
+  },
+  "previousRelease": {
     "id": "0.2.0-black-hole-v2-lab.8",
     "manifestUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@987069eb6194ecc86c6287b6f7d25d00cdc7ec4c/dist/v0.2.0-black-hole-v2-lab.8/release.json",
     "immutableRef": "987069eb6194ecc86c6287b6f7d25d00cdc7ec4c"
-  },
-  "previousRelease": {
-    "id": "0.2.0-black-hole-v2-lab.7",
-    "manifestUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@0d0c5ba2e463d2b76ec880f1dfe25fcf8cb4769c/dist/v0.2.0-black-hole-v2-lab.7/release.json",
-    "immutableRef": "0d0c5ba2e463d2b76ec880f1dfe25fcf8cb4769c"
   }
 }
