@@ -2,109 +2,131 @@
 
 ## Status
 
-V2 is a clean presentation rebuild on `feature/black-hole-presentation-v2`, created from exact source commit `c18a87560ff529eb7d5ad496522b9f5020bc688a`.
+Black Hole Museum V2 is a clean repository page system on `feature/black-hole-presentation-v2`, originally branched from exact source commit `c18a87560ff529eb7d5ad496522b9f5020bc688a`.
 
-The historical `.12` release, its immutable artifacts, and the `black-hole-lab` channel are not modified by V2 development. V2 uses its own staging channel: `black-hole-v2-lab`.
+The historical Black Hole `.12` release line and `black-hole-lab` channel remain separate and untouched. V2 uses `black-hole-v2-lab`.
 
-## Governing rule
+**Current unpublished staging candidate:** `0.2.0-black-hole-v2-lab.9`  
+**Immediate rollback:** `0.2.0-black-hole-v2-lab.8`  
+**Edublogs integration status:** pending real unpublished Preview revalidation after consolidation.
 
-**Keep the engine. Build a new car.**
+## Governing design rule
 
-V2 preserves verified science, authoritative asset metadata, accessibility principles, fallback behavior, performance budgeting, and release discipline. It does not inherit the failed presentation stack.
+**Full width belongs to atmosphere. Human-scale reading lives inside it. Major scientific artifacts are allowed to be major.**
 
-No V2 source imports or depends on:
+The page should read as a continuous private museum wing, not an article decorated with animated cards and not a sequence of tiny dashboard modules spread across a large monitor.
 
-- `page.css`
-- `maximum-shelf.css`
-- `maximum-shelf-enhancements.css`
-- `maximum-shelf-finishing.css`
-- `maximum-shelf-wide-performance.css`
-- `maximum-shelf-composition.css`
-- `maximum-shelf-structure.css`
-- `maximum-shelf-structure-preflight.css`
-- `maximum-shelf-runtime.js`
-- `maximum-shelf-composed-runtime.js`
-- `maximum-shelf-structure.js`
+The revised maximum-shelf blueprint controls spatial/emotional staging. The Black Hole research package controls scientific claims, classifications, assets, credits, and media meaning. Repository architecture controls ownership, fallback, performance, release discipline, and rollback.
 
-There is no post-render DOM compositor in V2.
+## Active source ownership
 
-## Fresh source island
+The active V2 runtime has exactly five source authorities:
 
-V2 source lives under `apps/black-hole-museum/src/v2/`:
+- `renderer.js` — direct semantic station/chamber construction and station-local fallback.
+- `interactions.js` — scientific interaction state and control behavior.
+- `runtime.js` — current-plus-one performance window, video/YouTube lifecycle, motion control, section spy, cleanup.
+- `presentation.css` — the **single** repository presentation authority for the museum.
+- `amadeus-compat.css` — narrow route-ready structural compatibility only.
 
-- `renderer.js` constructs the approved semantic compositions directly.
-- `presentation.css` is the fresh page presentation system and root viewport breakout owner.
-- `interactions.js` contains isolated scientific interaction components without page-layout authority.
-- `runtime.js` contains performance/media/lifecycle helpers without page-layout authority.
-- `amadeus-compat.css` contains only the minimal proven structural theme neutralization required after successful enhancement.
+The following files are intentionally **not active source** anymore:
 
-## Native Amadeus baseline and V2 typography ownership
+- `experience-layer.css`
+- `stabilization.css`
+- `normalization.css`
+- `stabilization.js`
 
-The native Hughes Room Views Amadeus layer is intentionally a calm, readable classroom foundation rather than presentation debt.
+Their anti-pattern history is indexed under:
 
-Its intended baseline is:
+`apps/black-hole-museum/src/v2/Archive of things not to do lol/README.md`
 
-- body: `Atkinson Hyperlegible`, 400/700 plus italic variants, 20px native size
-- headings: `Nunito Sans`, 600/700
-- native light background: `#F8FAFA`
-- native branding background: `#EEF5F6`
-- native dark teal title/heading family: `#173A43`
-- native body text: `#263238`
-- native primary teal: `#0F6B78`
+Immutable `.6`, `.7`, and `.8` dist checkpoints are not moved or edited because their rollback URLs are evidence and must remain immutable.
 
-The repository is allowed to layer subject atmosphere and page-specific visual identity over that foundation. When V2 replaces the native light surface with its near-black museum canvas, it must explicitly establish its own foreground colors rather than rely on inherited Amadeus text colors.
+## Why the consolidation was necessary
 
-Therefore `presentation.css`, not `amadeus-compat.css`, owns the V2 typography boundary:
+Staging `.6` found the correct maximum-shelf visual direction, but `.7` and `.8` accumulated correction layers. That recreated fragmented presentation ownership and made source review a poor predictor of the actual human-rendered result.
 
-- normal V2 body copy uses `Atkinson Hyperlegible` as its readable baseline
-- V2 headings use `Nunito Sans` as their normal baseline
-- the repository retains its own responsive heading scale rather than inheriting the native Amadeus H1-H6 sizes
-- headings explicitly use the V2 light foreground on the dark canvas
-- individual museum components may deliberately opt into cyan, gold, muted tones, or future subject-specific display typography when earned
+The consolidation audit also identified a concrete browser-scale error: sub-1rem museum microcopy was calculated relative to the WordPress document root, not the V2 mount root. Values believed to be comfortably readable were rendering around 14px on the reference desktop.
 
-`amadeus-compat.css` must remain structural. It must not become a second presentation stylesheet or a place to fight theme colors one selector at a time.
+The canonical presentation now uses explicit meaningful-text tokens:
 
-## Visual architecture
+- body: `20px`
+- support: `19px`
+- UI: `18px`
+- labels/classifications: `17px`
+- lead copy: `22px`
 
-Full width belongs to atmosphere. Human-scale compositions live inside it.
+These are project readability floors, not claims that WCAG defines a universal minimum font size.
 
-The renderer creates the story directly as:
+## Direct museum composition
 
-1. page hero
-2. opening recap cluster
-3. lensing interactive pair
-4. gravity evidence cluster
-5. star-orbit observation pair
-6. Earth telescope cluster
-7. three-stage reconstruction story
-8. M87* / Sagittarius A* comparison pair
-9. Warped Light interactive plus companion and supporting gallery
-10. anatomy plus visible myth/fact cluster
-11. compact paired-player Media Center
-12. known/unknown split with evidence pullback
-13. calm credits ledger
+The renderer now builds the blueprint as distinct spatial rooms rather than repeating one header/card grammar:
 
-Local composition zones vary by subject. They are not one global website container. Feature, standard, and small modules are capped independently so available viewport width does not inflate normal content.
+1. **Classroom Threshold** — one classroom recap plaque plus a gallery aperture.
+2. **Invisible Sky Atrium** — broad lensing instrument with state readout and wall label.
+3. **Gravity Leaves Clues** — asymmetrical evidence gallery around an invisible center; clue copy is genuinely concealed until revealed; labeled scientific reference can open larger.
+4. **Star-Orbit Theater** — dominant real observational screen with integrated explanatory orbit console and multiple direct overlays.
+5. **Earth Becomes One Telescope** — large observatory map, large Earth network, site controls, detail panel, and synchronization sequence.
+6. **Reconstruction Corridor** — visible three-stage process track, reconstruction workbench, explanations, and large reference image.
+7. **Twin-Ring Rotunda** — two monumental observation bays, optional context/scale views, and a deliberate quiet bench.
+8. **Warped Light Laboratory** — large interactive model, photon-path and shadow/horizon tools, Doppler explanation, and readable scientific references.
+9. **Shadow and Myth Gallery** — calmer anatomy selector beside a myth-correction stack.
+10. **Edge of the Known** — visible known/unknown boundary, galaxy pullback, observer return, and closing line.
 
-Phone width intentionally becomes a linear reading edition. Generic viewport-height chamber mandates are prohibited.
+The Media Center remains two normal 16:9 privacy-enhanced YouTube players with no autoplay. Credits are a calm expandable ledger rather than another wall of tiny cards.
 
-## Runtime behavior preserved by extraction
+## Scientific media readability
 
-The following proven behaviors are preserved as small helpers rather than inherited presentation wrappers:
+Labeled diagrams are not treated like generic thumbnails. The renderer can attach an `Open diagram larger` native dialog to scientific figures whose baked-in labels need more space.
 
-- current-plus-one-ahead runtime budgeting
-- dormant native-video pause and `preload=none`
+The source continues to use verified media metadata and classifications. Creative overlays are explicitly described as explanatory/simplified rather than observational content.
+
+## Interaction ownership
+
+Interaction state is initialized and managed by the component that owns it:
+
+- lensing state/readout
+- clue reveal/hide state and evidence lines
+- orbit trace/center/comparison overlays
+- observatory network selection/completion
+- reconstruction states and explanations
+- comparison context/scale state
+- Warped Light presets, photon paths, shadow/horizon guide, Doppler explanation
+- anatomy layer selection
+
+There is no post-render stabilizer/compositor.
+
+Each station is constructed through a station-local error boundary. If one station builder fails, that station falls back to readable text while the rest of the enhanced museum can remain available. A failure during the overall mount transaction still restores the native Edublogs fallback.
+
+## Runtime behavior
+
+Preserved proven runtime behavior:
+
+- `current-plus-one-ahead` section budget
+- dormant video pause and `preload=none`
 - next-section metadata warmup
-- privacy-enhanced YouTube embeds
+- privacy-enhanced `youtube-nocookie.com`
 - `autoplay=0`
-- normal YouTube controls
-- lazy iframe creation and removal by viewport proximity
+- standard player controls
+- proximity-based iframe creation/removal
+- no iframe teardown while keyboard focus remains inside the Media Center
 - reduced-motion awareness
-- explicit manual pause/resume of currently running ambient CSS animations
-- explicit cleanup of observers, listeners, videos, and iframes
+- explicit manual pause/resume of currently running ambient animations
+- observer/listener/media cleanup
 - section wayfinding state
 
-Scientific interaction logic is likewise separated from old wrappers for lensing, evidence clues, orbit tracing, observatory-network activation, reconstruction state, comparison state, warped-light controls, and anatomy layers.
+## Native Amadeus boundary
+
+The native Hughes Room Views foundation remains intentionally calm and readable:
+
+- Atkinson Hyperlegible body
+- Nunito Sans headings
+- 20px native body target
+- light neutral native surfaces
+- dark teal native headings/body
+
+V2 explicitly owns its dark museum foreground and presentation inside the mount root. `amadeus-compat.css` does not own colors or typography. It activates only after successful enhancement and neutralizes the proven structural conflicts: theme container widths, floats, page-entry spacing/chrome, native page title/footer chrome, and duplicate native site footer on this route.
+
+The Edublogs fallback CSS was also returned to the intended 20px Atkinson/Nunito baseline.
 
 ## Edublogs three-tab contract
 
@@ -112,117 +134,85 @@ Scientific interaction logic is likewise separated from old wrappers for lensing
 
 `docs/deployment/black-hole-v2-edublogs-html.html`
 
-Owns only:
-
-- semantic native fallback
-- unique V2 mount root
-- page identity attributes
-- readable no-JavaScript state
-
-Mount id: `hrv-black-hole-v2-root`
-
-Page identity: `repository-page-lab-black-holes-v2`
-
-Page system: `black-hole-museum-v2`
+Owns semantic readable fallback, unique mount root, page identity, and no-JavaScript safety.
 
 ### CSS tab
 
 `docs/deployment/black-hole-v2-edublogs-css.css`
 
-Owns only fallback readability and safety. It does not contain the enhanced page presentation.
+Owns fallback readability only. It is not an enhanced presentation layer.
 
 ### JavaScript tab
 
 `docs/deployment/black-hole-v2-edublogs-javascript.js`
 
-Owns only the page-local enhancement transaction:
+Owns the page-local enhancement transaction:
 
-- wait for DOM readiness
-- validate the semantic mount contract
-- fetch the exact pinned V2 staging release manifest
-- validate/fetch repository content, asset, and experience manifests plus the renderer module
-- load enhanced repository CSS only after those prerequisite requests have succeeded
-- mount the repository renderer
-- mark the route ready only after successful mounting
-- remove enhanced CSS and leave the native fallback intact on failure
+1. wait for DOM readiness;
+2. validate the semantic page contract;
+3. fetch the exact pinned staging release;
+4. fetch/validate content, assets, experience, and renderer module before adding enhanced CSS;
+5. load canonical presentation CSS;
+6. load narrow Amadeus compatibility CSS;
+7. mount the renderer;
+8. mark the route ready only after successful mount;
+9. remove both enhanced styles and preserve native fallback if enhancement fails.
 
-The loader has no published-slug check, pathname check, WordPress page ID, or theme-global bootstrap dependency. Its presence in the page-local JavaScript tab plus the semantic mount contract establishes page identity.
+There is no slug, pathname, WordPress page-id, or global bootstrap identity dependency.
 
-## Minimal Amadeus compatibility
+## Staging `.9` delivery
 
-`amadeus-compat.css` was rebuilt from proven requirements rather than copied from the old adapter.
+`.9` is an unpublished **clean-source-pinned staging** checkpoint. It deliberately avoids the `.8` wrapper/import packaging pattern.
 
-It activates only behind `html.hrv-route-black-hole-v2-ready` and neutralizes only:
+Its release manifest pins one immutable repository snapshot containing:
 
-- native page-title/footer entry chrome that conflicts with the enhanced application island
-- centered `.site-content > .container` width restrictions
-- `.content-area` / `.site-main` width and float restrictions
-- proven site-content and page-entry margin/padding constraints
-- article-card background, border, and shadow chrome
+- direct `renderer.js` module
+- relative direct `interactions.js` and `runtime.js`
+- direct canonical `presentation.css`
+- direct structural `amadeus-compat.css`
+- a V2-owned truthful experience JSON
+- the previously verified `.2` content and asset manifests as temporary staging seed only
 
-It does not own V2 fonts, heading colors, body colors, or other aesthetic presentation. It does not repaint the site footer, body, navigation, or unrelated theme surfaces.
+This direct-source staging mode is not the permanent production distribution architecture. `scripts/build_black_hole_v2.py` defines the production-capable path and emits V2-owned dist copies of renderer/modules/styles/data/assets. The builder now fails if any retired patch-layer filename reappears in active source.
 
-## Data foundation policy
+## Human render preflight for `.9` source
 
-The verified black-hole `.2` content, asset, and experience manifests are reusable pinned input, not permanent V2 release architecture.
+Before `.9` was handed back to Edublogs, the consolidated renderer/interactions/runtime/presentation were exercised in a local Chromium harness with non-sensitive fixture media.
 
-The early unpublished staging releases intentionally reference the verified black-hole `.2` manifests as a **temporary pinned seed** so the new presentation can be previewed without casually rewriting or duplicating the verified science foundation during the clean rebuild.
+Measured reference results:
 
-`scripts/build_black_hole_v2.py` defines the forward release architecture. Future V2 releases built through it publish V2-owned copies of:
+| Viewport | Root text | classification/label floor | site controls | nav | figcaption | horizontal overflow |
+|---|---:|---:|---:|---:|---:|---|
+| 1920×1032 | 20px | 17px | 17px | 17px | 18px | none |
+| 1440×900 | ~19.9px | 17px | 17px | 17px | 18px | none |
+| 960×900 equivalent | ~18.9px | 17px | 17px | 17px | 18px | none |
+| 390×844 | 18px | 17px | 17px | 17px | 18px | none |
 
-- content JSON
-- experience JSON
-- runtime asset manifest
-- optimized scientific media derivatives
-- renderer/runtime/interaction modules
-- combined V2 presentation plus minimal Amadeus adapter
+The harness produced no page errors in these passes. Stations 01, 03, 04, 05, 06, 07, 08, 09, and 10 were visually inspected as individual rendered compositions; a full-page render was also inspected for rhythm. A Warped Light browser-default button regression found during this preflight was corrected before `.9` staging.
 
-The builder contains no black-hole `.2` runtime dependency and cannot write `channels/black-hole-lab.json`.
+This is **not** a substitute for the real Edublogs integration test. The unpublished Edublogs Preview remains the final authority for Amadeus interaction and actual classroom-page proportions.
 
-## Current V2 staging release
+## Verification and rollback discipline
 
-Release: `0.2.0-black-hole-v2-lab.5`
+`scripts/test_black_hole_v2_contract.py` now protects the consolidated architecture rather than the old patch-era layers. In particular it fails if the retired presentation/stabilization files return.
 
-Channel: `black-hole-v2-lab`
+The test also guards:
 
-Current manifest ref: `4c8cd3833a79d2777b91ab7d1c5363dbefc6895a`
+- direct blueprint-specific renderer composition
+- direct interaction ownership
+- current-plus-one runtime behavior
+- meaningful text floors
+- absence of generic 340/520/760px major-module caps
+- no nested CSS imports
+- direct diagram enlargement path
+- truthful experience capabilities
+- separate structural compatibility ownership
+- readable native fallback
+- `.9` loader/channel/rollback contract
+- builder rejection of obsolete layers
 
-Current application source ref: `5205c7e03d06e05444778f1de9be21831dc59dff`
+The canonical human defect history remains:
 
-Previous V2 staging release: `0.2.0-black-hole-v2-lab.4`
+`docs/evidence/black-hole-v2-human-visual-audit.md`
 
-The current release manifest is pinned independently from the legacy Black Hole channel. `.5` rolls back to immutable V2 staging `.4`; the staging line itself remains separate from historical Black Hole `.12`.
-
-The current staging release is explicitly marked `unpublished-v2-staging` and records its verified black-hole `.2` use as `temporary-pinned-seed`.
-
-Staging `.3` added two integrity corrections: the public Pause Motion control pauses currently running ambient CSS animations as well as native video, and the page-local loader validates its data/module prerequisites before loading enhanced CSS so a fast prerequisite failure cannot leave late-arriving enhanced styling on the native fallback.
-
-Staging `.4` captured the first real Edublogs Preview diagnosis: native Amadeus dark heading colors were competing with V2's dark canvas. `.4` proved the symptom and is retained as immutable history.
-
-Staging `.5` places the fix at the correct architectural boundary. `presentation.css` now explicitly establishes the Atkinson/Nunito baseline and V2 light heading foregrounds, while `amadeus-compat.css` returns to structural-only theme neutralization.
-
-## Testing discipline
-
-`scripts/test_black_hole_v2_contract.py` protects only consequential architectural behaviors:
-
-- no legacy presentation ancestry
-- direct renderer composition
-- human-scale module caps and local composition zones
-- root viewport breakout
-- no giant generic chamber heights
-- phone linear edition
-- reduced motion and explicit ambient-motion pause
-- current-plus-one media budgeting
-- no-autoplay/lazy YouTube behavior
-- V2-owned Atkinson body and Nunito Sans heading baseline
-- explicit V2 heading foreground ownership on the dark canvas
-- minimal route-scoped structural Amadeus neutralization
-- complete neutralization of proven page-entry spacing
-- no typography/palette ownership in the Amadeus adapter
-- semantic page-local loader identity with no slug/page-ID dependency
-- loader ordering that keeps enhanced CSS out until prerequisites succeed
-- separate V2 staging channel and rollback checkpoint
-- temporary verified black-hole `.2` seed status
-- future V2-owned data release path
-
-The real unpublished Edublogs Preview remains the required integration smoke test after the three tab contents are installed on the page.
+Staging `.9` exists because that audit's consolidation gate was acted on. Edublogs revalidation is still required before the human-visible defects can be marked fully closed.
