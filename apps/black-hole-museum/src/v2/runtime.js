@@ -149,6 +149,19 @@ export function installLazyYouTube(center, cleanups) {
   cleanups.push(sleep);
 }
 
+function pauseRunningAnimations(shell, state) {
+  if (typeof shell.getAnimations !== 'function') return;
+  state.manuallyPausedAnimations = shell.getAnimations({ subtree: true }).filter((animation) => animation.playState === 'running');
+  state.manuallyPausedAnimations.forEach((animation) => animation.pause());
+}
+
+function resumeManuallyPausedAnimations(state) {
+  (state.manuallyPausedAnimations || []).forEach((animation) => {
+    try { animation.play(); } catch {}
+  });
+  state.manuallyPausedAnimations = [];
+}
+
 export function installMotionControl(shell, button, state) {
   if (!button) return;
   button.setAttribute('aria-pressed', 'false');
@@ -157,7 +170,13 @@ export function installMotionControl(shell, button, state) {
     shell.dataset.motion = state.motionPaused ? 'paused' : state.reducedMotion ? 'still' : 'running';
     button.textContent = state.motionPaused ? 'Resume motion' : 'Pause motion';
     button.setAttribute('aria-pressed', String(state.motionPaused));
-    if (state.motionPaused) shell.querySelectorAll('video').forEach((video) => video.pause());
+
+    if (state.motionPaused) {
+      shell.querySelectorAll('video').forEach((video) => video.pause());
+      pauseRunningAnimations(shell, state);
+    } else if (!state.reducedMotion) {
+      resumeManuallyPausedAnimations(state);
+    }
   });
 }
 
