@@ -17,7 +17,7 @@ import {
   motionBehavior
 } from './runtime.js';
 
-const RENDERER_VERSION = 'black-hole-v2-0.2.0';
+const RENDERER_VERSION = 'black-hole-v2-0.3.0';
 const NAV_SHORT = {
   '01': 'Threshold',
   '02': 'Invisible sky',
@@ -94,10 +94,10 @@ function largestImage(asset) {
   return derivatives[0] || preferredImage(asset);
 }
 
-function attachZoomDialog(figure, asset) {
-  const trigger = button('Open diagram larger', 'bhv2-zoom-button');
+function createAssetDialog(asset, options = {}) {
   const dialog = document.createElement('dialog');
   dialog.className = 'bhv2-media-dialog';
+  dialog.setAttribute('aria-label', options.label || asset.title || 'Enlarged scientific media');
   const close = button('Close enlarged view', 'bhv2-dialog-close');
   const img = document.createElement('img');
   const largest = largestImage(asset);
@@ -105,12 +105,31 @@ function attachZoomDialog(figure, asset) {
   img.alt = asset.alt || asset.title || '';
   const caption = el('p', 'bhv2-dialog-caption', asset.caption || asset.title || '');
   dialog.append(close, img, caption);
-  close.addEventListener('click', () => dialog.close());
+
+  let opener = null;
+  const open = (source) => {
+    opener = source || document.activeElement;
+    dialog.showModal();
+    requestAnimationFrame(() => close.focus({ preventScroll: true }));
+  };
+  const dismiss = () => dialog.close();
+
+  close.addEventListener('click', dismiss);
   dialog.addEventListener('click', (event) => {
-    if (event.target === dialog) dialog.close();
+    if (event.target === dialog) dismiss();
   });
-  trigger.addEventListener('click', () => dialog.showModal());
-  figure.append(trigger, dialog);
+  dialog.addEventListener('close', () => {
+    try { opener?.focus?.({ preventScroll: true }); } catch {}
+  });
+
+  return { dialog, open };
+}
+
+function attachZoomDialog(figure, asset) {
+  const trigger = button('Open diagram larger', 'bhv2-zoom-button');
+  const viewer = createAssetDialog(asset, { label: `Enlarged view: ${asset.title || 'scientific diagram'}` });
+  trigger.addEventListener('click', () => viewer.open(trigger));
+  figure.append(trigger, viewer.dialog);
 }
 
 function mediaCard(asset, options = {}) {
@@ -321,14 +340,18 @@ function buildOrbit(station, assets) {
   const theater = el('div', 'bhv2-theater');
   const screen = el('div', 'bhv2-theater-screen');
   const asset = assets.get('eso-star-orbits');
-  if (asset) screen.append(mediaCard(asset, { aspect: '16 / 9', className: 'bhv2-orbit-observation', sizes: '(max-width: 900px) 94vw, 1100px' }));
+  const observation = asset ? mediaCard(asset, { aspect: '16 / 9', className: 'bhv2-orbit-observation', sizes: '(max-width: 900px) 94vw, 1080px' }) : null;
   const orbit = createOrbitOverlay();
-  screen.append(orbit.overlay);
+  if (observation) {
+    observation.querySelector('.bhv2-media-frame')?.append(orbit.overlay);
+    screen.append(observation);
+  } else {
+    screen.append(orbit.overlay);
+  }
   const consolePanel = el('aside', 'bhv2-theater-console');
+  consolePanel.setAttribute('aria-label', 'Orbit observation controls');
   consolePanel.append(
-    el('p', 'bhv2-sidecar-label', 'Observation tool · explanatory overlay'),
-    el('h3', '', 'Trace what the observation implies'),
-    el('p', '', station.deeper || ''),
+    el('p', 'bhv2-sidecar-label', 'Observation tool · explanatory overlays'),
     orbit.controls
   );
   theater.append(screen, consolePanel);
@@ -385,34 +408,28 @@ function buildComparison(station, assets) {
     if (asset) pair.append(mediaCard(asset, { className: 'bhv2-monument-card', sizes: '(max-width: 900px) 94vw, 720px' }));
   });
 
+  const galaxy = assets.get('m87-galaxy');
+  const scale = assets.get('m87-sgr-scale');
+  const galaxyViewer = galaxy ? createAssetDialog(galaxy, { label: 'M87 galaxy context' }) : null;
+  const scaleViewer = scale ? createAssetDialog(scale, { label: 'M87 and Sagittarius A star-system scale comparison' }) : null;
+
   const support = el('div', 'bhv2-rotunda-controls');
-  const contextDeck = el('div', 'bhv2-context-deck');
-  const controls = createComparisonControls(station, (index) => {
+  const controls = createComparisonControls(station, (index, control) => {
     pair.dataset.view = index === 1 ? 'compare' : 'separate';
-    contextDeck.querySelectorAll('[data-comparison-extra]').forEach((node) => { node.hidden = true; });
-    if (index === 2) contextDeck.querySelector('[data-comparison-extra="context"]')?.removeAttribute('hidden');
-    if (index === 3) contextDeck.querySelector('[data-comparison-extra="scale"]')?.removeAttribute('hidden');
+    if (index === 2) galaxyViewer?.open(control);
+    if (index === 3) scaleViewer?.open(control);
   });
   support.append(controls);
 
-  const galaxy = assets.get('m87-galaxy');
-  if (galaxy) {
-    const card = mediaCard(galaxy, { className: 'bhv2-context-card', sizes: '(max-width: 900px) 94vw, 780px' });
-    card.dataset.comparisonExtra = 'context';
-    card.hidden = true;
-    contextDeck.append(card);
-  }
-  const scale = assets.get('m87-sgr-scale');
-  if (scale) {
-    const card = mediaCard(scale, { className: 'bhv2-context-card', sizes: '(max-width: 900px) 94vw, 900px', zoom: true });
-    card.dataset.comparisonExtra = 'scale';
-    card.hidden = true;
-    contextDeck.append(card);
-  }
+  const firstComparisonControl = controls.querySelector('button');
+  [galaxyViewer, scaleViewer].filter(Boolean).forEach((viewer) => {
+    viewer.dialog.addEventListener('close', () => firstComparisonControl?.click());
+    zone.append(viewer.dialog);
+  });
 
   const bench = el('div', 'bhv2-quiet-bench');
   bench.append(el('span', '', 'QUIET BENCH'), el('p', '', 'No action required here. Pause with the two historic observations before moving into the working laboratory.'));
-  zone.append(pair, support, contextDeck, bench);
+  zone.append(pair, support, bench);
   section.append(zone);
   return section;
 }
@@ -420,7 +437,7 @@ function buildComparison(station, assets) {
 function buildWarpedLight(station, assets) {
   const section = sectionShell(station, 'laboratory', 'wide');
   const zone = el('div', 'bhv2-zone');
-  zone.append(sectionIntro(station, { deeperLabel: 'Why the model looks impossible' }));
+  zone.append(sectionIntro(station, { deeper: false }));
   const bench = el('div', 'bhv2-lab-bench');
   bench.append(createWarpedLightInteractive(station));
   const companion = assets.get('nasa-labeled-accretion');
@@ -442,13 +459,39 @@ function buildAnatomy(station) {
   zone.append(sectionIntro(station, { deeperLabel: 'Keep the parts distinct' }));
   const cluster = el('div', 'bhv2-anatomy-cluster');
   cluster.append(createAnatomyInteractive(station));
+
   const myths = el('div', 'bhv2-myth-stack');
   myths.append(el('h3', '', 'Myths to retire'));
-  (station.myths || []).forEach((item) => {
-    const card = el('details', 'bhv2-myth');
-    card.append(el('summary', '', item.claim || ''), el('p', '', item.knowledge || ''));
-    myths.append(card);
+  const mythControls = el('div', 'bhv2-myth-controls');
+  mythControls.setAttribute('role', 'group');
+  mythControls.setAttribute('aria-label', 'Black-hole myths');
+  const mythDetail = el('div', 'bhv2-myth-detail');
+  mythDetail.setAttribute('aria-live', 'polite');
+  mythDetail.append(el('span', 'bhv2-detail-kicker', 'MYTH CHECK'), el('strong', 'bhv2-myth-claim'), el('p', 'bhv2-myth-answer'));
+  const mythButtons = [];
+
+  const selectMyth = (index) => {
+    const item = (station.myths || [])[index];
+    if (!item) return;
+    mythButtons.forEach((control, buttonIndex) => {
+      const active = buttonIndex === index;
+      control.classList.toggle('is-active', active);
+      control.setAttribute('aria-pressed', String(active));
+    });
+    mythDetail.querySelector('.bhv2-myth-claim').textContent = item.claim || '';
+    mythDetail.querySelector('.bhv2-myth-answer').textContent = item.knowledge || '';
+  };
+
+  (station.myths || []).forEach((item, index) => {
+    const control = button(item.claim || `Myth ${index + 1}`, 'bhv2-myth');
+    control.setAttribute('aria-pressed', 'false');
+    control.addEventListener('click', () => selectMyth(index));
+    mythControls.append(control);
+    mythButtons.push(control);
   });
+  myths.append(mythControls, mythDetail);
+  if (mythButtons.length) selectMyth(0);
+
   cluster.append(myths);
   zone.append(cluster);
   section.append(zone);
@@ -460,9 +503,20 @@ function youtubeCard(item) {
   const frame = el('div', 'bhv2-youtube-frame');
   frame.dataset.youtubeId = item.youtubeId;
   frame.dataset.youtubeTitle = item.title;
-  frame.append(el('div', 'bhv2-youtube-placeholder', 'Video player wakes up when the Media Center is nearby.'));
+  const poster = el('div', 'bhv2-youtube-poster');
+  poster.append(
+    el('span', 'bhv2-youtube-poster-label', item.title),
+    button('Play video', 'bhv2-youtube-play')
+  );
+  frame.append(poster);
   const meta = el('div', 'bhv2-youtube-meta');
-  meta.append(el('h3', '', item.title), el('p', 'bhv2-youtube-source', `${item.source} · ${item.length}`), el('p', '', item.note));
+  const external = document.createElement('a');
+  external.className = 'bhv2-youtube-external';
+  external.href = `https://www.youtube.com/watch?v=${encodeURIComponent(item.youtubeId)}`;
+  external.target = '_blank';
+  external.rel = 'noopener noreferrer';
+  external.textContent = 'Open on YouTube';
+  meta.append(el('h3', '', item.title), el('p', 'bhv2-youtube-source', `${item.source} · ${item.length}`), el('p', '', item.note), external);
   card.append(frame, meta);
   return card;
 }
@@ -478,7 +532,7 @@ function buildMediaCenter() {
   signage.append(
     el('p', 'bhv2-kicker', 'Watch · pause · wonder'),
     el('h2', '', 'Black Hole Media Center'),
-    el('p', '', 'Two optional video stops. They use normal YouTube controls and never autoplay.'),
+    el('p', '', 'Two optional video stops. Players load only when you choose Play, use normal YouTube controls, and never autoplay.'),
     el('p', 'bhv2-media-warning', 'SIMULATED MEDIA SELECTION · NOT A RECORD OF MS HUGHES APPROVAL')
   );
   signage.querySelector('h2').id = 'black-hole-media-center-title';
