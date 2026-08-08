@@ -1,0 +1,144 @@
+/* Hughes Room Views hybrid architecture lab. Scoped to the test mount only. */
+
+#hrv-hybrid-root.hrv-repo-ready {
+  width: 100vw;
+  max-width: none !important;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  transform: none;
+  overflow-x: clip;
+  padding: clamp(24px, 5vw, 72px);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(15, 107, 120, 0.24), transparent 30%),
+    radial-gradient(circle at 88% 12%, rgba(111, 78, 168, 0.18), transparent 26%),
+    linear-gradient(145deg, #f8fafa 0%, #eef5f6 48%, #f7f3ff 100%);
+  color: #263238;
+}
+
+#hrv-hybrid-root.hrv-repo-ready .hrv-enhancement-target {
+  display: block;
+  width: min(100%, 1180px);
+  margin: 0 auto;
+}
+
+#hrv-hybrid-root .hrv-repo-experience {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(15, 107, 120, 0.18);
+  border-radius: clamp(24px, 4vw, 42px);
+  padding: clamp(28px, 5vw, 72px);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 28px 90px rgba(23, 58, 67, 0.16);
+  backdrop-filter: blur(10px);
+}
+
+#hrv-hybrid-root .hrv-repo-experience::before {
+  content: "";
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  right: -90px;
+  top: -110px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(15, 107, 120, 0.24), rgba(15, 107, 120, 0));
+  pointer-events: none;
+}
+
+#hrv-hybrid-root .hrv-repo-eyebrow {
+  margin: 0 0 10px;
+  color: #0f6b78;
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#hrv-hybrid-root .hrv-repo-title {
+  max-width: 14ch;
+  margin: 0;
+  color: #173a43;
+  font-size: clamp(2.6rem, 7vw, 5.5rem);
+  line-height: 0.98;
+}
+
+#hrv-hybrid-root .hrv-repo-lede {
+  max-width: 68ch;
+  margin: 24px 0 0;
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  line-height: 1.65;
+}
+
+#hrv-hybrid-root .hrv-repo-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 26px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #173a43;
+  color: #fff;
+  font-weight: 700;
+}
+
+#hrv-hybrid-root .hrv-repo-status::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #9be7c4;
+  box-shadow: 0 0 0 5px rgba(155, 231, 196, 0.16);
+}
+
+#hrv-hybrid-root .hrv-repo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 2.5vw, 24px);
+  margin-top: clamp(32px, 5vw, 54px);
+}
+
+#hrv-hybrid-root .hrv-repo-card {
+  min-height: 190px;
+  padding: 24px;
+  border: 1px solid rgba(23, 58, 67, 0.12);
+  border-radius: 22px;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fbfb 100%);
+  box-shadow: 0 14px 34px rgba(23, 58, 67, 0.08);
+}
+
+#hrv-hybrid-root .hrv-repo-card h2 {
+  margin: 0 0 10px;
+  color: #173a43;
+  font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+}
+
+#hrv-hybrid-root .hrv-repo-card p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+@media (max-width: 800px) {
+  #hrv-hybrid-root.hrv-repo-ready {
+    padding: 18px;
+  }
+
+  #hrv-hybrid-root .hrv-repo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #hrv-hybrid-root .hrv-repo-card {
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #hrv-hybrid-root *,
+  #hrv-hybrid-root *::before,
+  #hrv-hybrid-root *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
