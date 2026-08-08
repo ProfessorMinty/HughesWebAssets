@@ -1,5 +1,6 @@
 /* Minimal Amadeus compatibility for Black Hole Museum V2.
-   Activates only after successful V2 enhancement. No visual styling lives here. */
+   Activates only after successful V2 enhancement. This file neutralizes only
+   theme rules proven to interfere with the V2 application island. */
 html.hrv-route-black-hole-v2-ready .entry-header,
 html.hrv-route-black-hole-v2-ready .page-header,
 html.hrv-route-black-hole-v2-ready .entry-footer {
@@ -30,4 +31,15 @@ html.hrv-route-black-hole-v2-ready .entry-content {
   background:transparent!important;
   border:0!important;
   box-shadow:none!important;
+}
+
+/* Proven in the real Edublogs Preview: Amadeus applies dark heading colors
+   after V2 loads. Keep typography ownership inside the V2 mount only. */
+html.hrv-route-black-hole-v2-ready #hrv-black-hole-v2-root .bhv2-shell h1,
+html.hrv-route-black-hole-v2-ready #hrv-black-hole-v2-root .bhv2-shell h2,
+html.hrv-route-black-hole-v2-ready #hrv-black-hole-v2-root .bhv2-shell h3,
+html.hrv-route-black-hole-v2-ready #hrv-black-hole-v2-root .bhv2-shell h4,
+html.hrv-route-black-hole-v2-ready #hrv-black-hole-v2-root .bhv2-shell h5,
+html.hrv-route-black-hole-v2-ready #hrv-black-hole-v2-root .bhv2-shell h6 {
+  color:var(--bhv2-text)!important;
 }
