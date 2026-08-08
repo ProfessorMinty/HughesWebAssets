@@ -1,0 +1,21 @@
+/* Hughes Room Views · Black Hole Museum V2 · Edublogs CSS tab
+   Fallback readability only. Enhanced presentation is repository-owned. */
+#hrv-black-hole-v2-root.hrv-native-fallback {
+  max-width:54rem;
+  margin:2rem auto;
+  padding:1.25rem;
+  color:#17202a;
+  background:#fff;
+  font-size:17px;
+  line-height:1.6;
+}
+#hrv-black-hole-v2-root.hrv-native-fallback [data-hrv-native-status] {
+  padding:.75rem 1rem;
+  border-left:4px solid #347a8b;
+  background:#f1f7f8;
+}
+#hrv-black-hole-v2-root.hrv-native-fallback :where(h1,h2) {
+  overflow-wrap:normal;
+  word-break:normal;
+  hyphens:none;
+}
