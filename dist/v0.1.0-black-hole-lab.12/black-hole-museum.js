@@ -1,0 +1,1 @@
+export { mountBlackHoleMuseum } from 'https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@c18a87560ff529eb7d5ad496522b9f5020bc688a/apps/black-hole-museum/src/maximum-shelf-composed-runtime.js';
