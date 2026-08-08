@@ -7,8 +7,8 @@
   const ROOT_ID = 'hrv-black-hole-v2-root';
   const PAGE_ID = 'repository-page-lab-black-holes-v2';
   const PAGE_SYSTEM = 'black-hole-museum-v2';
-  const EXPECTED_RELEASE = '0.2.0-black-hole-v2-lab.1';
-  const RELEASE_MANIFEST = 'https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@ab97b61ff3e21731cdb96bd0ed13d56641d08ddb/dist/v0.2.0-black-hole-v2-lab.1/release.json';
+  const EXPECTED_RELEASE = '0.2.0-black-hole-v2-lab.2';
+  const RELEASE_MANIFEST = 'https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@bcd109d97e9c984a28e5521e04a037a737b2bdc1/dist/v0.2.0-black-hole-v2-lab.2/release.json';
   const TIMEOUT_MS = 12000;
 
   function ready(callback) {
@@ -74,7 +74,6 @@
     root.dataset.hrvState = 'checking';
     status(root, 'Checking the pinned V2 staging release…');
 
-    let styleLink = null;
     try {
       const release = await fetchJson(RELEASE_MANIFEST, 'V2 release manifest');
       if (release.schemaVersion !== '1.0' || release.release !== EXPECTED_RELEASE) {
@@ -90,14 +89,13 @@
       root.dataset.hrvState = 'loading';
       status(root, 'Loading the Black Hole Museum V2…');
 
-      const [style, content, assets, experience, module] = await Promise.all([
+      const [, content, assets, experience, module] = await Promise.all([
         loadStyle(system.style.url),
         fetchJson(system.content.url, 'V2 content manifest'),
         fetchJson(system.assets.url, 'V2 asset manifest'),
         fetchJson(system.experience.url, 'V2 experience manifest'),
         import(system.script.url)
       ]);
-      styleLink = style;
 
       if (typeof module?.mountBlackHoleMuseum !== 'function') {
         throw new Error('V2 renderer entry point is unavailable.');
@@ -109,7 +107,7 @@
       root.dataset.hrvState = 'ready';
       console.info('[HRV BHM V2] Staging enhancement ready.', { release: release.release, commit: release.commit });
     } catch (error) {
-      styleLink?.remove();
+      document.querySelectorAll('link[data-hrv-black-hole-v2-style="staging"]').forEach((link) => link.remove());
       document.documentElement.classList.remove('hrv-route-black-hole-v2-ready');
       root.removeAttribute('aria-busy');
       root.dataset.hrvState = 'failed';
