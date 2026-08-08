@@ -17,7 +17,19 @@ import {
   motionBehavior
 } from './runtime.js';
 
-const RENDERER_VERSION = 'black-hole-v2-0.1.0';
+const RENDERER_VERSION = 'black-hole-v2-0.2.0';
+const NAV_SHORT = {
+  '01': 'Threshold',
+  '02': 'Invisible sky',
+  '03': 'Clues',
+  '04': 'Orbits',
+  '05': 'Earth',
+  '06': 'Image',
+  '07': 'Twin rings',
+  '08': 'Warped light',
+  '09': 'Anatomy',
+  '10': 'Boundary'
+};
 const MEDIA_CENTER_ITEMS = [
   {
     youtubeId: 'kOEDG3j1bjs',
@@ -53,7 +65,7 @@ function assetMap(manifest) {
 }
 
 function evidenceBadge(text) {
-  const badge = el('p', 'bhv2-evidence-badge', text || '');
+  const badge = el('span', 'bhv2-evidence-badge', text || '');
   badge.setAttribute('aria-label', 'Scientific media classification: ' + (text || 'Unclassified'));
   return badge;
 }
@@ -73,6 +85,32 @@ function preferredImage(asset) {
     derivatives.find((item) => item.format === 'webp') ||
     derivatives.find((item) => item.format === 'avif') ||
     null;
+}
+
+function largestImage(asset) {
+  const derivatives = (asset.derivatives || [])
+    .filter((item) => item.format === 'webp' || item.format === 'avif')
+    .sort((a, b) => (b.width || 0) - (a.width || 0));
+  return derivatives[0] || preferredImage(asset);
+}
+
+function attachZoomDialog(figure, asset) {
+  const trigger = button('Open diagram larger', 'bhv2-zoom-button');
+  const dialog = document.createElement('dialog');
+  dialog.className = 'bhv2-media-dialog';
+  const close = button('Close enlarged view', 'bhv2-dialog-close');
+  const img = document.createElement('img');
+  const largest = largestImage(asset);
+  img.src = largest?.url || asset.localUrl || asset.stubUrl;
+  img.alt = asset.alt || asset.title || '';
+  const caption = el('p', 'bhv2-dialog-caption', asset.caption || asset.title || '');
+  dialog.append(close, img, caption);
+  close.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+  trigger.addEventListener('click', () => dialog.showModal());
+  figure.append(trigger, dialog);
 }
 
 function mediaCard(asset, options = {}) {
@@ -106,14 +144,14 @@ function mediaCard(asset, options = {}) {
       const source = document.createElement('source');
       source.type = 'image/avif';
       source.srcset = avif.map((item) => `${item.url} ${item.width}w`).join(', ');
-      source.sizes = options.sizes || '(max-width: 700px) 94vw, 520px';
+      source.sizes = options.sizes || '(max-width: 700px) 94vw, 900px';
       picture.append(source);
     }
     if (webp.length) {
       const source = document.createElement('source');
       source.type = 'image/webp';
       source.srcset = webp.map((item) => `${item.url} ${item.width}w`).join(', ');
-      source.sizes = options.sizes || '(max-width: 700px) 94vw, 520px';
+      source.sizes = options.sizes || '(max-width: 700px) 94vw, 900px';
       picture.append(source);
     }
 
@@ -142,26 +180,27 @@ function mediaCard(asset, options = {}) {
     sourceLink(asset)
   );
   figure.append(frame, caption);
+  if (options.zoom && asset.kind !== 'video') attachZoomDialog(figure, asset);
   return figure;
 }
 
-function sectionHeader(station, label = '') {
-  const header = el('header', 'bhv2-section-header');
-  const meta = el('div', 'bhv2-section-meta');
-  meta.append(
-    el('span', 'bhv2-section-number', station.number || ''),
-    el('p', 'bhv2-kicker', label || station.kicker || '')
-  );
+function sectionIntro(station, options = {}) {
+  const header = el('header', 'bhv2-section-intro');
+  const marker = el('div', 'bhv2-section-marker');
+  marker.append(el('span', 'bhv2-section-number', station.number || ''), el('span', 'bhv2-kicker', options.label || station.kicker || ''));
   const copy = el('div', 'bhv2-section-copy');
   copy.append(
     el('h2', '', station.title || ''),
     evidenceBadge(station.classification || ''),
     el('p', 'bhv2-child-line', station.child || '')
   );
-  const deeper = el('details', 'bhv2-look-deeper');
-  deeper.append(el('summary', '', 'Look deeper'), el('p', '', station.deeper || ''));
-  copy.append(deeper);
-  header.append(meta, copy);
+  if (station.deeper && options.deeper !== false) {
+    const deeper = document.createElement('details');
+    deeper.className = 'bhv2-deeper-drawer';
+    deeper.append(el('summary', '', options.deeperLabel || 'More about this evidence'), el('p', '', station.deeper));
+    copy.append(deeper);
+  }
+  header.append(marker, copy);
   return header;
 }
 
@@ -211,8 +250,7 @@ function buildWayfinding(content, state) {
   (content.stations || []).forEach((station) => {
     const link = document.createElement('a');
     link.href = '#' + station.id;
-    link.textContent = station.number;
-    link.title = station.title;
+    link.append(el('span', 'bhv2-nav-number', station.number), el('span', 'bhv2-nav-label', NAV_SHORT[station.number] || station.title));
     link.addEventListener('click', (event) => {
       event.preventDefault();
       document.getElementById(station.id)?.scrollIntoView({ behavior: motionBehavior(state), block: 'start' });
@@ -222,171 +260,190 @@ function buildWayfinding(content, state) {
   return nav;
 }
 
+function buildUtilityBar(content, state) {
+  const bar = el('div', 'bhv2-utility-bar');
+  const motion = button('Pause motion', 'bhv2-motion-control');
+  bar.append(buildWayfinding(content, state), motion);
+  return { bar, motion };
+}
+
 function buildOpeningRecap(station, content) {
-  const section = sectionShell(station, 'opening-recap', 'compact');
-  const zone = el('div', 'bhv2-zone bhv2-opening-zone');
-  zone.append(sectionHeader(station));
-  const grid = el('div', 'bhv2-recap-grid');
+  const section = sectionShell(station, 'threshold', 'wide');
+  const zone = el('div', 'bhv2-zone bhv2-threshold-zone');
+  const plaque = el('article', 'bhv2-threshold-plaque');
+  plaque.append(sectionIntro(station, { deeperLabel: 'Why scientists watch the surroundings' }));
+  const warning = el('p', 'bhv2-prototype-warning bhv2-threshold-warning', content.page.prototypeWarning || 'SIMULATED CLASSROOM RECAP');
+  const recap = el('div', 'bhv2-recap-copy');
   (content.recap || []).forEach((paragraph, index) => {
-    const card = el('article', 'bhv2-recap-card');
-    card.dataset.recap = String(index + 1);
-    card.append(el('span', 'bhv2-recap-index', String(index + 1).padStart(2, '0')), el('p', '', paragraph));
-    grid.append(card);
+    const row = el('div', 'bhv2-recap-row');
+    row.append(el('span', 'bhv2-recap-index', String(index + 1).padStart(2, '0')), el('p', '', paragraph));
+    recap.append(row);
   });
-  zone.append(grid);
+  plaque.append(warning, recap);
+
+  const aperture = el('div', 'bhv2-threshold-aperture');
+  aperture.setAttribute('aria-hidden', 'true');
+  aperture.append(el('div', 'bhv2-aperture-stars'), el('p', 'bhv2-aperture-label', 'Enter the Black Hole Gallery'));
+  zone.append(plaque, aperture);
   section.append(zone);
   return section;
 }
 
 function buildLensing(station) {
-  const section = sectionShell(station, 'interactive-pair', 'standard');
-  const zone = el('div', 'bhv2-zone bhv2-two-up bhv2-two-up--feature');
-  const story = el('div', 'bhv2-story-panel');
-  story.append(sectionHeader(station), el('p', 'bhv2-support-note', 'Change the model and watch the background stars become evidence.'));
-  zone.append(story, createLensingInteractive(station));
+  const section = sectionShell(station, 'atrium', 'wide');
+  const zone = el('div', 'bhv2-zone bhv2-atrium-zone');
+  zone.append(sectionIntro(station, { deeperLabel: 'What the demonstration means' }));
+  const instrument = createLensingInteractive(station);
+  const wallLabel = el('aside', 'bhv2-wall-label');
+  wallLabel.append(el('strong', '', 'Look for the disturbance, not a visible object.'), el('p', '', 'The center stays dark while the stars and light paths become the evidence.'));
+  zone.append(instrument, wallLabel);
   section.append(zone);
   return section;
 }
 
 function buildEvidence(station, assets) {
-  const section = sectionShell(station, 'evidence-cluster', 'wide');
+  const section = sectionShell(station, 'evidence-gallery', 'wide');
   const zone = el('div', 'bhv2-zone');
-  zone.append(sectionHeader(station));
-  const cluster = el('div', 'bhv2-evidence-cluster');
-  cluster.append(createEvidenceInteractive(station));
+  zone.append(sectionIntro(station, { deeperLabel: 'How independent clues build one answer' }));
+  const gallery = el('div', 'bhv2-evidence-gallery');
+  gallery.append(createEvidenceInteractive(station));
   const reference = assets.get('nasa-labeled-accretion');
-  if (reference) cluster.append(mediaCard(reference, { className: 'bhv2-support-module', sizes: '(max-width: 700px) 94vw, 390px' }));
-  zone.append(cluster);
+  if (reference) gallery.append(mediaCard(reference, { className: 'bhv2-diagram-pedestal', sizes: '(max-width: 900px) 94vw, 620px', zoom: true }));
+  zone.append(gallery);
   section.append(zone);
   return section;
 }
 
 function buildOrbit(station, assets) {
-  const section = sectionShell(station, 'observation-pair', 'standard');
-  const zone = el('div', 'bhv2-zone');
-  zone.append(sectionHeader(station));
-  const composition = el('div', 'bhv2-observation-pair');
-  const observation = el('div', 'bhv2-orbit-observation bhv2-standard-module');
+  const section = sectionShell(station, 'theater', 'wide');
+  const zone = el('div', 'bhv2-zone bhv2-theater-zone');
+  zone.append(sectionIntro(station, { deeper: false }));
+  const theater = el('div', 'bhv2-theater');
+  const screen = el('div', 'bhv2-theater-screen');
   const asset = assets.get('eso-star-orbits');
-  if (asset) observation.append(mediaCard(asset, { aspect: '16 / 9', sizes: '(max-width: 700px) 94vw, 720px' }));
-  const { overlay, control } = createOrbitOverlay(station);
-  observation.append(overlay);
-  const tool = el('aside', 'bhv2-sidecar');
-  tool.append(el('p', 'bhv2-sidecar-label', 'Observation tool'), el('p', '', station.deeper || ''), control);
-  composition.append(observation, tool);
-  zone.append(composition);
+  if (asset) screen.append(mediaCard(asset, { aspect: '16 / 9', className: 'bhv2-orbit-observation', sizes: '(max-width: 900px) 94vw, 1100px' }));
+  const orbit = createOrbitOverlay();
+  screen.append(orbit.overlay);
+  const consolePanel = el('aside', 'bhv2-theater-console');
+  consolePanel.append(
+    el('p', 'bhv2-sidecar-label', 'Observation tool · explanatory overlay'),
+    el('h3', '', 'Trace what the observation implies'),
+    el('p', '', station.deeper || ''),
+    orbit.controls
+  );
+  theater.append(screen, consolePanel);
+  zone.append(theater);
   section.append(zone);
   return section;
 }
 
 function buildTelescope(station, assets) {
-  const section = sectionShell(station, 'telescope-cluster', 'wide');
-  const zone = el('div', 'bhv2-zone');
-  zone.append(sectionHeader(station));
-  const cluster = el('div', 'bhv2-telescope-cluster');
+  const section = sectionShell(station, 'planetary-hall', 'wide');
+  const zone = el('div', 'bhv2-zone bhv2-planetary-zone');
+  zone.append(sectionIntro(station, { deeperLabel: 'How many observatories become one instrument' }));
   const map = assets.get('eht-observatory-map');
-  if (map) cluster.append(mediaCard(map, { className: 'bhv2-telescope-map', sizes: '(max-width: 700px) 94vw, 600px' }));
+  if (map) zone.append(mediaCard(map, { className: 'bhv2-map-wall', sizes: '(max-width: 900px) 94vw, 1400px', zoom: true }));
   const earth = createEarthNetwork(station);
-  cluster.append(earth.module);
-  const sites = el('aside', 'bhv2-observatory-stack');
-  sites.append(el('p', 'bhv2-sidecar-label', 'Places → network → one instrument'));
-  const chips = el('div', 'bhv2-chip-list');
-  earth.siteNames.forEach((name) => chips.append(el('span', 'bhv2-chip', name)));
-  sites.append(chips, el('p', '', 'Widely separated observatories synchronize radio measurements so the network can act like an Earth-sized virtual telescope.'));
-  cluster.append(sites);
-  zone.append(cluster);
+  const explanation = el('div', 'bhv2-sync-strip');
+  ['Places', 'Synchronized measurements', 'One virtual telescope'].forEach((label, index) => {
+    const step = el('div', 'bhv2-sync-step');
+    step.append(el('span', '', String(index + 1).padStart(2, '0')), el('strong', '', label));
+    explanation.append(step);
+  });
+  zone.append(earth.module, explanation);
   section.append(zone);
   return section;
 }
 
 function buildReconstruction(station, assets) {
-  const section = sectionShell(station, 'three-stage-process', 'wide');
+  const section = sectionShell(station, 'reconstruction-corridor', 'wide');
   const zone = el('div', 'bhv2-zone');
-  zone.append(sectionHeader(station));
-
+  zone.append(sectionIntro(station, { deeper: false }));
   const interactive = createReconstructionInteractive(station);
-  const process = el('div', 'bhv2-process-row');
+  const track = el('ol', 'bhv2-process-track');
   interactive.states.forEach((state, index) => {
-    const card = el('article', 'bhv2-process-card');
-    card.append(el('span', 'bhv2-process-index', String(index + 1).padStart(2, '0')), el('h3', '', state.name), el('p', '', state.text));
-    process.append(card);
+    const item = el('li', 'bhv2-process-stop');
+    item.append(el('span', 'bhv2-process-index', String(index + 1).padStart(2, '0')), el('h3', '', state.name), el('p', '', state.text));
+    track.append(item);
   });
-
-  const evidence = el('div', 'bhv2-reconstruction-pair');
-  evidence.append(interactive.module);
+  const workbench = el('div', 'bhv2-reconstruction-workbench');
+  workbench.append(interactive.module);
   const reference = assets.get('sgr-a-reconstruction');
-  if (reference) evidence.append(mediaCard(reference, { sizes: '(max-width: 700px) 94vw, 500px' }));
-  zone.append(process, evidence);
+  if (reference) workbench.append(mediaCard(reference, { className: 'bhv2-reconstruction-reference', sizes: '(max-width: 900px) 94vw, 680px', zoom: true }));
+  zone.append(track, workbench);
   section.append(zone);
   return section;
 }
 
 function buildComparison(station, assets) {
-  const section = sectionShell(station, 'comparison-pair', 'standard');
-  const zone = el('div', 'bhv2-zone');
-  zone.append(sectionHeader(station));
-  const pair = el('div', 'bhv2-comparison-pair');
+  const section = sectionShell(station, 'rotunda', 'wide');
+  const zone = el('div', 'bhv2-zone bhv2-rotunda-zone');
+  zone.append(sectionIntro(station, { deeperLabel: 'Why these are reconstructed observations' }));
+  const pair = el('div', 'bhv2-rotunda-bays');
   ['m87-observation', 'sgr-a-observation'].forEach((id) => {
     const asset = assets.get(id);
-    if (asset) pair.append(mediaCard(asset, { className: 'bhv2-comparison-card', sizes: '(max-width: 700px) 94vw, 460px' }));
+    if (asset) pair.append(mediaCard(asset, { className: 'bhv2-monument-card', sizes: '(max-width: 900px) 94vw, 720px' }));
   });
 
-  const support = el('div', 'bhv2-comparison-support');
+  const support = el('div', 'bhv2-rotunda-controls');
+  const contextDeck = el('div', 'bhv2-context-deck');
   const controls = createComparisonControls(station, (index) => {
-    support.dataset.view = ['separate', 'compare', 'context', 'scale'][index] || 'separate';
-    support.querySelectorAll('[data-comparison-extra]').forEach((node) => { node.hidden = true; });
-    if (index === 2) support.querySelector('[data-comparison-extra="context"]')?.removeAttribute('hidden');
-    if (index === 3) support.querySelector('[data-comparison-extra="scale"]')?.removeAttribute('hidden');
     pair.dataset.view = index === 1 ? 'compare' : 'separate';
+    contextDeck.querySelectorAll('[data-comparison-extra]').forEach((node) => { node.hidden = true; });
+    if (index === 2) contextDeck.querySelector('[data-comparison-extra="context"]')?.removeAttribute('hidden');
+    if (index === 3) contextDeck.querySelector('[data-comparison-extra="scale"]')?.removeAttribute('hidden');
   });
   support.append(controls);
 
   const galaxy = assets.get('m87-galaxy');
   if (galaxy) {
-    const card = mediaCard(galaxy, { className: 'bhv2-small-module', sizes: '(max-width: 700px) 94vw, 340px' });
+    const card = mediaCard(galaxy, { className: 'bhv2-context-card', sizes: '(max-width: 900px) 94vw, 780px' });
     card.dataset.comparisonExtra = 'context';
     card.hidden = true;
-    support.append(card);
+    contextDeck.append(card);
   }
   const scale = assets.get('m87-sgr-scale');
   if (scale) {
-    const card = mediaCard(scale, { className: 'bhv2-small-module', sizes: '(max-width: 700px) 94vw, 340px' });
+    const card = mediaCard(scale, { className: 'bhv2-context-card', sizes: '(max-width: 900px) 94vw, 900px', zoom: true });
     card.dataset.comparisonExtra = 'scale';
     card.hidden = true;
-    support.append(card);
+    contextDeck.append(card);
   }
 
-  zone.append(pair, support);
+  const bench = el('div', 'bhv2-quiet-bench');
+  bench.append(el('span', '', 'QUIET BENCH'), el('p', '', 'No action required here. Pause with the two historic observations before moving into the working laboratory.'));
+  zone.append(pair, support, contextDeck, bench);
   section.append(zone);
   return section;
 }
 
 function buildWarpedLight(station, assets) {
-  const section = sectionShell(station, 'interactive-gallery', 'wide');
+  const section = sectionShell(station, 'laboratory', 'wide');
   const zone = el('div', 'bhv2-zone');
-  zone.append(sectionHeader(station));
-  const top = el('div', 'bhv2-warped-pair');
-  top.append(createWarpedLightInteractive(station));
+  zone.append(sectionIntro(station, { deeperLabel: 'Why the model looks impossible' }));
+  const bench = el('div', 'bhv2-lab-bench');
+  bench.append(createWarpedLightInteractive(station));
   const companion = assets.get('nasa-labeled-accretion');
-  if (companion) top.append(mediaCard(companion, { className: 'bhv2-standard-module', sizes: '(max-width: 700px) 94vw, 500px' }));
+  if (companion) bench.append(mediaCard(companion, { className: 'bhv2-lab-diagram', sizes: '(max-width: 900px) 94vw, 700px', zoom: true }));
 
   const gallery = el('div', 'bhv2-support-gallery');
   ['nasa-optics', 'nasa-edge-on', 'nasa-rotating'].forEach((id) => {
     const asset = assets.get(id);
-    if (asset) gallery.append(mediaCard(asset, { className: 'bhv2-small-module', sizes: '(max-width: 700px) 94vw, 340px' }));
+    if (asset) gallery.append(mediaCard(asset, { className: 'bhv2-lab-reference', sizes: '(max-width: 900px) 94vw, 520px', zoom: true }));
   });
-  zone.append(top, gallery);
+  zone.append(bench, gallery);
   section.append(zone);
   return section;
 }
 
 function buildAnatomy(station) {
-  const section = sectionShell(station, 'anatomy-myth-cluster', 'wide');
+  const section = sectionShell(station, 'clarity-gallery', 'wide');
   const zone = el('div', 'bhv2-zone');
-  zone.append(sectionHeader(station));
+  zone.append(sectionIntro(station, { deeperLabel: 'Keep the parts distinct' }));
   const cluster = el('div', 'bhv2-anatomy-cluster');
   cluster.append(createAnatomyInteractive(station));
-  const myths = el('div', 'bhv2-myth-grid');
+  const myths = el('div', 'bhv2-myth-stack');
+  myths.append(el('h3', '', 'Myths to retire'));
   (station.myths || []).forEach((item) => {
     const card = el('details', 'bhv2-myth');
     card.append(el('summary', '', item.claim || ''), el('p', '', item.knowledge || ''));
@@ -405,11 +462,7 @@ function youtubeCard(item) {
   frame.dataset.youtubeTitle = item.title;
   frame.append(el('div', 'bhv2-youtube-placeholder', 'Video player wakes up when the Media Center is nearby.'));
   const meta = el('div', 'bhv2-youtube-meta');
-  meta.append(
-    el('h3', '', item.title),
-    el('p', 'bhv2-youtube-source', `${item.source} · ${item.length}`),
-    el('p', '', item.note)
-  );
+  meta.append(el('h3', '', item.title), el('p', 'bhv2-youtube-source', `${item.source} · ${item.length}`), el('p', '', item.note));
   card.append(frame, meta);
   return card;
 }
@@ -437,25 +490,34 @@ function buildMediaCenter() {
 }
 
 function buildBoundary(station, content, assets) {
-  const section = sectionShell(station, 'knowledge-split', 'wide');
-  const zone = el('div', 'bhv2-zone');
-  zone.append(sectionHeader(station));
+  const section = sectionShell(station, 'boundary', 'wide');
+  const zone = el('div', 'bhv2-zone bhv2-boundary-zone');
+  zone.append(sectionIntro(station, { deeperLabel: 'Where observation stops' }));
+
+  const threshold = el('div', 'bhv2-knowledge-boundary');
+  threshold.setAttribute('aria-hidden', 'true');
+  threshold.append(el('span', '', 'WHAT WE CAN MEASURE'), el('i'), el('span', '', 'WHAT REMAINS OPEN'));
+
   const split = el('div', 'bhv2-knowledge-split');
   const known = el('article', 'bhv2-known');
   known.append(el('h3', '', 'What scientists can investigate'));
-  (station.known || []).forEach((item) => known.append(el('p', '', item)));
+  const knownList = document.createElement('ul');
+  (station.known || []).forEach((item) => knownList.append(el('li', '', item)));
+  known.append(knownList);
   const unknown = el('article', 'bhv2-unknown');
   unknown.append(el('h3', '', 'Questions still open'));
-  (station.unknown || []).forEach((item) => unknown.append(el('p', '', item)));
+  const unknownList = document.createElement('ul');
+  (station.unknown || []).forEach((item) => unknownList.append(el('li', '', item)));
+  unknown.append(unknownList);
   split.append(known, unknown);
 
-  const pullback = el('div', 'bhv2-evidence-pullback');
-  ['m87-observation', 'm87-galaxy', 'alma-antennas'].forEach((id) => {
-    const asset = assets.get(id);
-    if (asset) pullback.append(mediaCard(asset, { className: 'bhv2-small-module', sizes: '(max-width: 700px) 94vw, 340px' }));
-  });
+  const returnSequence = el('div', 'bhv2-return-sequence');
+  const galaxy = assets.get('m87-galaxy');
+  if (galaxy) returnSequence.append(mediaCard(galaxy, { className: 'bhv2-pullback-artifact', sizes: '(max-width: 900px) 94vw, 1200px' }));
+  const observers = assets.get('alma-antennas');
+  if (observers) returnSequence.append(mediaCard(observers, { className: 'bhv2-observer-artifact', sizes: '(max-width: 900px) 94vw, 1400px' }));
 
-  zone.append(split, pullback, el('blockquote', 'bhv2-closing-line', content.page.closingLine || station.child || ''));
+  zone.append(threshold, split, returnSequence, el('blockquote', 'bhv2-closing-line', content.page.closingLine || station.child || ''));
   section.append(zone);
   return section;
 }
@@ -465,13 +527,17 @@ function buildCredits(content, assetManifest) {
   section.id = 'black-hole-credits';
   const zone = el('div', 'bhv2-zone');
   zone.append(el('p', 'bhv2-kicker', 'Media ledger'), el('h2', '', 'Scientific media and credits'), el('p', 'bhv2-credit-intro', content.creditsIntro || ''));
+  const ledger = document.createElement('details');
+  ledger.className = 'bhv2-credit-ledger';
+  ledger.append(el('summary', '', `Open the full media ledger (${(assetManifest.assets || []).length} sources)`));
   const list = el('div', 'bhv2-credit-list');
   (assetManifest.assets || []).forEach((asset) => {
     const item = el('article', 'bhv2-credit-item');
     item.append(el('h3', '', asset.title || ''), evidenceBadge(asset.classification || ''), el('p', '', `${asset.credit || ''}${asset.license ? ' · ' + asset.license : ''}`), sourceLink(asset));
     list.append(item);
   });
-  zone.append(list);
+  ledger.append(list);
+  zone.append(ledger);
   section.append(zone);
   return section;
 }
@@ -479,32 +545,37 @@ function buildCredits(content, assetManifest) {
 function buildFooter(release, content) {
   const footer = el('footer', 'bhv2-footer');
   const zone = el('div', 'bhv2-zone bhv2-footer-zone');
-  zone.append(
-    el('p', '', content.page.prototypeWarning || ''),
-    el('p', 'bhv2-build-marker', `V2 renderer ${RENDERER_VERSION} · staging release ${release.release || 'unversioned'} · ${String(release.commit || '').slice(0, 12)}`)
-  );
+  zone.append(el('p', '', content.page.prototypeWarning || ''), el('p', 'bhv2-build-marker', `V2 renderer ${RENDERER_VERSION} · staging release ${release.release || 'unversioned'} · ${String(release.commit || '').slice(0, 12)}`));
   footer.append(zone);
   return footer;
 }
 
-function buildControls() {
-  const dock = el('aside', 'bhv2-controls');
-  dock.setAttribute('aria-label', 'Black Hole Museum controls');
-  const motion = button('Pause motion');
-  dock.append(motion);
-  return { dock, motion };
+function stationFallback(station, error) {
+  const section = sectionShell(station, 'fallback', 'standard');
+  const zone = el('div', 'bhv2-zone bhv2-station-fallback');
+  zone.append(
+    el('p', 'bhv2-kicker', `Exhibit ${station.number}`),
+    el('h2', '', station.title || 'Exhibit unavailable'),
+    el('p', '', station.child || 'The enhanced exhibit is unavailable.'),
+    el('p', 'bhv2-failure-note', 'This exhibit could not start. The rest of the museum remains available.')
+  );
+  console.error(`[HRV BHM V2] Station ${station.number} failed.`, error);
+  section.append(zone);
+  return section;
+}
+
+function buildStation(station, builder) {
+  try {
+    return builder();
+  } catch (error) {
+    return stationFallback(station, error);
+  }
 }
 
 function validateBundle(content, assets, experience) {
-  if (content?.schemaVersion !== '1.0' || !Array.isArray(content.stations) || content.stations.length !== 10) {
-    throw new Error('Invalid black-hole content manifest.');
-  }
-  if (assets?.schemaVersion !== '1.0' || !Array.isArray(assets.assets)) {
-    throw new Error('Invalid black-hole asset manifest.');
-  }
-  if (experience?.schemaVersion !== '1.0') {
-    throw new Error('Invalid black-hole experience manifest.');
-  }
+  if (content?.schemaVersion !== '1.0' || !Array.isArray(content.stations) || content.stations.length !== 10) throw new Error('Invalid black-hole content manifest.');
+  if (assets?.schemaVersion !== '1.0' || !Array.isArray(assets.assets)) throw new Error('Invalid black-hole asset manifest.');
+  if (experience?.schemaVersion !== '1.0') throw new Error('Invalid black-hole experience manifest.');
 }
 
 export async function mountBlackHoleMuseum({ mount, release, content, assets, experience }) {
@@ -514,10 +585,7 @@ export async function mountBlackHoleMuseum({ mount, release, content, assets, ex
   const nativeNodes = [...mount.childNodes];
   const assetIndex = assetMap(assets);
   const cleanups = [];
-  const state = {
-    reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
-    motionPaused: false
-  };
+  const state = { reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, motionPaused: false };
 
   const shell = el('div', 'bhv2-shell');
   shell.dataset.renderer = RENDERER_VERSION;
@@ -528,25 +596,35 @@ export async function mountBlackHoleMuseum({ mount, release, content, assets, ex
   skip.className = 'bhv2-skip';
   skip.href = '#classroom-threshold';
   skip.textContent = 'Skip to the Black Hole Museum';
-
-  const controls = buildControls();
-  shell.append(skip, buildHero(content), buildWayfinding(content, state), controls.dock);
+  const utility = buildUtilityBar(content, state);
+  shell.append(skip, buildHero(content), utility.bar);
 
   const main = el('main', 'bhv2-main');
   main.id = 'bhv2-main';
+  const s01 = stationByNumber(content, '01');
+  const s02 = stationByNumber(content, '02');
+  const s03 = stationByNumber(content, '03');
+  const s04 = stationByNumber(content, '04');
+  const s05 = stationByNumber(content, '05');
+  const s06 = stationByNumber(content, '06');
+  const s07 = stationByNumber(content, '07');
+  const s08 = stationByNumber(content, '08');
+  const s09 = stationByNumber(content, '09');
+  const s10 = stationByNumber(content, '10');
+
   main.append(
-    buildOpeningRecap(stationByNumber(content, '01'), content),
-    buildLensing(stationByNumber(content, '02')),
-    buildEvidence(stationByNumber(content, '03'), assetIndex),
-    buildOrbit(stationByNumber(content, '04'), assetIndex),
-    buildTelescope(stationByNumber(content, '05'), assetIndex),
-    buildReconstruction(stationByNumber(content, '06'), assetIndex),
-    buildComparison(stationByNumber(content, '07'), assetIndex),
-    buildWarpedLight(stationByNumber(content, '08'), assetIndex),
-    buildAnatomy(stationByNumber(content, '09'))
+    buildStation(s01, () => buildOpeningRecap(s01, content)),
+    buildStation(s02, () => buildLensing(s02)),
+    buildStation(s03, () => buildEvidence(s03, assetIndex)),
+    buildStation(s04, () => buildOrbit(s04, assetIndex)),
+    buildStation(s05, () => buildTelescope(s05, assetIndex)),
+    buildStation(s06, () => buildReconstruction(s06, assetIndex)),
+    buildStation(s07, () => buildComparison(s07, assetIndex)),
+    buildStation(s08, () => buildWarpedLight(s08, assetIndex)),
+    buildStation(s09, () => buildAnatomy(s09))
   );
   const mediaCenter = buildMediaCenter();
-  main.append(mediaCenter, buildBoundary(stationByNumber(content, '10'), content, assetIndex), buildCredits(content, assets));
+  main.append(mediaCenter, buildStation(s10, () => buildBoundary(s10, content, assetIndex)), buildCredits(content, assets));
   shell.append(main, buildFooter(release, content));
 
   try {
@@ -556,7 +634,7 @@ export async function mountBlackHoleMuseum({ mount, release, content, assets, ex
     mount.dataset.hrvState = 'ready';
 
     const sections = [...shell.querySelectorAll('.bhv2-section')];
-    installMotionControl(shell, controls.motion, state);
+    installMotionControl(shell, utility.motion, state);
     installRuntimeWindow(shell, sections, cleanups);
     installSectionSpy(shell, sections, cleanups);
     installLazyYouTube(mediaCenter, cleanups);
