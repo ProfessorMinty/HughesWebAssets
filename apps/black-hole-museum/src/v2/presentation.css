@@ -33,6 +33,7 @@
   max-width:none;
   margin:0;
   color:var(--bhv2-text);
+  font-family:'Atkinson Hyperlegible',sans-serif;
   background:
     radial-gradient(circle at 12% 8%,rgba(73,120,208,.12),transparent 28rem),
     radial-gradient(circle at 86% 24%,rgba(60,206,229,.07),transparent 34rem),
@@ -53,6 +54,10 @@
   background-size:23rem 19rem,31rem 27rem,37rem 29rem,41rem 33rem;
 }
 
+#hrv-black-hole-v2-root .bhv2-shell :where(h1,h2,h3,h4,h5,h6) {
+  color:var(--bhv2-text)!important;
+  font-family:'Nunito Sans',sans-serif!important;
+}
 #hrv-black-hole-v2-root .bhv2-shell :where(h1,h2,h3,p,figure,blockquote) { margin-top:0; }
 #hrv-black-hole-v2-root .bhv2-shell :where(h1,h2,h3,button,summary) {
   overflow-wrap:normal!important;
