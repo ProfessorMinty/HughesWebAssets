@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0",
+  "release": "0.2.0-black-hole-v2-lab.4",
+  "immutableRef": "7d6725b7253de037395f1b6dc279c5499ade26ce",
+  "commit": "08df2170290097197f69b5917ba079df6d22241b",
+  "builtAt": "2026-08-08T02:55:00Z",
+  "minimumBootstrapVersion": "v2-page-local-0.1.0",
+  "deploymentReady": true,
+  "releasePurpose": "unpublished-v2-staging",
+  "dataFoundation": {
+    "mode": "temporary-pinned-seed",
+    "sourceRelease": "0.1.0-black-hole-lab.2",
+    "rule": "The verified .2 manifests are reusable staging input only. Production-capable V2 releases must publish validated V2-owned copies of content, assets, and experience data."
+  },
+  "pageSystems": {
+    "black-hole-museum-v2": {
+      "script": {
+        "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@7d6725b7253de037395f1b6dc279c5499ade26ce/dist/v0.2.0-black-hole-v2-lab.4/black-hole-museum.js",
+        "type": "module",
+        "sha256": "0e67f468fef7d99509e78995ac00603aa4edd7355407007fede9f60cafebf84d"
+      },
+      "style": {
+        "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@7d6725b7253de037395f1b6dc279c5499ade26ce/dist/v0.2.0-black-hole-v2-lab.4/black-hole-museum.css",
+        "sha256": "944bdeb84fad65f552a31806d1e3a5036ae08faa11f7eb0e4496a66b78c9c992"
+      },
+      "content": {
+        "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.2/dist/v0.1.0-black-hole-lab.2/content/black-hole-museum.json",
+        "schemaVersion": "1.0",
+        "sha256": "ebe7087404c825ce925fd647c58b38a1db8b853578c710bdb70e59942f53c21c"
+      },
+      "assets": {
+        "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.2/dist/v0.1.0-black-hole-lab.2/content/black-hole-assets.json",
+        "schemaVersion": "1.0",
+        "sha256": "1ee1ce7d29c7c72ed7b47e5f70b66ca7f148973b7a16240980fbba37493862a9"
+      },
+      "experience": {
+        "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@v0.1.0-black-hole-lab.2/dist/v0.1.0-black-hole-lab.2/content/black-hole-experience.json",
+        "schemaVersion": "1.0",
+        "sha256": "1e2385c14e36eeeeb40b53955eb5af7964d76c78b100779081165dcbbe90683d"
+      }
+    }
+  },
+  "rollbackRelease": "0.2.0-black-hole-v2-lab.3"
+}
