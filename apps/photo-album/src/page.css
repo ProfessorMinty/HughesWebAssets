@@ -1,0 +1,89 @@
+/* Hughes Room Views · Photo Album styles */
+
+#hrv-photo-album.hrv-photo-album-repo-ready {
+  width: min(100%, 1200px);
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+  color: #263238;
+}
+
+#hrv-photo-album .hrv-photo-album-header {
+  margin-bottom: 28px;
+}
+
+#hrv-photo-album .hrv-photo-album-kicker {
+  margin: 0 0 6px;
+  color: #0f6b78;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#hrv-photo-album h1 {
+  margin: 0 0 12px;
+  color: #173a43;
+}
+
+#hrv-photo-album #hrv-photo-album-status {
+  margin: 0;
+  color: #4b5d63;
+}
+
+#hrv-photo-album #hrv-photo-album-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 20px;
+}
+
+#hrv-photo-album .hrv-photo {
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(23, 58, 67, 0.12);
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(23, 58, 67, 0.08);
+}
+
+#hrv-photo-album .hrv-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: #eef5f6;
+}
+
+#hrv-photo-album .hrv-photo figcaption {
+  margin: 0;
+  padding: 10px 12px 12px;
+  color: #4b5d63;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+#hrv-photo-album[data-hrv-state='failed'] #hrv-photo-album-status {
+  color: #7a3e00;
+}
+
+@media (max-width: 560px) {
+  #hrv-photo-album.hrv-photo-album-repo-ready {
+    padding-inline: 14px;
+  }
+
+  #hrv-photo-album #hrv-photo-album-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #hrv-photo-album *,
+  #hrv-photo-album *::before,
+  #hrv-photo-album *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
