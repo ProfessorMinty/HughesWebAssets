@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0",
+  "release": "0.1.0-photo-album-e2e.1",
+  "status": "unpublished-test",
+  "commit": "3fe0d6e7ce8990b84d573aa376e6861ba2164da3",
+  "pageSystems": {
+    "photo-album-e2e-test": {
+      "script": {
+        "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@3fe0d6e7ce8990b84d573aa376e6861ba2164da3/labs/photo-album-end-to-end-test/renderer.js"
+      },
+      "style": {
+        "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets@3fe0d6e7ce8990b84d573aa376e6861ba2164da3/labs/photo-album-end-to-end-test/renderer.css"
+      },
+      "data": {
+        "url": "https://hrv-photo-album-test.drminty17.workers.dev/manifest.json"
+      }
+    }
+  }
+}
