@@ -1,0 +1,29 @@
+/* Hughes Room Views · Photo Album · Edublogs CSS tab
+   Keep this intentionally tiny. The repository release owns the enhanced presentation. */
+
+#hrv-photo-album {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+#hrv-photo-album .hrv-photo-album-header {
+  margin-bottom: 28px;
+}
+
+#hrv-photo-album .hrv-photo-album-kicker {
+  margin: 0 0 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#hrv-photo-album h1,
+#hrv-photo-album #hrv-photo-album-status {
+  margin-top: 0;
+}
+
+#hrv-photo-album #hrv-photo-album-gallery:empty {
+  display: none;
+}
