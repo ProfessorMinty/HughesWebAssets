@@ -7,6 +7,26 @@
   var mountId = (script && script.dataset && script.dataset.mount) || 'hrv-repo-test-root';
   var mount = document.getElementById(mountId) || document.getElementById('hrv-repo-test');
 
+  // The installed lab already runs on the Edublogs origin. A signed-in Studio popup may
+  // load this one reviewed Source helper. Ordinary visits continue with the original lab.
+  if (location.href === 'https://rmhughes.edublogs.org/asdf-test/#lanternworks-hub-preview' &&
+      window.top === window && window.opener && document.body.classList.contains('logged-in') &&
+      document.body.classList.contains('page-id-2499')) {
+    var studio = window.opener;
+    function openHubPreview(event) {
+      if (event.source !== studio || event.origin !== 'https://lanternworks.nlightlabs.com' ||
+          !event.data || event.data.protocol !== 'lanternworks-hub-host-v2' || event.data.type !== 'ping' ||
+          !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(event.data.handshake)) return;
+      window.removeEventListener('message', openHubPreview);
+      var helper = document.createElement('script');
+      helper.src = 'https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@aa3095e6f6fd7a4c05d9f79e7890bfd2ae088fbd/releases/lanternworks-hub-layout-preview/700f657864fdecbd89b0c0de89c1345f86699008b42f4c6a0399a5a8ba83452f/bridge.js';
+      helper.crossOrigin = 'anonymous';
+      helper.integrity = 'sha256-cA9leGT97L2JsMDeicE0X4ZpkAi0L0xqA5mlqLqDRS8=';
+      document.head.appendChild(helper);
+    }
+    window.addEventListener('message', openHubPreview);
+  }
+
   function log(level, message, detail) {
     var method = console[level] || console.log;
     method.call(console, PREFIX + ' ' + message, detail || '');
